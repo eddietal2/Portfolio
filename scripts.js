@@ -29,3 +29,28 @@ const ionRows = document.querySelectorAll('ion-row');
 ionRows.forEach((row) => {
     observer.observe(row);
 });
+
+const swiper = new Swiper('.swiper', {
+    // Optional parameters
+    speed: 200,
+    autoplay: true,
+    direction: 'horizontal',
+    loop: true,
+    effect: 'fade',
+  
+    // If we need pagination
+    pagination: {
+      el: '.swiper-pagination',
+    },
+  
+    // Navigation arrows
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+  
+    // And if we need scrollbar
+    scrollbar: {
+    //   el: '.swiper-scrollbar',
+    },
+  });
