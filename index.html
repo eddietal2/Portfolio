@@ -11,33 +11,78 @@
 <body>
     <ion-content>
         <ion-grid>
-            <div class="wrapper">
-                <ion-row id="section-1" data-current-section="s1">
-                    <ion-col size="11" class="ion-hide-lg-down">
-                        <h1>Section 1</h1>
+            <!-- Top Toolbar -->
+            <ion-header translucent>
+            <ion-toolbar>
+                <ion-buttons slot="start">
+                    <p>Eddie Taliaferro II</p>
+                </ion-buttons>
+                <ion-buttons slot="end">
+                    <ion-button (click)="onClick()">
+                        <ion-icon name="logo-github"></ion-icon>
+                    </ion-button>
+                    <ion-button (click)="onClick()">
+                        <ion-icon name="logo-linkedin"></ion-icon>
+                    </ion-button>
+                    <ion-button (click)="onClick()">
+                        <ion-icon name="mail-outline"></ion-icon>
+                    </ion-button>
+                </ion-buttons>
+            </ion-toolbar>
+            </ion-header>
+            <!-- Site Content -->
+            <div id="wrapper">
+                <ion-row id="section-1" class="ion-justify-content-center ion-align-items-center" data-current-section="s1">
+                    <ion-col size="6">
+                        <h1 class="landing-header">Frontend
+                            <!-- <br> -->
+                            Developer
+                        </h1>
+                        <p class="landing-text">
+                            From web apps to immersive XR experiences, I'm a skilled builder and designer who transforms ideas into engaging realities. 
+                            My expertise in responsive design, CSS & SVG animation, and the MEAN Stack ensures high-performing and engaging solutions.
+                        </p>
+                        <br>
+                        <br>
+                        <h3 style="color: #00c400;">
+                            Simple is Better.
+                            <br>
+                            Less is More.
+                        </h3>
+                    </ion-col>
+                    <ion-col size="4">
+                        <img src="./assets/headshot.jpg" class="pic">
                     </ion-col>
                 </ion-row>
-                <ion-row id="section-2" data-current-section="s2">
-                    <ion-col size="11" class="ion-hide-lg-down">
-                        <h1>Section 2</h1>
+                <ion-row id="section-2" class="ion-justify-content-center ion-align-items-center" data-current-section="s2">
+                    <ion-col size="3">
+                        <h1 style="font-size: 4em;">My Story</h1>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia magnam molestias voluptatum voluptatem nulla dignissimos incidunt reprehenderit sunt quod iusto fugiat laudantium aliquam expedita, quam earum totam fugit repellendus maiores.</p>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia magnam molestias voluptatum voluptatem nulla dignissimos incidunt reprehenderit sunt quod iusto fugiat laudantium aliquam expedita, quam earum totam fugit repellendus maiores.</p>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia magnam molestias voluptatum voluptatem nulla dignissimos incidunt reprehenderit sunt quod iusto fugiat laudantium aliquam expedita, quam earum totam fugit repellendus maiores.</p>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia magnam molestias voluptatum voluptatem nulla dignissimos incidunt reprehenderit sunt quod iusto fugiat laudantium aliquam expedita, quam earum totam fugit repellendus maiores.</p>
+                    </ion-col>
+                    <ion-col class="photos ion-text-center" size="7">
+                        <img src="./assets/photos/Photo_5.png" alt="" srcset="">
                     </ion-col>
                 </ion-row>
-                <ion-row id="section-3" data-current-section="s3">
+                <ion-row id="section-3" class="ion-justify-content-center" data-current-section="s3">
                     <ion-col size="11" class="ion-hide-lg-down">
                         <h1>Section 3</h1>
                     </ion-col>
                 </ion-row>
-                <ion-row id="section-4" data-current-section="s4">
+                <ion-row id="section-4" class="ion-justify-content-center" data-current-section="s4">
                     <ion-col size="11" class="ion-hide-lg-down">
                         <h1>Section 3</h1>
                     </ion-col>
                 </ion-row>
-                <ion-row id="section-5" data-current-section="s5">
+                <ion-row id="section-5" class="ion-justify-content-center" data-current-section="s5">
                     <ion-col size="11" class="ion-hide-lg-down">
                         <h1>Section 3</h1>
                     </ion-col>
                 </ion-row>
             </div>
+            <!-- Section Nav -->
             <nav id="sectionation-lg">
                     <ul>
                         <li>
