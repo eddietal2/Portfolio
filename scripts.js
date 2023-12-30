@@ -25,7 +25,7 @@ const options = {
     });
 }, options);
 
-const ionRows = document.querySelectorAll('ion-row');
+const ionRows = document.querySelectorAll('section');
 ionRows.forEach((row) => {
     observer.observe(row);
 });
@@ -37,6 +37,7 @@ const swiper = new Swiper('.swiper', {
     direction: 'horizontal',
     loop: true,
     effect: 'fade',
+    slidesPerView: 1,
   
     // If we need pagination
     pagination: {
@@ -54,3 +55,63 @@ const swiper = new Swiper('.swiper', {
     //   el: '.swiper-scrollbar',
     },
   });
+
+    // Landing Header SVG Animation 
+    fetch('assets/icons/header-pic-svg.svg')
+    .then(response => response.text())
+    .then(svgContent => {
+        // Process the SVG content
+        // https://g.co/bard/share/ec7f38615b0c
+        const svgContainer = document.getElementById('header-pic');
+        svgContainer.innerHTML = svgContent;
+        console.log(svgContainer.firstElementChild.childNodes)
+        const lineOne = svgContainer.firstElementChild.childNodes[7];
+        const lineTwo = svgContainer.firstElementChild.childNodes[5];
+        const lineThree = svgContainer.firstElementChild.childNodes[3];
+        const lineFour = svgContainer.firstElementChild.childNodes[1];
+        
+        setInterval(() => {
+            lineOneAnim();
+            lineTwoAnim();
+            lineThreeAnim();
+            lineFourAnim();
+        }, 1600);
+        
+        function lineOneAnim() {
+            setTimeout(() => {
+                lineOne.style.fill = '#0ff131';
+            }, 200);
+            setTimeout(() => {
+                lineOne.style.fill = '#888';
+            }, 900);
+        }
+        function lineTwoAnim() {
+            setTimeout(() => {
+                lineTwo.style.fill = '#650087';
+            }, 400);
+            setTimeout(() => {
+                lineTwo.style.fill = '#666';
+            }, 1000);
+        }
+        function lineThreeAnim() {
+            setTimeout(() => {
+                lineThree.style.fill = '#0ff131';
+            }, 600);
+            setTimeout(() => {
+                lineThree.style.fill = '#444';
+            }, 1100);
+        }
+        function lineFourAnim() {
+            setTimeout(() => {
+                lineFour.style.fill = '#650087';
+            }, 800);
+            setTimeout(() => {
+                lineFour.style.fill = '#222';
+            }, 1200);
+        }
+
+        lineOne.style.transition = '0.5s';
+        lineTwo.style.transition = '0.5s';
+        lineThree.style.transition = '0.5s';
+        lineFour.style.transition = '0.5s';
+    });

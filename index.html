@@ -14,9 +14,9 @@
     <ion-content>
         <ion-grid>
             <!-- Top Toolbar -->
-            <ion-toolbar translucent>
+            <ion-toolbar id="toolbar">
                 <ion-buttons slot="start">
-                    <p style="color: #fff;">Eddie Taliaferro II</p>
+                    <p id="toolbar-name">Eddie Taliaferro II</p>
                 </ion-buttons>
                 <ion-buttons slot="end">
                     <ion-button (click)="onClick()">
@@ -53,148 +53,205 @@
             <div id="wrapper">
 
                 <!-- Landing Intro -->
-                <ion-row id="section-1" class="ion-justify-content-center ion-align-items-center" data-current-section="s1">
-                    <ion-col size="6">
-                        <h1 class="landing-header">Frontend
-                            <!-- <br> -->
-                            Developer
-                        </h1>
-                        <p class="landing-text">
-                            From web apps to immersive XR experiences, I'm a skilled builder and designer who transforms ideas into engaging realities. 
-                            My expertise in responsive design, CSS & SVG animation, and the MEAN Stack ensures high-performing and engaging solutions.
-                        </p>
-                        <br>
-                        <br>
-                        <h3 style="color: #00c400;">
-                            Simple is Better.
+                <section data-current-section="s1">
+                    <ion-row id="section-1" class="ion-justify-content-center ion-align-items-center ion-hide-lg-down">
+                        <ion-col size="6">
+                            <h1 class="landing-header">Front-End
+                                <!-- <br> -->
+                                Developer
+                            </h1>
+                            <p class="landing-text">
+                                From web apps to immersive XR experiences, I'm a skilled builder and designer who transforms ideas into engaging realities. 
+                                My expertise in responsive design, CSS & SVG animation, and the MEAN Stack ensures high-performing and engaging solutions.
+                            </p>
                             <br>
-                            Less is More.
-                        </h3>
-                    </ion-col>
-                    <ion-col size="4">
-                        <img src="./assets/headshot.jpg" class="pic">
-                    </ion-col>
-                </ion-row>
+                            <br>
+                            <h3>
+                                Simple is Better;
+                                <br>
+                                Less is More.
+                            </h3>
+                        </ion-col>
+                        <ion-col size="3" class="ion-text-left">
+                            <div id="header-pic" class="pic"></div>
+                        </ion-col>
+                    </ion-row>
+                    <ion-row id="section-1" class="ion-justify-content-center ion-hide-lg-up">
+                        <ion-col size="11">
+                            <div id="header-pic" class="pic"></div>
+                            <h1 class="landing-header-sm">Front-End
+                                <!-- <br> -->
+                                Developer
+                            </h1>
+                        </ion-col>
+                        <ion-col size="11">
+                            <p class="landing-text">
+                                From web apps to immersive XR experiences, I'm a skilled builder and designer who transforms ideas into engaging realities. 
+                                My expertise in responsive design, CSS & SVG animation, and the MEAN Stack ensures high-performing and engaging solutions.
+                            </p>
+                            <br>
+                            <br>
+                            <h3>
+                                Simple is Better;
+                                <br>
+                                Less is More.
+                                <br><br>
+                            </h1>
+                        </ion-col>
+                    </ion-row>
+                    
+                </section>
 
                 <!-- My Story -->
-                <ion-row id="section-2" class="ion-justify-content-center ion-align-items-center" data-current-section="s2">
-                    <ion-col size="3.5">
-                        <h1 style="font-size: 4em;">MY STORY</h1>
-                        <h3>Early Spark, Unconventional Path</h3>
-                        <p>My love for video games and anime wasn't just passive consumption; it ignited a creative fire at 11 years old. Online forums like Playstation Universe became my playground, not just for passionate console debates, but for crafting custom signatures, which became an artform.
-                            <br><br>
-                            That spark wasn't confined to pixels. College, while initially pursued, couldn't contain my hunger for growth. In 2016, I charted a new course, one paved with hackathon victories, immersive bootcamps, and freelance projects that transformed me into a seasoned web developer.
-                            <br><br>
-                            But my truest fulfillment found its roots in giving back. For four years, Detroit's youth became my students, entrusted with the keys to HTML, CSS, JavaScript, even Swift, AR, and Unreal Engine. Journi, the non-profit that embraced my passion, witnessed not only my students' growth, but the refinement of my own skills. It was an honor, yes, but more importantly, an act of love for my city, a love blossoming from those early pixels and signatures.
-                        </p>
-                    </ion-col>
-                    <ion-col class="photos ion-text-center" size="6.5">
-                        <!-- <div class="photo-ill"></div> -->
-                        <!-- Slider main container -->
-                        <div class="swiper">
-                         <!-- Additional required wrapper -->
-                         <div class="swiper-wrapper">
-                           <!-- Slides -->
-                           <div class="swiper-slide">
-                            <img src="./assets/photos/Photo_1.png" alt="" srcset="">
-                           </div>
-                           <div class="swiper-slide">
-                            <img src="./assets/photos/Photo_2.png" alt="" srcset="">
-                           </div>
-                           <div class="swiper-slide">
-                            <img src="./assets/photos/Photo_3.png" alt="" srcset="">
-                           </div>
-                           <div class="swiper-slide">
-                            <img src="./assets/photos/Photo_4.png" alt="" srcset="">
-                           </div>
-                           <div class="swiper-slide">
-                            <img src="./assets/photos/Photo_5.png" alt="" srcset="">
-                           </div>
-                         </div>
-                         <!-- If we need pagination -->
-                         <!-- <div class="swiper-pagination"></div> -->
-                        
-                         <!-- If we need navigation buttons -->
-                         <!-- <div class="swiper-button-prev"></div>
-                         <div class="swiper-button-next"></div> -->
-                        
-                      </div>
-                    </ion-col>
-                </ion-row>
+                <section data-current-section="s2">
+                    <ion-row id="section-2" class="ion-justify-content-center ion-align-items-center">
+                        <ion-col size-lg="3.5" size="11">
+                            <h1 style="font-size: 4em;">MY STORY</h1>
+                            <h3>Early Spark, Unconventional Path</h3>
+                            <p>My love for video games and anime wasn't just passive consumption; it ignited a creative fire at 11 years old. Online forums like Playstation Universe became my playground, not just for passionate console debates, but for crafting custom signatures, which became an artform.
+                                <br><br>
+                                That spark wasn't confined to pixels. College, while initially pursued, couldn't contain my hunger for growth. In 2016, I charted a new course, one paved with hackathon victories, immersive bootcamps, and freelance projects that transformed me into a seasoned web developer.
+                                <br><br>
+                                But my truest fulfillment found its roots in giving back. For four years, Detroit's youth became my students, entrusted with the keys to HTML, CSS, JavaScript, even Swift, AR, and Unreal Engine. Journi, the non-profit that embraced my passion, witnessed not only my students' growth, but the refinement of my own skills. It was an honor, yes, but more importantly, an act of love for my city, a love blossoming from those early pixels and signatures.
+                            </p>
+                        </ion-col>
+                        <ion-col class="photos ion-text-center" size-lg="6.5" size="11">
+                            <!-- <div class="photo-ill"></div> -->
+                            <!-- Slider main container -->
+                            <div class="swiper">
+                             <!-- Additional required wrapper -->
+                             <div class="swiper-wrapper">
+                               <!-- Slides -->
+                               <div class="swiper-slide">
+                                <img src="./assets/photos/Photo_1.png" alt="" srcset="">
+                               </div>
+                               <div class="swiper-slide">
+                                <img src="./assets/photos/Photo_2.png" alt="" srcset="">
+                               </div>
+                               <div class="swiper-slide">
+                                <img src="./assets/photos/Photo_3.png" alt="" srcset="">
+                               </div>
+                               <div class="swiper-slide">
+                                <img src="./assets/photos/Photo_4.png" alt="" srcset="">
+                               </div>
+                               <div class="swiper-slide">
+                                <img src="./assets/photos/Photo_5.png" alt="" srcset="">
+                               </div>
+                             </div>
+                             <!-- If we need pagination -->
+                             <!-- <div class="swiper-pagination"></div> -->
+                            
+                             <!-- If we need navigation buttons -->
+                             <!-- <div class="swiper-button-prev"></div>
+                             <div class="swiper-button-next"></div> -->
+                            
+                          </div>
+                        </ion-col>
+                    </ion-row>
+                    
+                </section>
 
                 <!-- Projects -->
-                <ion-row id="section-3" class="ion-justify-content-center ion-align-items-center" data-current-section="s3">
-                    <ion-col size="3.33" class="pj-wrp">
-                        <div class="ion-text-center">
-                            <img src="./assets/FBS_Logo_Initial_Final_NoBG copy.png" height="150" aria-label="Final Boss Studios Logo">
-                        </div>
-                        <h3>Final Boss Studios</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias maiores repellat id cum assumenda? Beatae aspernatur cumque a ex doloribus nostrum minus eos tempora vel! Mollitia molestias corporis rerum cum.</p>
-                        <ion-toolbar style="padding: 0em; --background: none;">
-                            <ion-buttons slot="start">
-                                <ion-button (click)="onClick()">
-                                    <ion-icon style="color: #0D021C;" slot="icon-only" name="link-outline"></ion-icon>
-                                </ion-button>
-                                <ion-button (click)="onClick()">
-                                    <ion-icon style="color: #0D021C;" slot="icon-only" name="logo-github"></ion-icon>
-                                </ion-button>
-                            </ion-buttons>
-                        </ion-toolbar>
-                    </ion-col>
-                    <ion-col size="3.33" class="pj-wrp">
-                        <div class="ion-text-center">
-                            <img src="./assets/FBS_Logo_Initial_Final_NoBG copy.png" height="150" aria-label="Final Boss Studios Logo">
-                        </div>
-                        <h3>Final Boss Studios</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias maiores repellat id cum assumenda? Beatae aspernatur cumque a ex doloribus nostrum minus eos tempora vel! Mollitia molestias corporis rerum cum.</p>
-                        <ion-toolbar style="padding: 0em; --background: none;">
-                            <ion-buttons slot="start">
-                                <ion-button (click)="onClick()">
-                                    <ion-icon style="color: #0D021C;" slot="icon-only" name="link-outline"></ion-icon>
-                                </ion-button>
-                                <ion-button (click)="onClick()">
-                                    <ion-icon style="color: #0D021C;" slot="icon-only" name="logo-github"></ion-icon>
-                                </ion-button>
-                            </ion-buttons>
-                        </ion-toolbar>
-                    </ion-col>
-                    <ion-col size="3.33" class="pj-wrp">
-                        <div class="ion-text-center">
-                            <img src="./assets/FBS_Logo_Initial_Final_NoBG copy.png" height="150" aria-label="Final Boss Studios Logo">
-                        </div>
-                        <h3>Final Boss Studios</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias maiores repellat id cum assumenda? Beatae aspernatur cumque a ex doloribus nostrum minus eos tempora vel! Mollitia molestias corporis rerum cum.</p>
-                        <ion-toolbar style="padding: 0em; --background: none;">
-                            <ion-buttons slot="start">
-                                <ion-button (click)="onClick()">
-                                    <ion-icon style="color: #0D021C;" slot="icon-only" name="link-outline"></ion-icon>
-                                </ion-button>
-                                <ion-button (click)="onClick()">
-                                    <ion-icon style="color: #0D021C;" slot="icon-only" name="logo-github"></ion-icon>
-                                </ion-button>
-                            </ion-buttons>
-                        </ion-toolbar>
-                    </ion-col>
-                </ion-row>
+                <section data-current-section="s3">
+                    <ion-row id="section-3" class="ion-justify-content-center ion-align-items-center">
+                        <ion-col size="10">
+                            <h1 class="projects-header">MY PROJECTS</h1>
+                        </ion-col>
+                        <ion-col size-lg="3.33" size-md="10" size="11" class="pj-wrp">
+                            <ion-row class="ion-justify-content-center">
+                                <ion-col size-lg="12" size-md="3" class="ion-align-items-center">
+                                    <div>
+                                        <img src="./assets/FBS_Logo_Initial_Final_NoBG copy.png" height="100" aria-label="Final Boss Studios Logo">
+                                    </div>
+                                </ion-col>
+                                <ion-col size-lg="12" size-md="9">
+                                    <h3>Final Boss Studios</h3>
+                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias maiores repellat id cum assumenda? Beatae aspernatur cumque a ex doloribus nostrum minus eos tempora vel! Mollitia molestias corporis rerum cum.</p>
+                                    <ion-toolbar style="padding: 0em; --background: none;">
+                                        <ion-buttons slot="start">
+                                            <ion-button (click)="onClick()">
+                                                <ion-icon style="color: #0D021C;" slot="icon-only" name="link-outline"></ion-icon>
+                                            </ion-button>
+                                            <ion-button (click)="onClick()">
+                                                <ion-icon style="color: #0D021C;" slot="icon-only" name="logo-github"></ion-icon>
+                                            </ion-button>
+                                        </ion-buttons>
+                                    </ion-toolbar>
+                                    
+                                </ion-col>
+                            </ion-row>
+                        </ion-col>
+                        <ion-col size-lg="3.33" size-md="10" size="11" class="pj-wrp">
+                            <ion-row class="ion-justify-content-center">
+                                <ion-col size-lg="12" size-md="3">
+                                    <div>
+                                        <img src="./assets/FBS_Logo_Initial_Final_NoBG copy.png" height="100" aria-label="Final Boss Studios Logo">
+                                    </div>
+                                </ion-col>
+                                <ion-col size-lg="12" size-md="9">
+                                    <h3>Final Boss Studios</h3>
+                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias maiores repellat id cum assumenda? Beatae aspernatur cumque a ex doloribus nostrum minus eos tempora vel! Mollitia molestias corporis rerum cum.</p>
+                                    <ion-toolbar style="padding: 0em; --background: none;">
+                                        <ion-buttons slot="start">
+                                            <ion-button (click)="onClick()">
+                                                <ion-icon style="color: #0D021C;" slot="icon-only" name="link-outline"></ion-icon>
+                                            </ion-button>
+                                            <ion-button (click)="onClick()">
+                                                <ion-icon style="color: #0D021C;" slot="icon-only" name="logo-github"></ion-icon>
+                                            </ion-button>
+                                        </ion-buttons>
+                                    </ion-toolbar>
+                                    
+                                </ion-col>
+                            </ion-row>
+                        </ion-col>
+                        <ion-col size-lg="3.33" size-md="10" size="11" class="pj-wrp">
+                            <ion-row class="ion-justify-content-center">
+                                <ion-col size-lg="12" size-md="3">
+                                    <div>
+                                        <img src="./assets/FBS_Logo_Initial_Final_NoBG copy.png" height="100" aria-label="Final Boss Studios Logo">
+                                    </div>
+                                </ion-col>
+                                <ion-col size-lg="12" size-md="9">
+                                    <h3>Final Boss Studios</h3>
+                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias maiores repellat id cum assumenda? Beatae aspernatur cumque a ex doloribus nostrum minus eos tempora vel! Mollitia molestias corporis rerum cum.</p>
+                                    <ion-toolbar style="padding: 0em; --background: none;">
+                                        <ion-buttons slot="start">
+                                            <ion-button (click)="onClick()">
+                                                <ion-icon style="color: #0D021C;" slot="icon-only" name="link-outline"></ion-icon>
+                                            </ion-button>
+                                            <ion-button (click)="onClick()">
+                                                <ion-icon style="color: #0D021C;" slot="icon-only" name="logo-github"></ion-icon>
+                                            </ion-button>
+                                        </ion-buttons>
+                                    </ion-toolbar>
+                                    
+                                </ion-col>
+                            </ion-row>
+                        </ion-col>
+                    </ion-row>
+                </section>
 
                 <!-- Contact Me -->
-                <ion-row id="section-4" class="ion-justify-content-center ion-align-items-center" data-current-section="s4">
-                    <ion-col sizel-lg="6" class="ion-hide-lg-down">
-                        <div class="ion-text-center">
-                            <img src="./assets/icons/mail.png" height="100">
-                            <h1>Send me a Message!</h1>
-                            <p>If you'd like to work with me, or just want to contact me for whatever reason, you are welcome to here.</p>
-                        </div>
-                        <div class="ion-text-center">
-                            <ion-input type="text" placeholder="Your Name"></ion-input>
-                            <ion-input type="text" placeholder="Email Address"></ion-input>
-                            <ion-textarea rows="5" placeholder="Message goes here."></ion-textarea>
-                            <ion-button class="send-btn" (click)="onClick()">
-                                Send Message
-                            </ion-button>
-                        </div>
-                    </ion-col>
-                </ion-row>
+                <section data-current-section="s4">
+                    <ion-row id="section-4" class="ion-justify-content-center ion-align-items-center">
+                        <ion-col size-lg="8" class="">
+                            <div class="ion-text-center ion-align-items-center">
+                                <img src="./assets/icons/mail.png" height="100">
+                                <h1 class="send-header">Send me a Message!</h1>
+                                <p>If you'd like to work with me, or just want to contact me for whatever reason, you are welcome to here.</p>
+                            </div>
+                            <div class="ion-text-center">
+                                <ion-input type="text" placeholder="Your Name"></ion-input>
+                                <ion-input type="text" placeholder="Email Address"></ion-input>
+                                <ion-textarea rows="5" placeholder="Message goes here."></ion-textarea>
+                                <ion-button class="send-btn" (click)="onClick()">
+                                    Send Message
+                                </ion-button>
+                            </div>
+                        </ion-col>
+                    </ion-row>
+                </section>
             </div>
         </ion-grid>
     </ion-content>
