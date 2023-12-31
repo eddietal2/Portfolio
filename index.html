@@ -19,13 +19,13 @@
                     <p id="toolbar-name">Eddie Taliaferro II</p>
                 </ion-buttons>
                 <ion-buttons slot="end">
-                    <ion-button (click)="onClick()">
+                    <ion-button href="https://github.com/eddietal2" target="_blank">
                         <ion-icon name="logo-github"></ion-icon>
                     </ion-button>
-                    <ion-button (click)="onClick()">
+                    <ion-button href="https://www.linkedin.com/in/eddie-taliaferro-ii/" target="_blank">
                         <ion-icon name="logo-linkedin"></ion-icon>
                     </ion-button>
-                    <ion-button (click)="onClick()">
+                    <ion-button id="contact-btn">
                         <ion-icon name="mail-outline"></ion-icon>
                     </ion-button>
                 </ion-buttons>
@@ -169,10 +169,10 @@
                                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias maiores repellat id cum assumenda? Beatae aspernatur cumque a ex doloribus nostrum minus eos tempora vel! Mollitia molestias corporis rerum cum.</p>
                                     <ion-toolbar style="padding: 0em; --background: none;">
                                         <ion-buttons slot="start">
-                                            <ion-button (click)="onClick()">
+                                            <ion-button href="https://finalbossar.com" target="_blank">
                                                 <ion-icon style="color: #0D021C;" slot="icon-only" name="link-outline"></ion-icon>
                                             </ion-button>
-                                            <ion-button (click)="onClick()">
+                                            <ion-button href="https://github.com/FBSAR/finalbossar" target="_blank">
                                                 <ion-icon style="color: #0D021C;" slot="icon-only" name="logo-github"></ion-icon>
                                             </ion-button>
                                         </ion-buttons>
@@ -235,19 +235,23 @@
                 <!-- Contact Me -->
                 <section data-current-section="s4">
                     <ion-row id="section-4" class="ion-justify-content-center ion-align-items-center">
-                        <ion-col size-lg="8" class="">
+                        <ion-col size-lg="6" class="">
                             <div class="ion-text-center ion-align-items-center">
                                 <img src="./assets/icons/mail.png" height="100">
                                 <h1 class="send-header">Send me a Message!</h1>
                                 <p>If you'd like to work with me, or just want to contact me for whatever reason, you are welcome to here.</p>
                             </div>
                             <div class="ion-text-center">
-                                <ion-input type="text" placeholder="Your Name"></ion-input>
-                                <ion-input type="text" placeholder="Email Address"></ion-input>
-                                <ion-textarea rows="5" placeholder="Message goes here."></ion-textarea>
-                                <ion-button class="send-btn" (click)="onClick()">
-                                    Send Message
-                                </ion-button>
+                                <!-- https://formsubmit.co/ -->
+                                <!-- https://www.youtube.com/watch?v=iSobU_DjNN4 -->
+                                <form action="https://formsubmit.co/f6e4bbd318fdd3193043ce91e88f6bfd" method="POST">
+                                    <ion-input type="text" required placeholder="Your Name" name="name"></ion-input>
+                                    <ion-input type="text" required placeholder="Email Address" name="email"></ion-input>
+                                    <ion-textarea rows="5" required placeholder="Message goes here." name="message"></ion-textarea>
+                                    <ion-button class="send-btn" type="submit">
+                                        Send Message
+                                    </ion-button>
+                                </form>
                             </div>
                         </ion-col>
                     </ion-row>

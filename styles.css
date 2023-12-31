@@ -49,7 +49,7 @@ body {
     /* background: linear-gradient(300deg, #0D021C 26.7%, #191123 82.37%); */
 }
 #section-1 h3 {
-    background: linear-gradient(90deg, #00c400 26.7%, #0ff131 82.37%);
+    background: linear-gradient(300deg, #0D021C 26.7%, rgb(101, 0, 135) 82.37%);
     width: 300px;
     display: inline-block;
     color: #fff;
@@ -223,7 +223,7 @@ body {
 }
 #section-4 h1 {
     font-size: 3em;
-    color: #00c400;
+    color: #0ff131;
 }
 #section-4 p {
     font-size: 1.4em;
@@ -234,6 +234,7 @@ body {
     width: 40%;
     border: 1px solid #fff;
     --padding-start: 1em;
+    --highlight-color-focused: #ff2a2a;
 }
 #section-4 ion-textarea {
     text-align: left;
@@ -242,6 +243,7 @@ body {
     width: 80.5%;
     border: 1px solid #fff;
     --padding-start: 1em;
+    --highlight-color-focused: #ff2a2a;
 }
 .send-art {
     height: 200px;

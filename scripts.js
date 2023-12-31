@@ -1,9 +1,9 @@
+// Snap Scroll Behavior Desktop
 const options = {
     root: document.getElementById('wrapper'), // Use a specific container as the viewport
     threshold: [0.25], // Trigger at 25% and 75% visibility
-  };
-
-  function updateNavbar(activeSection) {
+};
+function updateNavbar(activeSection) {
     const navBullets = document.querySelectorAll('.nav-bullet');
     navBullets.forEach((bullet) => {
         console.log(bullet);
@@ -14,8 +14,7 @@ const options = {
     });
     // Add any additional navbar updates here (e.g., change background color)
 }
-
-  const observer = new IntersectionObserver((entries) => {
+const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
         if (entry.isIntersecting) {
             const activeSection = entry.target.dataset.currentSection;
@@ -32,12 +31,11 @@ ionRows.forEach((row) => {
 
 const swiper = new Swiper('.swiper', {
     // Optional parameters
-    speed: 200,
+    speed: 300,
     autoplay: true,
     direction: 'horizontal',
     loop: true,
     effect: 'fade',
-    slidesPerView: 1,
   
     // If we need pagination
     pagination: {
@@ -54,12 +52,14 @@ const swiper = new Swiper('.swiper', {
     scrollbar: {
     //   el: '.swiper-scrollbar',
     },
-  });
+});
 
-    // Landing Header SVG Animation 
-    fetch('assets/icons/header-pic-svg.svg')
-    .then(response => response.text())
-    .then(svgContent => {
+swiper.init();
+
+// Landing Header SVG Animation 
+fetch('assets/icons/header-pic-svg.svg')
+.then(response => response.text())
+.then(svgContent => {
         // Process the SVG content
         // https://g.co/bard/share/ec7f38615b0c
         const svgContainer = document.getElementById('header-pic');
@@ -114,4 +114,13 @@ const swiper = new Swiper('.swiper', {
         lineTwo.style.transition = '0.5s';
         lineThree.style.transition = '0.5s';
         lineFour.style.transition = '0.5s';
-    });
+});
+
+// Scroll to Contact Section
+const contactButton = document.getElementById('contact-btn');
+contactButton.addEventListener('click', goToContact);
+function goToContact() {
+    console.log('Going to Contact Section');
+    const contactSection = document.getElementById('section-4');
+    contactSection.scrollIntoView({ behavior: 'smooth' });
+}
