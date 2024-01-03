@@ -54,8 +54,8 @@
 
                 <!-- Landing Intro -->
                 <section data-current-section="s1">
-                    <ion-row id="section-1" class="ion-justify-content-center ion-align-items-center ion-hide-lg-down">
-                        <ion-col size="6">
+                    <ion-row id="section-1" class="ion-justify-content-center ion-align-items-center">
+                        <ion-col size-lg="6" size="11">
                             <h1 class="landing-header">Front-End
                                 <!-- <br> -->
                                 Developer
@@ -72,34 +72,10 @@
                                 Less is More.
                             </h3>
                         </ion-col>
-                        <ion-col size="3" class="ion-text-left">
+                        <ion-col size-lg="3" size="11" class="ion-text-center">
                             <div id="header-pic" class="pic"></div>
                         </ion-col>
-                    </ion-row>
-                    <ion-row id="section-1" class="ion-justify-content-center ion-hide-lg-up">
-                        <ion-col size="11">
-                            <div id="header-pic" class="pic"></div>
-                            <h1 class="landing-header-sm">Front-End
-                                <!-- <br> -->
-                                Developer
-                            </h1>
-                        </ion-col>
-                        <ion-col size="11">
-                            <p class="landing-text">
-                                From web apps to immersive XR experiences, I'm a skilled builder and designer who transforms ideas into engaging realities. 
-                                My expertise in responsive design, CSS & SVG animation, and the MEAN Stack ensures high-performing and engaging solutions.
-                            </p>
-                            <br>
-                            <br>
-                            <h3>
-                                Simple is Better;
-                                <br>
-                                Less is More.
-                                <br><br>
-                            </h1>
-                        </ion-col>
-                    </ion-row>
-                    
+                    </ion-row>  
                 </section>
 
                 <!-- My Story -->
@@ -154,20 +130,28 @@
                 <!-- Projects -->
                 <section data-current-section="s3">
                     <ion-row id="section-3" class="ion-justify-content-center ion-align-items-center">
-                        <ion-col size="10">
-                            <h1 class="projects-header">MY PROJECTS</h1>
+                        <ion-col class="projects-header" size="10">
+                            <h1>MY PROJECTS</h1>
+                            <p>These are personal projects, or projects I've done professionally.
+                               <br>You can view more of my projects via my <a href="https://github.com/eddietal2">Github</a>.
+                            </p>
                         </ion-col>
+                        <!-- Final Boss -->
                         <ion-col size-lg="3.33" size-md="10" size="11" class="pj-wrp">
                             <ion-row class="ion-justify-content-center">
-                                <ion-col size-lg="12" size-md="3" class="ion-align-items-center">
+                                <ion-col size="11" class="ion-align-items-center">
                                     <div>
-                                        <img src="./assets/FBS_Logo_Initial_Final_NoBG copy.png" height="100" aria-label="Final Boss Studios Logo">
+                                        <img src="./assets/FBS_Logo_Initial_Final_NoBG.png" height="100" aria-label="Final Boss Studios Logo">
                                     </div>
                                 </ion-col>
-                                <ion-col size-lg="12" size-md="9">
-                                    <h3>Final Boss Studios</h3>
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias maiores repellat id cum assumenda? Beatae aspernatur cumque a ex doloribus nostrum minus eos tempora vel! Mollitia molestias corporis rerum cum.</p>
-                                    <ion-toolbar style="padding: 0em; --background: none;">
+                                <ion-col size="11">
+                                    <h3>Final Boss Studios (Webapp)</h3>
+                                    <p>I am co-founder of this cool XR and Video Game Studio, called Final Boss Studios. 
+                                        A huge catalyst for this startup is from a class I taught for AR & Video Game development called 'Unreal Basecamp'.
+                                        <br><br>
+                                        I designed, and built both the front-end and back-end. I made this with Angular, mostly becasuse I had a goal of expanding the webapp in the future, but also because I love Angular.
+                                    </p>
+                                    <ion-toolbar>
                                         <ion-buttons slot="start">
                                             <ion-button href="https://finalbossar.com" target="_blank">
                                                 <ion-icon style="color: #0D021C;" slot="icon-only" name="link-outline"></ion-icon>
@@ -181,22 +165,23 @@
                                 </ion-col>
                             </ion-row>
                         </ion-col>
+                        <!-- OpenAI -->
                         <ion-col size-lg="3.33" size-md="10" size="11" class="pj-wrp">
                             <ion-row class="ion-justify-content-center">
-                                <ion-col size-lg="12" size-md="3">
-                                    <div>
-                                        <img src="./assets/FBS_Logo_Initial_Final_NoBG copy.png" height="100" aria-label="Final Boss Studios Logo">
+                                <ion-col size="11">
+                                    <div style="height: 100px;">
+                                        <img src="./assets/icons/open_ai_logo.png" height="55" aria-label="Final Boss Studios Logo">
                                     </div>
                                 </ion-col>
-                                <ion-col size-lg="12" size-md="9">
-                                    <h3>Final Boss Studios</h3>
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias maiores repellat id cum assumenda? Beatae aspernatur cumque a ex doloribus nostrum minus eos tempora vel! Mollitia molestias corporis rerum cum.</p>
-                                    <ion-toolbar style="padding: 0em; --background: none;">
+                                <ion-col size="11">
+                                    <h3>Alfred (OpenAI App)</h3>
+                                    <p>This project is made to test OPEN AI's API. I just wanted to build something cool, and learn a little more about GPT development</p>
+                                    <ion-toolbar>
                                         <ion-buttons slot="start">
-                                            <ion-button (click)="onClick()">
+                                            <ion-button href="http://18.224.51.178/" target="_blank">
                                                 <ion-icon style="color: #0D021C;" slot="icon-only" name="link-outline"></ion-icon>
                                             </ion-button>
-                                            <ion-button (click)="onClick()">
+                                            <ion-button href="https://github.com/eddietal2/open-ai" target="_blank">
                                                 <ion-icon style="color: #0D021C;" slot="icon-only" name="logo-github"></ion-icon>
                                             </ion-button>
                                         </ion-buttons>
@@ -205,22 +190,23 @@
                                 </ion-col>
                             </ion-row>
                         </ion-col>
+                        <!-- FYF -->
                         <ion-col size-lg="3.33" size-md="10" size="11" class="pj-wrp">
                             <ion-row class="ion-justify-content-center">
-                                <ion-col size-lg="12" size-md="3">
-                                    <div>
-                                        <img src="./assets/FBS_Logo_Initial_Final_NoBG copy.png" height="100" aria-label="Final Boss Studios Logo">
+                                <ion-col size="11">
+                                    <div style="height: 100px;">
+                                        <img src="./assets/FYF_Logo.png" height="55" aria-label="Final Boss Studios Logo">
                                     </div>
                                 </ion-col>
-                                <ion-col size-lg="12" size-md="9">
-                                    <h3>Final Boss Studios</h3>
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias maiores repellat id cum assumenda? Beatae aspernatur cumque a ex doloribus nostrum minus eos tempora vel! Mollitia molestias corporis rerum cum.</p>
-                                    <ion-toolbar style="padding: 0em; --background: none;">
+                                <ion-col size="11">
+                                    <h3>Find Your Future (FYF)</h3>
+                                    <p>At Journi, a non-profit where I taught and developed software, I designed and led the development of FYF, intending to be a LinkedIn Jr. platform for the Detroit ecosystem. While the pandemic prevented its launch, the project honed my full-stack development skills and gave me valuable experience leading a senior role.</p>
+                                    <ion-toolbar>
                                         <ion-buttons slot="start">
-                                            <ion-button (click)="onClick()">
+                                            <ion-button href="http://18.188.249.210" target="_blank">
                                                 <ion-icon style="color: #0D021C;" slot="icon-only" name="link-outline"></ion-icon>
                                             </ion-button>
-                                            <ion-button (click)="onClick()">
+                                            <ion-button href="https://github.com/ourJOURNi/FYF" target="_blank">
                                                 <ion-icon style="color: #0D021C;" slot="icon-only" name="logo-github"></ion-icon>
                                             </ion-button>
                                         </ion-buttons>

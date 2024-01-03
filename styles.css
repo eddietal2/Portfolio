@@ -7,6 +7,7 @@ body {
 #toolbar {
     position: fixed;
     padding: 0 2em;
+    --background: #f8f8f8;
 }
 #toolbar-name {
     font-size: 1.3em;
@@ -81,6 +82,7 @@ body {
     }
 
     #section-1 {
+        height: auto;
     }
 }
 
@@ -100,6 +102,13 @@ body {
     line-height: 1.5em;
     color: #222;
     width: 70%;
+}
+@media (max-width: 600px)  {
+    .landing-text  {
+        font-size: 1.2em;
+        line-height: 1.5em;
+        width: 100%;
+    }
 }
 
 .pic {
@@ -187,21 +196,47 @@ body {
 #section-3 {
     background: #fff;
 }
+.projects-header {
+    position: relative;
+    top: 2.5em;
+    right: 2em;
+}
 .pj-wrp {
-    height: 450px;
+    height: auto;
     width: 100%;
     margin: 0.8em;
-    padding: 2em;
-    background: #f7f7f7;
-    border-radius: 10px;
+    padding: 1em;
+    background: #fff;
+    border: 2px solid #999;
+    transition: 0.5s;
 }
-.projects-header {
-    font-size: 3em; 
-    position: relative;
-    top: 2em;
-    background: linear-gradient(300deg, #0D021C 26.7%, rgb(101, 0, 135) 82.37%);
+.pj-wrp p {
+    font-size: 0.85em;
+    height: 175px;
+}
+.pj-wrp ion-toolbar {
+    padding-top: 0.5em; 
+    --background: none;
+    border-top: 1px solid #d2d2d2;
+}
+.projects-header h1 {
+    font-size: 3em;
+    background: linear-gradient(300deg, #0D021C 26.7%, #650087 82.37%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+}
+.projects-header p {
+    font-size: 1em;
+    color: #222;
+}
+@media (min-width: 1000px)  {
+    .pj-wrp:hover {
+        border-image: linear-gradient(300deg, #0D021C 26.7%, #650087 82.37%) 1 / 5px;
+        border-width: 2px;
+        border-style: solid;  
+        box-shadow: 1px 1px 10px #cccccc;
+        padding: 1.5em;
+    }
 }
 @media (max-width: 1000px)  {
     .pj-wrp{
@@ -209,6 +244,10 @@ body {
     }
     .projects-header {
         top: 0;
+    }
+    .pj-wrp p {
+        font-size: 0.9em;
+        height: auto;
     }
 }
 
@@ -227,6 +266,7 @@ body {
 }
 #section-4 p {
     font-size: 1.4em;
+    padding: 1em;
 }
 #section-4 ion-input {
     text-align: left;
@@ -259,9 +299,11 @@ body {
 .send-btn {
     margin: 1em auto;
     width: 300px;
-    color: #0ff131;
-    border: 1px solid #0ff131;
-    --background: none;
+    color: #fff;
+    font-size: 1.2em;
+    /* border: 1px solid #0ff131; */
+    --background: linear-gradient(300deg, #00c400 26.7%, #0ff131 82.37%);
+    ;
 }
 
 #sectionation-lg {
@@ -272,7 +314,7 @@ body {
     height: auto;
     padding: 0.35em;
     position: absolute;
-    right: 5%;
+    right: 3%;
     bottom: 20%;
     text-align: center;
     border-radius: 10px;
