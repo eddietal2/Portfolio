@@ -7,7 +7,9 @@ body {
 #toolbar {
     position: fixed;
     padding: 0 2em;
-    --background: #f8f8f8;
+    /* --background: #f8f8f8; */
+    --background: #ffffffef;
+    --ion-color-base: transparent !important;
 }
 #toolbar-name {
     font-size: 1.3em;
@@ -198,6 +200,7 @@ body {
 /* Projects */
 #section-3 {
     background: #fff;
+    padding: 2em 0;
 }
 .projects-header {
     position: relative;
