@@ -53,11 +53,11 @@ body {
 }
 #section-1 h3 {
     background: linear-gradient(300deg, #0D021C 26.7%, rgb(101, 0, 135) 82.37%);
-    width: auto;
+    width: 300px;
     display: inline-block;
     color: #fff;
-    padding: 2em;
-    /* border-radius: 10px; */
+    padding: 1em;
+    border-radius: 10px;
     opacity: 0;
     animation: fade-in 1s ease 1s forwards;
 }
