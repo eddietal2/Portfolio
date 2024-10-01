@@ -103,7 +103,13 @@ body {
     font-size: 1.2em;
     line-height: 1.5em;
     color: #222;
+    background: #6500870e;
+    padding: 1em;
+    border-radius: 0.5em;
+    box-shadow: 1px 1px 5px #999;
     width: 70%;
+    opacity: 0;
+    animation: fade-in 1s ease 0.5s forwards;
 }
 @media (max-width: 600px)  {
     .landing-header {
@@ -225,6 +231,19 @@ body {
     top: 2.5em;
     right: 2em;
 }
+.project {
+    width: 100px;
+    margin: 0.5em;
+    padding: 1em;
+    border-radius: 0.5em;
+    box-shadow: 1px 1px 5px #999;
+    background: #6500870e;
+}
+.project-header {
+    font-size: 1.5em;
+    position: relative;
+    bottom: 0.3em;
+}
 .pj-wrp {
     height: auto;
     width: 100%;
@@ -236,7 +255,7 @@ body {
 }
 .pj-wrp p {
     font-size: 0.85em;
-    height: 175px;
+    height: auto;
 }
 .pj-wrp ion-toolbar {
     padding-top: 0.5em; 
