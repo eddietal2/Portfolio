@@ -49,7 +49,7 @@ body {
     width: 100%;
     scroll-snap-align: start;
     background: #fff;
-    /* background: linear-gradient(300deg, #0D021C 26.7%, #191123 82.37%); */
+    background: linear-gradient(300deg, #ece0fb 26.7%, #fff 82.37%);
 }
 #section-1 h3 {
     background: linear-gradient(300deg, #0D021C 26.7%, rgb(101, 0, 135) 82.37%);
@@ -104,6 +104,7 @@ body {
     line-height: 1.5em;
     color: #222;
     background: #6500870e;
+    /* background: #fff; */
     padding: 1em;
     border-radius: 0.5em;
     box-shadow: 1px 1px 5px #999;
