@@ -7,6 +7,7 @@ body {
 #toolbar {
     position: fixed;
     padding: 0 2em;
+    box-shadow: 1px 1px 10px #999;
     /* --background: #f8f8f8; */
     --background: #f8f8f8f1;
     --ion-color-base: transparent !important;
