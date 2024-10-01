@@ -115,12 +115,16 @@ body {
 }
 @media (max-width: 600px)  {
     .landing-header {
-        font-size: 2em;
+        font-size: 1.8em;
     }
     .landing-text  {
         font-size: 1.2em;
         line-height: 1.5em;
         width: 100%;
+    }
+    #section-1 h3 {
+        position: relative;
+        bottom: 2em;
     }
 }
 
@@ -214,7 +218,8 @@ body {
 }
 @media (max-width: 600px)  {
     .photos img {
-        height: 250px;
+        height: auto;
+
         /* width: 300px; */
     }
     #section-2 p {
