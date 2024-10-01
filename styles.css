@@ -13,7 +13,7 @@ body {
     --ion-color-base: transparent !important;
 }
 #toolbar-name {
-    font-size: 1.3em;
+    font-size: 1.1em;
     background: linear-gradient(300deg, #0D021C 26.7%, #650087 82.37%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -115,7 +115,7 @@ body {
 }
 @media (max-width: 600px)  {
     .landing-header {
-        font-size: 1.8em;
+        font-size: 1.5em;
     }
     .landing-text  {
         font-size: 1.2em;
