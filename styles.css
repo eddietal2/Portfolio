@@ -50,10 +50,11 @@ body {
     width: 100%;
     scroll-snap-align: start;
     background: #fff;
-    background: linear-gradient(300deg, #ece0fb 26.7%, #fff 82.37%);
+    background: linear-gradient(300deg, #e7feed 26.7%, #fff 82.37%);
 }
+/* Simple is Better */
 #section-1 h3 {
-    background: linear-gradient(300deg, #0D021C 26.7%, rgb(101, 0, 135) 82.37%);
+    background: linear-gradient(100deg, #3b3b3b 26.7%, #dd0000 82.37%);
     width: 300px;
     display: inline-block;
     color: #fff;
@@ -92,7 +93,9 @@ body {
 
 .landing-header {
     font-size: 4em;
-    background: linear-gradient(300deg, #0D021C 26.7%, #650087 82.37%);
+    background: #fff;
+    display: block;
+    /* background: linear-gradient(300deg, #0D021C 26.7%, #650087 82.37%); */
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
@@ -103,13 +106,13 @@ body {
 .landing-text {
     font-size: 1.2em;
     line-height: 1.5em;
-    color: #222;
-    background: #6500870e;
+    color: #fff;
+    background: #4c4c4c;
     /* background: #fff; */
     padding: 1em;
     border-radius: 0.5em;
     box-shadow: 1px 1px 5px #999;
-    width: 70%;
+    width: 80%;
     opacity: 0;
     animation: fade-in 1s ease 0.5s forwards;
 }
@@ -158,7 +161,7 @@ body {
     color: #fff;
 }
 #section-2 p {
-    font-size: 0.9em;
+    font-size: 1.1em;
     line-height: 1.5em;
 }
 .swiper {
