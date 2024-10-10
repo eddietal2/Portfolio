@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ionic/core/css/ionic.bundle.css" />
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" href="/assets/fire.png"> 
+    <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sass.js/0.9.2/sass.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
@@ -62,20 +63,20 @@
                     <ion-row id="section-1" class="ion-justify-content-center ion-align-items-center">
                         <ion-col size-lg="7" size="11">
                             <p class="landing-text">
-                                <span style="font-size: 2em; margin-bottom: 0.1em; display: block; color: #0ff131; font-weight: 600;">
+                                <span class="text-lg lg:text-3xl text-[#0ff131] mb-1 block font-bold">
                                     <span>
                                         🫡
                                     </span>
-                                    Eddie Taliaferro II
+                                    EDDIE TALIAFERRO II
                                 </span>
-                                <span style="font-size: 0.8em; font-weight: 600; color: #ffcb0a; border-bottom: 1px solid #ffffff74; display: block; margin: 0.7em 0em;">
-                                    Front End Developer - Angular, SvelteKit, Ionic, TailWindCSS, Linux, Git, Figma
+                                <span class="text-xs lg:text-md font-bold text-[#ffcb0a] block my-2 border-bottom border-[#ffffff74]">
+                                    Front End Developer - Angular, SvelteKit, Ionic, TailWindCSS, Linux, Git, Figma, Unreal Engine
                                 </span>
                                 As a versatile developer and designer, I specialize in turning innovative ideas into tangible software. 
                                 From web applications to immersive XR experiences, my expertise spans web development, responsive design, CSS & SVG animation, UI/UX design, and even video game development using Unreal Engine. With a focus on creating high-performing and effective software, I've successfully delivered MVPs and beyond on numerous projects.
                                 <br>
                                 <br>
-                                <b style="font-size: 1.2em;">" Simple is Better, Less is More. " </b>
+                                <b class="text-sm lg:text-xl">" Simple is Better, Less is More. " </b>
                             </p>
                         </ion-col>
                         <ion-col size-lg="3" size="11" class="ion-text-center">
@@ -89,11 +90,14 @@
                     <ion-row id="section-2" class="ion-justify-content-center ion-align-items-center">
                         <ion-col size-lg="3.5" size="11">
                             <h1 style="font-size: 4em;">MY STORY</h1>
-                            <h3 style="color: #ffcb0a;">Early Spark, Unconventional Path</h3>
-                            <p>My passion for video games, anime, and graphic design began at 11, igniting a creative spark. Online forums like Playstation Universe became my playground for crafting custom signatures. This passion led me to pursue web development, fueled by hackathon victories, bootcamps, and freelance projects.
+                            <p class="text-xs lg:text-[17px] lg:leading-5 text-white">My passion for video games, anime, and graphic design began at 11, igniting a creative spark. Online forums like Playstation Universe became my playground for crafting custom signatures. This passion led me to pursue web development, fueled by hackathon victories, bootcamps, teaching, and freelance projects since 2017.
                                 <br>
                                 <br>
-                                Giving back has been equally fulfilling. For four years, I taught Detroit's youth to code through Journi, a non-profit. This experience not only helped my students grow but also refined my own skills. It was an honor and an act of love for my city.</p>
+                                Giving back has been equally fulfilling. For four years, I taught Detroit's youth to code through Journi, a non-profit. This experience not only helped my students grow but also refined my own skills. It was an honor and an act of love for my city.
+                                <br>
+                                <br>
+                                Aside from my "day job" as a web developer, I co-founded a Video Game Startup called Final Boss Studios, with focus on the AR/MR niche. We are bootstrapping, so this is being built, part time, in parallel to any other project I work on. In the case of MVP development, I think this is more of a positive than a negative, because often times I can empathize and even help other founders.
+                            </p>
                         </ion-col>
                         <ion-col class="photos ion-text-center" size-lg="6.5" size="11">
                             <!-- <div class="photo-ill"></div> -->
@@ -139,8 +143,8 @@
                     <ion-row id="section-3" class="ion-justify-content-center">
                         <ion-col class="projects-header" size="10">
                             <h1>MY EXPERIENCE</h1>
-                            <p style="font-size: 1.3em;">Here are some of professional and personal projects from <b>2023 to 2024</b>.
-                            <br>You can view more of my projects via my <a href="https://github.com/eddietal2">Github</a>.
+                            <p class="text-xs lg:text-[17px] my-2">Here are some of professional and personal projects from <b>2023 to 2024</b>.
+                            You can view more of my projects via my <a class="text-[#3686fd]" href="https://github.com/eddietal2">Github</a>.
                             </p>
                             <!-- TODO:
                              * Add framework?
@@ -148,22 +152,25 @@
                             -->
                             <ion-row style="margin-top: 2em;">
                                 <ion-col class="ion-justify-content-center project" size="11" size-md="3.3">
-                                    <img src="./assets/ctlogo.png" height="40" aria-label="Final Boss Studios Logo">
+                                    <img src="./assets/ctlogo.png" class="h-16 mb-4" aria-label="Final Boss Studios Logo">
                                     <span class="project-header">CryptoTutors</span>
-                                    <p style="font-size: 1em;">Crypto Tutors is a leading provider of engaging and accessible Web3 education. Our award-winning curriculum, trusted by Fortune 500 companies and recognized by the National Science Foundation. I built the Defi All Odds assessment with SvelteKit and TailwindCSS. I fell in love with both.</p>
-                                    <a href="https://www.defiallodds.xyz/">Link</a>
+                                    <br>
+                                    <a class="text-[#3686fd]" href="https://www.defiallodds.xyz/">Link</a>
+                                    <p class="text-xs lg:text-lg">Crypto Tutors is a leading provider of engaging and accessible Web3 education. Our award-winning curriculum, trusted by Fortune 500 companies and recognized by the National Science Foundation. I built the Defi All Odds assessment with SvelteKit and TailwindCSS. I fell in love with both.</p>
                                 </ion-col>
                                 <ion-col class="ion-justify-content-center project" size="11" size-md="3.3">
-                                    <img src="./assets/vopposition-logomark-red.png" height="40" aria-label="Final Boss Studios Logo">
-                                    <span class="project-header" class="project-header">VOpposition</span>
-                                    <p style="font-size: 1em;">A matchmaking app for pick up sports, like Basketball, Volleyball, etc, with gamified features. I acted as a Front End Engineer and UX Designer, refining the UX as I translated assets from the Design team to front end code. Built with Angular, Ionic, and TailwindCSS.</p>
-                                    <a href="https://www.vopposition.com/">Link</a>
+                                    <img src="./assets/vopposition-logomark-red.png" class="h-16 mb-4" aria-label="Final Boss Studios Logo">
+                                    <span class="project-header">VOpposition</span>
+                                    <br>
+                                    <a class="text-[#3686fd]" href="https://www.vopposition.com/">Link</a>
+                                    <p class="text-xs lg:text-lg">A matchmaking app for pick up sports, like Basketball, Volleyball, etc, with gamified features. I acted as a Front End Engineer and UX Designer, refining the UX as I translated assets from the Design team to front end code. Built with Angular, Ionic, and TailwindCSS.</p>
                                 </ion-col>
                                 <ion-col class="ion-justify-content-center project" size="11" size-md="3.3">
-                                    <img src="./assets/FBS_Logo_Initial_Final_NoBG.png" height="40" aria-label="Final Boss Studios Logo">
+                                    <img src="./assets/FBS_Logo_Initial_Final_NoBG.png" class="h-16 mb-4" aria-label="Final Boss Studios Logo">
                                     <span class="project-header">FinalBossXR</span>
-                                    <p style="font-size: 1em;">This is a Video Game & Augmented Reality Studio that I co-founded in 2021. I also act as Web Developer and Game Designer for our team while we build our first IP, Cosmic Collisions. I remade this site with SvelteKit & TailwindCSS</p>
-                                    <a href="http://finalbossxr.com">Link</a>
+                                    <br>
+                                    <a class="text-[#3686fd]" href="http://finalbossxr.com">Link</a>
+                                    <p class="text-xs lg:text-lg">This is a Video Game & Augmented Reality Studio that I co-founded in 2021. I also act as Web Developer and Game Designer for our team while we build our first IP, Cosmic Collisions. I remade this site with SvelteKit & TailwindCSS</p>
                                 </ion-col>
                             </ion-row>
                         </ion-col>
@@ -174,10 +181,10 @@
                 <section data-current-section="s4">
                     <ion-row id="section-4" class="ion-justify-content-center ion-align-items-center">
                         <ion-col size-lg="6" class="">
-                            <div class="ion-text-center ion-align-items-center">
-                                <img src="./assets/icons/mail.png" height="100">
-                                <h1 class="send-header">Send me a Message!</h1>
-                                <p>If you'd like to work with me, or just want to contact me for whatever reason, you are welcome to here.</p>
+                            <div class="text-center ion-align-items-center">
+                                <img src="./assets/icons/mail.png" class="h-20 mx-auto my-2">
+                                <h1 class="text-[#0ff131] font-bold">Send me a Message!</h1>
+                                <p class="text-xs lg:text-lg my-2">If you'd like to work with me, or just want to contact me for whatever reason, you are welcome to here.</p>
                             </div>
                             <div class="ion-text-center">
                                 <!-- https://formsubmit.co/ -->

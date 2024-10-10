@@ -104,7 +104,7 @@ body {
     color: #222;
 }
 .landing-text {
-    font-size: 1.2em;
+    font-size: 1em;
     line-height: 1.5em;
     color: #fff;
     background: #4c4c4c;
@@ -121,7 +121,7 @@ body {
         font-size: 1.5em;
     }
     .landing-text  {
-        font-size: 1.2em;
+        font-size: 0.8em;
         line-height: 1.5em;
         width: 100%;
     }
@@ -155,15 +155,9 @@ body {
     background: linear-gradient(300deg, #00c400 26.7%, #0ff131 82.37%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    font-weight: 600;
 }
 
-#section-2 h3, #section-2 p {
-    color: #fff;
-}
-#section-2 p {
-    font-size: 1.1em;
-    line-height: 1.5em;
-}
 .swiper {
     width: 80%;
     /* height: ; */
@@ -225,10 +219,6 @@ body {
 
         /* width: 300px; */
     }
-    #section-2 p {
-        font-size: 1.1em;
-        line-height: 1.5em;
-    }
 }
 
 /* Projects */
@@ -253,6 +243,7 @@ body {
     font-size: 1.5em;
     position: relative;
     bottom: 0.3em;
+    font-weight: 600;
 }
 .pj-wrp {
     height: auto;
@@ -273,14 +264,11 @@ body {
     border-top: 1px solid #d2d2d2;
 }
 .projects-header h1 {
-    font-size: 3em;
+    font-size: 2em;
+    font-weight: 600;
     background: linear-gradient(300deg, #0D021C 26.7%, #650087 82.37%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-}
-.projects-header p {
-    font-size: 1em;
-    color: #222;
 }
 @media (min-width: 1000px)  {
     .pj-wrp:hover {
@@ -311,16 +299,8 @@ body {
 }
 @media (max-width: 1000px)  {
     #section-4 {
-        padding: 10em 0;
+        padding: 5em 0;
     }
-}
-#section-4 h1 {
-    font-size: 3em;
-    color: #0ff131;
-}
-#section-4 p {
-    font-size: 1.4em;
-    padding: 1em;
 }
 #section-4 ion-input {
     text-align: left;
