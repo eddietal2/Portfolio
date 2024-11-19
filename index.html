@@ -18,24 +18,28 @@
             <!-- Top Toolbar -->
             <!-- Transparent Toolbar -->
             <!-- https://medium.com/@paulstelzer/ionic-4-how-to-make-a-transparent-header-toolbar-38405f2e4a74 -->
-            <ion-toolbar id="toolbar">
-                <ion-buttons slot="start">
-                    <span style="font-size: 1.3em;">🫡</span>
-                    <span style="margin-right: 0.7em;"></span>
-                    <p id="toolbar-name">Eddie Taliaferro II</p>
-                </ion-buttons>
-                <ion-buttons slot="end">
-                    <ion-button href="https://github.com/eddietal2" target="_blank">
-                        <ion-icon name="logo-github"></ion-icon>
-                    </ion-button>
-                    <ion-button href="https://www.linkedin.com/in/eddie-taliaferro-ii/" target="_blank">
-                        <ion-icon name="logo-linkedin"></ion-icon>
-                    </ion-button>
-                    <ion-button id="contact-btn">
-                        <ion-icon name="mail-outline"></ion-icon>
-                    </ion-button>
-                </ion-buttons>
-            </ion-toolbar>
+            <ion-row class="ion-justify-content-center bg-[#222] h-16">
+                <ion-col size="12" size-lg="6" style="z-index: 99;" id="toolbar">
+                    <ion-toolbar style="--background: none;">
+                        <ion-buttons slot="start">
+                            <span style="margin-right: 0.7em;"></span>
+                            <p class="text-xl lg:text-2xl text-[#fff]">Eddie Taliaferro II</p>
+                        </ion-buttons>
+                        <ion-buttons slot="end">
+                            <ion-button href="https://github.com/eddietal2" target="_blank">
+                                <ion-icon name="logo-github" class="text-3xl"></ion-icon>
+                            </ion-button>
+                            <ion-button href="https://www.linkedin.com/in/eddie-taliaferro-ii/" target="_blank">
+                                <ion-icon name="logo-linkedin" class="text-3xl"></ion-icon>
+                            </ion-button>
+                            <ion-button id="contact-btn">
+                                <ion-icon name="mail-outline" class="text-3xl"></ion-icon>
+                            </ion-button>
+                        </ion-buttons>
+                    </ion-toolbar>
+                    
+                </ion-col>
+            </ion-row>
 
             <!-- Section Nav -->
             <nav id="sectionation-lg">
@@ -61,26 +65,26 @@
                 <!-- Landing Intro -->
                 <section data-current-section="s1">
                     <ion-row id="section-1" class="ion-justify-content-center ion-align-items-center">
-                        <ion-col size-lg="7" size="11">
-                            <p class="landing-text">
-                                <span class="text-lg lg:text-3xl text-[#0ff131] mb-1 block font-bold">
-                                    <span>
-                                        🫡
-                                    </span>
-                                    EDDIE TALIAFERRO II
-                                </span>
-                                <span class="text-xs lg:text-md font-bold text-[#ffcb0a] block my-2 border-bottom border-[#ffffff74]">
-                                    Front End Developer - Angular, SvelteKit, Ionic, TailWindCSS, Linux, Git, Figma, Unreal Engine
-                                </span>
-                                As a versatile developer and designer, I specialize in turning innovative ideas into tangible software. 
-                                From web applications to immersive XR experiences, my expertise spans web development, responsive design, CSS & SVG animation, UI/UX design, and even video game development using Unreal Engine. With a focus on creating high-performing and effective software, I've successfully delivered MVPs and beyond on numerous projects.
-                                <br>
-                                <br>
-                                <b class="text-sm lg:text-xl">" Simple is Better, Less is More. " </b>
-                            </p>
-                        </ion-col>
-                        <ion-col size-lg="3" size="11" class="ion-text-center">
+                        <ion-col size-lg="2" pull-lg="0.5" size="11" class="relative bottom-20">
+                            <!-- animated via scripts.js -->
                             <div id="header-pic" class="pic"></div>
+                        </ion-col>
+                        <ion-col size-lg="4" size="11" class="relative bottom-20">
+                            <p class="landing-text">
+                                <span class="text-4xl">
+                                    <b>Front End Developer</b> 
+                                </span>
+                                <br>
+                                <span class="text-xl block my-4">
+                                    As a versatile developer and designer, I specialize in turning innovative ideas into tangible software. 
+                                    From web applications to immersive XR experiences, my expertise spans web development, responsive design, CSS & SVG animation, UI/UX design, and even video game development using Unreal Engine. With a focus on creating high-performing and effective software, I've successfully delivered MVPs and beyond on numerous projects.
+                                </span>
+                                <br>
+                                <span class="text-xl text-[#ffcb0a]">Skills</span>
+                                <span class="text-sm lg:text-lg bg-[#ffcb0a10] border-[#ffcb0a40] border-2 p-2 block sm:my-2">
+                                Angular, SvelteKit, Ionic, TailWindCSS, Linux, Git, Figma, Unreal Engine
+                                </span>
+                            </p>
                         </ion-col>
                     </ion-row>  
                 </section>

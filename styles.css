@@ -6,21 +6,13 @@ body {
 }
 #toolbar {
     position: fixed;
-    padding: 0 2em;
-    box-shadow: 1px 1px 10px #999;
+    color: #fff;
     /* --background: #f8f8f8; */
-    --background: #f8f8f8f1;
-    --ion-color-base: transparent !important;
-}
-#toolbar-name {
-    font-size: 1.1em;
-    background: linear-gradient(300deg, #0D021C 26.7%, #650087 82.37%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-
+    /* --background: #f8f8f8f1; */
+    /* --ion-color-base: transparent !important; */
 }
 #toolbar ion-icon {
-    color: #000;
+    color: #fff;
 }
 @media (max-width: 1000px)  {
     #toolbar{
@@ -49,8 +41,8 @@ body {
 #section-1 {
     width: 100%;
     scroll-snap-align: start;
-    background: #fff;
-    background: linear-gradient(300deg, #e7feed 26.7%, #fff 82.37%);
+    background: #111;
+    background: linear-gradient(300deg, #111 26.7%, #222 82.37%);
 }
 /* Simple is Better */
 #section-1 h3 {
@@ -104,15 +96,9 @@ body {
     color: #222;
 }
 .landing-text {
-    font-size: 1em;
     line-height: 1.5em;
     color: #fff;
-    background: #4c4c4c;
     /* background: #fff; */
-    padding: 1em;
-    border-radius: 0.5em;
-    box-shadow: 1px 1px 5px #999;
-    width: 80%;
     opacity: 0;
     animation: fade-in 1s ease 0.5s forwards;
 }

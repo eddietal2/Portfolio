@@ -63,7 +63,7 @@ fetch('assets/icons/header-pic-svg.svg')
         // Process the SVG content
         // https://g.co/bard/share/ec7f38615b0c
         const svgContainer = document.getElementById('header-pic');
-        svgContainer.style.width = "50%";
+        // svgContainer.style.width = "50%";
         svgContainer.innerHTML = svgContent;
         console.log(svgContainer.firstElementChild.childNodes)
         const lineOne = svgContainer.firstElementChild.childNodes[7];
