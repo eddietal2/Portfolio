@@ -1,4 +1,14 @@
-// Snap Scroll Behavior Desktop
+/**
+ * Table of Contents
+ * - #1 Snap Scroll Behavior Desktop
+ * - #2 Swiper JS implementation for Picture Slides in 'My Story'
+ * - #3 Landing Header SVG Animation 
+ * - #4 Scroll to Contact Section via hitting Contact Us Icon in Navbar
+ * - #5 Generate Projects UI
+ * - #6 
+ */
+
+// #1 Snap Scroll Behavior Desktop
 const options = {
     root: document.getElementById('wrapper'), // Use a specific container as the viewport
     threshold: [0.25], // Trigger at 25% and 75% visibility
@@ -23,12 +33,12 @@ const observer = new IntersectionObserver((entries) => {
         }
     });
 }, options);
-
 const ionRows = document.querySelectorAll('section');
 ionRows.forEach((row) => {
     observer.observe(row);
 });
 
+// #2 Swiper JS implementation for Picture Slides in 'My Story'
 const swiper = new Swiper('.swiper', {
     // Optional parameters
     speed: 300,
@@ -53,10 +63,9 @@ const swiper = new Swiper('.swiper', {
     //   el: '.swiper-scrollbar',
     },
 });
-
 swiper.init();
 
-// Landing Header SVG Animation 
+// #3 Landing Header SVG Animation 
 fetch('assets/icons/header-pic-svg.svg')
 .then(response => response.text())
 .then(svgContent => {
@@ -117,7 +126,7 @@ fetch('assets/icons/header-pic-svg.svg')
         lineFour.style.transition = '0.5s';
 });
 
-// Scroll to Contact Section
+// #4 Scroll to Contact Section via hitting Contact Us Icon in Navbar
 const contactButton = document.getElementById('contact-btn');
 contactButton.addEventListener('click', goToContact);
 function goToContact() {
@@ -125,3 +134,21 @@ function goToContact() {
     const contactSection = document.getElementById('section-4');
     contactSection.scrollIntoView({ behavior: 'smooth' });
 }
+
+// #5 Generate Projects UI
+var projects = null;
+fetch('projects.json')
+    .then(response => response.json())
+    .then(data => {
+        console.log('Getting Projects:');
+        this.projects = data;
+        console.log(projects);
+        let projectsList = document.getElementById('projects-list');
+        this.projects.forEach(item => {
+            console.log(item);
+            
+            // const hOne = document.createElement('h1');
+            // hOne.textContent = item;
+            // projectsList.appendChild(hOne);
+          });
+    })

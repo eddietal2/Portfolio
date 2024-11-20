@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+    <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ionic/core/css/ionic.bundle.css" />
@@ -11,8 +11,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <title>Eddie Taliaferro II</title>
-</head>
-<body>
+    </head>
+    <body>
     <ion-content fullscreen>
         <ion-grid>
 
@@ -107,9 +107,9 @@
                 <!-- My Story -->
                 <section data-current-section="s2"  class="border-b-2 border-[#999]">
                     <ion-row id="section-2" class="ion-justify-content-center ion-align-items-center bg-[#fff] dark:bg-[#111] bg-[#fff] dark:bg-[#111]">
-                        <ion-col size="11" size-lg="3">
-                            <h1 class="text-5xl text-[#111] dark:text-[#ffcb0a] mb-8 pt-8">MY STORY</h1>
-                            <p class="text-lg lg:text-2xl text-[#111] dark:text-white">
+                        <ion-col size="11" size-lg="3" class="lg:relative lg:bottom-20 sm:pt-20">
+                            <h1 class="text-5xl text-[#111] dark:text-[#ffcb0a] mb-8">MY STORY</h1>
+                            <p class="text-lg lg:text-md text-[#111] dark:text-white">
                                 My passion for video games, anime, and graphic design began at 11, igniting a creative spark. Online forums like Playstation Universe became my playground for crafting custom signatures. This passion led me to pursue web development, fueled by hackathon victories, bootcamps, teaching, and freelance projects since 2017.
                                 <br>
                                 <br>
@@ -117,7 +117,7 @@
                             </p>
                             
                         </ion-col> 
-                        <ion-col size="11" size-lg="3" class="photos ion-text-center ml-4">
+                        <ion-col size="11" size-lg="3" class="photos ion-text-center ml-4 lg:relative lg:bottom-20">
                             <!-- <div class="photo-ill"></div> -->
                             <!-- Slider main container -->
                             <div class="swiper">
@@ -145,11 +145,6 @@
                                <div class="swiper-slide">
                                 <img src="./assets/photos/Photo_5.png" alt="" srcset="">
                                </div>
-                             </div>
-                            
-                             <div class="slider-btns">
-                                <div class="swiper-button-prev"></div>
-                                <div class="swiper-button-next"></div>
                              </div>
                           </div>
                         </ion-col>
@@ -179,63 +174,32 @@
 
                     <!-- Project Cards Row 1 -->
                     <ion-row class="ion-justify-content-center">
+                        <div id="projects-list">
 
+                        </div>
                         <!-- Project 1 - CryptoTutors -->
-                        <ion-col class="ion-justify-content-center text-center" size="3.666" size-lg="2">
-                            <div class="project bg-[#f6f6f6] dark:bg-[#666]">
-                                <img src="./assets/ctlogo.png" class="h-20 mb-4 mx-auto" aria-label="Final Boss Studios Logo">
-                                <h2 class="project-header text-[#111] dark:text-[#fff]">CryptoTutors</h2>
-                                <ion-button>
-                                    <a class="text-[#fff]" href="https://www.defiallodds.xyz/" target="_blank">Link</a>
-                                </ion-button>
-                                <ion-button id="one-trigger">
-                                    Info
-                                </ion-button>
-                                <ion-popover trigger="one-trigger" triggerAction="click">
-                                  <ion-content class="ion-padding">Crypto Tutors is a leading provider of engaging and accessible Web3 education. Our award-winning curriculum, trusted by Fortune 500 companies and recognized by the National Science Foundation. I built the Defi All Odds assessment with SvelteKit and TailwindCSS. I fell in love with both.</ion-content>
-                                </ion-popover>
+                        <ion-col class="ion-justify-content-center" size="3.666" size-lg="2">
+                            <ion-row class="ion-justify-content-center project bg-[#f6f6f6] dark:bg-[#666]"">
+                                <ion-col size="2">
+                                    <img src="./assets/ctlogo.png" class="" aria-label="Final Boss Studios Logo">
+                                </ion-col>
+                                <ion-col size="8">
+                                    <p class="text-lg text-[#111] dark:text-[#fff]">CryptoTutors</p>
+                                    <p class="text-sm text-[#111] dark:text-[#fff]">Professional</p>
+                                    <ion-button>
+                                        <a class="text-[#fff]" href="https://www.defiallodds.xyz/" target="_blank">Link</a>
+                                    </ion-button>
+                                    <ion-button id="one-trigger">
+                                        Info
+                                    </ion-button>
+                                    <ion-popover trigger="one-trigger" triggerAction="click">
+                                      <ion-content class="ion-padding">Crypto Tutors is a leading provider of engaging and accessible Web3 education. Our award-winning curriculum, trusted by Fortune 500 companies and recognized by the National Science Foundation. I built the Defi All Odds assessment with SvelteKit and TailwindCSS. I fell in love with both.</ion-content>
+                                    </ion-popover>
 
-                            </div>
+                                </ion-col>
+                            </ion-row>
                         </ion-col>
 
-                        <!-- Project 2 - VOpposition -->
-                        <ion-col class="ion-justify-content-center text-center" size="3.666" size-lg="2">
-                            <div class="project bg-[#f6f6f6] dark:bg-[#666]">
-                                <img src="./assets/vopposition-logomark-red.png" class="h-20 mb-4 mx-auto" aria-label="Final Boss Studios Logo">
-                                <h2 class="project-header text-[#111] dark:text-[#fff]">VOpposition</h2>
-                                <ion-button>
-                                    <a class="text-[#fff]" href="https://www.vopposition.com/" target="_blank">Link</a>
-                                </ion-button>
-                                <ion-button id="two-trigger">
-                                    Info
-                                </ion-button>
-                                <ion-popover trigger="two-trigger" triggerAction="click">
-                                 <ng-template>
-                                  <ion-content class="ion-padding">A matchmaking app for pick up sports, like Basketball, Volleyball, etc, with gamified features. I acted as a Front End Engineer and UX Designer, refining the UX as I translated assets from the Design team to front end code. Built with Angular, Ionic, and TailwindCSS.</ion-content>
-                                 </ng-template>
-                                </ion-popover>
-                            </div>
-                        </ion-col>
-
-                        <!-- Project 3 - Final Boss XR -->
-                        <ion-col class="ion-justify-content-center text-center" size="3.666" size-lg="2">
-                            <div class="project bg-[#f6f6f6] dark:bg-[#666]">
-                                <img src="./assets/FBS_Logo_Initial_Final_NoBG.png" class="h-20 mb-4 mx-auto" aria-label="Final Boss Studios Logo">
-                                <h2 class="project-header text-[#111] dark:text-[#fff]">FinalBossXR</h2>
-                                <ion-button>
-                                    <a class="text-[#fff]" href="https://www.finalbossxr.com/" target="_blank">Link</a>
-                                </ion-button>
-                                <ion-button id="three-trigger">
-                                    Info
-                                </ion-button>
-                                <ion-popover trigger="three-trigger" triggerAction="click">
-                                 <ng-template>
-                                  <ion-content class="ion-padding">This is a Video Game & Augmented Reality Studio that I co-founded in 2021. I also act as Web Developer and Game Designer for our team while we build our first IP, Cosmic Collisions. I remade this site with SvelteKit & TailwindCSS</ion-content>
-                                 </ng-template>
-                                </ion-popover>
-
-                            </div>
-                        </ion-col>
                     </ion-row>
 
                     <!-- Project Cards Row 2 -->
@@ -399,12 +363,13 @@
                 </section>
 
             </div>
+
         </ion-grid>
     </ion-content>
 
-    <script src="scripts.js"></script>
-    <script src="dark-mode.js"></script>
+    <script src="main.js"></script>
+    <script src=""></script>
     <script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js"></script>
     <script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js"></script>
-</body>
+    </body>
 </html>

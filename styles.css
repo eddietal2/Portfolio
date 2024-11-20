@@ -151,6 +151,12 @@ body {
 .swiper-button-prev::after {
     font-size: 1em;
 }
+ .slider-btns {
+        /* position: relative; */
+        /* top: 2em; */
+        z-index: 999;
+        background: linear-gradient(300deg, #0D021C 26.7%, #191123 82.37%);
+    }
 @media (max-width: 600px)  {
     .swiper {
         margin: 3em auto;
