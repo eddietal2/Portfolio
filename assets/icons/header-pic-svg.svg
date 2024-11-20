@@ -1,8 +1,8 @@
-<svg width="367" style="height: 100%; margin-top: 16%;" viewBox="0 0 367 365" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<path d="M366.5 1V192.5H193.5V1H366.5Z" fill="white" stroke=""/>
-<path d="M349.5 19V242.5H144.5V19H349.5Z" fill="white" stroke=""/>
-<path d="M332.5 37V290H90.5V37H332.5Z" fill="white" stroke=""/>
-<path d="M318.5 52V347.5H21V52H318.5Z" fill="white" stroke=""/>
+<svg width="200" style="height: 100%; margin-top: 16%;" viewBox="0 0 367 365" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<path d="M366.5 1V192.5H193.5V1H366.5Z" fill="#666" stroke=""/>
+<path d="M349.5 19V242.5H144.5V19H349.5Z" fill="#555" stroke=""/>
+<path d="M332.5 37V290H90.5V37H332.5Z" fill="#444" stroke=""/>
+<path d="M318.5 52V347.5H21V52H318.5Z" fill="#333" stroke=""/>
 <rect y="65" width="299" height="300" fill="url(#pattern0)"/>
 <defs>
 <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">

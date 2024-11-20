@@ -11,9 +11,7 @@ body {
     /* --background: #f8f8f8f1; */
     /* --ion-color-base: transparent !important; */
 }
-#toolbar ion-icon {
-    color: #fff;
-}
+
 @media (max-width: 1000px)  {
     #toolbar{
         bottom: 0;
@@ -41,8 +39,8 @@ body {
 #section-1 {
     width: 100%;
     scroll-snap-align: start;
-    background: #111;
-    background: linear-gradient(300deg, #111 26.7%, #222 82.37%);
+    /* background: #111;
+    background: linear-gradient(300deg, #000 26.7%, #111 82.37%); */
 }
 /* Simple is Better */
 #section-1 h3 {
@@ -129,23 +127,9 @@ body {
     margin-top: 1em;
 }
 
-/* My Story */
-#section-2 {
-    /* background: #fff; */
-    background: linear-gradient(300deg, #0D021C 26.7%, #191123 82.37%);
-    background-repeat: no-repeat;
-    background-size: cover;
-    padding: 2em 0;
-}
-#section-2 h1 {
-    background: linear-gradient(300deg, #00c400 26.7%, #0ff131 82.37%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    font-weight: 600;
-}
 
 .swiper {
-    width: 80%;
+    width: 100%;
     /* height: ; */
   }
 .swiper-wrapper {
@@ -153,7 +137,7 @@ body {
 }
 .swiper-pagination {
     position: relative;
-    top: 3em;
+    /* top: 3em; */
 }
 .swiper-button-prev,
 .swiper-button-next
@@ -209,27 +193,22 @@ body {
 
 /* Projects */
 #section-3 {
-    background: #fff;
     padding: 2em 0;
 }
 .projects-header {
-    position: relative;
+    /* position: relative;
     top: 2.5em;
-    right: 2em;
+    right: 2em; */
 }
 .project {
-    width: 100px;
-    margin: 0.5em;
-    padding: 1em;
-    border-radius: 0.5em;
-    box-shadow: 1px 1px 5px #999;
-    background: #6500870e;
+    width: auto;
+    /* margin: 0.5em; */
+    padding: 0.3em;
+    border-radius: 0.4em;
+    border: 2px solid #9999997b;
 }
 .project-header {
     font-size: 1.5em;
-    position: relative;
-    bottom: 0.3em;
-    font-weight: 600;
 }
 .pj-wrp {
     height: auto;
@@ -248,13 +227,6 @@ body {
     padding-top: 0.5em; 
     --background: none;
     border-top: 1px solid #d2d2d2;
-}
-.projects-header h1 {
-    font-size: 2em;
-    font-weight: 600;
-    background: linear-gradient(300deg, #0D021C 26.7%, #650087 82.37%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
 }
 @media (min-width: 1000px)  {
     .pj-wrp:hover {
@@ -279,10 +251,6 @@ body {
     }
 }
 
-#section-4 {
-    background: linear-gradient(300deg, #0D021C 26.7%, #191123 82.37%);
-    color: #fff;
-}
 @media (max-width: 1000px)  {
     #section-4 {
         padding: 5em 0;
@@ -294,7 +262,7 @@ body {
     width: 40%;
     border: 1px solid #fff;
     --padding-start: 1em;
-    --highlight-color-focused: #ff2a2a;
+    --highlight-color-focused: #ffcb0a;
 }
 #section-4 ion-textarea {
     text-align: left;
@@ -303,7 +271,7 @@ body {
     width: 80.5%;
     border: 1px solid #fff;
     --padding-start: 1em;
-    --highlight-color-focused: #ff2a2a;
+    --highlight-color-focused: #ffcb0a;
 }
 .send-art {
     height: 200px;
@@ -320,9 +288,8 @@ body {
     margin: 1em auto;
     width: 300px;
     color: #fff;
-    font-size: 1.2em;
     /* border: 1px solid #0ff131; */
-    --background: linear-gradient(300deg, #00c400 26.7%, #0ff131 82.37%);
+    --background: #650087;
     ;
 }
 
