@@ -42,17 +42,6 @@ body {
     /* background: #111;
     background: linear-gradient(300deg, #000 26.7%, #111 82.37%); */
 }
-/* Simple is Better */
-#section-1 h3 {
-    background: linear-gradient(100deg, #3b3b3b 26.7%, #dd0000 82.37%);
-    width: 300px;
-    display: inline-block;
-    color: #fff;
-    padding: 1em;
-    border-radius: 10px;
-    opacity: 0;
-    animation: fade-in 1s ease 1s forwards;
-}
 @keyframes fade-in {
     0% {
         transform: translateX(-40px);
