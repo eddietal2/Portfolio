@@ -30,36 +30,38 @@
  */
 
 // #1 Snap Scroll Behavior Desktop
-// const options = {
-//     root: document.getElementById('wrapper'), // Use a specific container as the viewport
-//     threshold: [0.25], // Trigger at 25% and 75% visibility
-// };
-// function updateNavbar(activeSection) {
-//     const navBullets = document.querySelectorAll('.nav-bullet');
-//     console.log(navBullets);
-    
-//     navBullets.forEach((bullet: HTMLElement) => {
-//         console.log(bullet);
-//         bullet.classList.remove('current');
-//         if (bullet.dataset.currentSection === activeSection) {
-//             bullet.classList.add('current');
-//         }
-//     });
-//     // Add any additional navbar updates here (e.g., change background color)
-// }
-// const observer = new IntersectionObserver((entries) => {
-//     entries.forEach((entry: any) => {
-//         if (entry.isIntersecting) {
-//             const activeSection = entry.target.dataset.currentSection;
-//             console.log(activeSection);
-//             updateNavbar(activeSection);
-//         }
-//     });
-// }, options);
-// const rows = document.querySelectorAll('section');
-// rows.forEach((row) => {
-//     observer.observe(row);
-// });
+// Snap Scroll Behavior Desktop
+const options = {
+    root: document.getElementById('wrapper'), // Use a specific container as the viewport
+    threshold: [0.25], // Trigger at 25% and 75% visibility
+};
+
+function updateNavbar(activeSection) {
+  const navBullets = document.querySelectorAll('.nav-bullet');
+    navBullets.forEach((bullet: any) => {
+        console.log(bullet);
+        bullet.classList.remove('current');
+        if (bullet.dataset.currentSection === activeSection) {
+            bullet.classList.add('current');
+        }
+    });
+    // Add any additional navbar updates here (e.g., change background color)
+}
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry: any) => {
+        if (entry.isIntersecting) {
+            const activeSection = entry.target.dataset.currentSection;
+            console.log(activeSection);
+            updateNavbar(activeSection);
+        }
+    });
+}, options);
+
+const ionRows = document.querySelectorAll('section');
+ionRows.forEach((row) => {
+    observer.observe(row);
+});
 
 // #2 Swiper JS implementation for Picture Slides in 'My Story'
 const swiper = new Swiper('.swiper', {
@@ -145,10 +147,9 @@ let projects = null;
 fetch('projects.json')
   .then(response => response.json())
   .then((data: any) => {
-      console.log('Got Projects!');
-      projects = data.projects as Project[];
-      console.log(projects);
-        
+    projects = data.projects as Project[];
+    // console.log('Got Projects!');
+    // console.log(projects);   
     })
 
 // #6 Dark / Light Mode
@@ -174,51 +175,53 @@ function toggleBrightnessMode() {
 }
 getBrightnessMode();
 
-
-  // Tailwind CSS Classes
-  let sectionHeader = 'text-3xl font-bold'
-
+  /**
+   * TailwindCSS Classes
+   */
   // Light Mode
-  let lightNav = 'backdrop-blur-lg bg-[#fff]/30 h-16 drop-shadow-lg fixed w-full top-0 content-center z-50 transition duration-150';
+  let lightNav = 'backdrop-blur-lg bg-[#fff]/30 h-16 drop-shadow-lg fixed w-full bottom-0 md:top-0 content-center z-50 transition duration-150';
   let lightText = 'text-black transition duration-150';
+  let lightHeader = 'text-3xl text-black font-bold transition duration-150';
   let lightBG = 'bg-[#fff] content-center transition duration-150';
+
   // Dark Mode
-  let darkNav = 'backdrop-blur-lg text-white bg-[#000]/70 h-16 drop-shadow-lg fixed w-full top-0 content-center z-50 transition duration-150';
+  let darkNav = 'backdrop-blur-lg text-white bg-[#000]/70 h-16 drop-shadow-lg fixed w-full bottom-0 md:top-0 content-center z-50 transition duration-150';
   let darkText = 'text-white transition duration-150';
+  let darkHeader = 'text-3xl text-white font-bold transition duration-150';
   let darkBG = 'bg-[#222] content-center transition duration-150';
+
 </script>
 
 <main>
-
   <!-- Navbar -->
-  <div id="toolbar" class={brightnessMode === "LIGHT" ? lightNav : darkNav}>
-    <div class="w-3/5 lg:mx-auto grid grid-cols-3">
+  <div class={brightnessMode === "LIGHT" ? lightNav : darkNav}>
+    <div class="md:w-4/5 lg:w-3/5 mx-auto grid grid-cols-2 md:grid-cols-3">
       <div class="col-span-1 content-center">
-        <img class="h-7 relative bottom-1 mr-1 inline" src={fireEmoji} alt="">
-        <b class="text-xl">
+        <img class="h-4 md:h-7 inline relative bottom-1 lg:mr-1 " src={fireEmoji} alt="">
+        <b class="text-xs sm:text-[1em]">
           EDDIE TALIAFERRO II
         </b>
       </div>
-      <div class="col-span-1 content-center">
+      <div class="hidden md:block col-span-1 content-center">
         <!-- Space that goes in between both sides -->
       </div>
       <div class="col-span-1 text-right">
         <!-- Github -->
         <a class="mx-1" href="https://github.com/eddietal2" target="_blank" aria-label="Github Link">
-            <ion-icon size="large" name="logo-github" ></ion-icon>
+            <ion-icon class="text-3xl p-0.5" name="logo-github" ></ion-icon>
         </a>
         <!-- LinkedIn -->
         <a class="mx-1" href="https://www.linkedin.com/in/eddie-taliaferro-ii/" target="_blank" aria-label="LinkedIn Link">
-            <ion-icon size="large" name="logo-linkedin" ></ion-icon>
+            <ion-icon class="text-3xl p-0.5" name="logo-linkedin" ></ion-icon>
         </a>
         <!-- Contact Me -->
         <a class="mx-1" href="#section-4"  aria-label="Contact Me Link">
-            <ion-icon size="large" name="mail-outline" ></ion-icon>
+            <ion-icon class="text-3xl p-0.5" name="mail-outline" ></ion-icon>
         </a>
         <!-- Light / Dark Mode -->
         
         <button data-popover-target="popover-default" aria-label="Light/Dark Button" class={brightnessMode === "LIGHT" ? lightText : darkText}  type="button">
-          <ion-icon size="large"  name="moon-outline" ></ion-icon>
+          <ion-icon class="text-3xl p-0.5"  name="moon-outline" ></ion-icon>
         </button>
 
         <div data-popover id="popover-default" role="tooltip" class="absolute z-10 invisible inline-block w-64 text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800">
@@ -262,11 +265,13 @@ getBrightnessMode();
     <!-- Landing Intro -->
     <section data-current-section="s1">
       <div id="section-1" class={brightnessMode === "LIGHT" ? lightBG : darkBG}>
-        <div class="w-3/5 mx-auto flex flex-row gap-8">
-          <div class="w-1/4">
-            <div id="header-pic" class="my-4 mt-24 lg:mt-4"></div>
+        <div class="md:w-4/5 lg:w-3/5 mx-auto lg:flex flex-row gap-20">
+          <!-- Picture -->
+          <div class="w-11/12 lg:w-1/4 mx-auto">
+            <div id="header-pic" class="my-4"></div>
           </div>
-          <div class="w-3/4">
+          <!-- Text -->
+          <div class="w-11/12 lg:w-3/4 mx-auto">
             <p class="landing-text">
               <span class="text-xl lg:text-4xl text-[#111] dark:text-white">
                 <img class="h-10 inline" src={fireEmoji} alt="">
@@ -275,7 +280,7 @@ getBrightnessMode();
                   </b> 
               </span>
               <br>
-              <span class="text-2xl block my-4">
+              <span class="sm:text-xl xl:text-2xl block my-4">
                 <span class={brightnessMode === "LIGHT" ? lightText : darkText}>
                   As a versatile developer and designer, I specialize in turning innovative ideas into tangible software. 
                   From web applications to immersive XR experiences, my expertise spans web development, responsive design, CSS & SVG animation, UI/UX design, and even video game development using Unreal Engine. With a focus on creating high-performing and effective software, I've successfully delivered MVPs and beyond on numerous projects.
@@ -299,11 +304,11 @@ getBrightnessMode();
     <!-- My Story -->
     <section data-current-section="s2">
       <div id="section-2" class={brightnessMode === "LIGHT" ? lightBG : darkBG}>
-        <div class="w-3/5 p-4 mx-auto flex flex-row gap-8">
+        <div class="md:w-4/5 lg:w-3/5 p-4 mx-auto md:flex flex-row gap-8">
           <!-- Text -->
-          <div class="w-2/4">
-              <h1 class={sectionHeader}>MY STORY</h1>
-              <p class="text-lg lg:text-md text-[#111] dark:text-white">
+          <div class="w-11/12 lg:w-2/4 mt-20 md:mt-0">
+              <h1 class={brightnessMode === "LIGHT" ? lightHeader : darkHeader}>MY STORY</h1>
+              <p class={brightnessMode === "LIGHT" ? lightText : darkText}>
                 My passion for video games, anime, and graphic design began at 11, igniting a creative spark. Online forums like Playstation Universe became my playground for crafting custom signatures. This passion led me to pursue web development, fueled by hackathon victories, bootcamps, teaching, and freelance projects since 2017.
                 <br>
                 <br>
@@ -311,7 +316,7 @@ getBrightnessMode();
               </p>
           </div>
           <!-- Photo Side -->
-          <div class="w-2/4 content-center">
+          <div class="w-11/12 lg:w-2/4 content-center">
             <!-- Slider main container -->
             <div class="swiper">
               <!-- Additional required wrapper -->
@@ -348,19 +353,23 @@ getBrightnessMode();
     <!-- Projects -->
     <section data-current-section="s3">
       <div id="section-3" class={brightnessMode === "LIGHT" ? lightBG : darkBG}>
-        <div class="w-3/5 mx-auto mb-8">
-          <h1 class={sectionHeader}>PROJECTS</h1>
-          <p class="text-xl">
+        <!-- Header -->
+        <div class="md:w-4/5 lg:w-3/5 p-4 mx-auto lg:mb-8">
+          <h1 class={brightnessMode === "LIGHT" ? lightHeader : darkHeader}>PROJECTS</h1>
+          <p class={brightnessMode === "LIGHT" ? lightText : darkText}>
             Here are some projects (that I can share), ranging from personal projects that I have worked on, or startups I have built MVPs or major features for.
             <b>You can view more of my projects via <a class="text-[#3686fd] underline" href="https://github.com/eddietal2">Github</a></b>.</p>
         </div>
-        <div class="w-3/5 gap-8 mx-auto grid grid-cols-2">
+        <!-- Project -->
+        <div class="md:w-4/5 lg:w-3/5 p-4 gap-8 mx-auto lg:grid grid-cols-2">
           {#each projects as project}
-            <div class="flex flex-row gap-2 bg-[#999]/10 p-2">
+            <div class="flex flex-row gap-2 bg-[#999]/10 p-2 my-2 lg:my-0">
               <img src={project.image} class="h-12" alt="CryptoTutors Logo">
               <div class="content-center">
-                <p class="text-sm">{project.role} / 2023 - 2024</p>
-                <p class="text-xl">This is test text in this project card.</p>
+                <span class="text-xs">
+                  <p class={brightnessMode === "LIGHT" ? lightText : darkText}>{project.role} / 2023 - 2024</p>
+                </span>
+                <p class={brightnessMode === "LIGHT" ? lightText : darkText}>This is test text in this project card.</p>
               </div>
             </div>
           {/each }
@@ -371,21 +380,24 @@ getBrightnessMode();
     <!-- Contact Me -->
     <section data-current-section="s4">
       <div id="section-4" class={brightnessMode === "LIGHT" ? lightBG : darkBG}>
-        <div class="w-3/5 mx-auto mb-8">
+        <div class="md:w-4/5 lg:w-3/5 mx-auto mb-8">
           <!-- Header -->
           <div class="text-center ion-align-items-center">
             <h1 class="text-4xl text-[#111] dark:text-[#ffcb0a] font-bold relative bottom-2">CONTACT ME</h1>
-            <ion-icon class="text-[#222] text-[10rem]" name="mail-outline" ></ion-icon>
+            <span class="text-[10rem]">
+              <ion-icon class={brightnessMode === "LIGHT" ? lightText : darkText} name="mail-outline" ></ion-icon>
+            </span>
+            
           </div>
 
         <!-- Form -->
-        <div class="ion-text-center w-1/2 text-center mx-auto">
+        <div class="ion-text-center w-11/12 lg:w-1/2 text-center mx-auto">
             <!-- https://formsubmit.co/ -->
             <!-- https://www.youtube.com/watch?v=iSobU_DjNN4 -->
             <form action="https://formsubmit.co/f6e4bbd318fdd3193043ce91e88f6bfd" method="POST">
-                <input class="text-xl text-[#111] w-full my-1 h-10 p-2 border-2 border-[#999]" type="text" required placeholder="Your Name" name="name">
-                <input class="text-xl text-[#111] w-full my-1 h-10 p-2 border-2 border-[#999]" type="text" required placeholder="Email Address" name="email">
-                <textarea class="text-xl text-[#111] my-1 mx-auto p-2 w-full border-2 border-[#999] dark:text-white block" rows="5" required placeholder="Message goes here." name="message"></textarea>
+                <input class="text-lg text-[#111] w-full my-1 h-10 p-2 border-2 border-[#999]" type="text" required placeholder="First & Last Name" name="name">
+                <input class="text-lg text-[#111] w-full my-1 h-10 p-2 border-2 border-[#999]" type="text" required placeholder="Email Address" name="email">
+                <textarea class="text-lg text-[#111] my-1 mx-auto p-2 w-full border-2 border-[#999] dark:text-white block" rows="5" required placeholder="Want to collaborate or have a suggestion?" name="message"></textarea>
                 <button class="py-2 px-8 my-4 bg-black text-white text-xl" type="submit">
                     Send Message
                 </button>
@@ -397,17 +409,9 @@ getBrightnessMode();
     </section>
 
   </div>
-  
 </main>
 
 <style>
-/* Toolbar */
-@media (max-width: 1000px)  {
-    #toolbar{
-        bottom: 0;
-        z-index: 99;
-    }
-}
 
 /* Snap Scrolling Indicator */
 #sectionation-lg {
@@ -434,7 +438,7 @@ getBrightnessMode();
     display: flex;
 }
 .nav-bullet {
-    background-image: url('../../svelte/public/icons/nav-bullet.svg');
+    background-image: url('./assets/icons/nav-bullet.svg');
     background-repeat: no-repeat;
     margin: 0.54em 0;
     width: 10px;
@@ -442,7 +446,7 @@ getBrightnessMode();
     transition: 1s;
 }
 .current {
-    background-image: url('../../svelte/public/icons/nav-bullet-current.svg');
+    background-image: url('/assets/icons/nav-bullet-current.svg');
     transition: 1s;
     animation: nav-change-section 1s ease;
 }
@@ -461,11 +465,16 @@ getBrightnessMode();
 }
 
 /* For Snap Scrolling Sections on Desktop */
+#wrapper {
+    width: 100%;
+    height: 100vh;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+}
 #section-1,
 #section-2,
 #section-3,
-#section-4,
-#section-5
+#section-4
  {
     width: 100%;
     height: 100vh;
@@ -476,8 +485,7 @@ getBrightnessMode();
     #section-1,
     #section-2,
     #section-3,
-    #section-4,
-    #section-5{
+    #section-4 {
         scroll-snap-type: none;
         scroll-snap-align: none;
         height: auto;
@@ -485,6 +493,13 @@ getBrightnessMode();
 
     #section-1 {
         height: auto;
+    }
+}
+
+/* Contact Form */
+@media (max-width: 1000px)  {
+    #section-4 {
+        padding: 5em 0;
     }
 }
 
@@ -516,45 +531,5 @@ getBrightnessMode();
     } */
 }
 
-/* Contact Form */
-@media (max-width: 1000px)  {
-    #section-4 {
-        padding: 5em 0;
-    }
-}
-#section-4 ion-input {
-    text-align: left;
-    display: inline-block;
-    width: 40%;
-    border: 1px solid #fff;
-    /* --padding-start: 1em;
-    --highlight-color-focused: #ffcb0a; */
-}
-#section-4 ion-textarea {
-    text-align: left;
-    display: inline-block;
-    margin-top: 1em;
-    width: 80.5%;
-    border: 1px solid #fff;
-    /* --padding-start: 1em;
-    --highlight-color-focused: #ffcb0a; */
-}
-.send-art {
-    height: 200px;
-    width: 100px;
-    background: blue;
-    display: inline;
-}
-.send-header {
-    background: linear-gradient(300deg, #00c400 26.7%, #0ff131 82.37%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-.send-btn {
-    margin: 1em auto;
-    width: 300px;
-    color: #fff;
-    /* border: 1px solid #0ff131; */
-    background: #650087;
-}
+
 </style>
