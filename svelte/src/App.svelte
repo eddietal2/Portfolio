@@ -26,7 +26,7 @@
  * - #3 Landing Header SVG Animation 
  * - #4 Scroll to Contact Section via hitting Contact Us Icon in Navbar
  * - #5 Generate Projects UI
- * - #6 
+ * - #6 Dark / Light Mode
  */
 
 // #1 Snap Scroll Behavior Desktop
@@ -151,16 +151,47 @@ fetch('projects.json')
         
     })
 
-  
+// #6 Dark / Light Mode
+/**
+ * Check the user's device to see what their bightness mode is
+ */
+let brightnessMode = null;
+function getBrightnessMode() {
+    let isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    if(isDarkMode === false) {
+      brightnessMode = 'LIGHT'
+    } else {
+      brightnessMode = 'DARK'
+    }
+    return isDarkMode;
+}
+function toggleBrightnessMode() {
+  if(brightnessMode === 'LIGHT') {
+      brightnessMode = 'DARK'
+    } else {
+      brightnessMode = 'LIGHT'
+    }
+}
+getBrightnessMode();
+
 
   // Tailwind CSS Classes
   let sectionHeader = 'text-3xl font-bold'
+
+  // Light Mode
+  let lightNav = 'backdrop-blur-lg bg-[#fff]/30 h-16 drop-shadow-lg fixed w-full top-0 content-center z-50 transition duration-150';
+  let lightText = 'text-black transition duration-150';
+  let lightBG = 'bg-[#fff] content-center transition duration-150';
+  // Dark Mode
+  let darkNav = 'backdrop-blur-lg text-white bg-[#000]/70 h-16 drop-shadow-lg fixed w-full top-0 content-center z-50 transition duration-150';
+  let darkText = 'text-white transition duration-150';
+  let darkBG = 'bg-[#222] content-center transition duration-150';
 </script>
 
 <main>
 
   <!-- Navbar -->
-  <div id="toolbar" class="backdrop-blur-lg bg-[#fff]/30 dark:bg-[#222] h-16 drop-shadow-lg fixed w-full top-0 content-center z-50">
+  <div id="toolbar" class={brightnessMode === "LIGHT" ? lightNav : darkNav}>
     <div class="w-3/5 lg:mx-auto grid grid-cols-3">
       <div class="col-span-1 content-center">
         <img class="h-7 relative bottom-1 mr-1 inline" src={fireEmoji} alt="">
@@ -172,18 +203,38 @@ fetch('projects.json')
         <!-- Space that goes in between both sides -->
       </div>
       <div class="col-span-1 text-right">
+        <!-- Github -->
         <a class="mx-1" href="https://github.com/eddietal2" target="_blank" aria-label="Github Link">
-            <ion-icon size="large" class="text-[#222]" name="logo-github" ></ion-icon>
+            <ion-icon size="large" name="logo-github" ></ion-icon>
         </a>
-        <a class="mx-1" href="https://github.com/eddietal2" target="_blank" aria-label="Github Link">
-            <ion-icon size="large" class="text-[#222]" name="logo-linkedin" ></ion-icon>
+        <!-- LinkedIn -->
+        <a class="mx-1" href="https://www.linkedin.com/in/eddie-taliaferro-ii/" target="_blank" aria-label="LinkedIn Link">
+            <ion-icon size="large" name="logo-linkedin" ></ion-icon>
         </a>
-        <a class="mx-1" href="https://github.com/eddietal2" target="_blank" aria-label="Github Link">
-            <ion-icon size="large" class="text-[#222]" name="mail-outline" ></ion-icon>
+        <!-- Contact Me -->
+        <a class="mx-1" href="#section-4"  aria-label="Contact Me Link">
+            <ion-icon size="large" name="mail-outline" ></ion-icon>
         </a>
-        <a class="mx-1" href="https://github.com/eddietal2" target="_blank" aria-label="Github Link">
-            <ion-icon size="large" class="text-[#222]" name="moon-outline" ></ion-icon>
-        </a>
+        <!-- Light / Dark Mode -->
+        
+        <button data-popover-target="popover-default" aria-label="Light/Dark Button" class={brightnessMode === "LIGHT" ? lightText : darkText}  type="button">
+          <ion-icon size="large"  name="moon-outline" ></ion-icon>
+        </button>
+
+        <div data-popover id="popover-default" role="tooltip" class="absolute z-10 invisible inline-block w-64 text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800">
+            <div class="px-3 py-2 bg-gray-100 border-b border-gray-200 rounded-t-lg dark:border-gray-600 dark:bg-gray-700">
+                <h3 class="font-semibold text-gray-900 dark:text-white">Dark / Light Mode</h3>
+            </div>
+            <div class="px-3 py-2">
+                <p class="py-1">You are curretly in <b>{brightnessMode}</b> mode.</p>
+                <label class="inline-flex items-center cursor-pointer">
+                  <input on:click={toggleBrightnessMode} type="checkbox" value="" class="sr-only peer">
+                  <div class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+                  <span class="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300">Toggle me</span>
+                </label>
+            </div>
+            <div data-popper-arrow></div>
+        </div>
       </div>
     </div>
   </div>
@@ -209,8 +260,8 @@ fetch('projects.json')
   <div id="wrapper">
 
     <!-- Landing Intro -->
-    <section data-current-section="s1" class="border-b-2 border-[#999]">
-      <div id="section-1" class="content-center">
+    <section data-current-section="s1">
+      <div id="section-1" class={brightnessMode === "LIGHT" ? lightBG : darkBG}>
         <div class="w-3/5 mx-auto flex flex-row gap-8">
           <div class="w-1/4">
             <div id="header-pic" class="my-4 mt-24 lg:mt-4"></div>
@@ -219,19 +270,25 @@ fetch('projects.json')
             <p class="landing-text">
               <span class="text-xl lg:text-4xl text-[#111] dark:text-white">
                 <img class="h-10 inline" src={fireEmoji} alt="">
-                  <b>
+                  <b class={brightnessMode === "LIGHT" ? lightText : darkText}>
                     HI, I'M EDDIE!
                   </b> 
               </span>
               <br>
-              <span class="text-2xl text-[#111] dark:text-white block my-4">
+              <span class="text-2xl block my-4">
+                <span class={brightnessMode === "LIGHT" ? lightText : darkText}>
                   As a versatile developer and designer, I specialize in turning innovative ideas into tangible software. 
                   From web applications to immersive XR experiences, my expertise spans web development, responsive design, CSS & SVG animation, UI/UX design, and even video game development using Unreal Engine. With a focus on creating high-performing and effective software, I've successfully delivered MVPs and beyond on numerous projects.
+                </span>
               </span>
               <br>
-              <span class="text-xl text-[#111] dark:text-[#ffcb0a] font-bold">SKILLS</span>
-              <span class="text-sm lg:text-xl text-[#111] dark:text-[#fff] bg-[#ffcb0a10] border-[#ffcb0a40] border-2 p-2 block sm:my-2">
-              Angular, SvelteKit, Ionic, TailWindCSS, Linux, Git, Figma, Unreal Engine
+              <span class="text-xl text-[#111] dark:text-[#ffcb0a] font-bold">
+                <span class={brightnessMode === "LIGHT" ? lightText : darkText}>SKILLS</span>
+              </span>
+              <span class="text-sm lg:text-xl bg-[#ffcb0a10] border-[#ffcb0a40] border-2 p-2 block sm:my-2">
+                <span class={brightnessMode === "LIGHT" ? lightText : darkText}>
+                  Angular, SvelteKit, Ionic, TailWindCSS, Linux, Git, Figma, Unreal Engine
+                </span>
               </span>
           </p>
           </div>
@@ -240,8 +297,8 @@ fetch('projects.json')
     </section>
     
     <!-- My Story -->
-    <section data-current-section="s2" class="border-b-2 border-[#999]">
-      <div id="section-2" class="content-center">
+    <section data-current-section="s2">
+      <div id="section-2" class={brightnessMode === "LIGHT" ? lightBG : darkBG}>
         <div class="w-3/5 p-4 mx-auto flex flex-row gap-8">
           <!-- Text -->
           <div class="w-2/4">
@@ -289,8 +346,8 @@ fetch('projects.json')
     </section>
 
     <!-- Projects -->
-    <section data-current-section="s3" class="border-b-2 border-[#999]">
-      <div id="section-3" class="content-center">
+    <section data-current-section="s3">
+      <div id="section-3" class={brightnessMode === "LIGHT" ? lightBG : darkBG}>
         <div class="w-3/5 mx-auto mb-8">
           <h1 class={sectionHeader}>PROJECTS</h1>
           <p class="text-xl">
@@ -308,11 +365,12 @@ fetch('projects.json')
             </div>
           {/each }
         </div>
+      </div>
     </section>
 
     <!-- Contact Me -->
-    <section data-current-section="s4" class="border-b-2 border-[#999]">
-      <div id="section-4" class="content-center">
+    <section data-current-section="s4">
+      <div id="section-4" class={brightnessMode === "LIGHT" ? lightBG : darkBG}>
         <div class="w-3/5 mx-auto mb-8">
           <!-- Header -->
           <div class="text-center ion-align-items-center">
