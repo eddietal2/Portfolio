@@ -225,8 +225,8 @@ getBrightnessMode();
   <div class={brightnessMode === "LIGHT" ? lightNav : darkNav}>
     <div class="md:w-4/5 lg:w-3/5 mx-auto grid grid-cols-2 md:grid-cols-3">
       <div class="col-span-1 content-center">
-        <img class="h-4 md:h-7 inline relative bottom-1 lg:mr-1 " src={fireEmoji} alt="">
-        <b class="text-xs sm:text-[1em]">
+        <img class="h-4 md:h-7 inline relative bottom-1 ml-3 lg:mr-1 lg:ml-0 " src={fireEmoji} alt="">
+        <b class="text-md">
           EDDIE TALIAFERRO II
         </b>
       </div>
