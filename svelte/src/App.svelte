@@ -410,7 +410,7 @@ getBrightnessMode();
       <div id="section-4" class={brightnessMode === "LIGHT" ? lightBG : darkBG}>
         <div class="md:w-4/5 lg:w-3/5 mx-auto mb-8">
           <!-- Header -->
-          <div class="text-center ion-align-items-center">
+          <div class="text-center content-center">
             <h1 class="text-4xl text-[#111] dark:text-[#ffcb0a] font-bold relative bottom-2">CONTACT ME</h1>
             <span style="font-size: 5em;" class={brightnessMode === "LIGHT" ? lightText : darkText}>
               <!-- Mail Icon -->
@@ -513,15 +513,17 @@ getBrightnessMode();
     #wrapper,
     #section-1,
     #section-2,
-    #section-3,
-    #section-4 {
+    #section-3 {
         scroll-snap-type: none;
         scroll-snap-align: none;
         height: auto;
     }
 
-    #section-1 {
+    #section-4 {
+        scroll-snap-type: none;
+        scroll-snap-align: none;
         height: auto;
+        padding: 10em 0 20em 0;
     }
 }
 
@@ -529,12 +531,6 @@ getBrightnessMode();
 input:focus, textarea:focus {
   border: 2px solid #999;
 }
-@media (max-width: 1000px)  {
-    #section-4 {
-        padding: 5em 0;
-    }
-}
-
 /* Swiper */
 /* .photos {
     width: 100%;
