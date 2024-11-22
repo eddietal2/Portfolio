@@ -384,8 +384,9 @@ getBrightnessMode();
           <!-- Header -->
           <div class="text-center ion-align-items-center">
             <h1 class="text-4xl text-[#111] dark:text-[#ffcb0a] font-bold relative bottom-2">CONTACT ME</h1>
-            <span class="text-[10rem]">
-              <ion-icon class={brightnessMode === "LIGHT" ? lightText : darkText} name="mail-outline" ></ion-icon>
+            <span style="font-size: 5em;" class={brightnessMode === "LIGHT" ? lightText : darkText}>
+              <!-- Mail Icon -->
+              <ion-icon name="mail-outline" ></ion-icon>
             </span>
             
           </div>
@@ -398,7 +399,7 @@ getBrightnessMode();
                 <input class="text-lg text-[#111] w-full my-1 h-10 p-2 border-2 border-[#999]" type="text" required placeholder="First & Last Name" name="name">
                 <input class="text-lg text-[#111] w-full my-1 h-10 p-2 border-2 border-[#999]" type="text" required placeholder="Email Address" name="email">
                 <textarea class="text-lg text-[#111] my-1 mx-auto p-2 w-full border-2 border-[#999] dark:text-white block" rows="5" required placeholder="Want to collaborate or have a suggestion?" name="message"></textarea>
-                <button class="py-2 px-8 my-4 bg-black text-white text-xl" type="submit">
+                <button class="py-2 px-8 my-4 bg-[#999] text-black text-xl" type="submit">
                     Send Message
                 </button>
             </form>
