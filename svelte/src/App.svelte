@@ -523,7 +523,7 @@ getBrightnessMode();
         scroll-snap-type: none;
         scroll-snap-align: none;
         height: auto;
-        padding: 10em 0 20em 0;
+        padding: 10em 0 5em 0;
     }
 }
 
