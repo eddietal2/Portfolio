@@ -21,7 +21,7 @@
   let projects = [
         {
             "name": "Crypto Tutors",
-            "image": "src/assets/icons/ctlogo.png",
+            "image": "https://ik.imagekit.io/2ax1lblqa/ctlogo.png?updatedAt=1732316143920",
             "role": "Senior Front End Developer",
             "type": "Professional",
             "link": "https://www.defiallodds.xyz/",
