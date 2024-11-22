@@ -37,20 +37,21 @@
         },
         {
             "name": "FinalBossXR",
-            "image": "./src/assets/icons/fbs_logo.png",
+            "image": "https://ik.imagekit.io/2ax1lblqa/fbs_logo.png?updatedAt=1732316143932",
             "role": "Web Developer / Co-Founder",
             "type": "Professional",
-            "link": "https://ik.imagekit.io/2ax1lblqa/fbs_logo.png?updatedAt=1732316143932",
+            "link": "https://www.finalbossxr.com/",
             "description": "This is a Video Game & Augmented Reality Studio that I co-founded in 2021. I also act as Web Developer and Game Designer for our team while we build our first IP, Cosmic Collisions. I remade this site with SvelteKit & TailwindCSS"
         },
         // {
         //     "name": "FinalBossXR",
-        //     "image": "",
+        //     "image": "https://ik.imagekit.io/2ax1lblqa/fbs_logo.png?updatedAt=1732316143932",
         //     "role": "Web Developer / Co-Founder",
         //     "type": "Professional",
         //     "link": "https://www.finalbossxr.com/",
         //     "description": "This is a Video Game & Augmented Reality Studio that I co-founded in 2021. I also act as Web Developer and Game Designer for our team while we build our first IP, Cosmic Collisions. I remade this site with SvelteKit & TailwindCSS"
         // }
+       
     ]
 
 
