@@ -18,6 +18,73 @@
   // Hero Section SVG Art
   import headerArtPic from './assets/illustrations/header-art-pic.svg'
 
+  let projects = [
+        {
+            "name": "Crypto Tutors",
+            "image": "src/assets/icons/ctlogo.png",
+            "role": "Senior Front End Developer",
+            "type": "Professional",
+            "link": "https://www.defiallodds.xyz/",
+            "description": "Crypto Tutors is a leading provider of engaging and accessible Web3 education. Our award-winning curriculum, trusted by Fortune 500 companies and recognized by the National Science Foundation. I built the Defi All Odds assessment with SvelteKit and TailwindCSS. I fell in love with both."
+        },
+        {
+            "name": "VOpposition",
+            "image": "src/assets/icons/vopposition-logomark-red.png",
+            "role": "Senior Front End Developer",
+            "type": "Professional",
+            "link": "https://www.vopposition.com/",
+            "description": "A matchmaking app for pick up sports, like Basketball, Volleyball, etc, with gamified features. I acted as a Front End Engineer and UX Designer, refining the UX as I translated assets from the Design team to front end code. Built with Angular, Ionic, and TailwindCSS."
+        },
+        {
+            "name": "FinalBossXR",
+            "image": "./src/assets/icons/fbs_logo.png",
+            "role": "Web Developer / Co-Founder",
+            "type": "Professional",
+            "link": "https://www.finalbossxr.com/",
+            "description": "This is a Video Game & Augmented Reality Studio that I co-founded in 2021. I also act as Web Developer and Game Designer for our team while we build our first IP, Cosmic Collisions. I remade this site with SvelteKit & TailwindCSS"
+        },
+        {
+            "name": "FinalBossXR",
+            "image": "./src/assets/icons/fbs_logo.png",
+            "role": "Web Developer / Co-Founder",
+            "type": "Professional",
+            "link": "https://www.finalbossxr.com/",
+            "description": "This is a Video Game & Augmented Reality Studio that I co-founded in 2021. I also act as Web Developer and Game Designer for our team while we build our first IP, Cosmic Collisions. I remade this site with SvelteKit & TailwindCSS"
+        },
+        {
+            "name": "FinalBossXR",
+            "image": "./src/assets/icons/fbs_logo.png",
+            "role": "Web Developer / Co-Founder",
+            "type": "Professional",
+            "link": "https://www.finalbossxr.com/",
+            "description": "This is a Video Game & Augmented Reality Studio that I co-founded in 2021. I also act as Web Developer and Game Designer for our team while we build our first IP, Cosmic Collisions. I remade this site with SvelteKit & TailwindCSS"
+        },
+        {
+            "name": "FinalBossXR",
+            "image": "./src/assets/icons/fbs_logo.png",
+            "role": "Web Developer / Co-Founder",
+            "type": "Professional",
+            "link": "https://www.finalbossxr.com/",
+            "description": "This is a Video Game & Augmented Reality Studio that I co-founded in 2021. I also act as Web Developer and Game Designer for our team while we build our first IP, Cosmic Collisions. I remade this site with SvelteKit & TailwindCSS"
+        },
+        {
+            "name": "FinalBossXR",
+            "image": "./src/assets/icons/fbs_logo.png",
+            "role": "Web Developer / Co-Founder",
+            "type": "Professional",
+            "link": "https://www.finalbossxr.com/",
+            "description": "This is a Video Game & Augmented Reality Studio that I co-founded in 2021. I also act as Web Developer and Game Designer for our team while we build our first IP, Cosmic Collisions. I remade this site with SvelteKit & TailwindCSS"
+        },
+        {
+            "name": "FinalBossXR",
+            "image": "./src/assets/icons/fbs_logo.png",
+            "role": "Web Developer / Co-Founder",
+            "type": "Professional",
+            "link": "https://www.finalbossxr.com/",
+            "description": "This is a Video Game & Augmented Reality Studio that I co-founded in 2021. I also act as Web Developer and Game Designer for our team while we build our first IP, Cosmic Collisions. I remade this site with SvelteKit & TailwindCSS"
+        }
+    ]
+
 
   /**
  * Table of Contents
@@ -143,14 +210,6 @@ interface Project {
   link: string,
   description: string,
 }
-let projects = null;
-fetch('projects.json')
-  .then(response => response.json())
-  .then((data: any) => {
-    projects = data.projects as Project[];
-    // console.log('Got Projects!');
-    // console.log(projects);   
-    })
 
 // #6 Dark / Light Mode
 /**
@@ -398,7 +457,7 @@ getBrightnessMode();
             <form action="https://formsubmit.co/f6e4bbd318fdd3193043ce91e88f6bfd" method="POST">
                 <input class="text-lg text-[#111] w-full my-1 h-10 p-2 border-2 border-[#999]" type="text" required placeholder="First & Last Name" name="name">
                 <input class="text-lg text-[#111] w-full my-1 h-10 p-2 border-2 border-[#999]" type="text" required placeholder="Email Address" name="email">
-                <textarea class="text-lg text-[#111] my-1 mx-auto p-2 w-full border-2 border-[#999] dark:text-white block" rows="5" required placeholder="Want to collaborate or have a suggestion?" name="message"></textarea>
+                <textarea class="text-lg text-[#111] my-1 mx-auto p-2 w-full border-2 border-[#999]" rows="5" required placeholder="Want to collaborate or have a suggestion?" name="message"></textarea>
                 <button class="py-2 px-8 my-4 bg-[#999] text-black text-xl" type="submit">
                     Send Message
                 </button>
@@ -498,6 +557,9 @@ getBrightnessMode();
 }
 
 /* Contact Form */
+input:focus, textarea:focus {
+  border: 2px solid #999;
+}
 @media (max-width: 1000px)  {
     #section-4 {
         padding: 5em 0;
