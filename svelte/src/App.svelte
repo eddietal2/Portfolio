@@ -6,7 +6,6 @@
   import fireEmoji from './assets/icons/fire.png'
 
   // My Story Images
-  import Swiper from 'swiper';
   import slidePhotoOne from './assets/photos/Photo_5.png'
   import slidePhotoTwo from './assets/photos/Photo_4.png'
   import slidePhotoThree from './assets/photos/Photo_1.png'
@@ -58,7 +57,6 @@
   /**
  * Table of Contents
  * - #1 Snap Scroll Behavior Desktop
- * - #2 Swiper JS implementation for Picture Slides in 'My Story'
  * - #3 Landing Header SVG Animation 
  * - #4 Scroll to Contact Section via hitting Contact Us Icon in Navbar
  * - #5 Generate Projects UI
@@ -178,7 +176,6 @@ getBrightnessMode();
 
   onMount(() => {
     setSnapScrolling();
-    setSwiperInit();
     setDailyDarkModePopover();
 
     // #1 Snap Scroll Behavior Desktop
@@ -220,18 +217,6 @@ getBrightnessMode();
       observer.observe(section);
     });
     }
-
-    // #2 Swiper JS implementation for Picture Slides in 'My Story'
-    function setSwiperInit() {
-      const swiper = new Swiper('.swiper', {
-          autoplay: true,
-          direction: 'horizontal',
-          loop: true,
-          effect: 'fade'
-      });
-      swiper.init();
-    }
-
 
     // #7 Handle Project Description Popover
     /**
