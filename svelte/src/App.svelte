@@ -377,7 +377,7 @@ getBrightnessMode();
           <!-- Text -->
           <div class="w-11/12 lg:w-2/4 mt-20 md:mt-0">
               <h1 class={brightnessMode === "LIGHT" ? lightHeader : darkHeader}>
-                <img class="fire-anim h-10 inline" src={fireEmoji} alt="Fire Emoji">
+                <span class="h-10 mr-2">📖</span>
                 MY STORY
               </h1>
               <p style="margin-top: 1em;" class={brightnessMode === "LIGHT" ? lightText : darkText}>
@@ -458,7 +458,7 @@ getBrightnessMode();
         <!-- Header -->
         <div class="md:w-4/5 lg:w-3/5 p-4 mx-auto lg:mb-4 content-center">
           <h1 class={brightnessMode === "LIGHT" ? lightHeader : darkHeader}>
-            <img class="fire-anim h-10 inline" src={fireEmoji} alt="Fire Emoji">
+            <span class="h-10 mr-2">💻</span>
             PROJECTS
           </h1>
          <span class="text-lg lg:text-xl">
