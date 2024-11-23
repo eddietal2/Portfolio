@@ -89,7 +89,7 @@ fetch(headerArtPic)
         
         function lineOneAnim() {
             setTimeout(() => {
-                lineOne.style.fill = '#0ff131';
+                lineOne.style.fill = '#f3f3f3';
             }, 200);
             setTimeout(() => {
                 lineOne.style.fill = '#888';
@@ -97,7 +97,7 @@ fetch(headerArtPic)
         }
         function lineTwoAnim() {
             setTimeout(() => {
-                lineTwo.style.fill = '#650087';
+                lineTwo.style.fill = '#ffd24d';
             }, 400);
             setTimeout(() => {
                 lineTwo.style.fill = '#666';
@@ -105,7 +105,7 @@ fetch(headerArtPic)
         }
         function lineThreeAnim() {
             setTimeout(() => {
-                lineThree.style.fill = '#0ff131';
+                lineThree.style.fill = '#f56f33';
             }, 600);
             setTimeout(() => {
                 lineThree.style.fill = '#444';
@@ -113,7 +113,7 @@ fetch(headerArtPic)
         }
         function lineFourAnim() {
             setTimeout(() => {
-                lineFour.style.fill = '#650087';
+                lineFour.style.fill = '#f73209';
             }, 800);
             setTimeout(() => {
                 lineFour.style.fill = '#222';
