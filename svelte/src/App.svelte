@@ -376,8 +376,11 @@ getBrightnessMode();
         <div class="md:w-4/5 lg:w-3/5 p-4 mx-auto md:flex flex-row gap-8">
           <!-- Text -->
           <div class="w-11/12 lg:w-2/4 mt-20 md:mt-0">
-              <h1 class={brightnessMode === "LIGHT" ? lightHeader : darkHeader}>MY STORY</h1>
-              <p class={brightnessMode === "LIGHT" ? lightText : darkText}>
+              <h1 class={brightnessMode === "LIGHT" ? lightHeader : darkHeader}>
+                <img class="fire-anim h-10 inline" src={fireEmoji} alt="Fire Emoji">
+                MY STORY
+              </h1>
+              <p style="margin-top: 1em;" class={brightnessMode === "LIGHT" ? lightText : darkText}>
                 My passion for video games, anime, and graphic design began at 11, igniting a creative spark. Online forums like Playstation Universe became my playground for crafting custom signatures. This passion led me to pursue web development, fueled by hackathon victories, bootcamps, teaching, and freelance projects since 2017.
                 <br>
                 <br>
@@ -386,12 +389,7 @@ getBrightnessMode();
           </div>
           <!-- Photo Side -->
           <div class="w-11/12 lg:w-2/4 content-center">
-            <!-- Slider main container -->
-           
-
-            
-
-<div id="default-carousel" class="relative w-full" data-carousel="slide">
+            <div id="default-carousel" class="relative w-full" data-carousel="slide">
   <!-- Carousel wrapper -->
   <div class="relative h-56 overflow-hidden rounded-lg md:h-96">
        <!-- Item 1 -->
@@ -448,8 +446,7 @@ getBrightnessMode();
           <span class="sr-only">Next</span>
       </span>
   </button>
-</div>
-
+            </div>
           </div>
         </div>
       </div>
@@ -460,7 +457,10 @@ getBrightnessMode();
       <div id="section-3" class={brightnessMode === "LIGHT" ? lightBG : darkBG}>
         <!-- Header -->
         <div class="md:w-4/5 lg:w-3/5 p-4 mx-auto lg:mb-4 content-center">
-          <h1 class={brightnessMode === "LIGHT" ? lightHeader : darkHeader}>PROJECTS</h1>
+          <h1 class={brightnessMode === "LIGHT" ? lightHeader : darkHeader}>
+            <img class="fire-anim h-10 inline" src={fireEmoji} alt="Fire Emoji">
+            PROJECTS
+          </h1>
          <span class="text-lg lg:text-xl">
           <p class={brightnessMode === "LIGHT" ? lightText : darkText}>
             Here are some projects (that I can share), ranging from personal projects that I have worked on, or startups I have built MVPs or major features for.
