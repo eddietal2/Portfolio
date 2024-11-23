@@ -1,9 +1,8 @@
 <script lang="ts">
+  import { onMount } from 'svelte';
+
   // Icons
   import fireEmoji from './assets/icons/fire.png'
-
-  // Logos
-  import cryptoTutorsLogo from './assets/icons/ctlogo.png'
 
   // My Story Images
   import Swiper from 'swiper';
@@ -63,41 +62,9 @@
  * - #4 Scroll to Contact Section via hitting Contact Us Icon in Navbar
  * - #5 Generate Projects UI
  * - #6 Dark / Light Mode
+ * - #7 Project Description Popover
  */
 
-// #1 Snap Scroll Behavior Desktop
-// Snap Scroll Behavior Desktop
-const options = {
-    root: document.getElementById('wrapper'), // Use a specific container as the viewport
-    threshold: [0.25], // Trigger at 25% and 75% visibility
-};
-
-function updateNavbar(activeSection) {
-  const navBullets = document.querySelectorAll('.nav-bullet');
-    navBullets.forEach((bullet: any) => {
-        console.log(bullet);
-        bullet.classList.remove('current');
-        if (bullet.dataset.currentSection === activeSection) {
-            bullet.classList.add('current');
-        }
-    });
-    // Add any additional navbar updates here (e.g., change background color)
-}
-
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry: any) => {
-        if (entry.isIntersecting) {
-            const activeSection = entry.target.dataset.currentSection;
-            console.log(activeSection);
-            updateNavbar(activeSection);
-        }
-    });
-}, options);
-
-const ionRows = document.querySelectorAll('section');
-ionRows.forEach((row) => {
-    observer.observe(row);
-});
 
 // #2 Swiper JS implementation for Picture Slides in 'My Story'
 const swiper = new Swiper('.swiper', {
@@ -203,6 +170,14 @@ function toggleBrightnessMode() {
 }
 getBrightnessMode();
 
+// #7 Handle Project Description Popover
+const popoverTrigger = document.getElementById('popover-trigger');
+const popover = document.getElementById('popover');
+
+// popoverTrigger.addEventListener('click', () => {
+//   popover.classList.toggle('hidden');
+// });
+
   /**
    * TailwindCSS Classes
    */
@@ -218,6 +193,48 @@ getBrightnessMode();
   let darkHeader = 'text-3xl text-white font-bold transition duration-150';
   let darkBG = 'bg-[#222] content-center transition duration-150';
 
+  onMount(() => {
+    // #1 Snap Scroll Behavior Desktop
+const options = {
+    root: document.getElementById('wrapper'), // Use a specific container as the viewport
+    threshold: [0.25], // Trigger at 25% and 75% visibility
+};
+
+function updateNavbar(activeSection) {
+  const navBullets = document.querySelectorAll('.nav-bullet');
+    navBullets.forEach((bullet: any) => {
+        if (bullet.dataset.currentSection === activeSection) {
+          // console.log(activeSection);
+          // Active Section, orange square
+          bullet.innerHTML = `<svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="10" height="10" fill="#f56f33"/>
+              </svg>`
+        } else {
+          // Inactive Section, white circle.
+          bullet.innerHTML = `
+              <svg width="10" height="10" viewBox="0 0 10 10" fill="#000" xmlns="http://www.w3.org/2000/svg"> 
+                <circle cx="5" cy="5" r="5" fill="#ffffff50"/>
+              </svg>`
+        }
+    });
+    // Add any additional navbar updates here (e.g., change background color)
+}
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry: any) => {
+        if (entry.isIntersecting) {
+            const activeSection = entry.target.dataset.currentSection;
+            // console.log(activeSection);
+            updateNavbar(activeSection);
+        }
+    });
+}, options);
+
+const sections = document.querySelectorAll('section');
+sections.forEach((section) => {
+    observer.observe(section);
+});
+  });
 </script>
 
 <main>
@@ -274,7 +291,9 @@ getBrightnessMode();
   <nav id="sectionation-lg">
     <ul>
         <li>
-            <div class="nav-bullet" data-current-section="s1" aria-label="First Section"></div>
+            <div class="nav-bullet" data-current-section="s1" aria-label="First Section">
+              
+            </div>
         </li>
         <li>
             <div class="nav-bullet" data-current-section="s2" aria-label="Second Section"></div>
@@ -382,22 +401,33 @@ getBrightnessMode();
     <section data-current-section="s3">
       <div id="section-3" class={brightnessMode === "LIGHT" ? lightBG : darkBG}>
         <!-- Header -->
-        <div class="md:w-4/5 lg:w-3/5 p-4 mx-auto lg:mb-8">
+        <div class="md:w-4/5 lg:w-3/5 p-4 mx-auto lg:mb-4 content-center">
           <h1 class={brightnessMode === "LIGHT" ? lightHeader : darkHeader}>PROJECTS</h1>
+         <span class="text-lg lg:text-xl">
           <p class={brightnessMode === "LIGHT" ? lightText : darkText}>
             Here are some projects (that I can share), ranging from personal projects that I have worked on, or startups I have built MVPs or major features for.
-            <b>You can view more of my projects via <a class="text-[#3686fd] underline" href="https://github.com/eddietal2">Github</a></b>.</p>
+            You can view more of my projects via <a class="text-[#3686fd] pb-0.5 underline" href="https://github.com/eddietal2">Github</a>.
+          </p>
+         </span>
         </div>
         <!-- Project -->
         <div class="md:w-4/5 lg:w-3/5 p-4 gap-8 mx-auto lg:grid grid-cols-2">
           {#each projects as project}
-            <div class="flex flex-row gap-2 bg-[#999]/10 p-2 my-2 lg:my-0">
+            <div class="flex flex-row gap-2  p-2 my-2 lg:my-0">
               <img src={project.image} class="h-12" alt="CryptoTutors Logo">
               <div class="content-center">
                 <span class="text-xs">
                   <p class={brightnessMode === "LIGHT" ? lightText : darkText}>{project.role} / 2023 - 2024</p>
                 </span>
-                <p class={brightnessMode === "LIGHT" ? lightText : darkText}>This is test text in this project card.</p>
+                <p style="font-size: 1.2em;" class={brightnessMode === "LIGHT" ? lightText : darkText}>This is test text in this project card.</p>
+                <p class={brightnessMode === "LIGHT" ? lightText : darkText}>
+                  <span>
+                    <a href={project.link} target="_blank" class="underline pb-0.5 text-[#3686fd]">Link</a>
+                  </span>
+                  <span>|</span>
+                  <button id="popover-trigger" >Description</button>
+                  <span id="popover" class="hidden">{project.description}</span>
+                </p>
               </div>
             </div>
           {/each }
@@ -445,7 +475,7 @@ getBrightnessMode();
 /* Snap Scrolling Indicator */
 #sectionation-lg {
     /* background: #b1b1b153; */
-    background: linear-gradient(300deg, #0D021C 26.7%, #191123 82.37%);
+    background: #191123;
     z-index: 9999;
     width: auto;
     height: auto;
@@ -467,15 +497,11 @@ getBrightnessMode();
     display: flex;
 }
 .nav-bullet {
-    background-image: url('./assets/icons/nav-bullet.svg');
-    background-repeat: no-repeat;
+    /* background-image: url('./assets/icons/nav-bullet.svg'); */
+    /* background-repeat: no-repeat; */
     margin: 0.54em 0;
     width: 10px;
     height: 10px;
-    transition: 1s;
-}
-.current {
-    background-image: url('/assets/icons/nav-bullet-current.svg');
     transition: 1s;
     animation: nav-change-section 1s ease;
 }
@@ -525,6 +551,20 @@ getBrightnessMode();
         height: auto;
         padding: 10em 0 5em 0;
     }
+}
+
+/* Projects */
+#popover {
+  /* Style the popover as you wish */
+  position: absolute;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  padding: 10px;
+  display: none;
+}
+
+#popover:target {
+  display: block;
 }
 
 /* Contact Form */
