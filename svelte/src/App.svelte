@@ -24,8 +24,8 @@
             "role": "VR Developer",
             "type": "Professional",
             "link": "https://www.harp-rose.org/",
-            "text": "This is text",
-            "description": "This is a Video Game & Augmented Reality Studio that I co-founded in 2021. I also act as Web Developer and Game Designer for our team while we build our first IP, Cosmic Collisions. I remade this site with SvelteKit & TailwindCSS"
+            "text": "VR Enhanced Therapy, powered by Unreal Engine.",
+            "description": "VR Startup that aims to make therapy more accessible and innovative. I am the lead software developer for this MVP. This is being built with Unreal Engine 5, while I outsource things like 3D Model creation, audio, etc."
         },
         {
             "name": "Crypto Tutors",
@@ -33,7 +33,7 @@
             "role": "Senior Front End Developer",
             "type": "Professional",
             "link": "https://www.defiallodds.xyz/",
-            "text": "This is text",
+            "text": "DefiAllOdds, powered by Web3 Education startup CryptoTutors.",
             "description": "Crypto Tutors is a leading provider of engaging and accessible Web3 education. Our award-winning curriculum, trusted by Fortune 500 companies and recognized by the National Science Foundation. I built the Defi All Odds assessment with SvelteKit and TailwindCSS. I fell in love with both."
         },
         {
@@ -42,7 +42,7 @@
             "role": "Senior Front End Developer",
             "type": "Professional",
             "link": "https://www.vopposition.com/",
-            "text": "This is text",
+            "text": "Gamified sports matchmaking, Hybrid App, Web App focus with MVP",
             "description": "A matchmaking app for pick up sports, like Basketball, Volleyball, etc, with gamified features. I acted as a Front End Engineer and UX Designer, refining the UX as I translated assets from the Design team to front end code. Built with Angular, Ionic, and TailwindCSS."
         },
         {
@@ -513,10 +513,10 @@ getBrightnessMode();
         <div class="md:w-4/5 lg:w-3/5 mx-auto mb-8">
           <!-- Header -->
           <div class="text-center content-center">
-            <h1 class="text-4xl text-[#111] dark:text-[#ffcb0a] font-bold relative bottom-2">CONTACT ME</h1>
+            <h1 class={brightnessMode === "LIGHT" ? lightText : darkText} style="font-size: 2em; font-weight: 600;">CONTACT ME</h1>
             <span style="font-size: 5em;" class={brightnessMode === "LIGHT" ? lightText : darkText}>
               <!-- Mail Icon -->
-              <ion-icon name="mail-outline" ></ion-icon>
+              📬
             </span>
             
           </div>
