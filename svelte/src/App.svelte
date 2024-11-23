@@ -51,7 +51,7 @@
         //     "description": "This is a Video Game & Augmented Reality Studio that I co-founded in 2021. I also act as Web Developer and Game Designer for our team while we build our first IP, Cosmic Collisions. I remade this site with SvelteKit & TailwindCSS"
         // }
        
-    ]
+  ]
 
 
   /**
@@ -167,12 +167,14 @@ getBrightnessMode();
   let lightText = 'text-black transition duration-150';
   let lightHeader = 'text-3xl text-black font-bold transition duration-150';
   let lightBG = 'bg-[#fff] content-center transition duration-150';
+  let lightButton = 'bg-[#00000020] text-[#1cb6fc] hover:bg-[#dd0000] hover:text-[#ffd24d] transition duration-1 p-0.5';
 
   // Dark Mode
   let darkNav = 'backdrop-blur-lg text-white bg-[#000]/70 h-16 drop-shadow-lg fixed w-full bottom-0 md:top-0 content-center z-50 transition duration-150';
   let darkText = 'text-white transition duration-150';
   let darkHeader = 'text-3xl text-white font-bold transition duration-150';
   let darkBG = 'bg-[#222] content-center transition duration-150';
+  let darkButton = 'bg-[#ffffff20] text-[#1cb6fc] hover:bg-[#dd0000] hover:text-[#ffd24d] transition duration-1 p-0.5';
 
   onMount(() => {
     setSnapScrolling();
@@ -465,22 +467,31 @@ getBrightnessMode();
         </div>
         <!-- Project -->
         <div class="md:w-4/5 lg:w-3/5 p-4 gap-8 mx-auto lg:grid grid-cols-2">
-          {#each projects as project}
+          {#each projects as project, index}
             <div class="flex flex-row gap-2  p-2 my-2 lg:my-0">
+              <!-- Project Image -->
               <img src={project.image} class="h-12" alt="CryptoTutors Logo">
               <div class="content-center">
+                <!-- Project Card Text -->
                 <span class="text-xs">
                   <p class={brightnessMode === "LIGHT" ? lightText : darkText}>{project.role} / 2023 - 2024</p>
                 </span>
                 <p style="font-size: 1.2em;" class={brightnessMode === "LIGHT" ? lightText : darkText}>This is test text in this project card.</p>
-                <p class={brightnessMode === "LIGHT" ? lightText : darkText}>
-                  <span>
-                    <a href={project.link} target="_blank" class="underline pb-0.5 text-[#3686fd]">Link</a>
-                  </span>
-                  <span>|</span>
-                  <button id="popover-trigger" >Description</button>
-                  <span id="popover" class="hidden">{project.description}</span>
-                </p>
+                <!-- Link & Description Buttons -->
+                <span class={brightnessMode === "LIGHT" ? lightText : darkText}>
+                  <button class={brightnessMode === "LIGHT" ? lightButton : darkButton}>
+                    <a href={project.link} target="_blank">Link</a>
+                  </button>
+                  <button data-popover-target="popover-description-{index}" type="button" class={brightnessMode === "LIGHT" ? lightButton : darkButton}>Description</button>
+                  <div data-popover id="popover-description-{index}" role="tooltip" class="absolute z-10 invisible inline-block w-96 text-sm transition-opacity duration-300 border border-gray-200 rounded-lg shadow-sm opacity-0">
+                    <div class="px-3 py-2 bg-gray-100 border-b border-gray-200 rounded-t-lg dark:border-gray-600 dark:bg-gray-700">
+                        <h3 class="font-semibold text-gray-900 dark:text-white">{project.name}</h3>
+                    </div>
+                    <div class={brightnessMode === "LIGHT" ? lightBG : darkBG} style="padding: 1em;">
+                        <p class={brightnessMode === "LIGHT" ? lightText : darkText}>{project.description}</p>
+                    </div>
+                  </div>
+                </span>
               </div>
             </div>
           {/each }
@@ -510,7 +521,7 @@ getBrightnessMode();
                 <input class="text-lg text-[#111] w-full my-1 h-10 p-2 border-2 border-[#999]" type="text" required placeholder="First & Last Name" name="name">
                 <input class="text-lg text-[#111] w-full my-1 h-10 p-2 border-2 border-[#999]" type="text" required placeholder="Email Address" name="email">
                 <textarea class="text-lg text-[#111] my-1 mx-auto p-2 w-full border-2 border-[#999]" rows="5" required placeholder="Want to collaborate or have a suggestion?" name="message"></textarea>
-                <button class="py-2 px-8 my-4 bg-[#999] text-black text-xl" type="submit">
+                <button class={brightnessMode === "LIGHT" ? lightButton : darkButton} style="padding: 0.75em; font-size: 1.2em;" type="submit">
                     Send Message
                 </button>
             </form>
