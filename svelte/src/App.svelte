@@ -1,5 +1,6 @@
 <script lang="ts">
   import { onMount } from 'svelte';
+  import { Popover } from 'flowbite';
 
   // Icons
   import fireEmoji from './assets/icons/fire.png'
@@ -66,16 +67,6 @@
  */
 
 
-// #2 Swiper JS implementation for Picture Slides in 'My Story'
-const swiper = new Swiper('.swiper', {
-    // Optional parameters
-    speed: 300,
-    autoplay: true,
-    direction: 'horizontal',
-    loop: true,
-    effect: 'fade'
-});
-swiper.init();
 
 // #3 Landing Header SVG Animation 
 fetch(headerArtPic)
@@ -170,14 +161,6 @@ function toggleBrightnessMode() {
 }
 getBrightnessMode();
 
-// #7 Handle Project Description Popover
-const popoverTrigger = document.getElementById('popover-trigger');
-const popover = document.getElementById('popover');
-
-// popoverTrigger.addEventListener('click', () => {
-//   popover.classList.toggle('hidden');
-// });
-
   /**
    * TailwindCSS Classes
    */
@@ -194,15 +177,19 @@ const popover = document.getElementById('popover');
   let darkBG = 'bg-[#222] content-center transition duration-150';
 
   onMount(() => {
-    // #1 Snap Scroll Behavior Desktop
-const options = {
-    root: document.getElementById('wrapper'), // Use a specific container as the viewport
-    threshold: [0.25], // Trigger at 25% and 75% visibility
-};
+    setSnapScrolling()
+    setDailyDarkModePopover()
 
-function updateNavbar(activeSection) {
-  const navBullets = document.querySelectorAll('.nav-bullet');
-    navBullets.forEach((bullet: any) => {
+    // #1 Snap Scroll Behavior Desktop
+    function setSnapScrolling() {
+      const options = {
+      root: document.getElementById('wrapper'), // Use a specific container as the viewport
+      threshold: [0.25], // Trigger at 25% and 75% visibility
+      };
+
+    function updateNavbar(activeSection) {
+      const navBullets = document.querySelectorAll('.nav-bullet');
+      navBullets.forEach((bullet: any) => {
         if (bullet.dataset.currentSection === activeSection) {
           // console.log(activeSection);
           // Active Section, orange square
@@ -216,11 +203,9 @@ function updateNavbar(activeSection) {
                 <circle cx="5" cy="5" r="5" fill="#ffffff50"/>
               </svg>`
         }
-    });
-    // Add any additional navbar updates here (e.g., change background color)
-}
-
-const observer = new IntersectionObserver((entries) => {
+      });
+    }
+    const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry: any) => {
         if (entry.isIntersecting) {
             const activeSection = entry.target.dataset.currentSection;
@@ -228,12 +213,59 @@ const observer = new IntersectionObserver((entries) => {
             updateNavbar(activeSection);
         }
     });
-}, options);
+    }, options);
+    const sections = document.querySelectorAll('section');
+      sections.forEach((section) => {
+      observer.observe(section);
+    });
 
-const sections = document.querySelectorAll('section');
-sections.forEach((section) => {
-    observer.observe(section);
-});
+
+    // #2 Swiper JS implementation for Picture Slides in 'My Story'
+    const swiper = new Swiper('.swiper', {
+        // Optional parameters
+        speed: 300,
+        autoplay: true,
+        direction: 'horizontal',
+        loop: true,
+        effect: 'fade'
+    });
+    swiper.init();
+
+    }
+
+    // #7 Handle Project Description Popover
+    /**
+     * Show the Dark/Light mode popover for 5 seconds when the page loads. 
+     * I am doing this just to learn how to do it, and a small bit of UX in
+     * case someone refreshed they page. No need to see the popover again If you have already
+     * seen it once
+     */
+    function setDailyDarkModePopover() {
+      const popoverEl = document.getElementById('popover-default');
+      const popoverTrigger = document.getElementById('popover-trigger');
+
+      const today = new Date().toLocaleDateString();
+      const storageKey = `popoverShownToday-${today}`;
+      const hasShownToday = localStorage.getItem(storageKey);
+      localStorage.setItem(storageKey, 'true');
+
+      if (!hasShownToday) {
+        const popover = new Popover(popoverEl, popoverTrigger);
+        popover.show();
+        setTimeout(() => {
+          popover.hide();
+        }, 10000);
+      }
+
+      // For testing purposes
+      // localStorage.removeItem(storageKey);
+      console.log(popoverEl);
+      console.log(today);
+      console.log(storageKey);
+      console.log(hasShownToday);
+      console.log('Local Storage: ' + localStorage);   
+    }
+
   });
 </script>
 
@@ -265,7 +297,7 @@ sections.forEach((section) => {
         </a>
         <!-- Light / Dark Mode -->
         
-        <button data-popover-target="popover-default" aria-label="Light/Dark Button" class={brightnessMode === "LIGHT" ? lightText : darkText}  type="button">
+        <button data-popover-target="popover-default" id="popover-trigger" aria-label="Light/Dark Button" class={brightnessMode === "LIGHT" ? lightText : darkText}  type="button">
           <ion-icon class="text-3xl p-0.5"  name="moon-outline" ></ion-icon>
         </button>
 
