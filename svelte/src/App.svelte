@@ -19,11 +19,21 @@
 
   let projects = [
         {
+            "name": "HARP",
+            "image": "https://ik.imagekit.io/2ax1lblqa/Slice_1__1_-removebg-preview.png?updatedAt=1732343747682",
+            "role": "VR Developer",
+            "type": "Professional",
+            "link": "https://www.harp-rose.org/",
+            "text": "This is text",
+            "description": "This is a Video Game & Augmented Reality Studio that I co-founded in 2021. I also act as Web Developer and Game Designer for our team while we build our first IP, Cosmic Collisions. I remade this site with SvelteKit & TailwindCSS"
+        },
+        {
             "name": "Crypto Tutors",
             "image": "https://ik.imagekit.io/2ax1lblqa/ctlogo.png?updatedAt=1732316143920",
             "role": "Senior Front End Developer",
             "type": "Professional",
             "link": "https://www.defiallodds.xyz/",
+            "text": "This is text",
             "description": "Crypto Tutors is a leading provider of engaging and accessible Web3 education. Our award-winning curriculum, trusted by Fortune 500 companies and recognized by the National Science Foundation. I built the Defi All Odds assessment with SvelteKit and TailwindCSS. I fell in love with both."
         },
         {
@@ -32,28 +42,19 @@
             "role": "Senior Front End Developer",
             "type": "Professional",
             "link": "https://www.vopposition.com/",
+            "text": "This is text",
             "description": "A matchmaking app for pick up sports, like Basketball, Volleyball, etc, with gamified features. I acted as a Front End Engineer and UX Designer, refining the UX as I translated assets from the Design team to front end code. Built with Angular, Ionic, and TailwindCSS."
         },
         {
-            "name": "FinalBossXR",
+            "name": "Final Boss Studios",
             "image": "https://ik.imagekit.io/2ax1lblqa/fbs_logo.png?updatedAt=1732316143932",
             "role": "Web Developer / Co-Founder",
             "type": "Professional",
             "link": "https://www.finalbossxr.com/",
+            "text": "This is text",
             "description": "This is a Video Game & Augmented Reality Studio that I co-founded in 2021. I also act as Web Developer and Game Designer for our team while we build our first IP, Cosmic Collisions. I remade this site with SvelteKit & TailwindCSS"
-        },
-        // {
-        //     "name": "FinalBossXR",
-        //     "image": "https://ik.imagekit.io/2ax1lblqa/fbs_logo.png?updatedAt=1732316143932",
-        //     "role": "Web Developer / Co-Founder",
-        //     "type": "Professional",
-        //     "link": "https://www.finalbossxr.com/",
-        //     "description": "This is a Video Game & Augmented Reality Studio that I co-founded in 2021. I also act as Web Developer and Game Designer for our team while we build our first IP, Cosmic Collisions. I remade this site with SvelteKit & TailwindCSS"
-        // }
-       
-  ]
-
-
+        }
+      ]
   /**
  * Table of Contents
  * - #1 Snap Scroll Behavior Desktop
@@ -472,13 +473,18 @@ getBrightnessMode();
           {#each projects as project, index}
             <div class="flex flex-row gap-2  p-2 my-2 lg:my-0">
               <!-- Project Image -->
-              <img src={project.image} class="h-12" alt="CryptoTutors Logo">
+              <img src={project.image} class="h-12" alt="Project Logo">
               <div class="content-center">
                 <!-- Project Card Text -->
                 <span class="text-xs">
+                  <p class={brightnessMode === "LIGHT" ? lightText : darkText}>{project.name}</p>
+                </span>
+                <span class="text-xs">
                   <p class={brightnessMode === "LIGHT" ? lightText : darkText}>{project.role} / 2023 - 2024</p>
                 </span>
-                <p style="font-size: 1.2em;" class={brightnessMode === "LIGHT" ? lightText : darkText}>This is test text in this project card.</p>
+                <p style="font-size: 1.2em;" class={brightnessMode === "LIGHT" ? lightText : darkText}>
+                  {project.text}
+                </p>
                 <!-- Link & Description Buttons -->
                 <span class={brightnessMode === "LIGHT" ? lightText : darkText}>
                   <button class={brightnessMode === "LIGHT" ? lightButton : darkButton}>
