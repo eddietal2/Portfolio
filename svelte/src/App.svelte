@@ -51,7 +51,7 @@
             "role": "Web Developer / Co-Founder",
             "type": "Professional",
             "link": "https://www.finalbossxr.com/",
-            "text": "This is text",
+            "text": "Video Game Studio focusing on Augmented Reality",
             "description": "This is a Video Game & Augmented Reality Studio that I co-founded in 2021. I also act as Web Developer and Game Designer for our team while we build our first IP, Cosmic Collisions. I remade this site with SvelteKit & TailwindCSS"
         }
       ]
