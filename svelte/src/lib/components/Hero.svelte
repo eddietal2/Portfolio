@@ -73,11 +73,12 @@
       <div class="w-11/12 lg:w-3/4 mx-auto">
         <p class="landing-text">
           <span class="text-xl lg:text-4xl text-[#111] dark:text-white">
-            <img class="fire-anim h-10 inline" src={fireEmoji} alt="Fire Emoji">
+            <span class="text-4xl wave-hand">👋🏾</span>
             <b class={$theme === 'light' ? theme.classes.light.text : theme.classes.dark.text}>
-              <span class="greetings-anim-1 inline-block">HI,</span>
-              <span class="greetings-anim-2 inline-block">I'M</span>
-              <span class="greetings-anim-3 inline-block">EDDIE!</span>
+              <span class="text-4xl jura greetings-anim-1 inline-block">HI,</span>
+              <span class="text-4xl jura greetings-anim-2 inline-block">I'M</span>
+              <span class="text-4xl jura greetings-anim-3 inline-block">EDDIE</span>
+              
             </b> 
           </span>
           <br>
@@ -158,4 +159,21 @@
   @keyframes greeting-slide-1 { 0% { transform: translateY(50px); } 100% { transform: translateY(0); opacity: 1; } }
   @keyframes fire-slide { 0% { transform: translateX(-50px); } 100% { transform: translateX(0); opacity: 1; } }
   @keyframes greeting-slide-2 { 0% { transform: translateX(50px); } 100% { transform: translateX(0); opacity: 1; } }
+
+  .wave-hand {
+    display: inline-block;
+    transform-origin: 70% 70%; /* pivot near the wrist */
+    animation: wave 1.2s infinite;
+  }
+
+  @keyframes wave {
+    0% { transform: rotate(0deg); }
+    15% { transform: rotate(14deg); }
+    30% { transform: rotate(-8deg); }
+    40% { transform: rotate(14deg); }
+    50% { transform: rotate(-4deg); }
+    60% { transform: rotate(10deg); }
+    70% { transform: rotate(0deg); }
+    100% { transform: rotate(0deg); }
+  }
 </style>
