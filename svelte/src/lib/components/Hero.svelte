@@ -82,22 +82,24 @@
             </b> 
           </span>
           <br>
-          <span class="sm:text-xl xl:text-2xl block my-4">
+          <span class="sm:text-xl xl:text-2xl block my-4 border-b border-gray-200/20 pb-4">
             <span class={$theme === 'light' ? theme.classes.light.text : theme.classes.dark.text}>
               As a versatile developer and designer, I specialize in turning innovative ideas into tangible software. 
               From web applications to immersive XR experiences, my expertise spans web development, responsive design, CSS & SVG animation, UI/UX design, and even video game development using Unreal Engine. With a focus on creating high-performing and effective software, I've successfully delivered MVPs and beyond on numerous projects.
             </span>
           </span>
-          <br>
-          <span class="text-xl text-[#111] dark:text-[#ffcb0a] font-bold">
-            <span class={$theme === 'light' ? theme.classes.light.text : theme.classes.dark.text}>SKILLS</span>
-          </span>
-          <span class="text-sm lg:text-xl bg-[#ffcb0a10] border-[#ffcb0a40] border-2 p-2 block sm:my-2">
-            <span class={$theme === 'light' ? theme.classes.light.text : theme.classes.dark.text}>
-              Angular, SvelteKit, Ionic, TailWindCSS, Linux, Git, Figma, Unreal Engine
-            </span>
-          </span>
         </p>
+        <h1 class={$theme === 'light' ? theme.classes.light.text + 'jura text-xl' : theme.classes.dark.text + 'jura text-xl'}>SKILLS</h1>
+        <div class="flex flex-wrap gap-2 sm:my-2">
+          {#each ["Angular", "SvelteKit", "Ionic", "TailWindCSS", "Linux", "Git", "Figma", "Unreal Engine", "Vercel", "CI/CD", "AWS"] as skill}
+            <span class="text-sm bg-[#00c40020] border-[#00c400] border-2 px-3 py-1 rounded-full inline-block">
+              <span class={$theme === 'light' ? theme.classes.light.text : theme.classes.dark.text}>
+                {skill}
+              </span>
+            </span>
+          {/each}
+        </div>
+
       </div>
 
     </div>
