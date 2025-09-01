@@ -75,15 +75,6 @@ Portfolio/
 
 ---
 
-## 📖 Inspirations & References
-
-This project was inspired by principles and best practices from books such as:
-
-* *You Don’t Know JavaScript* – Kyle Simpson
-* *Universal Principles of Design* – William Lidwell, Kritina Holden, Jill Butler
-* *JavaScript Allonge* – Reg Braithwaite
-
----
 
 ## 📬 Contact
 
