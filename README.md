@@ -2,7 +2,7 @@ Here’s a polished draft for a **new README.md** you can drop into your portfol
 
 ---
 
-# Portfolio – 2024
+# Portfolio – 2025
 
 A personal portfolio website built with **Svelte**, designed to showcase my projects, skills, and experience in a clean and modern way.
 
