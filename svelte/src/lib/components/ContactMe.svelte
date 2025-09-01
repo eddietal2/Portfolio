@@ -45,4 +45,7 @@
       height: auto;
     }
   }
+  input:focus, textarea:focus {
+    border: 2px solid #999;
+  }
 </style>

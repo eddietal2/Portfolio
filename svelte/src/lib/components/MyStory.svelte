@@ -105,4 +105,18 @@
       height: auto;
     }
   }
+  .swiper {
+      width: 100%;
+      /* height: ; */
+    }
+  .swiper-wrapper {
+      margin: 0em;
+  }
+  @media (max-width: 600px)  {
+      .swiper {
+          margin: 3em auto;
+          width: 100%
+      }
+  }
+
 </style>

@@ -107,4 +107,17 @@
       height: auto;
     }
   }
+  
+  #popover {
+    /* Style the popover as you wish */
+    position: absolute;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 10px;
+    display: none;
+  }
+
+  #popover:target {
+    display: block;
+  }
 </style>

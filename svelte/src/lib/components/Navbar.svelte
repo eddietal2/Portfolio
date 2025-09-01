@@ -6,7 +6,24 @@
 
   let popoverInstance: Popover;
 
+  
+  function setDailyDarkModePopover() {
+    const popoverEl = document.getElementById('popover-default');
+    const popoverTrigger = document.getElementById('popover-trigger');
+    const today = new Date().toLocaleDateString();
+    const storageKey = `popoverShownToday-${today}`;
+    const hasShownToday = localStorage.getItem(storageKey);
+    localStorage.setItem(storageKey, 'true');
+    if (!hasShownToday) {
+      const popover = new Popover(popoverEl, popoverTrigger);
+      popover.show();
+      setTimeout(() => popover.hide(), 10000);
+    }
+  }
+
   onMount(() => {
+    setDailyDarkModePopover()
+    
     const popoverEl = document.getElementById('popover-default');
     const popoverTrigger = document.getElementById('popover-trigger');
 

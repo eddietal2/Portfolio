@@ -115,4 +115,50 @@
           height: auto;
       }
   }
+  
+  /* Greetings Animation */
+  .fire-anim {
+    opacity: 0;
+    animation: fire-slide 500ms cubic-bezier(0.075, 0.82, 0.165, 1) 750ms forwards;
+  }
+  .greetings-anim-1 {
+    opacity: 0;
+    animation: greeting-slide-1 500ms cubic-bezier(0.075, 0.82, 0.165, 1) 1500ms forwards;
+  }
+  .greetings-anim-2 {
+    opacity: 0;
+    animation: greeting-slide-2 500ms cubic-bezier(0.075, 0.82, 0.165, 1) 2500ms forwards;
+  }
+  .greetings-anim-3 {
+    opacity: 0;
+    animation: greeting-slide-2 500ms cubic-bezier(0.075, 0.82, 0.165, 1) 3000ms forwards;
+  }
+  
+  @keyframes greeting-slide-1 {
+    0% {
+      transform: translateY(50px);
+    }
+    100% {
+      transform: translateY(0px);
+      opacity: 1;
+    }
+  }
+  @keyframes fire-slide {
+    0% {
+      transform: translateX(-50px);
+    }
+    100% {
+      transform: translateX(0px);
+      opacity: 1;
+    }
+  }
+  @keyframes greeting-slide-2 {
+    0% {
+      transform: translateX(50px);
+    }
+    100% {
+      transform: translateX(0px);
+      opacity: 1;
+    }
+  }
 </style>
