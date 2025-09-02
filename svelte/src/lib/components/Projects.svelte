@@ -116,7 +116,7 @@
         <span class="h-10 mr-2">💻</span>
         PROJECTS
       </h1>
-      <p class={$theme === 'light' ? theme.classes.light.text : theme.classes.dark.text + ' text-lg lg:text-xl'}>
+      <p class={$theme === 'light' ? theme.classes.light.text + ' text-lg lg:text-xl' : theme.classes.dark.text + ' text-lg lg:text-xl'}>
         Here are some projects (that I can share), ranging from personal projects that I have worked on, or startups I have built MVPs or major features for.
         You can view more of my projects via <a class="text-[#3686fd] pb-0.5 underline" href="https://github.com/eddietal2">Github</a>.
       </p>
@@ -130,15 +130,15 @@
 
     <!-- Project Carousel -->
     <div id="projects-carousel" class="relative w-full md:w-4/5 lg:w-3/5 mx-auto">
-      <div class="relative h-144 md:h-192 overflow-hidden rounded-lg"> <!-- height doubled -->
+      <div class="relative h-144 md:h-192 overflow-hidden rounded-lg md:shadow"> <!-- height doubled -->
         {#each projects as project, index}
-          <div class="hidden duration-700 ease-in-out p-4 bg-black/20" data-carousel-item>
+          <div class="hidden duration-700 ease-in-out p-4 bg-black/80" data-carousel-item>
             <div class="flex flex-col md:flex-row gap-4">
 
               <!-- Video / Media Area 16:9 -->
               <div class="w-full md:w-1/2 relative aspect-w-16 aspect-h-9 bg-black rounded-lg overflow-hidden">
                 <video
-                  src={project.video ? project.video : project.image}
+                  src={project.video}
                   class="w-full h-full object-cover"
                   controls
                   autoplay={true}
@@ -150,12 +150,13 @@
 
               <!-- Project Info -->
               <div class="flex flex-col w-full md:w-1/2 gap-3 h-80 overflow-y-auto p-2"> <!-- fixed height -->
-                <h2 class={$theme === 'light' ? theme.classes.light.text + ' font-bold text-2xl jura' : theme.classes.dark.text + ' font-bold text-2xl jura'}>
+                <h2 class={$theme === 'light' ? theme.classes.dark.text + ' font-bold text-xl jura' : theme.classes.dark.text + ' font-bold text-xl jura'}>
+                  <img src={project.image} class="h-8 inline" alt="" srcset="">
                   {project.name}
                 </h2>
               
                 <div class="flex gap-2 mt-2">
-                  <a href={project.link} target="_blank" class={$theme === 'light' ? theme.classes.light.button : theme.classes.dark.button}>
+                  <a href={project.link} target="_blank" class={$theme === 'light' ? theme.classes.dark.button : theme.classes.dark.button}>
                     Link
                   </a>
                 </div>
@@ -164,21 +165,16 @@
                 <div class="flex flex-wrap gap-2 mt-2">
                   {#each project.badges as skill}
                     <span class="inline-flex text-xs bg-[#00c40020] border-[#00c400] border-2 px-3 py-1 rounded-full">
-                      <span class={$theme === 'light' ? theme.classes.light.text : theme.classes.dark.text}>
+                      <span class={$theme === 'light' ? theme.classes.dark.text : theme.classes.dark.text}>
                         {skill}
                       </span>
                     </span>
                   {/each}
                 </div>
-
-              
-                <p class="text-xs md:text-sm {$theme === 'light' ? theme.classes.light.text : theme.classes.dark.text}">
+                <p class="text-xs md:text-sm {$theme === 'light' ? theme.classes.dark.text : theme.classes.dark.text}">
                   {project.description}
                 </p>
               </div>
-
-
-
             </div>
           </div>
         {/each}
@@ -199,5 +195,17 @@
       scroll-snap-align: none;
       height: auto;
     }
+  }
+  
+  /* Gradient animation */
+  @keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  .animate-gradientShift {
+    animation: gradientShift 12s ease infinite;
+    background-size: 400% 400%;
   }
 </style>

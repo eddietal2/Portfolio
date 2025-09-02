@@ -3,7 +3,7 @@
 
 </script>
 <main>
-    <div id="section-4" class={$theme === 'light' ? theme.classes.light.bg : theme.classes.dark.bg}>
+    <div id="section-4" class={$theme === 'light' ? theme.classes.light.heroGradient : theme.classes.dark.heroGradient}>
       <div class="md:w-4/5 lg:w-3/5 mx-auto mb-8">
         <!-- Header -->
         <div class="text-center content-center">
@@ -47,5 +47,18 @@
   }
   input:focus, textarea:focus {
     border: 2px solid #999;
+  }
+
+  
+  /* Gradient animation */
+  @keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  .animate-gradientShift {
+    animation: gradientShift 12s ease infinite;
+    background-size: 400% 400%;
   }
 </style>

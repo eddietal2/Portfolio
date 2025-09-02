@@ -18,9 +18,9 @@ const classes: Record<Theme, ThemeClasses> = {
     header: "text-3xl text-black font-bold transition duration-150",
     bg: "bg-[#fff] content-center transition duration-150",
     heroGradient:
-      "pb-12 md:pt-24 bg-gradient-to-br from-[#f2d2ce] via-[#f7e6e4] to-[#f2dba0] bg-[length:400%_400%] animate-gradientShift",
+      "pb-12 md:pt-24 bg-gradient-to-br from-[#fff] via-[#fffbd4] to-[#fff] bg-[length:400%_400%] animate-gradientShift",
     button:
-      "bg-[#00000020] text-[#1cb6fc] hover:bg-[#dd0000] hover:text-[#ffd24d] transition duration-1 p-0.5",
+      "bg-[#222] text-[#1cb6fc] rounded-full hover:bg-[#111111] hover:text-[#ffd24d] transition duration-1 py-1 px-3",
   },
   dark: {
     nav: "backdrop-blur-lg text-white bg-[#000]/90 h-16 drop-shadow-lg fixed w-full bottom-0 md:top-0 content-center z-50 transition duration-150",
@@ -28,9 +28,9 @@ const classes: Record<Theme, ThemeClasses> = {
     header: "text-3xl text-white font-bold transition duration-150",
     bg: "bg-[#222] content-center transition duration-150",
     heroGradient:
-      "pb-12 md:pt-24 bg-gradient-to-br from-[#222] via-[#240804] to-[#704F38] bg-[length:400%_400%] animate-gradientShift",
+      "pb-12 md:pt-24 bg-gradient-to-br from-[#2e2a07] via-[#240804] to-[#704F38] bg-[length:400%_400%] animate-gradientShift",
     button:
-      "bg-[#ffffff20] text-[#1cb6fc] hover:bg-[#dd0000] hover:text-[#ffd24d] transition duration-1 p-0.5",
+      "bg-[#ffffff20] text-[#1cb6fc] rounded-full hover:bg-[#111111] hover:text-[#ffd24d] transition duration-1 py-1 px-3",
   },
 };
 
