@@ -74,10 +74,10 @@
 </script>
 <main>
   <!-- My Story Section -->
-  <div id="section-2" class="relative w-full min-h-screen md:flex {$theme === 'light' ? theme.classes.light.bg : theme.classes.dark.bg}">
+  <div id="section-2" class="relative w-full h-auto md:min-h-screen md:flex {$theme === 'light' ? theme.classes.light.bg : theme.classes.dark.bg}">
     
     <!-- Left Side: Text -->
-    <div class="relative z-10 w-full md:w-2/5 p-8 md:rounded-l-lg text-white flex flex-col justify-center {$theme === 'light' ? 'bg-white' : 'bg-black'}">
+    <div class="relative z-10 w-full md:w-2/5 p-8 md:rounded-l-lg text-white flex flex-col justify-center {$theme === 'light' ? theme.classes.light.heroGradient : theme.classes.dark.heroGradient}">
       <h1 class={$theme === 'light' ? theme.classes.light.header + 'text-4xl mb-2 jura' : theme.classes.dark.header + 'text-4xl mb-2 jura'}>
         <span class="">📖</span>
         MY STORY
@@ -87,24 +87,8 @@
           <!-- Typing indicator -->
         <div bind:this={typingIndicator} class="typing-indicator hidden mt-2"></div>
       </div>
-    </div>
 
-    <!-- Right Side: Carousel -->
-    <div class="relative w-full md:w-3/5 overflow-hidden">
-      <!-- Gradient overlay from left to right -->
-      <div class="absolute inset-0 z-10 pointer-events-none bg-gradient-to-l from-transparent {$theme === 'light' ? 'to-white/100' : 'to-black/100'}"></div>
-
-      <!-- Desktop Carousel -->
-      <div class="hidden md:block absolute inset-0 z-0 overflow-hidden">
-        {#each [slidePhotoOne, slidePhotoSeven, slidePhotoThree, slidePhotoFour, slidePhotoFive, slidePhotoSix, slidePhotoSeven] as slide}
-          <img 
-            src={slide} 
-            class="absolute w-full h-full object-cover opacity-0 transition-opacity duration-1000 ease-in-out z-0" 
-            alt="Slide Photo"
-          />
-        {/each}
-      </div>
-
+      
       <!-- Mobile Carousel below text -->
       <div class="md:hidden relative w-full mt-6">
         <div id="default-carousel" class="relative w-full" data-carousel="slide">
@@ -117,6 +101,24 @@
           </div>
         </div>
       </div>
+    </div>
+
+    <!-- Right Side: Carousel -->
+    <div class="relative w-full md:w-3/5 overflow-hidden">
+      <!-- Gradient overlay from left to right -->
+      <div class="absolute inset-0 z-10 pointer-events-none from-transparent {$theme === 'light' ? 'to-white/100' : 'to-black/100'}"></div>
+
+      <!-- Desktop Carousel -->
+      <div class="hidden md:block absolute inset-0 z-0 overflow-hidden">
+        {#each [slidePhotoOne, slidePhotoSeven, slidePhotoThree, slidePhotoFour, slidePhotoFive, slidePhotoSix, slidePhotoSeven] as slide}
+          <img 
+            src={slide} 
+            class="absolute w-full h-full object-cover opacity-0 transition-opacity duration-1000 ease-in-out z-0" 
+            alt="Slide Photo"
+          />
+        {/each}
+      </div>
+
     </div>
 
   </div>
@@ -162,5 +164,17 @@
   @keyframes pulse {
     0%, 100% { transform: scale(1); opacity: 0.6; }
     50% { transform: scale(1.4); opacity: 1; }
+  }
+
+  /* Gradient animation */
+  @keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  .animate-gradientShift {
+    animation: gradientShift 12s ease infinite;
+    background-size: 400% 400%;
   }
 </style>

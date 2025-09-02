@@ -60,7 +60,7 @@
   <div id="section-1" class={$theme === 'light' ? theme.classes.light.heroGradient : theme.classes.dark.heroGradient}>
     
     <!-- Floating lights overlay -->
-    <div class="floating-lights" aria-hidden="true"></div>
+    <div class={$theme === 'light' ? 'floating-lights-light' : 'floating-lights-dark'} aria-hidden="true"></div>
 
     <div class="md:w-4/5 lg:w-3/5 mx-auto lg:flex flex-row gap-20 relative z-10">
 
@@ -136,12 +136,22 @@
   }
 
   /* Floating lights overlay */
-  .floating-lights {
+  .floating-lights-dark {
     position: absolute;
     top: 0; left: 0;
     width: 100%; height: 100%;
     pointer-events: none;
-    background: radial-gradient(circle, rgba(255,255,255,0.06) 2px, transparent 2px);
+    background: radial-gradient(circle, rgba(255,255,255,0.16) 2px, transparent 2px);
+    background-size: 40px 40px;
+    animation: floatLights 20s linear infinite;
+    opacity: 0.5;
+  }
+  .floating-lights-light {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    background: radial-gradient(circle, rgba(28, 2, 2, 0.16) 2px, transparent 2px);
     background-size: 40px 40px;
     animation: floatLights 20s linear infinite;
     opacity: 0.5;

@@ -48,7 +48,7 @@
       popoverInstance.show();
       setTimeout(() => {
         popoverInstance.hide();
-      }, 10000);
+      }, 3000);
       localStorage.setItem(storageKey, 'true');
     }
   });
