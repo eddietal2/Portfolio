@@ -1,10 +1,14 @@
 <script lang="ts">
   import { theme } from '../stores/light-dark-mode';
-  import fireEmoji from '../../assets/icons/fire.png';
   import headerArtPic from '../../assets/illustrations/header-art-pic.svg';
   import { onMount } from 'svelte';
 
+  let typedText = '';
+  const fullText = `As a versatile developer and designer, I specialize in turning innovative ideas into tangible software. 
+  From web applications to immersive XR experiences, my expertise spans web development, responsive design, CSS & SVG animation, UI/UX design, and even video game development using Unreal Engine. With a focus on creating high-performing and effective software, I've successfully delivered MVPs and beyond on numerous projects.`;
+
   onMount(() => {
+    // Animate SVG header art
     fetch(headerArtPic)
       .then(res => res.text())
       .then(svgContent => {
@@ -31,8 +35,22 @@
         }
       });
 
-    setSnapScrolling();
+    // Typewriter effect
+    let i = 0;
+    setTimeout(() => {
+      const interval = setInterval(() => {
+        if (i < fullText.length) {
+          typedText += fullText.charAt(i);
+          i++;
+        } else {
+          clearInterval(interval);
+        }
+      }, 25);
+    }, 6000); // delay start by 3 seconds
 
+
+    // Snap Scrolling & Navbar Bullets
+    setSnapScrolling();
     function setSnapScrolling() {
       const options = {
         root: document.getElementById('wrapper'),
@@ -78,18 +96,17 @@
               <span class="text-4xl jura greetings-anim-1 inline-block">HI,</span>
               <span class="text-4xl jura greetings-anim-2 inline-block">I'M</span>
               <span class="text-4xl jura greetings-anim-3 inline-block">EDDIE</span>
-              
             </b> 
           </span>
           <br>
-          <span class="sm:text-xl xl:text-2xl block my-4 border-b border-gray-200/20 pb-4">
+          <span class="sm:text-xl xl:text-2xl block my-4 border-b border-gray-200/20 pb-4 typewriter-text">
             <span class={$theme === 'light' ? theme.classes.light.text : theme.classes.dark.text}>
-              As a versatile developer and designer, I specialize in turning innovative ideas into tangible software. 
-              From web applications to immersive XR experiences, my expertise spans web development, responsive design, CSS & SVG animation, UI/UX design, and even video game development using Unreal Engine. With a focus on creating high-performing and effective software, I've successfully delivered MVPs and beyond on numerous projects.
+              {typedText}
             </span>
           </span>
         </p>
-        <h1 class={$theme === 'light' ? theme.classes.light.text + 'jura text-xl' : theme.classes.dark.text + 'jura text-xl'}>SKILLS</h1>
+
+        <h1 class={$theme === 'light' ? theme.classes.light.text + ' jura text-xl' : theme.classes.dark.text + ' jura text-xl'}>SKILLS</h1>
         <div class="flex flex-wrap gap-2 sm:my-2">
           {#each ["Angular", "SvelteKit", "Ionic", "TailWindCSS", "Linux", "Git", "Figma", "Unreal Engine", "Vercel", "CI/CD", "AWS"] as skill}
             <span class="text-sm bg-[#00c40020] border-[#00c400] border-2 px-3 py-1 rounded-full inline-block">
@@ -101,7 +118,6 @@
         </div>
 
       </div>
-
     </div>
   </div>
 </main>
@@ -129,34 +145,28 @@
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
   }
-
   .animate-gradientShift {
     animation: gradientShift 12s ease infinite;
     background-size: 400% 400%;
   }
 
   /* Floating lights overlay */
-  .floating-lights-dark {
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    pointer-events: none;
-    background: radial-gradient(circle, rgba(255,255,255,0.16) 2px, transparent 2px);
-    background-size: 40px 40px;
-    animation: floatLights 20s linear infinite;
-    opacity: 0.5;
-  }
+  .floating-lights-dark,
   .floating-lights-light {
     position: absolute;
     top: 0; left: 0;
     width: 100%; height: 100%;
     pointer-events: none;
-    background: radial-gradient(circle, rgba(28, 2, 2, 0.16) 2px, transparent 2px);
     background-size: 40px 40px;
     animation: floatLights 20s linear infinite;
     opacity: 0.5;
   }
-
+  .floating-lights-dark {
+    background: radial-gradient(circle, rgba(255,255,255,0.16) 2px, transparent 2px);
+  }
+  .floating-lights-light {
+    background: radial-gradient(circle, rgba(28, 2, 2, 0.16) 2px, transparent 2px);
+  }
   @keyframes floatLights {
     from { background-position: 0 0; }
     to { background-position: 40px -1000px; }
@@ -167,17 +177,15 @@
   .greetings-anim-1 { opacity: 0; animation: greeting-slide-1 500ms cubic-bezier(0.075, 0.82, 0.165, 1) 1500ms forwards; }
   .greetings-anim-2 { opacity: 0; animation: greeting-slide-2 500ms cubic-bezier(0.075, 0.82, 0.165, 1) 2500ms forwards; }
   .greetings-anim-3 { opacity: 0; animation: greeting-slide-2 500ms cubic-bezier(0.075, 0.82, 0.165, 1) 3000ms forwards; }
-
   @keyframes greeting-slide-1 { 0% { transform: translateY(50px); } 100% { transform: translateY(0); opacity: 1; } }
   @keyframes fire-slide { 0% { transform: translateX(-50px); } 100% { transform: translateX(0); opacity: 1; } }
   @keyframes greeting-slide-2 { 0% { transform: translateX(50px); } 100% { transform: translateX(0); opacity: 1; } }
 
   .wave-hand {
     display: inline-block;
-    transform-origin: 70% 70%; /* pivot near the wrist */
+    transform-origin: 70% 70%;
     animation: wave 1.2s infinite;
   }
-
   @keyframes wave {
     0% { transform: rotate(0deg); }
     15% { transform: rotate(14deg); }
@@ -187,5 +195,17 @@
     60% { transform: rotate(10deg); }
     70% { transform: rotate(0deg); }
     100% { transform: rotate(0deg); }
+  }
+
+  /* Typewriter caret */
+  .typewriter-text span::after {
+    content: '|';
+    animation: blink 1s infinite;
+    color: #00c400;
+    margin-left: 2px;
+  }
+  @keyframes blink {
+    0%, 50% { opacity: 1; }
+    50.01%, 100% { opacity: 0; }
   }
 </style>
