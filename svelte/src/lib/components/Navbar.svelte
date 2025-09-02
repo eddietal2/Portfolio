@@ -22,36 +22,30 @@
   }
 
   onMount(() => {
-    setDailyDarkModePopover()
-    
     const popoverEl = document.getElementById('popover-default');
     const popoverTrigger = document.getElementById('popover-trigger');
-
+  
     if (!popoverEl || !popoverTrigger) return;
-
-    // Initialize Flowbite Popover manually
+  
+    // Initialize Flowbite Popover
     popoverInstance = new Popover(popoverEl, popoverTrigger, {
-      placement: 'bottom', // where the popover appears
-      // remove triggerType
+      placement: 'bottom',
     });
-
-    // manually show/hide
-    popoverInstance.show();
-
-
+  
     // Show popover once per day
     const today = new Date().toLocaleDateString();
     const storageKey = `popoverShownToday-${today}`;
     const hasShownToday = localStorage.getItem(storageKey);
-
+  
     if (!hasShownToday) {
       popoverInstance.show();
       setTimeout(() => {
         popoverInstance.hide();
-      }, 3000);
+      }, 3000); // hide after 3s
       localStorage.setItem(storageKey, 'true');
     }
   });
+
 
   function toggleTheme() {
     theme.toggle();

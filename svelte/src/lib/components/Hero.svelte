@@ -46,7 +46,7 @@
           clearInterval(interval);
         }
       }, 25);
-    }, 6000); // delay start by 3 seconds
+    }, 5250); // delay start by 3 seconds
 
 
     // Snap Scrolling & Navbar Bullets
