@@ -13,7 +13,7 @@ type ThemeClasses = {
 
 const classes: Record<Theme, ThemeClasses> = {
   light: {
-    nav: "backdrop-blur-lg bg-[#fff]/30 h-16 drop-shadow-lg fixed w-full bottom-0 md:top-0 content-center z-50 transition duration-150",
+    nav: "backdrop-blur-lg bg-[#fff]/90 h-16 drop-shadow-lg fixed w-full bottom-0 md:top-0 content-center z-50 transition duration-150",
     text: "text-black transition duration-150",
     header: "text-3xl text-black font-bold transition duration-150",
     bg: "bg-[#fff] content-center transition duration-150",
