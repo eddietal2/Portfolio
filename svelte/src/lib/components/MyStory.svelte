@@ -14,7 +14,39 @@
   let slides: HTMLImageElement[] = [];
   let current = 0;
 
+  // Typewrite Effect for My Story Text
+  let typewriterTriggered = false;
+  let typingIndicator: HTMLDivElement;
+  let storyContainer: HTMLDivElement;
+  let storyText: HTMLParagraphElement;
+  const fullText = `My passion for video games, anime, and graphic design began at 11, igniting a creative spark. Online forums like Playstation Universe became my playground for crafting custom signatures. This passion led me to pursue web development, fueled by hackathon victories, bootcamps, teaching, and freelance projects since 2017.
+    Giving back has been equally fulfilling. For four years, I taught Detroit's youth to code through Journi, a non-profit. This experience not only helped my students grow but also refined my own skills. It was an honor and an act of love for my city.
+    `;
+  
+  function startTypewriter() {
+    let index = 0;
+    const speed = 40; // milliseconds per character
+
+    // Show the typing indicator
+    typingIndicator.classList.remove('hidden');
+
+    function type() {
+      if (index < fullText.length) {
+        storyText.innerHTML += fullText[index] === '\n' ? '<br><br>' : fullText[index];
+        index++;
+        setTimeout(type, speed);
+      } else {
+        // Hide typing indicator when done
+        typingIndicator.classList.add('hidden');
+      }
+    }
+
+    type();
+  }
+  
   onMount(() => {
+
+    // Photos
     slides = Array.from(document.querySelectorAll("#section-2 .md\\:block img"));
     slides[current].style.opacity = "1";
 
@@ -22,8 +54,23 @@
       slides[current].style.opacity = "0";
       current = (current + 1) % slides.length;
       slides[current].style.opacity = "1";
-    }, 5000); // 5s per slide
+    }, 5000);
+
+    // Typewriter Text
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !typewriterTriggered) {
+          typewriterTriggered = true;
+          startTypewriter();
+        }
+      });
+    }, {
+      threshold: 0.5 // trigger when half the container is visible
+    });
+
+    observer.observe(storyContainer);
   });
+
 </script>
 <main>
   <!-- My Story Section -->
@@ -31,15 +78,15 @@
     
     <!-- Left Side: Text -->
     <div class="relative z-10 w-full md:w-2/5 p-8 md:rounded-l-lg text-white flex flex-col justify-center {$theme === 'light' ? 'bg-white' : 'bg-black'}">
-      <h1 class={$theme === 'light' ? theme.classes.light.header + 'text-4xl jura mb-4' : theme.classes.dark.header + 'text-4xl jura mb-4'}>
-        <span class="mr-2">📖</span>
+      <h1 class={$theme === 'light' ? theme.classes.light.header + 'text-4xl mb-2 jura' : theme.classes.dark.header + 'text-4xl mb-2 jura'}>
+        <span class="">📖</span>
         MY STORY
       </h1>
-      <p class="leading-relaxed {$theme === 'light' ? theme.classes.light.text + 'text-sm md:text-xl' : theme.classes.dark.text + 'text-sm md:text-xl'}">
-        My passion for video games, anime, and graphic design began at 11, igniting a creative spark. Online forums like Playstation Universe became my playground for crafting custom signatures. This passion led me to pursue web development, fueled by hackathon victories, bootcamps, teaching, and freelance projects since 2017.
-        <br><br>
-        Giving back has been equally fulfilling. For four years, I taught Detroit's youth to code through Journi, a non-profit. This experience not only helped my students grow but also refined my own skills. It was an honor and an act of love for my city.
-      </p>
+      <div bind:this={storyContainer} class="story-container">
+        <p bind:this={storyText} class="leading-relaxed {$theme === 'light' ? theme.classes.light.text + 'text-sm md:text-xl' : theme.classes.dark.text + 'text-sm md:text-xl'}">
+          <!-- Typing indicator -->
+        <div bind:this={typingIndicator} class="typing-indicator hidden mt-2"></div>
+      </div>
     </div>
 
     <!-- Right Side: Carousel -->
@@ -74,8 +121,6 @@
 
   </div>
 </main>
-
-
 <style>
   #section-2 {
     width: 100%;
@@ -89,6 +134,8 @@
       height: auto;
     }
   }
+
+  /* Photos */
   .swiper {
       width: 100%;
       /* height: ; */
@@ -103,4 +150,17 @@
       }
   }
 
+  /* Typewriter Indicator */
+  .typing-indicator {
+    width: 12px;
+    height: 12px;
+    background-color: #f56f33; /* orange like your theme */
+    border-radius: 50%;
+    animation: pulse 1s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 0.6; }
+    50% { transform: scale(1.4); opacity: 1; }
+  }
 </style>
