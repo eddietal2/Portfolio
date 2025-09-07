@@ -11,8 +11,19 @@
       badges: ["Fullstack Dev", "2025", "Personal", "Web"],
       link: "https://www.harp-rose.org/",
       text: "VR Enhanced Therapy, powered by Unreal Engine.",
-      video: "https://finalbossxr.s3.us-east-1.amazonaws.com/videos/space_rock_2.mp4",
+      video: "https://eddie-portfolio.s3.us-east-1.amazonaws.com/videos/clensable_demo.mp4",
       description: "VR Startup that aims to make therapy more accessible and innovative. I am the lead software developer for this MVP. This is being built with Unreal Engine 5, while I outsource things like 3D Model creation, audio, etc."
+    },
+    {
+      name: "Final Boss Studios",
+      image: "https://ik.imagekit.io/2ax1lblqa/fbs_logo.png?updatedAt=1732316143932",
+      role: "Web Developer",
+      type: "Professional",
+      badges: ["Full Stack Web Developer", "Co-Founder", "DevOps", "2021-Present"],
+      link: "https://www.finalbossxr.com/",
+      text: "Video Game Studio focusing on Augmented Reality",
+      video: "https://eddie-portfolio.s3.us-east-1.amazonaws.com/videos/finalbossxr_demo.mov",
+      description: "This is a Video Game & Augmented Reality Studio that I co-founded in 2021. I also act as Web Developer and Game Designer for our team while we build our first IP, Cosmic Collisions. I remade this site with SvelteKit & TailwindCSS"
     },
     {
       name: "HARP",
@@ -33,7 +44,7 @@
       badges: ["VR Developer", "2025", "Contract", "Meta Quest 2"],
       link: "https://www.harp-rose.org/",
       text: "VR Enhanced Therapy, powered by Unreal Engine.",
-      video: "https://finalbossxr.s3.us-east-1.amazonaws.com/videos/space_rock_2.mp4",
+      video: "https://eddie-portfolio.s3.us-east-1.amazonaws.com/videos/jobl_demo.MP4",
       description: "VR Startup that aims to make therapy more accessible and innovative. I am the lead software developer for this MVP. This is being built with Unreal Engine 5, while I outsource things like 3D Model creation, audio, etc."
     },
     {
@@ -44,7 +55,7 @@
       badges: ["Senior Front End Developer", "2024", "Contract", "Web"],
       link: "https://www.defiallodds.xyz/",
       text: "DefiAllOdds, powered by Web3 Education startup CryptoTutors.",
-      video: "https://finalbossxr.s3.us-east-1.amazonaws.com/videos/space_rock_2.mp4",
+      video: "https://eddie-portfolio.s3.us-east-1.amazonaws.com/videos/defi_all_odds_demo.mov",
       description: "Crypto Tutors is a leading provider of engaging and accessible Web3 education. Our award-winning curriculum, trusted by Fortune 500 companies and recognized by the National Science Foundation. I built the Defi All Odds assessment with SvelteKit and TailwindCSS. I fell in love with both."
     },
     {
@@ -55,7 +66,7 @@
       badges: ["Senior Front End Developer", "2024", "Contract", "Web"],
       link: "https://www.vopposition.com/",
       text: "Gamified sports matchmaking, Hybrid App, Web App focus with MVP",
-      video: "https://finalbossxr.s3.us-east-1.amazonaws.com/videos/space_rock_2.mp4",
+      video: "https://eddie-portfolio.s3.us-east-1.amazonaws.com/videos/vo_demo.mov",
       description: "A matchmaking app for pick up sports, like Basketball, Volleyball, etc, with gamified features. I acted as a Front End Engineer and UX Designer, refining the UX as I translated assets from the Design team to front end code. Built with Angular, Ionic, and TailwindCSS."
     },
     {
@@ -66,7 +77,7 @@
       badges: ["AR Developer", "2023", "Personal", "Mobile"],
       link: "https://www.vopposition.com/",
       text: "Gamified sports matchmaking, Hybrid App, Web App focus with MVP",
-      video: "https://finalbossxr.s3.us-east-1.amazonaws.com/videos/space_rock_2.mp4",
+      video: "",
       description: "A matchmaking app for pick up sports, like Basketball, Volleyball, etc, with gamified features. I acted as a Front End Engineer and UX Designer, refining the UX as I translated assets from the Design team to front end code. Built with Angular, Ionic, and TailwindCSS."
     },
     {
@@ -77,19 +88,8 @@
       badges: ["MR Developer", "2023", "Contract", "Meta Quest 2"],
       link: "https://www.vopposition.com/",
       text: "Gamified sports matchmaking, Hybrid App, Web App focus with MVP",
-      video: "https://finalbossxr.s3.us-east-1.amazonaws.com/videos/space_rock_2.mp4",
+      video: "https://eddie-portfolio.s3.us-east-1.amazonaws.com/videos/mr_car.mp4",
       description: "A matchmaking app for pick up sports, like Basketball, Volleyball, etc, with gamified features. I acted as a Front End Engineer and UX Designer, refining the UX as I translated assets from the Design team to front end code. Built with Angular, Ionic, and TailwindCSS."
-    },
-    {
-      name: "Final Boss Studios",
-      image: "https://ik.imagekit.io/2ax1lblqa/fbs_logo.png?updatedAt=1732316143932",
-      role: "Web Developer",
-      type: "Professional",
-      badges: ["Full Stack Web Developer", "Co-Founder", "DevOps", "2021-Present"],
-      link: "https://www.finalbossxr.com/",
-      text: "Video Game Studio focusing on Augmented Reality",
-      video: "https://finalbossxr.s3.us-east-1.amazonaws.com/videos/space_rock_2.mp4",
-      description: "This is a Video Game & Augmented Reality Studio that I co-founded in 2021. I also act as Web Developer and Game Designer for our team while we build our first IP, Cosmic Collisions. I remade this site with SvelteKit & TailwindCSS"
     }
   ];
 
@@ -109,7 +109,7 @@
 </script>
 
 <main>
-  <div id="section-3" class={$theme === 'light' ? theme.classes.light.heroGradient : theme.classes.dark.heroGradient}>
+  <div id="section-3" class="pb-0 pt-20 {$theme === 'light' ? theme.classes.light.heroGradient : theme.classes.dark.heroGradient}">
     <!-- Header -->
     <div class="md:w-4/5 lg:w-3/5 p-4 mx-auto lg:mb-4 content-center">
       <h1 class={$theme === 'light' ? theme.classes.light.header + 'text-4xl mb-2 jura' : theme.classes.dark.header + 'text-4xl mb-2 jura'}>
@@ -123,20 +123,20 @@
     </div>
 
     <!-- Carousel Controls Top Right -->
-    <div class="flex justify-end gap-2 md:w-4/5 lg:w-3/5 mx-auto mb-2">
+    <div class="flex justify-center gap-2 md:w-4/5 lg:w-3/5 mx-auto my-16">
       <button class={$theme === 'light' ? theme.classes.light.button : theme.classes.dark.button} on:click={() => slide(-1)}>‹ Prev</button>
       <button class={$theme === 'light' ? theme.classes.light.button : theme.classes.dark.button} on:click={() => slide(1)}>Next ›</button>
     </div>
 
     <!-- Project Carousel -->
-    <div id="projects-carousel" class="relative w-full md:w-4/5 lg:w-3/5 mx-auto">
+    <div id="projects-carousel" class="relative w-full h-94 md:w-4/5 lg:w-3/5 mx-auto">
       <div class="relative h-144 md:h-192 overflow-hidden rounded-lg md:shadow"> <!-- height doubled -->
         {#each projects as project, index}
           <div class="hidden duration-700 ease-in-out p-4 bg-black/80" data-carousel-item>
             <div class="flex flex-col md:flex-row gap-4">
 
               <!-- Video / Media Area 16:9 -->
-              <div class="w-full md:w-1/2 relative aspect-w-16 aspect-h-9 bg-black rounded-lg overflow-hidden">
+              <div class="w-full h-100 md:w-1/2 relative aspect-w-16 aspect-h-9 bg-black rounded-lg overflow-hidden">
                 <video
                   src={project.video}
                   class="w-full h-full object-cover"
@@ -171,7 +171,7 @@
                     </span>
                   {/each}
                 </div>
-                <p class="text-xs md:text-sm {$theme === 'light' ? theme.classes.dark.text : theme.classes.dark.text}">
+                <p class="text-xs md:text-lg {$theme === 'light' ? theme.classes.dark.text : theme.classes.dark.text}">
                   {project.description}
                 </p>
               </div>

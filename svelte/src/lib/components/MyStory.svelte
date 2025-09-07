@@ -77,7 +77,7 @@
   <div id="section-2" class="relative w-full h-auto md:min-h-screen md:flex {$theme === 'light' ? theme.classes.light.bg : theme.classes.dark.bg}">
     
     <!-- Left Side: Text -->
-    <div class="relative z-10 w-full md:w-2/5 p-8 md:rounded-l-lg text-white flex flex-col justify-center {$theme === 'light' ? theme.classes.light.heroGradient : theme.classes.dark.heroGradient}">
+    <div class="relative z-10 w-full md:w-2/5 p-8 pt-20 md:rounded-l-lg text-white flex flex-col justify-center {$theme === 'light' ? theme.classes.light.heroGradient : theme.classes.dark.heroGradient}">
       <h1 class={$theme === 'light' ? theme.classes.light.header + 'text-4xl mb-2 jura' : theme.classes.dark.header + 'text-4xl mb-2 jura'}>
         <span class="">📖</span>
         MY STORY

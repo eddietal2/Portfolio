@@ -9,6 +9,7 @@ type ThemeClasses = {
   bg: string;
   heroGradient: string;
   button: string;
+  input: string;
 };
 
 const classes: Record<Theme, ThemeClasses> = {
@@ -18,9 +19,11 @@ const classes: Record<Theme, ThemeClasses> = {
     header: "text-3xl text-black font-bold transition duration-150",
     bg: "bg-[#fff] content-center transition duration-150",
     heroGradient:
-      "pb-12 md:pt-24 bg-gradient-to-br from-[#fff] via-[#fffbd4] to-[#fff] bg-[length:400%_400%] animate-gradientShift",
+      "pb-12 md:pt-24 bg-gradient-to-br from-red-100 via-[#fff] to-orange-100 bg-[length:400%_400%] animate-gradientShift",
     button:
-      "bg-[#222] text-[#1cb6fc] rounded-full hover:bg-[#111111] hover:text-[#ffd24d] transition duration-1 py-1 px-3",
+      "bg-gradient-to-r from-yellow-500 via-red-500 to-orange-500 text-white font-bold py-2 px-6 rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 ease-in-out",
+    input:
+      "bg-[] text-[#666] shadow w-full my-1 p-2 text-sm focus:text-[#111] focus:text-lg focus:p-3 focus:shadow-md focus:border-none focus:ring-2 focus:ring-[#111] rounded w-full transition-all duration-200"
   },
   dark: {
     nav: "backdrop-blur-lg text-white bg-[#000]/90 h-16 drop-shadow-lg fixed w-full bottom-0 md:top-0 content-center z-50 transition duration-150",
@@ -30,7 +33,9 @@ const classes: Record<Theme, ThemeClasses> = {
     heroGradient:
       "pb-12 md:pt-24 bg-gradient-to-br from-[#2e2a07] via-[#240804] to-[#704F38] bg-[length:400%_400%] animate-gradientShift",
     button:
-      "bg-[#ffffff20] text-[#1cb6fc] rounded-full hover:bg-[#111111] hover:text-[#ffd24d] transition duration-1 py-1 px-3",
+      "bg-gradient-to-r from-yellow-500 via-red-500 to-orange-500 text-white font-bold py-2 px-6 rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 ease-in-out",
+    input:
+      "bg-[#ffffff10] text-[#999] shadow w-full my-1 p-2 text-sm focus:text-white focus:text-lg focus:p-3 focus:shadow-md focus:border-none focus:ring-2 focus:ring-white rounded w-full transition-all duration-200"
   },
 };
 
