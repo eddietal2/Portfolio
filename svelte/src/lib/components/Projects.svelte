@@ -42,7 +42,7 @@
       role: "VR Developer",
       type: "Professional",
       badges: ["VR Developer", "2025", "Contract", "Meta Quest 2"],
-      link: "https://www.harp-rose.org/",
+      link: "https://joblactation.com/",
       text: "VR Enhanced Therapy, powered by Unreal Engine.",
       video: "https://eddie-portfolio.s3.us-east-1.amazonaws.com/videos/jobl_demo.MP4",
       description: "VR Startup that aims to make therapy more accessible and innovative. I am the lead software developer for this MVP. This is being built with Unreal Engine 5, while I outsource things like 3D Model creation, audio, etc."
@@ -75,7 +75,7 @@
       role: "Senior Front End Developer",
       type: "Professional",
       badges: ["AR Developer", "2023", "Personal", "Mobile"],
-      link: "https://www.vopposition.com/",
+      link: "https://dronecapital.com/",
       text: "Gamified sports matchmaking, Hybrid App, Web App focus with MVP",
       video: "https://eddie-portfolio.s3.us-east-1.amazonaws.com/videos/DC_Demo_02.mov",
       description: "A matchmaking app for pick up sports, like Basketball, Volleyball, etc, with gamified features. I acted as a Front End Engineer and UX Designer, refining the UX as I translated assets from the Design team to front end code. Built with Angular, Ionic, and TailwindCSS."
@@ -86,7 +86,7 @@
       role: "Senior Front End Developer",
       type: "Professional",
       badges: ["MR Developer", "2023", "Contract", "Meta Quest 2"],
-      link: "https://www.vopposition.com/",
+      link: "https://blackkidsdetroit.org/",
       text: "Gamified sports matchmaking, Hybrid App, Web App focus with MVP",
       video: "https://eddie-portfolio.s3.us-east-1.amazonaws.com/videos/mr_car_02.mov",
       description: "A matchmaking app for pick up sports, like Basketball, Volleyball, etc, with gamified features. I acted as a Front End Engineer and UX Designer, refining the UX as I translated assets from the Design team to front end code. Built with Angular, Ionic, and TailwindCSS."
