@@ -80,7 +80,7 @@
     <!-- Floating lights overlay -->
     <div class={$theme === 'light' ? 'floating-lights-light' : 'floating-lights-dark'} aria-hidden="true"></div>
 
-    <div class="md:w-4/5 lg:w-3/5 mx-auto lg:flex flex-row gap-20 relative z-10">
+    <div class="md:w-4/5 lg:w-3/5 mx-auto lg:mt-32 lg:flex flex-row gap-20 relative z-10">
 
       <!-- Picture -->
       <div class="w-11/12 lg:w-1/4 mx-auto">

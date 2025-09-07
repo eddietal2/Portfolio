@@ -31,7 +31,7 @@ const classes: Record<Theme, ThemeClasses> = {
     header: "text-3xl text-white font-bold transition duration-150",
     bg: "bg-[#222] content-center transition duration-150",
     heroGradient:
-      "pb-12 md:pt-24 bg-gradient-to-br from-[#2e2a07] via-[#240804] to-[#704F38] bg-[length:400%_400%] animate-gradientShift",
+      "pb-12 md:pt-24 bg-gradient-to-br from-[#211e00] via-[#000] to-[#1f0000] bg-[length:400%_400%] animate-gradientShift",
     button:
       "bg-gradient-to-r from-yellow-500 via-red-500 to-orange-500 text-white font-bold py-2 px-6 rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 ease-in-out",
     input:
