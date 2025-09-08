@@ -129,7 +129,7 @@
         <span class="h-10 mr-2">💻</span>
         PROJECTS
       </h1>
-      <p class={$theme === 'light' ? theme.classes.light.text + ' text-lg lg:text-xl' : theme.classes.dark.text + ' text-lg lg:text-xl'}>
+      <p class={$theme === 'light' ? theme.classes.light.text + ' text-lg' : theme.classes.dark.text + ' text-lg'}>
         Here are some projects (that I can share), ranging from personal projects that I have worked on, or startups I have built MVPs or major features for.
         You can view more of my projects via <a class="text-[#3686fd] pb-0.5 underline" href="https://github.com/eddietal2">Github</a>.
       </p>
@@ -184,7 +184,7 @@
     </div>
 
     <!-- Project Buttons -->
-    <div class="my-8">
+    <div class="mb-4">
       <div class="flex justify-center gap-2 md:w-4/5 lg:w-3/5 mx-auto">
         <button class={$theme === 'light' ? theme.classes.light.button : theme.classes.dark.button} on:click={() => slide(-1)}>‹ Prev</button>
         <button class={$theme === 'light' ? theme.classes.light.button : theme.classes.dark.button} on:click={() => slide(1)}>Next ›</button>
