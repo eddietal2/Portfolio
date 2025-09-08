@@ -107,8 +107,8 @@
       display: flex;
   }
   .nav-bullet {
-      /* background-image: url('./assets/icons/nav-bullet.svg'); */
-      /* background-repeat: no-repeat; */
+      background-image: url('./assets/icons/nav-bullet.svg');
+      background-repeat: no-repeat;
       margin: 0.54em 0;
       width: 10px;
       height: 10px;

@@ -123,22 +123,22 @@
 </script>
 
 <main>
-  <div id="section-3" class="pb-0 pt-20 {$theme === 'light' ? theme.classes.light.heroGradient : theme.classes.dark.heroGradient}">
-    <div class="md:w-4/5 lg:w-3/5 p-4 mx-auto lg:mb-4 content-center">
+  <div id="section-3" class="pb-0 pt-10 {$theme === 'light' ? theme.classes.light.heroGradient : theme.classes.dark.heroGradient}">
+    <div class="md:w-4/5 lg:w-3/5 p-2 mx-auto content-center">
       <h1 class={$theme === 'light' ? theme.classes.light.header + 'text-4xl mb-2 jura' : theme.classes.dark.header + 'text-4xl mb-2 jura'}>
         <span class="h-10 mr-2">💻</span>
         PROJECTS
       </h1>
-      <p class={$theme === 'light' ? theme.classes.light.text + ' text-lg' : theme.classes.dark.text + ' text-lg'}>
+      <p class={$theme === 'light' ? theme.classes.light.text + ' text-md' : theme.classes.dark.text + ' text-md'}>
         Here are some projects (that I can share), ranging from personal projects that I have worked on, or startups I have built MVPs or major features for.
         You can view more of my projects via <a class="text-[#3686fd] pb-0.5 underline" href="https://github.com/eddietal2">Github</a>.
       </p>
     </div>
 
     <div id="projects-carousel" class="relative w-full h-94 md:w-4/5 lg:w-3/5 mx-auto">
-      <div class="relative h-144 md:h-192 overflow-hidden lg:rounded-lg md:shadow"> 
+      <div class="relative h-144 md:h-192 overflow-hidden md:shadow-xl"> 
         {#each projects as project, index}
-          <div class="hidden duration-700 ease-in-out p-4 pt-20 lg:pt-12 bg-black/80" data-carousel-item>
+          <div class="hidden duration-700 ease-in-out p-4 pt-10 lg:pt-12 bg-black/80" data-carousel-item>
             <div class="flex flex-col md:flex-row gap-4">
 
               <div class="w-full h-full md:w-1/2 relative bg-black rounded-lg overflow-hidden">
@@ -153,13 +153,13 @@
             </div>
 
               <div class="flex flex-col w-full md:w-1/2 gap-3 h-80 overflow-y-auto p-2">
-                <h2 class={$theme === 'light' ? theme.classes.dark.text + ' font-bold text-xl jura' : theme.classes.dark.text + ' font-bold text-xl jura'}>
+                <h2 class={$theme === 'light' ? theme.classes.dark.text + ' font-bold text-2xl jura' : theme.classes.dark.text + ' font-bold text-2xl jura'}>
                   <img src={project.image} class="h-8 inline" alt="" srcset="">
                   {project.name}
                 </h2>
               
                 <div class="flex gap-2 mt-2">
-                  <a href={project.link} target="_blank" class={$theme === 'light' ? theme.classes.dark.button : theme.classes.dark.button}>
+                  <a href={project.link} target="_blank" class={$theme === 'light' ? theme.classes.dark.buttonTwo : theme.classes.dark.buttonTwo}>
                     Link
                   </a>
                 </div>
@@ -173,7 +173,7 @@
                     </span>
                   {/each}
                 </div>
-                <p class="text-sm md:text-lg {$theme === 'light' ? theme.classes.dark.text : theme.classes.dark.text}">
+                <p class="text-sm md:text-md {$theme === 'light' ? theme.classes.dark.text : theme.classes.dark.text}">
                   {project.description}
                 </p>
               </div>
@@ -184,7 +184,7 @@
     </div>
 
     <!-- Project Buttons -->
-    <div class="mb-4">
+    <div class="pb-14 mt-2">
       <div class="flex justify-center gap-2 md:w-4/5 lg:w-3/5 mx-auto">
         <button class={$theme === 'light' ? theme.classes.light.button : theme.classes.dark.button} on:click={() => slide(-1)}>‹ Prev</button>
         <button class={$theme === 'light' ? theme.classes.light.button : theme.classes.dark.button} on:click={() => slide(1)}>Next ›</button>
@@ -193,7 +193,7 @@
       <div class="flex justify-center gap-2 mt-4">
       {#each projects as _, index}
         <button
-          class="h-3 w-3 rounded-full transition-all duration-300 {index === currentSlide ? 'bg-orange-500' : 'bg-gray-400'}"
+          class="h-3 w-3 rounded-full transition-all duration-300 {index === currentSlide ? 'bg-green-500' : 'bg-gray-400'}"
           on:click={() => {
             // Find the direction and use the slide function
             const direction = index - currentSlide;

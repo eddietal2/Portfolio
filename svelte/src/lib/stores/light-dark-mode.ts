@@ -9,6 +9,7 @@ type ThemeClasses = {
   bg: string;
   heroGradient: string;
   button: string;
+  buttonTwo: string;
   input: string;
 };
 
@@ -21,7 +22,9 @@ const classes: Record<Theme, ThemeClasses> = {
     heroGradient:
       "lg:pb-12 md:pt-24 bg-gradient-to-br from-red-100 via-[#fff] to-orange-100 bg-[length:400%_400%] animate-gradientShift",
     button:
-      "bg-gradient-to-r from-yellow-500 via-red-500 to-orange-500 text-white font-bold py-2 px-6 rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 ease-in-out",
+      "bg-gradient-to-r from-yellow-500 via-red-500 to-orange-500 text-white jura font-bold py-1 px-4 rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 ease-in-out",
+    buttonTwo:
+      "bg-gradient-to-r from-green-500 via-green-500 to-[#00c400] text-white jura font-bold py-1 px-4 rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 ease-in-out",
     input:
       "bg-[] text-[#666] shadow w-full my-1 p-2 text-sm focus:text-[#111] focus:text-lg focus:p-3 focus:shadow-md focus:border-none focus:ring-2 focus:ring-[#111] rounded w-full transition-all duration-200"
   },
@@ -33,7 +36,9 @@ const classes: Record<Theme, ThemeClasses> = {
     heroGradient:
       "lg:pb-12 md:pt-24 bg-gradient-to-br from-[#211e00] via-[#000] to-[#1f0000] bg-[length:400%_400%] animate-gradientShift",
     button:
-      "bg-gradient-to-r from-yellow-500 via-red-500 to-orange-500 text-white font-bold py-2 px-6 rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 ease-in-out",
+      "bg-gradient-to-r from-yellow-500 via-red-500 to-orange-500 text-white jura font-bold py-1 px-4 rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 ease-in-out",
+    buttonTwo:
+      "bg-gradient-to-r from-green-500 via-green-500 to-[#00c400] text-white jura font-bold py-1 px-4 rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 ease-in-out",
     input:
       "bg-[#ffffff10] text-[#999] shadow w-full my-1 p-2 text-sm focus:text-white focus:text-lg focus:p-3 focus:shadow-md focus:border-none focus:ring-2 focus:ring-white rounded w-full transition-all duration-200"
   },
