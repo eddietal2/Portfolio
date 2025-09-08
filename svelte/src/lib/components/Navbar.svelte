@@ -4,22 +4,11 @@
   import fireEmoji from '../../assets/icons/fire.png';
   import { Popover } from 'flowbite';
 
-  let popoverInstance: Popover;
-
-  
-  function setDailyDarkModePopover() {
-    const popoverEl = document.getElementById('popover-default');
-    const popoverTrigger = document.getElementById('popover-trigger');
-    const today = new Date().toLocaleDateString();
-    const storageKey = `popoverShownToday-${today}`;
-    const hasShownToday = localStorage.getItem(storageKey);
-    localStorage.setItem(storageKey, 'true');
-    if (!hasShownToday) {
-      const popover = new Popover(popoverEl, popoverTrigger);
-      popover.show();
-      setTimeout(() => popover.hide(), 10000);
-    }
+  function toggleTheme() {
+    theme.toggle();
   }
+
+  let popoverInstance: Popover;
 
   onMount(() => {
     const popoverEl = document.getElementById('popover-default');
@@ -46,10 +35,6 @@
     }
   });
 
-
-  function toggleTheme() {
-    theme.toggle();
-  }
 </script>
 
 <main>
@@ -84,11 +69,13 @@
 
         <!-- Light/Dark Mode Toggle -->
         <button id="popover-trigger" aria-label="Light/Dark Button"
-          class={$theme === 'light' ? theme.classes.light.text : theme.classes.dark.text}
           type="button"
           on:click={toggleTheme}>
-          <ion-icon class="text-3xl p-0.5" name="moon-outline"></ion-icon>
-        </button>
+{#if $theme === 'light'}
+    <ion-icon class="text-3xl p-0.5 text-yellow-500" name="sunny-sharp"></ion-icon>
+  {:else}
+    <ion-icon class="text-3xl p-0.5 text-yellow-500" name="moon-sharp"></ion-icon>
+  {/if}        </button>
 
         <!-- Popover -->
         <div id="popover-default"
