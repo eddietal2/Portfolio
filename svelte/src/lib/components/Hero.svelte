@@ -164,7 +164,7 @@
     opacity: 0.5;
   }
   .floating-lights-dark {
-    background: radial-gradient(circle, rgba(255,255,255,0.16) 2px, transparent 2px);
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.578) 2px, transparent 2px);
   }
   .floating-lights-light {
     background: radial-gradient(circle, rgba(28, 2, 2, 0.16) 2px, transparent 2px);

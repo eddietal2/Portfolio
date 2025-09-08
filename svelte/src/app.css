@@ -8,3 +8,48 @@ html, body {
   font-optical-sizing: auto;
   font-style: normal;
 }
+
+/* Scrollbar */
+/* For Firefox */
+html.light {
+  scrollbar-color: #00c400 #fff; /* thumb and track color */
+  scrollbar-width: thin;
+}
+
+html.dark {
+  scrollbar-color: #fd7331 #000;
+  scrollbar-width: thin;
+}
+
+/* For Chrome, Safari, and Edge */
+/* Set the width and track color for both themes */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+html.dark ::-webkit-scrollbar-track {
+  background: #000;
+}
+
+/* Style the scrollbar thumb */
+::-webkit-scrollbar-thumb {
+  background: #fff;
+  border-radius: 6px;
+}
+
+html.dark ::-webkit-scrollbar-thumb {
+  background: #555;
+}
+
+/* Add a hover effect */
+::-webkit-scrollbar-thumb:hover {
+  background: #888;
+}
+
+html.dark ::-webkit-scrollbar-thumb:hover {
+  background: #777;
+}
