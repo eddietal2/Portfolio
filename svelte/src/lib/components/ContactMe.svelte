@@ -4,7 +4,7 @@
 </script>
 <main>
     <div id="section-4" class={$theme === 'light' ? theme.classes.light.heroGradient : theme.classes.dark.heroGradient}>
-      <div class="md:w-4/5 lg:w-3/5 mx-auto py-40 lg:py-10 mb-8">
+      <div class="md:w-4/5 lg:w-3/5 mx-auto py-40 lg:py-0 mb-8">
         <!-- Header -->
         <div class="text-center content-center">
           <span style="font-size: 5em;" class={$theme === 'light' ? theme.classes.light.text : theme.classes.dark.text}>
@@ -21,7 +21,7 @@
           <form action="https://formsubmit.co/f6e4bbd318fdd3193043ce91e88f6bfd" method="POST">
               <input class={$theme === 'light' ? theme.classes.light.input : theme.classes.dark.input} type="text" required placeholder="First & Last Name" name="name">
               <input class={$theme === 'light' ? theme.classes.light.input : theme.classes.dark.input} type="text" required placeholder="Email Address" name="email">
-              <textarea class={$theme === 'light' ? theme.classes.light.input : theme.classes.dark.input} rows="10" required placeholder="Want to collaborate or have a suggestion?" name="message"></textarea>
+              <textarea class={$theme === 'light' ? theme.classes.light.input : theme.classes.dark.input} rows="5" required placeholder="Want to collaborate or have a suggestion?" name="message"></textarea>
               <div class="h-10"></div>
               <button class={$theme === 'light' ? theme.classes.light.button : theme.classes.dark.button} style="padding: 0.5em 2em; font-size: 1.2em;" type="submit">
                   Send Message
