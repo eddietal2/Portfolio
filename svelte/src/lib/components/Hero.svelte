@@ -1,6 +1,6 @@
 <script lang="ts">
   import { theme } from '../stores/light-dark-mode';
-  import headerArtPic from '../../assets/illustrations/header-art-pic.svg';
+  import headerArtPic from '../../assets/illustrations/eddie-header.svg';
   import { onMount } from 'svelte';
 
   let typedText = '';
@@ -84,7 +84,9 @@
 
       <!-- Picture -->
       <div class="w-11/12 lg:w-1/4 mx-auto">
-        <div id="header-pic" class="my-4"></div>
+        <div id="header-pic" class="my-4">
+          
+        </div>
       </div>
 
       <!-- Text -->
