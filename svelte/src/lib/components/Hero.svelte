@@ -108,7 +108,7 @@
 
         <h1 class={$theme === 'light' ? theme.classes.light.text + ' jura text-xl' : theme.classes.dark.text + ' jura text-xl'}>SKILLS</h1>
         <div class="flex flex-wrap gap-2 sm:my-2">
-          {#each ["Angular", "SvelteKit", "Ionic", "TailWindCSS", "Linux", "Git", "Figma", "Unreal Engine", "Vercel", "CI/CD", "AWS"] as skill}
+          {#each ["NextJS", "SvelteKit", "TypeScript", "PostgreSQL", "TailWindCSS", "Linux", "Git", "Figma", "Unreal Engine", "Vercel", "CI/CD", "AWS", "AR/MR/XR"] as skill}
             <span class="text-sm bg-[#00c40020] border-[#00c400] border-2 px-3 py-1 rounded-full inline-block">
               <span class={$theme === 'light' ? theme.classes.light.text : theme.classes.dark.text}>
                 {skill}
