@@ -97,7 +97,7 @@
             <b class={$theme === 'light' ? theme.classes.light.text : theme.classes.dark.text}>
               <span class="text-4xl jura greetings-anim-1 inline-block">HI,</span>
               <span class="text-4xl jura greetings-anim-2 inline-block">I'M</span>
-              <span class="text-4xl jura greetings-anim-3 inline-block">EDDIE??</span>
+              <span class="text-4xl jura greetings-anim-3 inline-block">EDDIE</span>
             </b> 
           </span>
           <br>
