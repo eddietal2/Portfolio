@@ -1,6 +1,7 @@
 <script lang="ts">
   import { theme } from '../stores/light-dark-mode';
   import headerArtPic from '../../assets/illustrations/eddie-header.svg';
+  import profilePhoto from '../../assets/photos/eddie-profile.png';
   import { onMount } from 'svelte';
 
   let typedText = '';
@@ -8,30 +9,13 @@
   From web applications to immersive XR experiences, my expertise spans web development, responsive design, CSS & SVG animation, UI/UX design, and even video game development using Unreal Engine. With a focus on creating high-performing and effective software, I've successfully delivered MVPs and beyond on numerous projects.`;
 
   onMount(() => {
-    // Animate SVG header art
+    // Load SVG header art
     fetch(headerArtPic)
       .then(res => res.text())
       .then(svgContent => {
         const svgContainer = document.getElementById('header-pic');
-        svgContainer.innerHTML = svgContent;
-
-        const lineOne = svgContainer.firstElementChild.childNodes[7] as HTMLElement;
-        const lineTwo = svgContainer.firstElementChild.childNodes[5] as HTMLElement;
-        const lineThree = svgContainer.firstElementChild.childNodes[3] as HTMLElement;
-        const lineFour = svgContainer.firstElementChild.childNodes[1] as HTMLElement;
-
-        setInterval(() => {
-          animateLine(lineOne, '#f3f3f3', '#888', 200, 900);
-          animateLine(lineTwo, '#ffd24d', '#666', 400, 1000);
-          animateLine(lineThree, '#f56f33', '#444', 600, 1100);
-          animateLine(lineFour, '#f73209', '#222', 800, 1200);
-        }, 1600);
-
-        [lineOne, lineTwo, lineThree, lineFour].forEach(line => line.style.transition = '0.5s');
-
-        function animateLine(line: HTMLElement, color1: string, color2: string, t1: number, t2: number) {
-          setTimeout(() => line.style.fill = color1, t1);
-          setTimeout(() => line.style.fill = color2, t2);
+        if (svgContainer) {
+          svgContainer.innerHTML = svgContent;
         }
       });
 
@@ -84,8 +68,9 @@
 
       <!-- Picture -->
       <div class="w-11/12 lg:w-1/4 mx-auto flex items-center justify-center">
-        <div id="header-pic" class="my-4 header-pic-container">
-          
+        <div class="my-4 header-pic-container">
+          <div id="header-pic" class="header-frame"></div>
+          <img src={profilePhoto} alt="Eddie" class="profile-photo" />
         </div>
       </div>
 
@@ -110,9 +95,9 @@
 
         <h1 class={$theme === 'light' ? theme.classes.light.text + ' jura text-xl skills-title' : theme.classes.dark.text + ' jura text-xl skills-title'}>SKILLS</h1>
         <div class="flex flex-wrap gap-2 sm:my-2">
-          {#each ["NextJS", "SvelteKit", "TypeScript", "PostgreSQL", "TailWindCSS", "Linux", "Git", "Figma", "Unreal Engine", "Vercel", "CI/CD", "AWS", "AR/MR/XR"] as skill, i}
+          {#each ["NextJS", "SvelteKit", "TypeScript", "PostgreSQL", "TailWindCSS", "Python", "Django", "Linux", "Git", "Figma", "Unreal Engine", "Vercel", "CI/CD", "AWS", "AR/MR/XR"] as skill, i}
             <span 
-              class="text-sm bg-[#00c40010] border-[#00c400] border px-3 py-1 rounded-full inline-block skill-tag"
+              class="text-sm bg-[#ff450015] border-[#ff4500] border px-3 py-1 rounded-full inline-block skill-tag"
               style="animation-delay: {5.5 + (i * 0.08)}s"
             >
               <span class={$theme === 'light' ? theme.classes.light.text : theme.classes.dark.text}>
@@ -208,7 +193,7 @@
   .typewriter-text span::after {
     content: '|';
     animation: blink 1s infinite;
-    color: #00c400;
+    color: #ff4500;
     margin-left: 2px;
   }
   @keyframes blink {
@@ -218,20 +203,73 @@
 
   /* ===== POLISHED ENHANCEMENTS ===== */
 
-  /* Profile picture container glow */
+  /* Profile picture container */
   .header-pic-container {
     position: relative;
+    width: 280px;
+    height: 280px;
     transition: transform 0.3s ease;
   }
   .header-pic-container:hover {
     transform: scale(1.02);
   }
+  
+  /* SVG frame positioned absolutely */
+  .header-frame {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+    border: none;
+    outline: none;
+    background: transparent;
+  }
+  .header-frame :global(svg) {
+    width: 100%;
+    height: 100%;
+    border: none;
+    outline: none;
+  }
+  
+  /* Remove any default image borders */
+  #header-pic,
+  #header-pic * {
+    border: none !important;
+    outline: none !important;
+  }
+  
+  /* Profile photo - circular and centered */
+  .profile-photo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 190px;
+    height: 190px;
+    border-radius: 50%;
+    object-fit: cover;
+    z-index: 1;
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+  }
+  
+  /* Ensure no borders on any img inside container */
+  .header-pic-container img {
+    border: none !important;
+    outline: none !important;
+  }
+  
+  /* Glow effect */
   .header-pic-container::after {
     content: '';
     position: absolute;
     inset: -10px;
-    background: radial-gradient(circle, rgba(0, 196, 0, 0.15) 0%, transparent 70%);
-    z-index: -1;
+    background: radial-gradient(circle, rgba(255, 69, 0, 0.2) 0%, transparent 70%);
+    z-index: 0;
     opacity: 0;
     animation: fadeInGlow 1s ease 1s forwards;
   }
@@ -241,13 +279,13 @@
 
   /* Name highlight - make EDDIE pop */
   .name-highlight {
-    background: linear-gradient(135deg, #00c400 0%, #10b981 50%, #00c400 100%);
+    background: linear-gradient(135deg, #ff0000 0%, #ff4500 50%, #ffa500 100%);
     background-size: 200% 200%;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
     animation: shimmer 3s ease-in-out 4s infinite;
-    filter: drop-shadow(0 0 20px rgba(0, 196, 0, 0.3));
+    filter: drop-shadow(0 0 20px rgba(255, 69, 0, 0.4));
   }
   .greetings-anim-3.name-highlight {
     opacity: 0;
@@ -274,9 +312,9 @@
     backdrop-filter: blur(4px);
   }
   .skill-tag:hover {
-    background: rgba(0, 196, 0, 0.2);
+    background: rgba(255, 69, 0, 0.25);
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 196, 0, 0.25);
+    box-shadow: 0 4px 12px rgba(255, 69, 0, 0.35);
   }
 
   @keyframes fadeSlideUp {
