@@ -11,170 +11,372 @@
   import slidePhotoSix from '../../assets/photos/insta_1.png'
   import slidePhotoSeven from '../../assets/photos/Photo_6.jpg'
 
+  const photos = [slidePhotoOne, slidePhotoTwo, slidePhotoThree, slidePhotoFour, slidePhotoFive, slidePhotoSix, slidePhotoSeven];
+  
   let slides: HTMLImageElement[] = [];
   let current = 0;
+  let isVisible = false;
+  let activeTab = 0;
 
-  // Typewrite Effect for My Story Text
-  let typewriterTriggered = false;
-  let typingIndicator: HTMLDivElement;
-  let storyContainer: HTMLDivElement;
-  let storyText: HTMLParagraphElement;
-  const fullText = `My passion for video games, anime, and graphic design began at 11, igniting a creative spark. Online forums like Playstation Universe became my playground for crafting custom signatures. This passion led me to pursue web development, fueled by hackathon victories, bootcamps, teaching, and freelance projects since 2017.
-    Giving back has been equally fulfilling. For four years, I taught Detroit's youth to code through Journi, a non-profit. This experience not only helped my students grow but also refined my own skills. It was an honor and an act of love for my city.
-    `;
-  
-  function startTypewriter() {
-    let index = 0;
-    const speed = 40; // milliseconds per character
-
-    // Show the typing indicator
-    typingIndicator.classList.remove('hidden');
-
-    function type() {
-      if (index < fullText.length) {
-        storyText.innerHTML += fullText[index] === '\n' ? '<br><br>' : fullText[index];
-        index++;
-        setTimeout(type, speed);
-      } else {
-        // Hide typing indicator when done
-        typingIndicator.classList.add('hidden');
-      }
+  const storyTabs = [
+    {
+      title: "The Beginning",
+      icon: "🎮",
+      content: "My passion for video games, anime, and graphic design began at 11, igniting a creative spark. Online forums like Playstation Universe became my playground for crafting custom signatures."
+    },
+    {
+      title: "The Journey",
+      icon: "🚀",
+      content: "This passion led me to pursue web development, fueled by hackathon victories, bootcamps, teaching, and freelance projects since 2017."
+    },
+    {
+      title: "Giving Back",
+      icon: "�",
+      content: "For four years, I taught Detroit's youth to code through Journi, a non-profit. This experience not only helped my students grow but also refined my own skills. It was an honor and an act of love for my city."
     }
+  ];
 
-    type();
+  function setActiveTab(index: number) {
+    activeTab = index;
   }
   
   onMount(() => {
-
     // Photos
-    slides = Array.from(document.querySelectorAll("#section-2 .md\\:block img"));
-    slides[current].style.opacity = "1";
+    slides = Array.from(document.querySelectorAll("#section-2 .photo-slide"));
+    if (slides.length > 0) {
+      slides[current].style.opacity = "1";
+      slides[current].style.transform = "scale(1.05)";
+    }
 
     setInterval(() => {
-      slides[current].style.opacity = "0";
-      current = (current + 1) % slides.length;
-      slides[current].style.opacity = "1";
+      if (slides.length > 0) {
+        slides[current].style.opacity = "0";
+        slides[current].style.transform = "scale(1)";
+        current = (current + 1) % slides.length;
+        slides[current].style.opacity = "1";
+        slides[current].style.transform = "scale(1.05)";
+      }
     }, 5000);
 
-    // Typewriter Text
+    // Scroll reveal animation
+    const sectionElement = document.getElementById('section-2');
+    
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
-        if (entry.isIntersecting && !typewriterTriggered) {
-          typewriterTriggered = true;
-          startTypewriter();
+        if (entry.isIntersecting) {
+          isVisible = true;
         }
       });
     }, {
-      threshold: 0.5 // trigger when half the container is visible
+      threshold: 0.2,
+      rootMargin: '0px 0px -10% 0px'
     });
 
-    observer.observe(storyContainer);
-  });
+    if (sectionElement) {
+      observer.observe(sectionElement);
+    }
 
+    return () => {
+      if (sectionElement) {
+        observer.unobserve(sectionElement);
+      }
+    };
+  });
 </script>
+
 <main>
   <!-- My Story Section -->
-  <div id="section-2" class="relative w-full h-auto md:min-h-screen md:flex {$theme === 'light' ? theme.classes.light.bg : theme.classes.dark.bg}">
+  <div id="section-2" class="relative w-full min-h-screen overflow-hidden {$theme === 'light' ? 'bg-gray-50' : 'bg-gray-950'}">
     
-    <!-- Left Side: Text -->
-    <div class="relative z-10 w-full md:w-2/5 p-8 pt-20 md:rounded-l-lg text-white flex flex-col justify-center {$theme === 'light' ? theme.classes.light.heroGradient : theme.classes.dark.heroGradient}">
-      <h1 class={$theme === 'light' ? theme.classes.light.header + 'text-4xl mb-2 jura' : theme.classes.dark.header + 'text-4xl mb-2 jura'}>
-        <span class="">📖</span>
-        MY STORY
-      </h1>
-      <div bind:this={storyContainer} class="story-container">
-        <p bind:this={storyText} class="leading-relaxed {$theme === 'light' ? theme.classes.light.text + 'text-sm md:text-xl' : theme.classes.dark.text + 'text-sm md:text-xl'}">
-          <!-- Typing indicator -->
-        <div bind:this={typingIndicator} class="typing-indicator hidden mt-2"></div>
-      </div>
+    <!-- Animated background gradient orbs -->
+    <div class="absolute inset-0 overflow-hidden pointer-events-none">
+      <div class="orb orb-1 {$theme === 'light' ? 'bg-[#00c400]/20' : 'bg-[#00c400]/10'}"></div>
+      <div class="orb orb-2 {$theme === 'light' ? 'bg-emerald-400/20' : 'bg-emerald-500/10'}"></div>
+      <div class="orb orb-3 {$theme === 'light' ? 'bg-teal-400/20' : 'bg-teal-500/10'}"></div>
+    </div>
 
+    <div class="relative z-10 flex flex-col lg:flex-row min-h-screen">
       
-      <!-- Mobile Carousel below text -->
-      <div class="md:hidden relative w-full mt-6">
-        <div id="default-carousel" class="relative w-full" data-carousel="slide">
-          <div class="relative h-56 overflow-hidden rounded-lg">
-            {#each [slidePhotoOne, slidePhotoTwo, slidePhotoThree, slidePhotoFour, slidePhotoFive, slidePhotoSix, slidePhotoSeven] as slide}
-              <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                <img src={slide} class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 object-cover" alt="Slide"/>
+      <!-- Left Side: Content -->
+      <div class="w-full lg:w-1/2 p-6 md:p-12 lg:p-16 flex flex-col justify-center">
+        
+        <!-- Header with animated underline -->
+        <div class="mb-8 {isVisible ? 'animate-slide-up' : 'opacity-0'}">
+          <span class="text-sm font-mono tracking-widest {$theme === 'light' ? 'text-[#00c400]' : 'text-[#00c400]'}">
+            CHAPTER 01
+          </span>
+          <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold jura  mt-2 {$theme === 'light' ? 'text-gray-900' : 'text-white'}">
+            My Story
+          </h1>
+          <div class="h-1 w-24 bg-gradient-to-r from-[#00c400] via-emerald-400 to-teal-500 mt-4 rounded-full animated-gradient"></div>
+        </div>
+
+        <!-- Interactive Story Tabs -->
+        <div class="space-y-6 {isVisible ? 'animate-slide-up-delay' : 'opacity-0'}">
+          
+          <!-- Tab Navigation -->
+          <div class="flex flex-wrap gap-2">
+            {#each storyTabs as tab, index}
+              <button
+                on:click={() => setActiveTab(index)}
+                class="tab-button px-4 py-2 rounded-full text-sm font-medium transition-all duration-300
+                  {activeTab === index 
+                    ? 'bg-gradient-to-r from-[#00c400] to-emerald-500 text-white shadow-lg shadow-[#00c400]/25' 
+                    : $theme === 'light' 
+                      ? 'bg-white/80 text-gray-700 hover:bg-white border border-gray-200' 
+                      : 'bg-white/5 text-gray-300 hover:bg-white/10 border border-white/10'
+                  }"
+              >
+                <span class="mr-1">{tab.icon}</span>
+                {tab.title}
+              </button>
+            {/each}
+          </div>
+
+          <!-- Tab Content -->
+          <div class="story-card p-6 md:p-8 rounded-2xl backdrop-blur-xl transition-all duration-500
+            {$theme === 'light' 
+              ? 'bg-white/70 border border-gray-200 shadow-xl' 
+              : 'bg-white/5 border border-white/10 shadow-2xl shadow-black/20'}">
+            
+            <div class="flex items-start gap-4">
+              <span class="text-4xl">{storyTabs[activeTab].icon}</span>
+              <div>
+                <h3 class="text-xl font-bold mb-3 {$theme === 'light' ? 'text-gray-900' : 'text-white'}">
+                  {storyTabs[activeTab].title}
+                </h3>
+                <p class="text-base md:text-lg leading-relaxed {$theme === 'light' ? 'text-gray-600' : 'text-gray-300'}">
+                  {storyTabs[activeTab].content}
+                </p>
+              </div>
+            </div>
+
+            <!-- Progress dots -->
+            <div class="flex justify-center gap-2 mt-6">
+              {#each storyTabs as _, index}
+                <button
+                  on:click={() => setActiveTab(index)}
+                  class="w-2 h-2 rounded-full transition-all duration-300 {activeTab === index 
+                    ? 'w-8 bg-gradient-to-r from-[#00c400] to-emerald-500' 
+                    : $theme === 'light' ? 'bg-gray-300' : 'bg-gray-600'}"
+                  aria-label="Go to tab {index + 1}"
+                ></button>
+              {/each}
+            </div>
+          </div>
+
+          <!-- Stats Row -->
+          <div class="grid grid-cols-3 gap-4 mt-8">
+            {#each [
+              { value: '7+', label: 'Years Coding' },
+              { value: '4', label: 'Years Teaching' },
+              { value: '50+', label: 'Projects' }
+            ] as stat, index}
+              <div 
+                class="stat-card text-center p-4 rounded-xl backdrop-blur-sm transition-all duration-300 hover:scale-105
+                  {$theme === 'light' 
+                    ? 'bg-white/50 border border-gray-200' 
+                    : 'bg-white/5 border border-white/10'}"
+                style="animation-delay: {index * 100}ms"
+              >
+                <div class="text-2xl md:text-3xl font-bold bg-gradient-to-r from-[#00c400] to-emerald-400 bg-clip-text text-transparent">
+                  {stat.value}
+                </div>
+                <div class="text-xs md:text-sm mt-1 {$theme === 'light' ? 'text-gray-500' : 'text-gray-400'}">
+                  {stat.label}
+                </div>
               </div>
             {/each}
           </div>
         </div>
       </div>
-    </div>
 
-    <!-- Right Side: Carousel -->
-    <div class="relative w-full md:w-3/5 overflow-hidden">
-      <!-- Gradient overlay from left to right -->
-      <div class="absolute inset-0 z-10 pointer-events-none from-transparent {$theme === 'light' ? 'to-white/100' : 'to-black/100'}"></div>
+      <!-- Right Side: Photo Gallery -->
+      <div class="w-full lg:w-1/2 relative min-h-[400px] lg:min-h-screen {isVisible ? 'animate-fade-in' : 'opacity-0'}">
+        
+        <!-- Gradient overlay - subtle edge blend on desktop, stronger on mobile -->
+        <div class="absolute inset-0 z-10 pointer-events-none 
+          lg:bg-gradient-to-r lg:from-gray-950/60 lg:via-transparent lg:to-transparent
+          bg-gradient-to-t {$theme === 'light' ? 'from-gray-50' : 'from-gray-950'} to-transparent
+          {$theme === 'light' ? 'lg:from-gray-50/60' : ''}"></div>
 
-      <!-- Desktop Carousel -->
-      <div class="hidden md:block absolute inset-0 z-0 overflow-hidden">
-        {#each [slidePhotoOne, slidePhotoSeven, slidePhotoThree, slidePhotoFour, slidePhotoFive, slidePhotoSix, slidePhotoSeven] as slide}
-          <img 
-            src={slide} 
-            class="absolute w-full h-full object-cover opacity-0 transition-opacity duration-1000 ease-in-out z-0" 
-            alt="Slide Photo"
-          />
-        {/each}
+        <!-- Photo slides -->
+        <div class="absolute inset-0">
+          {#each photos as photo, index}
+            <img 
+              src={photo} 
+              class="photo-slide absolute w-full h-full object-cover opacity-0 transition-all duration-1000 ease-in-out" 
+              alt="Eddie's journey photo {index + 1}"
+            />
+          {/each}
+        </div>
+
+        <!-- Floating photo indicators -->
+        <div class="absolute bottom-8 right-8 z-20 flex gap-2">
+          {#each photos as _, index}
+            <div 
+              class="w-2 h-2 rounded-full transition-all duration-500 
+                {current === index 
+                  ? 'bg-orange-500 w-6' 
+                  : 'bg-white/50'}"
+            ></div>
+          {/each}
+        </div>
+
+        <!-- Decorative frame - more subtle -->
+        <div class="absolute top-8 right-8 bottom-8 left-8 lg:left-16 border border-white/30 rounded-2xl z-10 pointer-events-none"></div>
       </div>
 
     </div>
-
   </div>
 </main>
+
 <style>
   #section-2 {
-    width: 100%;
-    height: 100vh;
     scroll-snap-align: start;
   }
+
   @media (max-width: 1000px) {
     #section-2 {
       scroll-snap-type: none;
       scroll-snap-align: none;
-      height: auto;
     }
   }
 
-  /* Photos */
-  .swiper {
-      width: 100%;
-      /* height: ; */
-    }
-  .swiper-wrapper {
-      margin: 0em;
-  }
-  @media (max-width: 600px)  {
-      .swiper {
-          margin: 3em auto;
-          width: 100%
-      }
-  }
-
-  /* Typewriter Indicator */
-  .typing-indicator {
-    width: 12px;
-    height: 12px;
-    background-color: #f56f33; /* orange like your theme */
+  /* Floating orbs */
+  .orb {
+    position: absolute;
     border-radius: 50%;
-    animation: pulse 1s infinite;
+    filter: blur(80px);
+    animation: float 20s ease-in-out infinite;
   }
 
-  @keyframes pulse {
-    0%, 100% { transform: scale(1); opacity: 0.6; }
-    50% { transform: scale(1.4); opacity: 1; }
+  .orb-1 {
+    width: 400px;
+    height: 400px;
+    top: 10%;
+    left: 10%;
+    animation-delay: 0s;
   }
 
-  /* Gradient animation */
+  .orb-2 {
+    width: 300px;
+    height: 300px;
+    top: 50%;
+    right: 20%;
+    animation-delay: -5s;
+  }
+
+  .orb-3 {
+    width: 350px;
+    height: 350px;
+    bottom: 10%;
+    left: 30%;
+    animation-delay: -10s;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    25% { transform: translate(30px, -30px) scale(1.1); }
+    50% { transform: translate(-20px, 20px) scale(0.9); }
+    75% { transform: translate(20px, 30px) scale(1.05); }
+  }
+
+  /* Animated gradient line */
+  .animated-gradient {
+    background-size: 200% 200%;
+    animation: gradientShift 3s ease infinite;
+  }
+
   @keyframes gradientShift {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
   }
 
-  .animate-gradientShift {
-    animation: gradientShift 12s ease infinite;
-    background-size: 400% 400%;
+  /* Slide up animations */
+  .animate-slide-up {
+    animation: slideUp 0.8s ease-out forwards;
+  }
+
+  .animate-slide-up-delay {
+    animation: slideUp 0.8s ease-out 0.2s forwards;
+    opacity: 0;
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 1s ease-out 0.4s forwards;
+    opacity: 0;
+  }
+
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(40px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  /* Tab button hover effect */
+  .tab-button {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .tab-button::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transform: translateX(-100%);
+    transition: transform 0.5s;
+  }
+
+  .tab-button:hover::before {
+    transform: translateX(100%);
+  }
+
+  /* Story card glow */
+  .story-card {
+    position: relative;
+  }
+
+  .story-card::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    background: linear-gradient(135deg, rgba(0,196,0,0.3), rgba(16,185,129,0.3), rgba(20,184,166,0.3));
+    border-radius: inherit;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .story-card:hover::before {
+    opacity: 1;
+  }
+
+  /* Stat cards stagger animation */
+  .stat-card {
+    animation: popIn 0.5s ease-out backwards;
+  }
+
+  @keyframes popIn {
+    from {
+      opacity: 0;
+      transform: scale(0.8);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
   }
 </style>
