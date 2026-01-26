@@ -2,216 +2,454 @@
   import { onMount } from 'svelte';
   import { theme } from '../stores/light-dark-mode';
 
+  // Project categories for filtering
+  type CategoryOption = 'Web' | 'Mobile' | 'Python' | 'XR';
+  type Category = 'All' | CategoryOption;
+  
   let projects = [
     {
-      name: "Clensable",
-      image: "https://eddie-portfolio.s3.us-east-1.amazonaws.com/logo/Clensable_Icon_White.png",
-      role: "VR Developer",
+      name: "FinalBossXR.com",
+      image: "https://eddie-portfolio.s3.us-east-1.amazonaws.com/logo/F_Logo_White.png",
+      role: "Web Developer & Designer",
       type: "Professional",
-      badges: ["Fullstack Dev", "2025", "Personal", "Web"],
-      link: "https://www.harp-rose.org/",
-      text: "VR Enhanced Therapy, powered by Unreal Engine.",
-      video: "https://eddie-portfolio.s3.us-east-1.amazonaws.com/videos/clensable_demo.mp4",
-      description: "VR Startup that aims to make therapy more accessible and innovative. I am the lead software developer for this MVP. This is being built with Unreal Engine 5, while I outsource things like 3D Model creation, audio, etc."
+      categories: ["Web"] as CategoryOption[],
+      badges: ["SvelteKit", "TailwindCSS", "DevOps", "2021-Present"],
+      link: "https://www.finalbossxr.com/",
+      text: "Official Website for FinalBossXR.com",
+      video: "https://eddie-portfolio.s3.us-east-1.amazonaws.com/videos/FBXR_Portfolio_Video.mp4",
+      description: "This is a Video Game & Augmented Reality Studio that I co-founded in 2021. I also act as Web Developer and Game Designer for our team while we build our first IP, Cosmic Collisions. I remade this site with SvelteKit & TailwindCSS",
+      color: "#F97316"
     },
     {
-      name: "Final Boss Studios",
-      image: "https://eddie-portfolio.s3.us-east-1.amazonaws.com/logo/F_Logo_White.png",
-      role: "Web Developer",
+      name: "Red Queen AI",
+      image: "https://finalbossxr.s3.us-east-1.amazonaws.com/cosmic/red_queen_icon.png",
+      role: "Web Developer & Designer",
       type: "Professional",
-      badges: ["Full Stack Web Developer", "Co-Founder", "DevOps", "2021-Present"],
-      link: "https://www.finalbossxr.com/",
-      text: "Video Game Studio focusing on Augmented Reality",
-      video: "https://eddie-portfolio.s3.us-east-1.amazonaws.com/videos/finalbossxr_demo.mov",
-      description: "This is a Video Game & Augmented Reality Studio that I co-founded in 2021. I also act as Web Developer and Game Designer for our team while we build our first IP, Cosmic Collisions. I remade this site with SvelteKit & TailwindCSS"
+      categories: ["Web"] as CategoryOption[],
+      badges: ["AI Agent", "LlamaIndex", "2026"],
+      link: "https://www.harp-rose.org/",
+      text: "iOS/Mobile Augmented Reality Game. Alpha Demo out now. Release date: Summer 2026.",
+      video: "https://finalbossxr.s3.us-east-1.amazonaws.com/videos/Game-trailer-Attempt-3.mp4",
+      description: "VR Startup that aims to make therapy more accessible and innovative. I am the lead software developer for this MVP. This is being built with Unreal Engine 5, while I outsource things like 3D Model creation, audio, etc.",
+      color: "#EF4444"
+    }, 
+    // {
+    //   name: "Pivotal.AI",
+    //   image: "https://finalbossxr.s3.us-east-1.amazonaws.com/cosmic/red_queen_icon.png",
+    //   role: "Web Developer & Designer",
+    //   type: "Professional",
+    //   categories: ["Web"] as CategoryOption[],
+    //   badges: ["AI Agent", "LlamaIndex", "2026"],
+    //   link: "https://www.harp-rose.org/",
+    //   text: "iOS/Mobile Augmented Reality Game. Alpha Demo out now. Release date: Summer 2026.",
+    //   video: "https://finalbossxr.s3.us-east-1.amazonaws.com/videos/Game-trailer-Attempt-3.mp4",
+    //   description: "VR Startup that aims to make therapy more accessible and innovative. I am the lead software developer for this MVP. This is being built with Unreal Engine 5, while I outsource things like 3D Model creation, audio, etc.",
+    //   color: "#EF4444"
+    // }, 
+    {
+      name: "Trading Simulator",
+      image: "https://eddie-portfolio.s3.us-east-1.amazonaws.com/logo/python-svgrepo-com.svg",
+      role: "Software Developer & Designer",
+      type: "Personal",
+      categories: ["Python"] as CategoryOption[],
+      badges: ["Stock Market", "2026"],
+      link: "https://www.harp-rose.org/",
+      text: "iOS/Mobile Augmented Reality Game. Alpha Demo out now. Release date: Summer 2026.",
+      video: "https://eddie-portfolio.s3.us-east-1.amazonaws.com/videos/trading_simulator_demo_video.mp4",
+      description: "VR Startup that aims to make therapy more accessible and innovative. I am the lead software developer for this MVP. This is being built with Unreal Engine 5, while I outsource things like 3D Model creation, audio, etc.",
+      color: "#00c400"
+    },
+    {
+      name: "Cosmic Collisions",
+      image: "https://finalbossxr.s3.us-east-1.amazonaws.com/cosmic/logos/CC_LogoAnimated.gif",
+      role: "Game Developer & Designer",
+      type: "Professional",
+      categories: ["Mobile", "XR"] as CategoryOption[],
+      badges: ["Unreal Engine 5", "AR", "2025"],
+      link: "https://www.harp-rose.org/",
+      text: "iOS/Mobile Augmented Reality Game. Alpha Demo out now. Release date: Summer 2026.",
+      video: "https://finalbossxr.s3.us-east-1.amazonaws.com/videos/Game-trailer-Attempt-3.mp4",
+      description: "VR Startup that aims to make therapy more accessible and innovative. I am the lead software developer for this MVP. This is being built with Unreal Engine 5, while I outsource things like 3D Model creation, audio, etc.",
+      color: "#8B5CF6"
     },
     {
       name: "HARP",
       image: "https://ik.imagekit.io/2ax1lblqa/Slice_1__1_-removebg-preview.png?updatedAt=1732343747682",
-      role: "VR Developer",
+      role: "Lead VR Developer",
       type: "Professional",
-      badges: ["VR Developer", "2025", "Contract", "Meta Quest 2"],
+      categories: ["XR"] as CategoryOption[],
+      badges: ["Unreal Engine 5", "Meta Quest 2", "2025"],
       link: "https://www.harp-rose.org/",
       text: "VR Enhanced Therapy, powered by Unreal Engine.",
       video: "https://eddie-portfolio.s3.us-east-1.amazonaws.com/videos/Harp_Demo_01.mp4",
-      description: "VR Startup that aims to make therapy more accessible and innovative. I am the lead software developer for this MVP. This is being built with Unreal Engine 5, while I outsource things like 3D Model creation, audio, etc."
+      description: "VR Startup that aims to make therapy more accessible and innovative. I am the lead software developer for this MVP. This is being built with Unreal Engine 5, while I outsource things like 3D Model creation, audio, etc.",
+      color: "#EC4899"
     },
     {
       name: "J.O.B Lactation",
       image: "https://eddie-portfolio.s3.us-east-1.amazonaws.com/logo/fire_icon.png",
       role: "VR Developer",
       type: "Professional",
-      badges: ["VR Developer", "2025", "Contract", "Meta Quest 2"],
+      categories: ["XR"] as CategoryOption[],
+      badges: ["Unreal Engine 5", "Meta Quest 2", "2025"],
       link: "https://joblactation.com/",
-      text: "VR Enhanced Therapy, powered by Unreal Engine.",
+      text: "VR Healthcare Application",
       video: "https://eddie-portfolio.s3.us-east-1.amazonaws.com/videos/jobl_demo.MP4",
-      description: "VR Startup that aims to make therapy more accessible and innovative. I am the lead software developer for this MVP. This is being built with Unreal Engine 5, while I outsource things like 3D Model creation, audio, etc."
+      description: "Healthcare VR application designed to support lactation consultants and new mothers. Built with Unreal Engine 5 for Meta Quest 2, featuring interactive educational experiences.",
+      color: "#14B8A6"
     },
     {
       name: "Crypto Tutors - Defi All Odds",
       image: "https://ik.imagekit.io/2ax1lblqa/ctlogo.png?updatedAt=1732316143920",
       role: "Senior Front End Developer",
       type: "Professional",
-      badges: ["Senior Front End Developer", "2024", "Contract", "Web"],
+      categories: ["Web"] as CategoryOption[],
+      badges: ["SvelteKit", "TailwindCSS", "Web3", "2024"],
       link: "https://www.defiallodds.xyz/",
       text: "DefiAllOdds, powered by Web3 Education startup CryptoTutors.",
       video: "https://eddie-portfolio.s3.us-east-1.amazonaws.com/videos/defi_all_odds_demo.mov",
-      description: "Crypto Tutors is a leading provider of engaging and accessible Web3 education. Our award-winning curriculum, trusted by Fortune 500 companies and recognized by the National Science Foundation. I built the Defi All Odds assessment with SvelteKit and TailwindCSS. I fell in love with both."
+      description: "Crypto Tutors is a leading provider of engaging and accessible Web3 education. Our award-winning curriculum, trusted by Fortune 500 companies and recognized by the National Science Foundation. I built the Defi All Odds assessment with SvelteKit and TailwindCSS.",
+      color: "#FBBF24"
     },
     {
       name: "VOpposition",
       image: "https://ik.imagekit.io/2ax1lblqa/vopposition-logomark-red.png?updatedAt=1732316143809",
       role: "Senior Front End Developer",
       type: "Professional",
-      badges: ["Senior Front End Developer", "2024", "Contract", "Web"],
+      categories: ["Web", "Mobile"] as CategoryOption[],
+      badges: ["Angular", "Ionic", "TailwindCSS", "2024"],
       link: "https://www.vopposition.com/",
-      text: "Gamified sports matchmaking, Hybrid App, Web App focus with MVP",
+      text: "Gamified sports matchmaking, Hybrid App",
       video: "https://eddie-portfolio.s3.us-east-1.amazonaws.com/videos/vo_demo.mov",
-      description: "A matchmaking app for pick up sports, like Basketball, Volleyball, etc, with gamified features. I acted as a Front End Engineer and UX Designer, refining the UX as I translated assets from the Design team to front end code. Built with Angular, Ionic, and TailwindCSS."
+      description: "A matchmaking app for pick up sports, like Basketball, Volleyball, etc, with gamified features. I acted as a Front End Engineer and UX Designer, refining the UX as I translated assets from the Design team to front end code.",
+      color: "#EF4444"
     },
     {
-      name: "Drone Capital AR Drone Trainer",
+      name: "Drone Capital AR Trainer",
       image: "https://eddie-portfolio.s3.us-east-1.amazonaws.com/logo/DroneCapLogo.png",
-      role: "Senior Front End Developer",
+      role: "AR Developer",
       type: "Professional",
-      badges: ["AR Developer", "2023", "Personal", "Mobile"],
+      categories: ["XR", "Mobile"] as CategoryOption[],
+      badges: ["Unity", "ARKit", "ARCore", "2023"],
       link: "https://dronecapital.com/",
-      text: "Gamified sports matchmaking, Hybrid App, Web App focus with MVP",
+      text: "AR Drone Training Application",
       video: "https://eddie-portfolio.s3.us-east-1.amazonaws.com/videos/DC_Demo_02.mov",
-      description: "A matchmaking app for pick up sports, like Basketball, Volleyball, etc, with gamified features. I acted as a Front End Engineer and UX Designer, refining the UX as I translated assets from the Design team to front end code. Built with Angular, Ionic, and TailwindCSS."
+      description: "An augmented reality drone training application that allows users to practice flying drones in a safe, simulated environment before taking to the skies with real hardware.",
+      color: "#06B6D4"
     },
     {
-      name: "Taste of Tech MR Car Experience",
+      name: "Taste of Tech MR Car",
       image: "https://eddie-portfolio.s3.us-east-1.amazonaws.com/logo/fire_icon.png",
-      role: "Senior Front End Developer",
+      role: "MR Developer",
       type: "Professional",
-      badges: ["MR Developer", "2023", "Contract", "Meta Quest 2"],
+      categories: ["XR"] as CategoryOption[],
+      badges: ["Unreal Engine 5", "Meta Quest Pro", "2023"],
       link: "https://blackkidsdetroit.org/",
-      text: "Gamified sports matchmaking, Hybrid App, Web App focus with MVP",
+      text: "Mixed Reality Car Experience",
       video: "https://eddie-portfolio.s3.us-east-1.amazonaws.com/videos/mr_car_02.mov",
-      description: "A matchmaking app for pick up sports, like Basketball, Volleyball, etc, with gamified features. I acted as a Front End Engineer and UX Designer, refining the UX as I translated assets from the Design team to front end code. Built with Angular, Ionic, and TailwindCSS."
+      description: "A mixed reality automotive experience built for educational purposes, allowing students to explore and interact with vehicle components in an immersive 3D environment.",
+      color: "#A855F7"
     }
   ];
 
-  let projectSlides: HTMLDivElement[] = [];
-  let videoElements: HTMLVideoElement[] = [];
-  let currentSlide = 0;
+  // State
+  let selectedCategory: Category = 'All';
+  let selectedProject: typeof projects[0] | null = null;
+  let isModalOpen = false;
+  let hoveredIndex: number | null = null;
+  let cardsVisible = false;
+
+  const categories: Category[] = ['All', 'Web', 'Mobile', 'Python', 'XR'];
+
+  $: filteredProjects = selectedCategory === 'All' 
+    ? projects 
+    : projects.filter(p => p.categories.includes(selectedCategory as CategoryOption));
 
   onMount(() => {
-    projectSlides = Array.from(document.querySelectorAll("#projects-carousel [data-carousel-item]"));
-    videoElements = Array.from(document.querySelectorAll("#projects-carousel video"));
-
-    projectSlides[currentSlide].classList.remove("hidden");
-    if (videoElements[currentSlide]) {
-      videoElements[currentSlide].play();
-    }
+    // Trigger staggered animation
+    setTimeout(() => {
+      cardsVisible = true;
+    }, 100);
   });
 
-  function slide(direction: number) {
-    if (videoElements[currentSlide]) {
-      videoElements[currentSlide].pause();
-    }
-    projectSlides[currentSlide].classList.add("hidden");
+  function openModal(project: typeof projects[0]) {
+    selectedProject = project;
+    isModalOpen = true;
+    document.body.style.overflow = 'hidden';
+  }
 
-    currentSlide = (currentSlide + direction + projectSlides.length) % projectSlides.length;
+  function closeModal() {
+    isModalOpen = false;
+    selectedProject = null;
+    document.body.style.overflow = '';
+  }
 
-    projectSlides[currentSlide].classList.remove("hidden");
-    if (videoElements[currentSlide]) {
-      videoElements[currentSlide].play();
+  function handleKeydown(e: KeyboardEvent) {
+    if (e.key === 'Escape' && isModalOpen) {
+      closeModal();
     }
   }
 </script>
 
+<svelte:window on:keydown={handleKeydown} />
+
 <main>
-  <div id="section-3" class="pb-0 pt-10 {$theme === 'light' ? theme.classes.light.heroGradient : theme.classes.dark.heroGradient}">
-    <div class="md:w-4/5 lg:w-3/5 p-2 mx-auto content-center">
-      <h1 class={$theme === 'light' ? theme.classes.light.header + 'text-4xl mb-2 jura' : theme.classes.dark.header + 'text-4xl mb-2 jura'}>
-        <span class="h-10 mr-2">💻</span>
-        PROJECTS
-      </h1>
-      <p class={$theme === 'light' ? theme.classes.light.text + ' text-md' : theme.classes.dark.text + ' text-md'}>
-        Here are some projects (that I can share), ranging from personal projects that I have worked on, or startups I have built MVPs or major features for.
-        You can view more of my projects via <a class="text-[#3686fd] pb-0.5 underline" href="https://github.com/eddietal2">Github</a>.
-      </p>
-    </div>
+  <div id="section-3" class="pb-0 pt-10 min-h-screen {$theme === 'light' ? theme.classes.light.heroGradient : theme.classes.dark.heroGradient}">
+    
+    <!-- Header Section -->
+    <div class="md:w-4/5 lg:w-4/5 xl:w-3/4 p-4 mx-auto">
+      <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-8">
+        <div>
+          <h1 class="text-4xl md:text-5xl font-bold jura {$theme === 'light' ? 'text-black' : 'text-white'} flex items-center gap-3">
+            <span class="text-4xl">💻</span>
+            PROJECTS
+            <span class="inline-block w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+          </h1>
+          <p class="mt-3 text-sm md:text-base max-w-2xl {$theme === 'light' ? 'text-gray-600' : 'text-gray-400'}">
+            A collection of professional work and passion projects spanning VR/AR, Web, and Mobile development. This portfolio ranges back to 2024. If you want to see more, visit my Github,
+            which goes back to 2016, when I first started this journey. I have been a freelance, contract, or entrepreneur within the tech space since then. This even includes 5 years as a tech educator,
+            in which some projects on my github were apart of some curriculum I developed for teaching coding to students.
+            <br>
+            <br>
+            <a class="text-[#3686fd] hover:text-[#5a9dfd] underline underline-offset-2 transition-colors" href="https://github.com/eddietal2" target="_blank">View more on Github →</a>
+          </p>
+        </div>
 
-    <div id="projects-carousel" class="relative w-full h-94 md:w-4/5 lg:w-3/5 mx-auto">
-      <div class="relative h-144 md:h-192 overflow-hidden md:shadow-xl"> 
-        {#each projects as project, index}
-          <div class="hidden duration-700 ease-in-out p-4 pt-10 lg:pt-12 bg-black/80" data-carousel-item>
-            <div class="flex flex-col md:flex-row gap-4">
+        <!-- Category Filter Pills -->
+        <div class="flex flex-wrap gap-2">
+          {#each categories as category}
+            <button
+              class="px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 transform hover:scale-105
+                {selectedCategory === category 
+                  ? 'bg-gradient-to-r from-orange-500 to-pink-500 text-white shadow-lg shadow-orange-500/25' 
+                  : $theme === 'light' 
+                    ? 'bg-white/50 text-gray-700 hover:bg-white/80 border border-gray-200' 
+                    : 'bg-white/10 text-gray-300 hover:bg-white/20 border border-white/10'}"
+              on:click={() => { selectedCategory = category; cardsVisible = false; setTimeout(() => cardsVisible = true, 50); }}
+            >
+              {category}
+            </button>
+          {/each}
+        </div>
+      </div>
 
-              <div class="w-full h-full md:w-1/2 relative bg-black rounded-lg overflow-hidden">
-              <video
-                src={project.video}
-                class="w-full h-full object-cover"
-                controls
-                loop
-                muted
-                playsinline
-              ></video>
+      <!-- Projects Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+        {#each filteredProjects as project, index}
+          <button
+            class="project-card group relative rounded-2xl overflow-hidden cursor-pointer transform transition-all duration-500 hover:scale-[1.02] hover:z-10 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 {$theme === 'light' ? 'focus:ring-offset-white' : 'focus:ring-offset-black'}
+              {cardsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}"
+            style="transition-delay: {index * 75}ms; --accent-color: {project.color}"
+            on:click={() => openModal(project)}
+            on:mouseenter={() => hoveredIndex = index}
+            on:mouseleave={() => hoveredIndex = null}
+          >
+            <!-- Card Background with Gradient Border -->
+            <div class="absolute inset-0 rounded-2xl bg-gradient-to-br from-white/20 to-transparent p-[1px]">
+              <div class="absolute inset-[1px] rounded-2xl {$theme === 'light' ? 'bg-white/90' : 'bg-black/80'} backdrop-blur-xl"></div>
             </div>
 
-              <div class="flex flex-col w-full md:w-1/2 gap-3 h-80 overflow-y-auto p-2">
-                <h2 class={$theme === 'light' ? theme.classes.dark.text + ' font-bold text-2xl jura' : theme.classes.dark.text + ' font-bold text-2xl jura'}>
-                  <img src={project.image} class="h-8 inline" alt="" srcset="">
-                  {project.name}
-                </h2>
-              
-                <div class="flex gap-2 mt-2">
-                  <a href={project.link} target="_blank" class={$theme === 'light' ? theme.classes.dark.buttonTwo : theme.classes.dark.buttonTwo}>
-                    Link
-                  </a>
+            <!-- Glow Effect on Hover -->
+            <div 
+              class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl"
+              style="background: radial-gradient(circle at 50% 50%, {project.color}20, transparent 70%)"
+            ></div>
+
+            <!-- Card Content -->
+            <div class="relative p-5 h-full flex flex-col min-h-[280px]">
+              <!-- Top Row: Logo & Category -->
+              <div class="flex items-start justify-between mb-4">
+                <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-white/10 to-white/5 p-2 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                  <img src={project.image} class="w-full h-full object-contain" alt={project.name} />
                 </div>
-              
-                <div class="flex flex-wrap gap-2 mt-2">
-                  {#each project.badges as skill}
-                    <span class="inline-flex text-xs bg-[#00c40020] border-[#00c400] border-2 px-3 py-1 rounded-full">
-                      <span class={$theme === 'light' ? theme.classes.dark.text : theme.classes.dark.text}>
-                        {skill}
-                      </span>
+                <div class="flex flex-wrap gap-1 justify-end max-w-[60%]">
+                  {#each project.categories as cat}
+                    <span 
+                      class="text-xs font-medium px-2 py-1 rounded-full"
+                      style="background: {project.color}20; color: {project.color}"
+                    >
+                      {cat}
                     </span>
                   {/each}
                 </div>
-                <p class="text-sm md:text-md {$theme === 'light' ? theme.classes.dark.text : theme.classes.dark.text}">
-                  {project.description}
+              </div>
+
+              <!-- Project Info -->
+              <div class="flex-1">
+                <h3 class="text-lg font-bold jura mb-1 {$theme === 'light' ? 'text-gray-900' : 'text-white'} group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-orange-400 group-hover:to-pink-500 transition-all duration-300">
+                  {project.name}
+                </h3>
+                <p class="text-xs font-medium mb-3" style="color: {project.color}">{project.role}</p>
+                <p class="text-sm leading-relaxed line-clamp-3 {$theme === 'light' ? 'text-gray-600' : 'text-gray-400'}">
+                  {project.text}
                 </p>
               </div>
+
+              <!-- Tech Stack Pills -->
+              <div class="flex flex-wrap gap-1.5 mt-4">
+                {#each project.badges.slice(0, 3) as badge}
+                  <span class="text-xs px-2 py-1 rounded-md {$theme === 'light' ? 'bg-gray-100 text-gray-600' : 'bg-white/10 text-gray-300'}">
+                    {badge}
+                  </span>
+                {/each}
+                {#if project.badges.length > 3}
+                  <span class="text-xs px-2 py-1 rounded-md {$theme === 'light' ? 'bg-gray-100 text-gray-500' : 'bg-white/10 text-gray-400'}">
+                    +{project.badges.length - 3}
+                  </span>
+                {/if}
+              </div>
+
+              <!-- Hover Indicator -->
+              <div class="absolute bottom-5 right-5 w-8 h-8 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 transform group-hover:translate-x-0 translate-x-2"
+                style="background: {project.color}">
+                <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                </svg>
+              </div>
             </div>
-          </div>
+          </button>
         {/each}
       </div>
-    </div>
 
-    <!-- Project Buttons -->
-    <div class="pb-14 mt-2">
-      <div class="flex justify-center gap-2 md:w-4/5 lg:w-3/5 mx-auto">
-        <button class={$theme === 'light' ? theme.classes.light.button : theme.classes.dark.button} on:click={() => slide(-1)}>‹ Prev</button>
-        <button class={$theme === 'light' ? theme.classes.light.button : theme.classes.dark.button} on:click={() => slide(1)}>Next ›</button>
-      </div>
-
-      <div class="flex justify-center gap-2 mt-4">
-      {#each projects as _, index}
-        <button
-          class="h-3 w-3 rounded-full transition-all duration-300 {index === currentSlide ? 'bg-green-500' : 'bg-gray-400'}"
-          on:click={() => {
-            // Find the direction and use the slide function
-            const direction = index - currentSlide;
-            slide(direction);
-          }}
-        ></button>
-      {/each}
-      </div>
+      <!-- Empty State -->
+      {#if filteredProjects.length === 0}
+        <div class="text-center py-16">
+          <p class="{$theme === 'light' ? 'text-gray-500' : 'text-gray-400'}">No projects found in this category.</p>
+        </div>
+      {/if}
     </div>
   </div>
+
+  <!-- Project Modal -->
+  {#if isModalOpen && selectedProject}
+    <!-- svelte-ignore a11y-click-events-have-key-events a11y-no-noninteractive-element-interactions -->
+    <div 
+      class="fixed inset-0 z-[9999] flex items-center justify-center p-4"
+      on:click={closeModal}
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="modal-title"
+    >
+      <!-- Backdrop -->
+      <button 
+        class="absolute inset-0 bg-black/80 backdrop-blur-sm w-full h-full border-none cursor-default"
+        on:click={closeModal}
+        aria-label="Close modal"
+        tabindex="-1"
+      ></button>
+
+      <!-- Modal Content -->
+      <!-- svelte-ignore a11y-click-events-have-key-events a11y-no-static-element-interactions -->
+      <div 
+        class="relative w-full max-w-5xl max-h-[90vh] overflow-hidden rounded-3xl {$theme === 'light' ? 'bg-white' : 'bg-gray-900'} shadow-2xl"
+        on:click|stopPropagation
+        role="document"
+      >
+        <!-- Close Button -->
+        <button 
+          class="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-black/50 hover:bg-black/70 flex items-center justify-center transition-colors"
+          on:click={closeModal}
+          aria-label="Close project details"
+        >
+          <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+
+        <div class="flex flex-col lg:flex-row h-full max-h-[90vh]">
+          <!-- Video Section -->
+          <div class="lg:w-3/5 bg-black flex items-center justify-center">
+            <video
+              src={selectedProject.video}
+              class="w-full h-full object-contain max-h-[50vh] lg:max-h-[90vh]"
+              controls
+              autoplay
+              loop
+              muted
+              playsinline
+            ></video>
+          </div>
+
+          <!-- Info Section -->
+          <div class="lg:w-2/5 p-6 lg:p-8 overflow-y-auto max-h-[40vh] lg:max-h-[90vh]">
+            <!-- Header -->
+            <div class="flex items-center gap-4 mb-6">
+              <div 
+                class="w-16 h-16 rounded-2xl p-3 flex items-center justify-center"
+                style="background: {selectedProject.color}20"
+              >
+                <img src={selectedProject.image} class="w-full h-full object-contain" alt={selectedProject.name} />
+              </div>
+              <div>
+                <h2 id="modal-title" class="text-2xl font-bold jura {$theme === 'light' ? 'text-gray-900' : 'text-white'}">
+                  {selectedProject.name}
+                </h2>
+                <p class="text-sm" style="color: {selectedProject.color}">{selectedProject.role}</p>
+              </div>
+            </div>
+
+            <!-- Category & Type -->
+            <div class="flex flex-wrap gap-2 mb-6">
+              {#each selectedProject.categories as cat}
+                <span 
+                  class="text-xs font-medium px-3 py-1.5 rounded-full"
+                  style="background: {selectedProject.color}20; color: {selectedProject.color}"
+                >
+                  {cat}
+                </span>
+              {/each}
+              <span class="text-xs font-medium px-3 py-1.5 rounded-full {$theme === 'light' ? 'bg-gray-100 text-gray-600' : 'bg-white/10 text-gray-300'}">
+                {selectedProject.type}
+              </span>
+            </div>
+
+            <!-- Description -->
+            <p class="text-sm leading-relaxed mb-6 {$theme === 'light' ? 'text-gray-600' : 'text-gray-400'}">
+              {selectedProject.description}
+            </p>
+
+            <!-- Tech Stack -->
+            <div class="mb-6">
+              <h3 class="text-xs font-semibold uppercase tracking-wider mb-3 {$theme === 'light' ? 'text-gray-500' : 'text-gray-500'}">
+                Tech Stack
+              </h3>
+              <div class="flex flex-wrap gap-2">
+                {#each selectedProject.badges as badge}
+                  <span class="text-xs px-3 py-1.5 rounded-lg border {$theme === 'light' ? 'bg-gray-50 border-gray-200 text-gray-700' : 'bg-white/5 border-white/10 text-gray-300'}">
+                    {badge}
+                  </span>
+                {/each}
+              </div>
+            </div>
+
+            <!-- Action Button -->
+            <a 
+              href={selectedProject.link} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-2 px-6 py-3 rounded-full font-medium text-white transition-all duration-300 transform hover:scale-105 hover:shadow-lg"
+              style="background: linear-gradient(135deg, {selectedProject.color}, {selectedProject.color}CC); box-shadow: 0 4px 20px {selectedProject.color}40"
+            >
+              Visit Project
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  {/if}
 </main>
 
 <style>
   #section-3 {
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
     scroll-snap-align: start;
+    padding-bottom: 4rem;
   }
+
   @media (max-width: 1000px) {
     #section-3 {
       scroll-snap-type: none;
@@ -219,8 +457,41 @@
       height: auto;
     }
   }
-  
-  /* Gradient animation */
+
+  /* Line clamp utility */
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  /* Project card animations */
+  .project-card {
+    will-change: transform, opacity;
+  }
+
+  .project-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 1rem;
+    padding: 1px;
+    background: linear-gradient(135deg, var(--accent-color, #f97316) 0%, transparent 50%);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .project-card:hover::before {
+    opacity: 1;
+  }
+
+  /* Gradient animation for header */
   @keyframes gradientShift {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
@@ -230,5 +501,33 @@
   .animate-gradientShift {
     animation: gradientShift 12s ease infinite;
     background-size: 400% 400%;
+  }
+
+  /* Pulse animation for status dot */
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.2); }
+  }
+
+  .animate-pulse {
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  /* Scrollbar for modal */
+  .overflow-y-auto::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .overflow-y-auto::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .overflow-y-auto::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 3px;
+  }
+
+  .overflow-y-auto::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.3);
   }
 </style>
