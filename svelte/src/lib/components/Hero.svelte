@@ -83,8 +83,8 @@
     <div class="md:w-4/5 lg:w-3/5 mx-auto lg:mt-0 lg:flex flex-row gap-20 relative z-10">
 
       <!-- Picture -->
-      <div class="w-11/12 lg:w-1/4 mx-auto">
-        <div id="header-pic" class="my-4">
+      <div class="w-11/12 lg:w-1/4 mx-auto flex items-center justify-center">
+        <div id="header-pic" class="my-4 header-pic-container">
           
         </div>
       </div>
@@ -97,7 +97,7 @@
             <b class={$theme === 'light' ? theme.classes.light.text : theme.classes.dark.text}>
               <span class="text-4xl jura greetings-anim-1 inline-block">HI,</span>
               <span class="text-4xl jura greetings-anim-2 inline-block">I'M</span>
-              <span class="text-4xl jura greetings-anim-3 inline-block">EDDIE</span>
+              <span class="text-5xl lg:text-6xl jura greetings-anim-3 inline-block name-highlight">EDDIE</span>
             </b> 
           </span>
           <br>
@@ -108,10 +108,13 @@
           </span>
         </p>
 
-        <h1 class={$theme === 'light' ? theme.classes.light.text + ' jura text-xl' : theme.classes.dark.text + ' jura text-xl'}>SKILLS</h1>
+        <h1 class={$theme === 'light' ? theme.classes.light.text + ' jura text-xl skills-title' : theme.classes.dark.text + ' jura text-xl skills-title'}>SKILLS</h1>
         <div class="flex flex-wrap gap-2 sm:my-2">
-          {#each ["NextJS", "SvelteKit", "TypeScript", "PostgreSQL", "TailWindCSS", "Linux", "Git", "Figma", "Unreal Engine", "Vercel", "CI/CD", "AWS", "AR/MR/XR"] as skill}
-            <span class="text-sm bg-[#00c40020] border-[#00c400] border-2 px-3 py-1 rounded-full inline-block">
+          {#each ["NextJS", "SvelteKit", "TypeScript", "PostgreSQL", "TailWindCSS", "Linux", "Git", "Figma", "Unreal Engine", "Vercel", "CI/CD", "AWS", "AR/MR/XR"] as skill, i}
+            <span 
+              class="text-sm bg-[#00c40010] border-[#00c400] border px-3 py-1 rounded-full inline-block skill-tag"
+              style="animation-delay: {5.5 + (i * 0.08)}s"
+            >
               <span class={$theme === 'light' ? theme.classes.light.text : theme.classes.dark.text}>
                 {skill}
               </span>
@@ -211,5 +214,90 @@
   @keyframes blink {
     0%, 50% { opacity: 1; }
     50.01%, 100% { opacity: 0; }
+  }
+
+  /* ===== POLISHED ENHANCEMENTS ===== */
+
+  /* Profile picture container glow */
+  .header-pic-container {
+    position: relative;
+    transition: transform 0.3s ease;
+  }
+  .header-pic-container:hover {
+    transform: scale(1.02);
+  }
+  .header-pic-container::after {
+    content: '';
+    position: absolute;
+    inset: -10px;
+    background: radial-gradient(circle, rgba(0, 196, 0, 0.15) 0%, transparent 70%);
+    z-index: -1;
+    opacity: 0;
+    animation: fadeInGlow 1s ease 1s forwards;
+  }
+  @keyframes fadeInGlow {
+    to { opacity: 1; }
+  }
+
+  /* Name highlight - make EDDIE pop */
+  .name-highlight {
+    background: linear-gradient(135deg, #00c400 0%, #10b981 50%, #00c400 100%);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: shimmer 3s ease-in-out 4s infinite;
+    filter: drop-shadow(0 0 20px rgba(0, 196, 0, 0.3));
+  }
+  .greetings-anim-3.name-highlight {
+    opacity: 0;
+    animation: greeting-slide-2 500ms cubic-bezier(0.075, 0.82, 0.165, 1) 3s forwards,
+               shimmer 3s ease-in-out 4s infinite;
+  }
+  @keyframes shimmer {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+
+  /* Skills section title */
+  .skills-title {
+    opacity: 0;
+    animation: fadeSlideUp 0.5s ease 5.2s forwards;
+    letter-spacing: 0.1em;
+  }
+
+  /* Skill tags with staggered entrance */
+  .skill-tag {
+    opacity: 0;
+    animation: fadeSlideUp 0.4s ease forwards;
+    transition: all 0.2s ease;
+    backdrop-filter: blur(4px);
+  }
+  .skill-tag:hover {
+    background: rgba(0, 196, 0, 0.2);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 196, 0, 0.25);
+  }
+
+  @keyframes fadeSlideUp {
+    from {
+      opacity: 0;
+      transform: translateY(15px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Smoother typewriter text */
+  .typewriter-text {
+    min-height: 4.5em;
+    line-height: 1.6;
+  }
+
+  /* Landing text better spacing */
+  .landing-text {
+    line-height: 1.4;
   }
 </style>
