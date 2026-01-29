@@ -4,9 +4,12 @@
 
   function toggleTheme() {
     theme.toggle();
+    // Hide tooltip when user clicks the theme button
+    showThemeTooltip = false;
   }
 
   let activeSection = 's1';
+  let showThemeTooltip = false;
 
   onMount(() => {
     // Track active section for nav highlighting
@@ -22,6 +25,20 @@
       });
     }, options);
     document.querySelectorAll('section').forEach(section => observer.observe(section));
+
+    // Show theme tooltip for first-time visitors
+    const hasSeenTooltip = localStorage.getItem('hasSeenThemeTooltip');
+    if (!hasSeenTooltip) {
+      // Small delay before showing tooltip for better UX
+      setTimeout(() => {
+        showThemeTooltip = true;
+        // Auto-hide after 5 seconds
+        setTimeout(() => {
+          showThemeTooltip = false;
+          localStorage.setItem('hasSeenThemeTooltip', 'true');
+        }, 5000);
+      }, 1000);
+    }
   });
 
 </script>
@@ -125,7 +142,8 @@
         <!-- Light/Dark Mode Toggle -->
         <button aria-label="Light/Dark Button"
           type="button"
-          class="p-1.5 rounded-full transition-all duration-300 {$theme === 'light' ? 'hover:bg-[#00c40020]' : 'hover:bg-[#ff450020]'}"
+          class="p-1.5 rounded-full transition-all duration-300 {$theme === 'light' ? 'hover:bg-[#00c40020]' : 'hover:bg-[#ff450020]'}
+            {showThemeTooltip ? 'animate-pulse ring-2 ring-offset-2 ' + ($theme === 'light' ? 'ring-[#00c400] ring-offset-white' : 'ring-[#ff4500] ring-offset-gray-900') : ''}"
           on:click={toggleTheme}>
           {#if $theme === 'light'}
             <ion-icon class="text-2xl md:text-3xl text-[#00c400]" name="sunny-sharp"></ion-icon>
@@ -138,6 +156,50 @@
     </div>
   </div>
 </main>
+
+<!-- Theme Popover - Rendered outside navbar to avoid z-index/overflow issues -->
+{#if showThemeTooltip}
+  <div class="theme-popover fixed bottom-24 md:top-20 right-4 md:right-[10%] lg:right-[20%] z-[99999]">
+    <div class="relative p-5 rounded-2xl shadow-2xl min-w-[240px]
+      {$theme === 'light' 
+        ? 'bg-white border-2 border-[#00c400]' 
+        : 'bg-gray-900 border-2 border-[#ff4500]'}"
+      style="box-shadow: 0 25px 50px -12px {$theme === 'light' ? 'rgba(0, 196, 0, 0.4)' : 'rgba(255, 69, 0, 0.4)'};">
+      
+      <!-- Close button -->
+      <button 
+        class="absolute top-2 right-2 w-7 h-7 flex items-center justify-center rounded-full transition-colors
+          {$theme === 'light' ? 'text-gray-400 hover:text-gray-600 hover:bg-gray-100' : 'text-gray-500 hover:text-gray-300 hover:bg-gray-700'}"
+        on:click={() => { showThemeTooltip = false; localStorage.setItem('hasSeenThemeTooltip', 'true'); }}
+        aria-label="Close tooltip">
+        ✕
+      </button>
+      
+      <!-- Icon -->
+      <div class="flex justify-center mb-3">
+        <div class="w-14 h-14 rounded-full flex items-center justify-center text-3xl
+          {$theme === 'light' 
+            ? 'bg-gradient-to-br from-[#00c400] to-[#00e000]' 
+            : 'bg-gradient-to-br from-[#ff4500] to-[#ff6b35]'}">
+          {$theme === 'light' ? '🌙' : '☀️'}
+        </div>
+      </div>
+      
+      <!-- Message -->
+      <p class="text-center text-lg font-bold mb-2 {$theme === 'light' ? 'text-gray-800' : 'text-white'}">
+        ✨ Try {$theme === 'light' ? 'Dark' : 'Light'} Mode!
+      </p>
+      <p class="text-center text-sm {$theme === 'light' ? 'text-gray-600' : 'text-gray-400'}">
+        Click the {$theme === 'light' ? 'sun ☀️' : 'moon 🌙'} icon in the navbar
+      </p>
+      
+      <!-- Arrow pointing to navbar -->
+      <div class="flex justify-center mt-3">
+        <span class="text-2xl animate-bounce">{$theme === 'light' ? '👆' : '👆'}</span>
+      </div>
+    </div>
+  </div>
+{/if}
 
 <style>
   .navbar-container {
@@ -178,6 +240,25 @@
     .navbar-container {
       border-top: 1px solid rgba(128, 128, 128, 0.1);
       border-bottom: none;
+    }
+  }
+
+  /* Theme popover animation */
+  .theme-popover {
+    animation: popoverSlideIn 0.4s ease-out;
+  }
+
+  @keyframes popoverSlideIn {
+    0% {
+      opacity: 0;
+      transform: translateY(15px) scale(0.95);
+    }
+    50% {
+      transform: translateY(-3px) scale(1.02);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0) scale(1);
     }
   }
 </style>
