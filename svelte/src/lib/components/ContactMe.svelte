@@ -1,13 +1,42 @@
-<script>
+<script lang="ts">
   import { theme } from '../stores/light-dark-mode';
 
+  let isInputFocused = false;
+  let keystrokeFlicker = false;
+  let flickerTimeout: ReturnType<typeof setTimeout>;
+
+  function handleFocus() {
+    isInputFocused = true;
+  }
+
+  function handleBlur() {
+    isInputFocused = false;
+  }
+
+  function handleKeydown() {
+    if (!isInputFocused) return;
+    keystrokeFlicker = true;
+    clearTimeout(flickerTimeout);
+    flickerTimeout = setTimeout(() => {
+      keystrokeFlicker = false;
+    }, 150);
+  }
 </script>
+
+<svelte:window on:keydown={handleKeydown} />
 <main>
     <div id="section-4" class="{$theme === 'light' ? theme.classes.light.heroGradient : theme.classes.dark.heroGradient} relative">
       
       <!-- Background Silhouette - Communication/Connection lines focusing toward center form -->
       <div class="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
-        <svg class="absolute w-full h-full opacity-[0.20]" viewBox="0 0 1200 800" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+        <svg 
+          class="absolute w-full h-full transition-all duration-300 {isInputFocused ? 'opacity-[0.45]' : 'opacity-[0.20]'} {keystrokeFlicker ? 'contact-flicker' : ''}"
+          viewBox="0 0 1200 800" 
+          fill="none" 
+          xmlns="http://www.w3.org/2000/svg" 
+          preserveAspectRatio="xMidYMid slice"
+          style="filter: {isInputFocused ? ($theme === 'light' ? 'hue-rotate(-10deg) saturate(1.8) brightness(1.2)' : 'hue-rotate(10deg) saturate(1.6) brightness(1.3)') : 'none'};"
+        >
           <!-- Gradient definitions -->
           <defs>
             <linearGradient id="contactGrad1" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -249,6 +278,7 @@
       </div>
       
       <div class="md:w-4/5 lg:w-3/5 mx-auto py-40 lg:py-0 mb-8 relative z-10">
+        
         <!-- Header -->
         <div class="text-center content-center">
           <!-- Mail Icon SVG -->
@@ -288,20 +318,46 @@
           <h1 class="jura {$theme === 'light' ? theme.classes.light.text : theme.classes.dark.text}" style="margin: 1em; font-size: 2em; font-weight: 600;">CONTACT ME</h1>
         </div>
 
-      <!-- Form -->
-      <div class="ion-text-center w-11/12 lg:w-1/2 text-center mx-auto">
+        <!-- Form -->
+        <div class="ion-text-center w-11/12 lg:w-1/2 text-center mx-auto">
+        <div class="form-wrapper {$theme === 'light' ? 'bg-white border-[#228b22]/30' : 'bg-[#1a1a1a] border-[#cc4400]/30'} border-2 rounded-2xl p-6 md:p-8 shadow-lg">
           <!-- https://formsubmit.co/ -->
           <!-- https://www.youtube.com/watch?v=iSobU_DjNN4 -->
           <form action="https://formsubmit.co/f6e4bbd318fdd3193043ce91e88f6bfd" method="POST">
-              <input class={$theme === 'light' ? theme.classes.light.input : theme.classes.dark.input} type="text" required placeholder="First & Last Name" name="name">
-              <input class={$theme === 'light' ? theme.classes.light.input : theme.classes.dark.input} type="text" required placeholder="Email Address" name="email">
-              <textarea class={$theme === 'light' ? theme.classes.light.input : theme.classes.dark.input} rows="5" required placeholder="Want to collaborate or have a suggestion?" name="message"></textarea>
+              <input 
+                class={$theme === 'light' ? theme.classes.light.input : theme.classes.dark.input} 
+                type="text" 
+                required 
+                placeholder="First & Last Name" 
+                name="name"
+                on:focus={handleFocus}
+                on:blur={handleBlur}
+              >
+              <input 
+                class={$theme === 'light' ? theme.classes.light.input : theme.classes.dark.input} 
+                type="text" 
+                required 
+                placeholder="Email Address" 
+                name="email"
+                on:focus={handleFocus}
+                on:blur={handleBlur}
+              >
+              <textarea 
+                class={$theme === 'light' ? theme.classes.light.input : theme.classes.dark.input} 
+                rows="5" 
+                required 
+                placeholder="Want to collaborate or have a suggestion?" 
+                name="message"
+                on:focus={handleFocus}
+                on:blur={handleBlur}
+              ></textarea>
               <div class="h-10"></div>
               <button class={$theme === 'light' ? theme.classes.light.button : theme.classes.dark.button} style="padding: 0.5em 2em; font-size: 1.2em;" type="submit">
                   Send Message
               </button>
           </form>
-      </div>
+        </div>
+        </div>
 
       </div>
     </div>
@@ -330,5 +386,25 @@
   .animate-gradientShift {
     animation: gradientShift 12s ease infinite;
     background-size: 400% 400%;
+  }
+
+  /* Keystroke flicker effect */
+  .contact-flicker {
+    animation: contactFlicker 0.15s ease-out;
+  }
+
+  @keyframes contactFlicker {
+    0% {
+      opacity: 0.45;
+      filter: brightness(1.3) saturate(1.8);
+    }
+    50% {
+      opacity: 0.7;
+      filter: brightness(1.8) saturate(2.2);
+    }
+    100% {
+      opacity: 0.45;
+      filter: brightness(1.3) saturate(1.8);
+    }
   }
 </style>
