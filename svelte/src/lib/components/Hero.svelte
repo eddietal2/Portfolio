@@ -397,8 +397,8 @@
             </b> 
           </span>
         </div>
-        <div class="min-h-[120px] md:min-h-[140px] lg:min-h-[180px] my-4 border-b border-gray-200/20 pb-4 typewriter-text {$theme === 'light' ? 'caret-green' : 'caret-fire'}">
-          <span class="text-sm md:text-base lg:text-lg xl:text-xl {$theme === 'light' ? theme.classes.light.text : theme.classes.dark.text}">
+        <div class="min-h-[120px] md:min-h-[140px] lg:min-h-[180px] my-4 border-b border-gray-200/20 pb-4 typewriter-text {frameHovered ? 'caret-gold' : ($theme === 'light' ? 'caret-green' : 'caret-fire')}">
+          <span class="text-sm md:text-base lg:text-lg xl:text-xl transition-colors duration-300 {frameHovered ? ($theme === 'light' ? 'typewriter-gold-light' : 'typewriter-gold-dark') : ($theme === 'light' ? theme.classes.light.text : theme.classes.dark.text)}">
             {typedText}
           </span>
         </div>
@@ -540,6 +540,29 @@
   }
   .typewriter-text.caret-green span::after {
     color: #00c400;
+  }
+  .typewriter-text.caret-gold span::after {
+    animation: blink 1s infinite, gold-caret-pulse 1.5s ease-in-out infinite;
+  }
+  @keyframes gold-caret-pulse {
+    0%, 100% { color: #FFD700; }
+    50% { color: #ffffff; }
+  }
+
+  /* Gold pulsating typewriter text */
+  .typewriter-gold-light {
+    animation: typewriter-pulse-light 1.5s ease-in-out infinite;
+  }
+  .typewriter-gold-dark {
+    animation: typewriter-pulse-dark 1.5s ease-in-out infinite;
+  }
+  @keyframes typewriter-pulse-light {
+    0%, 100% { color: #9A7B1C; }
+    50% { color: #4a3a0e; }
+  }
+  @keyframes typewriter-pulse-dark {
+    0%, 100% { color: #FFD700; }
+    50% { color: #ffffff; }
   }
   @keyframes blink {
     0%, 50% { opacity: 1; }
