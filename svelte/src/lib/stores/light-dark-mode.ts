@@ -29,7 +29,7 @@ const classes: Record<Theme, ThemeClasses> = {
     buttonTwo:
       "bg-gradient-to-r from-green-500 via-green-500 to-[#00c400] text-white jura font-bold py-1 px-4 rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 ease-in-out",
     input:
-      "bg-[] text-[#666] shadow w-full my-1 p-2 text-sm focus:text-[#111] focus:text-lg focus:p-3 focus:shadow-md focus:border-none focus:ring-2 focus:ring-[#111] rounded w-full transition-all duration-200"
+      "bg-[] text-[#666] shadow w-full my-1 p-2 text-sm focus:text-[#111] focus:text-lg focus:p-3 focus:shadow-md focus:border-none focus:ring-2 focus:ring-[#00c400] focus:outline-[#00c400] rounded w-full transition-all duration-200"
   },
   dark: {
     nav: "backdrop-blur-lg text-white bg-[#000]/90 h-16 drop-shadow-lg fixed w-full bottom-0 md:top-0 content-center z-50 transition duration-150",
@@ -45,7 +45,7 @@ const classes: Record<Theme, ThemeClasses> = {
     buttonTwo:
       "bg-gradient-to-r from-green-500 via-green-500 to-[#00c400] text-white jura font-bold py-1 px-4 rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 ease-in-out",
     input:
-      "bg-[#ffffff10] text-[#999] shadow w-full my-1 p-2 text-sm focus:text-white focus:text-lg focus:p-3 focus:shadow-md focus:border-none focus:ring-2 focus:ring-white rounded w-full transition-all duration-200"
+      "bg-[#ffffff10] text-[#999] shadow w-full my-1 p-2 text-sm focus:text-white focus:text-lg focus:p-3 focus:shadow-md focus:border-none focus:ring-2 focus:ring-[#ff4500] focus:outline-[#ff4500] rounded w-full transition-all duration-200"
   },
 };
 
