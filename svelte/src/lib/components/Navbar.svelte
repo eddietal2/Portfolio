@@ -45,12 +45,12 @@
 
 <main>
   <div class="{$theme === 'light' ? theme.classes.light.nav : theme.classes.dark.nav} navbar-container">
-    <div class="md:w-4/5 lg:w-3/5 mx-auto grid grid-cols-2 md:grid-cols-3 px-2">
+    <div class="w-full max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-3 px-4 lg:px-8">
 
       <!-- Logo -->
       <div class="col-span-1 content-center flex items-center">
         <!-- Custom E.T Logo - Clean modern monogram with style -->
-        <svg class="h-10 md:h-12 w-14 md:w-16 inline-block mr-2 lg:ml-0" viewBox="0 0 56 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg class="h-10 md:h-12 w-14 md:w-16 inline-block mr-2 flex-shrink-0" viewBox="0 0 56 44" fill="none" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <linearGradient id="etCodeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
               <stop offset="0%" stop-color={$theme === 'light' ? '#00c400' : '#ff4500'}/>
@@ -97,58 +97,58 @@
       </div>
 
       <!-- Center Navigation Links (Desktop only) -->
-      <div class="hidden md:flex col-span-1 items-center justify-center space-x-6">
-        <a href="#section-1" class="nav-link text-sm jura tracking-wider transition-all duration-300
+      <div class="hidden md:flex col-span-1 items-center justify-center space-x-3 lg:space-x-6">
+        <a href="#section-1" class="nav-link text-xs lg:text-sm jura tracking-wider transition-all duration-300 whitespace-nowrap
           {activeSection === 's1' 
             ? ($theme === 'light' ? 'text-[#00a000] font-bold' : 'text-[#ff6030] font-bold') 
             : ($theme === 'light' ? 'text-gray-600 hover:text-[#00c400]' : 'text-gray-400 hover:text-[#ff4500]')}">HOME</a>
-        <a href="#section-2" class="nav-link text-sm jura tracking-wider transition-all duration-300
+        <a href="#section-2" class="nav-link text-xs lg:text-sm jura tracking-wider transition-all duration-300 whitespace-nowrap
           {activeSection === 's2' 
             ? ($theme === 'light' ? 'text-[#00a000] font-bold' : 'text-[#ff6030] font-bold') 
             : ($theme === 'light' ? 'text-gray-600 hover:text-[#00c400]' : 'text-gray-400 hover:text-[#ff4500]')}">STORY</a>
-        <a href="#section-3" class="nav-link text-sm jura tracking-wider transition-all duration-300
+        <a href="#section-3" class="nav-link text-xs lg:text-sm jura tracking-wider transition-all duration-300 whitespace-nowrap
           {activeSection === 's3' 
             ? ($theme === 'light' ? 'text-[#00a000] font-bold' : 'text-[#ff6030] font-bold') 
             : ($theme === 'light' ? 'text-gray-600 hover:text-[#00c400]' : 'text-gray-400 hover:text-[#ff4500]')}">PROJECTS</a>
-        <a href="#section-4" class="nav-link text-sm jura tracking-wider transition-all duration-300
+        <a href="#section-4" class="nav-link text-xs lg:text-sm jura tracking-wider transition-all duration-300 whitespace-nowrap
           {activeSection === 's4' 
             ? ($theme === 'light' ? 'text-[#00a000] font-bold' : 'text-[#ff6030] font-bold') 
             : ($theme === 'light' ? 'text-gray-600 hover:text-[#00c400]' : 'text-gray-400 hover:text-[#ff4500]')}">CONTACT</a>
       </div>
 
       <!-- Icons + Dark/Light Toggle -->
-      <div class="col-span-1 text-right flex items-center justify-end space-x-1 md:space-x-3 mr-2 lg:mr-0">
+      <div class="col-span-1 text-right flex items-center justify-end space-x-1 lg:space-x-3">
         <!-- Github -->
-        <a class="nav-icon-link p-1.5 rounded-full transition-all duration-300 {$theme === 'light' ? 'hover:bg-[#00c40020]' : 'hover:bg-[#ff450020]'}" 
+        <a class="nav-icon-link p-1 lg:p-1.5 rounded-full transition-all duration-300 {$theme === 'light' ? 'hover:bg-[#00c40020]' : 'hover:bg-[#ff450020]'}" 
            href="https://github.com/eddietal2" target="_blank" aria-label="Github Link">
-          <ion-icon class="text-2xl md:text-3xl" name="logo-github"></ion-icon>
+          <ion-icon class="text-xl lg:text-2xl xl:text-3xl" name="logo-github"></ion-icon>
         </a>
 
         <!-- LinkedIn -->
-        <a class="nav-icon-link p-1.5 rounded-full transition-all duration-300 {$theme === 'light' ? 'hover:bg-[#00c40020]' : 'hover:bg-[#ff450020]'}" 
+        <a class="nav-icon-link p-1 lg:p-1.5 rounded-full transition-all duration-300 {$theme === 'light' ? 'hover:bg-[#00c40020]' : 'hover:bg-[#ff450020]'}" 
            href="https://www.linkedin.com/in/eddie-taliaferro-ii/" target="_blank" aria-label="LinkedIn Link">
-          <ion-icon class="text-2xl md:text-3xl" name="logo-linkedin"></ion-icon>
+          <ion-icon class="text-xl lg:text-2xl xl:text-3xl" name="logo-linkedin"></ion-icon>
         </a>
 
         <!-- Contact -->
-        <a class="nav-icon-link p-1.5 rounded-full transition-all duration-300 {$theme === 'light' ? 'hover:bg-[#00c40020]' : 'hover:bg-[#ff450020]'}" 
+        <a class="nav-icon-link p-1 lg:p-1.5 rounded-full transition-all duration-300 {$theme === 'light' ? 'hover:bg-[#00c40020]' : 'hover:bg-[#ff450020]'}" 
            href="#section-4" aria-label="Contact Me Link">
-          <ion-icon class="text-2xl md:text-3xl" name="mail-outline"></ion-icon>
+          <ion-icon class="text-xl lg:text-2xl xl:text-3xl" name="mail-outline"></ion-icon>
         </a>
 
         <!-- Divider -->
-        <div class="h-6 w-px {$theme === 'light' ? 'bg-gray-300' : 'bg-gray-600'} hidden md:block"></div>
+        <div class="h-5 lg:h-6 w-px {$theme === 'light' ? 'bg-gray-300' : 'bg-gray-600'} hidden md:block"></div>
 
         <!-- Light/Dark Mode Toggle -->
         <button aria-label="Light/Dark Button"
           type="button"
-          class="p-1.5 rounded-full transition-all duration-300 {$theme === 'light' ? 'hover:bg-[#00c40020]' : 'hover:bg-[#ff450020]'}
+          class="p-1 lg:p-1.5 rounded-full transition-all duration-300 {$theme === 'light' ? 'hover:bg-[#00c40020]' : 'hover:bg-[#ff450020]'}
             {showThemeTooltip ? 'animate-pulse ring-2 ring-offset-2 ' + ($theme === 'light' ? 'ring-[#00c400] ring-offset-white' : 'ring-[#ff4500] ring-offset-gray-900') : ''}"
           on:click={toggleTheme}>
           {#if $theme === 'light'}
-            <ion-icon class="text-2xl md:text-3xl text-[#00c400]" name="sunny-sharp"></ion-icon>
+            <ion-icon class="text-xl lg:text-2xl xl:text-3xl text-[#00c400]" name="sunny-sharp"></ion-icon>
           {:else}
-            <ion-icon class="text-2xl md:text-3xl text-[#ff4500]" name="moon-sharp"></ion-icon>
+            <ion-icon class="text-xl lg:text-2xl xl:text-3xl text-[#ff4500]" name="moon-sharp"></ion-icon>
           {/if}
         </button>
 
