@@ -1,6 +1,9 @@
 <script lang="ts">
   import { theme } from '../stores/light-dark-mode';
   import { onMount } from 'svelte';
+  import { get } from 'svelte/store';
+  import storyFrameGreen from '../../assets/illustrations/story-frame-green.svg';
+  import storyFrameFire from '../../assets/illustrations/story-frame-fire.svg';
 
   // Carousel images
   import slidePhotoOne from '../../assets/photos/Photo_5.png'
@@ -17,6 +20,56 @@
   let current = 0;
   let isVisible = false;
   let activeTab = 0;
+  let bookFrameHovered = false;
+  let storyScrollProgress = 0;
+
+  // Function to load the appropriate frame SVG based on theme and state
+  function loadBookFrame(currentTheme: string, showInverse: boolean = false) {
+    let svgUrl: string;
+    if (showInverse) {
+      svgUrl = currentTheme === 'light' ? storyFrameFire : storyFrameGreen;
+    } else {
+      svgUrl = currentTheme === 'light' ? storyFrameGreen : storyFrameFire;
+    }
+    
+    fetch(svgUrl)
+      .then(res => res.text())
+      .then(svgContent => {
+        const frameContainer = document.getElementById('book-frame');
+        if (frameContainer) {
+          frameContainer.innerHTML = svgContent;
+          // Apply rotation based on scroll progress (desktop only)
+          const svg = frameContainer.querySelector('svg');
+          if (svg && window.innerWidth >= 1024) {
+            const rotation = storyScrollProgress * 360;
+            svg.style.transform = `rotate(${rotation}deg)`;
+            svg.style.transition = 'transform 0.3s ease-out';
+          }
+        }
+      });
+  }
+
+  // Determine if we should show inverse color
+  $: isBookRotating = storyScrollProgress > 0;
+  $: showBookInverseColor = bookFrameHovered || isBookRotating;
+
+  // Subscribe to theme changes
+  theme.subscribe((currentTheme) => {
+    if (typeof document !== 'undefined') {
+      loadBookFrame(currentTheme, showBookInverseColor);
+    }
+  });
+
+  // Handle frame hover
+  function handleBookFrameEnter() {
+    bookFrameHovered = true;
+    loadBookFrame(get(theme), true);
+  }
+
+  function handleBookFrameLeave() {
+    bookFrameHovered = false;
+    loadBookFrame(get(theme), isBookRotating);
+  }
 
   const storyTabs = [
     {
@@ -41,6 +94,49 @@
   }
   
   onMount(() => {
+    // Load initial book frame SVG
+    loadBookFrame(get(theme), false);
+
+    // Track scroll progress for book frame rotation (desktop only)
+    const wrapper = document.getElementById('wrapper');
+    const section2 = document.getElementById('section-2');
+    if (wrapper && section2 && window.innerWidth >= 1024) {
+      let wasBookRotating = false;
+      
+      const updateStoryScrollProgress = () => {
+        const section2Rect = section2.getBoundingClientRect();
+        const wrapperRect = wrapper.getBoundingClientRect();
+        
+        // Calculate how far into section-2 we've scrolled
+        // Progress goes from 0 (section just entering) to 1 (section fully scrolled past)
+        const sectionTop = section2Rect.top - wrapperRect.top;
+        const sectionHeight = section2.offsetHeight;
+        const viewportHeight = wrapperRect.height;
+        
+        // Start animation when section enters viewport, complete when it exits
+        const progress = Math.min(Math.max((-sectionTop + viewportHeight * 0.3) / (sectionHeight * 0.7), 0), 1);
+        storyScrollProgress = progress;
+        
+        // Update frame rotation
+        const frameContainer = document.getElementById('book-frame');
+        const svg = frameContainer?.querySelector('svg');
+        if (svg) {
+          const rotation = storyScrollProgress * 360;
+          svg.style.transform = `rotate(${rotation}deg)`;
+        }
+        
+        // Swap to inverse color when rotation starts or stops
+        const isCurrentlyRotating = storyScrollProgress > 0 && storyScrollProgress < 1;
+        if (isCurrentlyRotating !== wasBookRotating) {
+          wasBookRotating = isCurrentlyRotating;
+          loadBookFrame(get(theme), isCurrentlyRotating || bookFrameHovered);
+        }
+      };
+      
+      wrapper.addEventListener('scroll', updateStoryScrollProgress, { passive: true });
+      updateStoryScrollProgress();
+    }
+
     // Photos
     slides = Array.from(document.querySelectorAll("#section-2 .photo-slide"));
     if (slides.length > 0) {
@@ -350,43 +446,53 @@
             CHAPTER 01
           </span>
           <div class="flex items-center gap-4 mt-2">
-            <!-- Book SVG Illustration -->
-            <svg class="w-14 h-14 md:w-16 md:h-16" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <!-- Book spine -->
-              <rect x="8" y="8" width="8" height="48" rx="2" fill="{$theme === 'light' ? '#1a7a1a' : '#b33000'}">
-                <animate attributeName="fill-opacity" values="0.8;1;0.8" dur="3s" repeatCount="indefinite"/>
-              </rect>
-              <!-- Book cover back -->
-              <path d="M16 8h36a4 4 0 0 1 4 4v40a4 4 0 0 1-4 4H16V8z" fill="{$theme === 'light' ? '#228b22' : '#cc4400'}"/>
-              <!-- Book pages (visible from side) -->
-              <rect x="14" y="12" width="2" height="40" fill="{$theme === 'light' ? '#f5f5f5' : '#e8e8e8'}"/>
-              <!-- Page lines -->
-              <g stroke="{$theme === 'light' ? '#1a7a1a' : '#cc4400'}" stroke-width="1.5" stroke-linecap="round">
-                <line x1="24" y1="20" x2="48" y2="20" opacity="0.6">
-                  <animate attributeName="opacity" values="0.4;0.8;0.4" dur="2s" repeatCount="indefinite"/>
-                </line>
-                <line x1="24" y1="28" x2="44" y2="28" opacity="0.5">
-                  <animate attributeName="opacity" values="0.3;0.7;0.3" dur="2.5s" repeatCount="indefinite"/>
-                </line>
-                <line x1="24" y1="36" x2="46" y2="36" opacity="0.6">
-                  <animate attributeName="opacity" values="0.4;0.8;0.4" dur="2.2s" repeatCount="indefinite"/>
-                </line>
-                <line x1="24" y1="44" x2="40" y2="44" opacity="0.5">
-                  <animate attributeName="opacity" values="0.3;0.7;0.3" dur="2.8s" repeatCount="indefinite"/>
-                </line>
-              </g>
-              <!-- Bookmark ribbon -->
-              <path d="M42 8v18l-4-3-4 3V8" fill="{$theme === 'light' ? '#cc4400' : '#228b22'}">
-                <animate attributeName="d" values="M42 8v18l-4-3-4 3V8;M42 8v20l-4-3-4 3V8;M42 8v18l-4-3-4 3V8" dur="4s" repeatCount="indefinite"/>
-              </path>
-              <!-- Book edge highlight -->
-              <path d="M56 12v40a4 4 0 0 1-4 4" stroke="{$theme === 'light' ? '#2e8b2e' : '#dd5522'}" stroke-width="2" fill="none" opacity="0.4"/>
-              <!-- Sparkle effect -->
-              <circle cx="50" cy="16" r="1.5" fill="{$theme === 'light' ? '#2e8b2e' : '#dd5522'}">
-                <animate attributeName="opacity" values="0;1;0" dur="2s" repeatCount="indefinite"/>
-                <animate attributeName="r" values="1;2;1" dur="2s" repeatCount="indefinite"/>
-              </circle>
-            </svg>
+            <!-- Book SVG with animated frame -->
+            <div 
+              class="book-icon-container {showBookInverseColor
+                ? ($theme === 'light' ? 'glow-fire' : 'glow-green') 
+                : ($theme === 'light' ? 'glow-green' : 'glow-fire')}"
+              on:mouseenter={handleBookFrameEnter}
+              on:mouseleave={handleBookFrameLeave}
+              role="presentation"
+            >
+              <div id="book-frame" class="book-frame"></div>
+              <svg class="book-icon" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- Book spine -->
+                <rect x="8" y="8" width="8" height="48" rx="2" fill="{$theme === 'light' ? '#1a7a1a' : '#b33000'}">
+                  <animate attributeName="fill-opacity" values="0.8;1;0.8" dur="3s" repeatCount="indefinite"/>
+                </rect>
+                <!-- Book cover back -->
+                <path d="M16 8h36a4 4 0 0 1 4 4v40a4 4 0 0 1-4 4H16V8z" fill="{$theme === 'light' ? '#228b22' : '#cc4400'}"/>
+                <!-- Book pages (visible from side) -->
+                <rect x="14" y="12" width="2" height="40" fill="{$theme === 'light' ? '#f5f5f5' : '#e8e8e8'}"/>
+                <!-- Page lines -->
+                <g stroke="{$theme === 'light' ? '#1a7a1a' : '#cc4400'}" stroke-width="1.5" stroke-linecap="round">
+                  <line x1="24" y1="20" x2="48" y2="20" opacity="0.6">
+                    <animate attributeName="opacity" values="0.4;0.8;0.4" dur="2s" repeatCount="indefinite"/>
+                  </line>
+                  <line x1="24" y1="28" x2="44" y2="28" opacity="0.5">
+                    <animate attributeName="opacity" values="0.3;0.7;0.3" dur="2.5s" repeatCount="indefinite"/>
+                  </line>
+                  <line x1="24" y1="36" x2="46" y2="36" opacity="0.6">
+                    <animate attributeName="opacity" values="0.4;0.8;0.4" dur="2.2s" repeatCount="indefinite"/>
+                  </line>
+                  <line x1="24" y1="44" x2="40" y2="44" opacity="0.5">
+                    <animate attributeName="opacity" values="0.3;0.7;0.3" dur="2.8s" repeatCount="indefinite"/>
+                  </line>
+                </g>
+                <!-- Bookmark ribbon -->
+                <path d="M42 8v18l-4-3-4 3V8" fill="{$theme === 'light' ? '#cc4400' : '#228b22'}">
+                  <animate attributeName="d" values="M42 8v18l-4-3-4 3V8;M42 8v20l-4-3-4 3V8;M42 8v18l-4-3-4 3V8" dur="4s" repeatCount="indefinite"/>
+                </path>
+                <!-- Book edge highlight -->
+                <path d="M56 12v40a4 4 0 0 1-4 4" stroke="{$theme === 'light' ? '#2e8b2e' : '#dd5522'}" stroke-width="2" fill="none" opacity="0.4"/>
+                <!-- Sparkle effect -->
+                <circle cx="50" cy="16" r="1.5" fill="{$theme === 'light' ? '#2e8b2e' : '#dd5522'}">
+                  <animate attributeName="opacity" values="0;1;0" dur="2s" repeatCount="indefinite"/>
+                  <animate attributeName="r" values="1;2;1" dur="2s" repeatCount="indefinite"/>
+                </circle>
+              </svg>
+            </div>
             <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold jura {$theme === 'light' ? 'text-gray-900' : 'text-white'}">
               My Story
             </h1>
@@ -663,5 +769,96 @@
       opacity: 1;
       transform: scale(1);
     }
+  }
+
+  /* Book icon container with animated frame */
+  .book-icon-container {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+
+  @media (min-width: 768px) {
+    .book-icon-container {
+      width: 90px;
+      height: 90px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .book-icon-container {
+      width: 100px;
+      height: 100px;
+    }
+  }
+
+  .book-icon-container:hover {
+    transform: scale(1.05);
+  }
+
+  /* SVG frame positioned absolutely */
+  .book-frame {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  .book-frame :global(svg) {
+    width: 100%;
+    height: 100%;
+  }
+
+  /* Book icon centered inside frame */
+  .book-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40px;
+    height: 40px;
+    z-index: 1;
+  }
+
+  @media (min-width: 768px) {
+    .book-icon {
+      width: 45px;
+      height: 45px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .book-icon {
+      width: 50px;
+      height: 50px;
+    }
+  }
+
+  /* Glow effects for book frame */
+  .book-icon-container::after {
+    content: '';
+    position: absolute;
+    inset: -8px;
+    z-index: 0;
+    opacity: 0;
+    animation: fadeInGlow 1s ease 0.5s forwards;
+  }
+
+  .book-icon-container.glow-fire::after {
+    background: radial-gradient(circle, rgba(255, 69, 0, 0.25) 0%, transparent 70%);
+  }
+
+  .book-icon-container.glow-green::after {
+    background: radial-gradient(circle, rgba(0, 196, 0, 0.25) 0%, transparent 70%);
+  }
+
+  @keyframes fadeInGlow {
+    to { opacity: 1; }
   }
 </style>

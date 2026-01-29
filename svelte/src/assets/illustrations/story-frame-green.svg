@@ -1,0 +1,68 @@
+<svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="frameGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00ff00"/>
+      <stop offset="50%" stop-color="#00c400"/>
+      <stop offset="100%" stop-color="#228b22"/>
+    </linearGradient>
+    
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Pulse rings -->
+  <circle cx="60" cy="60" r="42" stroke="#00c400" stroke-width="1" fill="none" opacity="0">
+    <animate attributeName="r" values="42;56" dur="3s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0.5;0" dur="3s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="60" cy="60" r="42" stroke="#00c400" stroke-width="1" fill="none" opacity="0">
+    <animate attributeName="r" values="42;56" dur="3s" begin="1.5s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0.5;0" dur="3s" begin="1.5s" repeatCount="indefinite"/>
+  </circle>
+  
+  <!-- Outer ring segments -->
+  <g filter="url(#glow)">
+    <path d="M60 5 A55 55 0 0 1 105 35" stroke="url(#frameGradient)" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+    <path d="M112 55 A55 55 0 0 1 95 105" stroke="url(#frameGradient)" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+    <path d="M80 115 A55 55 0 0 1 25 105" stroke="url(#frameGradient)" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+    <path d="M8 80 A55 55 0 0 1 8 40" stroke="url(#frameGradient)" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+    <path d="M15 20 A55 55 0 0 1 45 6" stroke="url(#frameGradient)" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  </g>
+  
+  <!-- Rotating dashed inner ring -->
+  <circle cx="60" cy="60" r="48" stroke="#00c400" stroke-width="1.5" fill="none" stroke-dasharray="6 10" opacity="0.6">
+    <animateTransform attributeName="transform" type="rotate" from="0 60 60" to="360 60 60" dur="15s" repeatCount="indefinite"/>
+  </circle>
+  
+  <!-- Counter-rotating outer dashed ring -->
+  <circle cx="60" cy="60" r="53" stroke="#228b22" stroke-width="1" fill="none" stroke-dasharray="3 12" opacity="0.4">
+    <animateTransform attributeName="transform" type="rotate" from="360 60 60" to="0 60 60" dur="20s" repeatCount="indefinite"/>
+  </circle>
+  
+  <!-- Orbiting particles -->
+  <g filter="url(#glow)">
+    <circle r="2" fill="#00c400">
+      <animate attributeName="cx" values="60;105;60;15;60" dur="6s" repeatCount="indefinite"/>
+      <animate attributeName="cy" values="10;60;110;60;10" dur="6s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.8;0.4;0.8" dur="2s" repeatCount="indefinite"/>
+    </circle>
+    <circle r="1.5" fill="#00ff00">
+      <animate attributeName="cx" values="60;15;60;105;60" dur="6s" repeatCount="indefinite" begin="1.5s"/>
+      <animate attributeName="cy" values="110;60;10;60;110" dur="6s" repeatCount="indefinite" begin="1.5s"/>
+      <animate attributeName="opacity" values="0.6;0.3;0.6" dur="1.5s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+  
+  <!-- Corner accents -->
+  <g stroke="#00c400" stroke-width="1.5" fill="none" opacity="0.7">
+    <path d="M18 28 L18 18 L28 18"/>
+    <path d="M92 18 L102 18 L102 28"/>
+    <path d="M102 92 L102 102 L92 102"/>
+    <path d="M28 102 L18 102 L18 92"/>
+  </g>
+</svg>
