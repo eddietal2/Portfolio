@@ -50,7 +50,7 @@
   }
 
   // Determine if we should show inverse color
-  $: isBookRotating = storyScrollProgress > 0;
+  $: isBookRotating = storyScrollProgress > 0 && storyScrollProgress < 1;
   $: showBookInverseColor = bookFrameHovered || isBookRotating;
 
   // Subscribe to theme changes
@@ -59,6 +59,11 @@
       loadBookFrame(currentTheme, showBookInverseColor);
     }
   });
+
+  // Reactive statement to reload frame when inverse color state changes
+  $: if (typeof document !== 'undefined' && showBookInverseColor !== undefined) {
+    loadBookFrame(get(theme), showBookInverseColor);
+  }
 
   // Handle frame hover
   function handleBookFrameEnter() {
