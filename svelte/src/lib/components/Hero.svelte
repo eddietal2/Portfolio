@@ -172,27 +172,27 @@
     
     <!-- Background Silhouette SVG -->
     <div class="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
-      <svg class="absolute w-full h-full transition-opacity duration-300 {frameHovered ? 'opacity-[0.45]' : 'opacity-[0.25]'}" viewBox="0 0 1200 800" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+      <svg class="absolute w-full h-full transition-opacity duration-300 {frameHovered ? ($theme === 'light' ? 'opacity-[0.35]' : 'opacity-[0.45]') : 'opacity-[0.25]'}" viewBox="0 0 1200 800" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
         <!-- Gradient definitions -->
         <defs>
           <linearGradient id="circuitGrad1" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stop-color={frameHovered ? '#FFD700' : ($theme === 'light' ? '#00c400' : '#ff4500')}>
-              <animate attributeName="stop-color" values={frameHovered ? '#FFD700;#FFC125;#FFD700' : ($theme === 'light' ? '#00c400;#00ff88;#00c400' : '#ff4500;#ff8800;#ff4500')} dur="4s" repeatCount="indefinite"/>
+            <stop offset="0%" stop-color={frameHovered ? ($theme === 'light' ? '#9A7B1C' : '#FFD700') : ($theme === 'light' ? '#00c400' : '#ff4500')}>
+              <animate attributeName="stop-color" values={frameHovered ? ($theme === 'light' ? '#9A7B1C;#A8862A;#9A7B1C' : '#FFD700;#FFC125;#FFD700') : ($theme === 'light' ? '#00c400;#00ff88;#00c400' : '#ff4500;#ff8800;#ff4500')} dur="4s" repeatCount="indefinite"/>
             </stop>
-            <stop offset="50%" stop-color={frameHovered ? '#FFC125' : ($theme === 'light' ? '#00ff88' : '#ff8800')}>
-              <animate attributeName="stop-color" values={frameHovered ? '#FFC125;#FFD700;#FFC125' : ($theme === 'light' ? '#00ff88;#00c400;#00ff88' : '#ff8800;#ff4500;#ff8800')} dur="4s" repeatCount="indefinite"/>
+            <stop offset="50%" stop-color={frameHovered ? ($theme === 'light' ? '#A8862A' : '#FFC125') : ($theme === 'light' ? '#00ff88' : '#ff8800')}>
+              <animate attributeName="stop-color" values={frameHovered ? ($theme === 'light' ? '#A8862A;#9A7B1C;#A8862A' : '#FFC125;#FFD700;#FFC125') : ($theme === 'light' ? '#00ff88;#00c400;#00ff88' : '#ff8800;#ff4500;#ff8800')} dur="4s" repeatCount="indefinite"/>
             </stop>
-            <stop offset="100%" stop-color={frameHovered ? '#DAA520' : ($theme === 'light' ? '#00aa66' : '#cc3300')}>
-              <animate attributeName="stop-color" values={frameHovered ? '#DAA520;#FFB347;#DAA520' : ($theme === 'light' ? '#00aa66;#00ffaa;#00aa66' : '#cc3300;#ff6644;#cc3300')} dur="4s" repeatCount="indefinite"/>
+            <stop offset="100%" stop-color={frameHovered ? ($theme === 'light' ? '#7A5F08' : '#DAA520') : ($theme === 'light' ? '#00aa66' : '#cc3300')}>
+              <animate attributeName="stop-color" values={frameHovered ? ($theme === 'light' ? '#7A5F08;#9A7B1C;#7A5F08' : '#DAA520;#FFB347;#DAA520') : ($theme === 'light' ? '#00aa66;#00ffaa;#00aa66' : '#cc3300;#ff6644;#cc3300')} dur="4s" repeatCount="indefinite"/>
             </stop>
           </linearGradient>
           <linearGradient id="circuitGrad2" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stop-color={frameHovered ? '#FFD700' : ($theme === 'light' ? '#22cc88' : '#ff6622')}/>
-            <stop offset="100%" stop-color={frameHovered ? '#FFA500' : ($theme === 'light' ? '#00ff44' : '#ffaa00')}/>
+            <stop offset="0%" stop-color={frameHovered ? ($theme === 'light' ? '#9A7B1C' : '#FFD700') : ($theme === 'light' ? '#22cc88' : '#ff6622')}/>
+            <stop offset="100%" stop-color={frameHovered ? ($theme === 'light' ? '#7A5F08' : '#FFA500') : ($theme === 'light' ? '#00ff44' : '#ffaa00')}/>
           </linearGradient>
           <radialGradient id="nodeGlow" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stop-color={frameHovered ? '#FFD700' : ($theme === 'light' ? '#00ff88' : '#ffaa44')} stop-opacity="1"/>
-            <stop offset="100%" stop-color={frameHovered ? '#DAA520' : ($theme === 'light' ? '#00c400' : '#ff4500')} stop-opacity="0"/>
+            <stop offset="0%" stop-color={frameHovered ? ($theme === 'light' ? '#A8862A' : '#FFD700') : ($theme === 'light' ? '#00ff88' : '#ffaa44')} stop-opacity="1"/>
+            <stop offset="100%" stop-color={frameHovered ? ($theme === 'light' ? '#7A5F08' : '#DAA520') : ($theme === 'light' ? '#00c400' : '#ff4500')} stop-opacity="0"/>
           </radialGradient>
           <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
             <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
@@ -224,9 +224,9 @@
         </g>
         
         <!-- Secondary circuit layer with different color -->
-        <g stroke={frameHovered ? '#FFD700' : ($theme === 'light' ? '#00ddaa' : '#ff7744')} stroke-width="1.5" fill="none" opacity="0.7">
+        <g stroke={frameHovered ? ($theme === 'light' ? '#9A7B1C' : '#FFD700') : ($theme === 'light' ? '#00ddaa' : '#ff7744')} stroke-width="1.5" fill="none" opacity="0.7">
           <path d="M200 150 V50">
-            <animate attributeName="stroke" values={frameHovered ? '#FFD700;#FFC125;#FFD700' : ($theme === 'light' ? '#00ddaa;#44ffcc;#00ddaa' : '#ff7744;#ffcc44;#ff7744')} dur="3s" repeatCount="indefinite"/>
+            <animate attributeName="stroke" values={frameHovered ? ($theme === 'light' ? '#9A7B1C;#A8862A;#9A7B1C' : '#FFD700;#FFC125;#FFD700') : ($theme === 'light' ? '#00ddaa;#44ffcc;#00ddaa' : '#ff7744;#ffcc44;#ff7744')} dur="3s" repeatCount="indefinite"/>
           </path>
           <path d="M450 200 V100"/>
           <path d="M850 250 V350"/>
@@ -273,7 +273,7 @@
         </g>
         
         <!-- Data pulse traveling along paths -->
-        <g fill={frameHovered ? '#FFD700' : ($theme === 'light' ? '#00ff88' : '#ffaa44')}>
+        <g fill={frameHovered ? ($theme === 'light' ? '#9A7B1C' : '#FFD700') : ($theme === 'light' ? '#00ff88' : '#ffaa44')}>
           <circle r="4" opacity="0.9">
             <animateMotion dur="4s" repeatCount="indefinite" path="M0,200 H200 L250,150 H400 L450,200 H600"/>
           </circle>
@@ -287,30 +287,30 @@
         
         <!-- Colorful code brackets -->
         <g stroke-width="4" fill="none" filter="url(#glow)">
-          <path d="M50 350 L20 400 L50 450" stroke={frameHovered ? '#FFD700' : ($theme === 'light' ? '#00ff66' : '#ff6644')}>
-            <animate attributeName="stroke" values={frameHovered ? '#FFD700;#FFC125;#FFD700' : ($theme === 'light' ? '#00ff66;#00cc44;#00ff66' : '#ff6644;#ffaa44;#ff6644')} dur="3s" repeatCount="indefinite"/>
+          <path d="M50 350 L20 400 L50 450" stroke={frameHovered ? ($theme === 'light' ? '#9A7B1C' : '#FFD700') : ($theme === 'light' ? '#00ff66' : '#ff6644')}>
+            <animate attributeName="stroke" values={frameHovered ? ($theme === 'light' ? '#9A7B1C;#A8862A;#9A7B1C' : '#FFD700;#FFC125;#FFD700') : ($theme === 'light' ? '#00ff66;#00cc44;#00ff66' : '#ff6644;#ffaa44;#ff6644')} dur="3s" repeatCount="indefinite"/>
             <animate attributeName="opacity" values="0.4;0.8;0.4" dur="3s" repeatCount="indefinite"/>
           </path>
-          <path d="M1150 350 L1180 400 L1150 450" stroke={frameHovered ? '#FFC125' : ($theme === 'light' ? '#44ffaa' : '#ffcc44')}>
-            <animate attributeName="stroke" values={frameHovered ? '#FFC125;#FFD700;#FFC125' : ($theme === 'light' ? '#44ffaa;#00ff88;#44ffaa' : '#ffcc44;#ff8844;#ffcc44')} dur="3s" begin="1.5s" repeatCount="indefinite"/>
+          <path d="M1150 350 L1180 400 L1150 450" stroke={frameHovered ? ($theme === 'light' ? '#A8862A' : '#FFC125') : ($theme === 'light' ? '#44ffaa' : '#ffcc44')}>
+            <animate attributeName="stroke" values={frameHovered ? ($theme === 'light' ? '#A8862A;#9A7B1C;#A8862A' : '#FFC125;#FFD700;#FFC125') : ($theme === 'light' ? '#44ffaa;#00ff88;#44ffaa' : '#ffcc44;#ff8844;#ffcc44')} dur="3s" begin="1.5s" repeatCount="indefinite"/>
             <animate attributeName="opacity" values="0.4;0.8;0.4" dur="3s" begin="1.5s" repeatCount="indefinite"/>
           </path>
-          <path d="M580 320 L620 480" stroke={frameHovered ? '#DAA520' : ($theme === 'light' ? '#00dd88' : '#ff9944')} opacity="0.6"/>
+          <path d="M580 320 L620 480" stroke={frameHovered ? ($theme === 'light' ? '#7A5F08' : '#DAA520') : ($theme === 'light' ? '#00dd88' : '#ff9944')} opacity="0.6"/>
         </g>
         
         <!-- Animated hexagons with color cycling -->
         <g stroke-width="2" fill="none">
-          <polygon points="100,700 130,680 160,700 160,740 130,760 100,740" stroke={frameHovered ? '#FFD700' : ($theme === 'light' ? '#00ff88' : '#ff8844')}>
-            <animate attributeName="stroke" values={frameHovered ? '#FFD700;#FFC125;#DAA520;#FFD700' : ($theme === 'light' ? '#00ff88;#00cc66;#44ffaa;#00ff88' : '#ff8844;#ffcc44;#ff6622;#ff8844')} dur="4s" repeatCount="indefinite"/>
+          <polygon points="100,700 130,680 160,700 160,740 130,760 100,740" stroke={frameHovered ? ($theme === 'light' ? '#9A7B1C' : '#FFD700') : ($theme === 'light' ? '#00ff88' : '#ff8844')}>
+            <animate attributeName="stroke" values={frameHovered ? ($theme === 'light' ? '#9A7B1C;#A8862A;#7A5F08;#9A7B1C' : '#FFD700;#FFC125;#DAA520;#FFD700') : ($theme === 'light' ? '#00ff88;#00cc66;#44ffaa;#00ff88' : '#ff8844;#ffcc44;#ff6622;#ff8844')} dur="4s" repeatCount="indefinite"/>
             <animate attributeName="opacity" values="0.3;0.7;0.3" dur="4s" repeatCount="indefinite"/>
           </polygon>
-          <polygon points="1040,100 1070,80 1100,100 1100,140 1070,160 1040,140" stroke={frameHovered ? '#FFC125' : ($theme === 'light' ? '#44ffcc' : '#ffaa44')}>
-            <animate attributeName="stroke" values={frameHovered ? '#FFC125;#FFD700;#DAA520;#FFC125' : ($theme === 'light' ? '#44ffcc;#00ff88;#00ddaa;#44ffcc' : '#ffaa44;#ff6622;#ffcc66;#ffaa44')} dur="4s" begin="2s" repeatCount="indefinite"/>
+          <polygon points="1040,100 1070,80 1100,100 1100,140 1070,160 1040,140" stroke={frameHovered ? ($theme === 'light' ? '#A8862A' : '#FFC125') : ($theme === 'light' ? '#44ffcc' : '#ffaa44')}>
+            <animate attributeName="stroke" values={frameHovered ? ($theme === 'light' ? '#A8862A;#9A7B1C;#7A5F08;#A8862A' : '#FFC125;#FFD700;#DAA520;#FFC125') : ($theme === 'light' ? '#44ffcc;#00ff88;#00ddaa;#44ffcc' : '#ffaa44;#ff6622;#ffcc66;#ffaa44')} dur="4s" begin="2s" repeatCount="indefinite"/>
             <animate attributeName="opacity" values="0.3;0.7;0.3" dur="4s" begin="2s" repeatCount="indefinite"/>
           </polygon>
           <!-- Additional spinning hexagon -->
           <g transform="translate(600, 100)">
-            <polygon points="0,-30 26,-15 26,15 0,30 -26,15 -26,-15" stroke={frameHovered ? '#FFD700' : ($theme === 'light' ? '#00ffaa' : '#ff7744')} opacity="0.5">
+            <polygon points="0,-30 26,-15 26,15 0,30 -26,15 -26,-15" stroke={frameHovered ? ($theme === 'light' ? '#9A7B1C' : '#FFD700') : ($theme === 'light' ? '#00ffaa' : '#ff7744')} opacity="0.5">
               <animateTransform attributeName="transform" type="rotate" values="0;360" dur="20s" repeatCount="indefinite"/>
             </polygon>
           </g>
@@ -318,30 +318,30 @@
         
         <!-- Colorful triangles -->
         <g fill="none" stroke-width="2">
-          <polygon points="950,700 980,650 1010,700" stroke={frameHovered ? '#FFD700' : ($theme === 'light' ? '#00dd66' : '#ff9955')} opacity="0.5">
+          <polygon points="950,700 980,650 1010,700" stroke={frameHovered ? ($theme === 'light' ? '#9A7B1C' : '#FFD700') : ($theme === 'light' ? '#00dd66' : '#ff9955')} opacity="0.5">
             <animate attributeName="opacity" values="0.3;0.6;0.3" dur="3s" repeatCount="indefinite"/>
           </polygon>
-          <polygon points="300,80 330,30 360,80" stroke={frameHovered ? '#FFC125' : ($theme === 'light' ? '#22ffaa' : '#ffbb44')} opacity="0.5">
+          <polygon points="300,80 330,30 360,80" stroke={frameHovered ? ($theme === 'light' ? '#A8862A' : '#FFC125') : ($theme === 'light' ? '#22ffaa' : '#ffbb44')} opacity="0.5">
             <animate attributeName="opacity" values="0.3;0.6;0.3" dur="3s" begin="1.5s" repeatCount="indefinite"/>
           </polygon>
         </g>
         
         <!-- Colorful binary/data stream with gradient text -->
         <g opacity="0.25" font-family="monospace" font-size="12">
-          <text x="50" y="150" fill={frameHovered ? '#FFD700' : ($theme === 'light' ? '#00ff88' : '#ffaa44')}>
+          <text x="50" y="150" fill={frameHovered ? ($theme === 'light' ? '#9A7B1C' : '#FFD700') : ($theme === 'light' ? '#00ff88' : '#ffaa44')}>
             01001000 01100101 01101100
             <animate attributeName="opacity" values="0.2;0.4;0.2" dur="4s" repeatCount="indefinite"/>
           </text>
-          <text x="900" y="720" fill={frameHovered ? '#FFC125' : ($theme === 'light' ? '#00dd66' : '#ff8844')}>
+          <text x="900" y="720" fill={frameHovered ? ($theme === 'light' ? '#A8862A' : '#FFC125') : ($theme === 'light' ? '#00dd66' : '#ff8844')}>
             01101100 01101111 00100001
             <animate attributeName="opacity" values="0.2;0.4;0.2" dur="4s" begin="2s" repeatCount="indefinite"/>
           </text>
-          <text x="80" y="500" font-size="10" fill={frameHovered ? '#DAA520' : ($theme === 'light' ? '#44ffaa' : '#ffcc44')}>const dev = true;</text>
-          <text x="1000" y="400" font-size="10" fill={frameHovered ? '#FFB347' : ($theme === 'light' ? '#00ffcc' : '#ff9966')}>{"<Code />"}</text>
+          <text x="80" y="500" font-size="10" fill={frameHovered ? ($theme === 'light' ? '#7A5F08' : '#DAA520') : ($theme === 'light' ? '#44ffaa' : '#ffcc44')}>const dev = true;</text>
+          <text x="1000" y="400" font-size="10" fill={frameHovered ? ($theme === 'light' ? '#9A7B1C' : '#FFB347') : ($theme === 'light' ? '#00ffcc' : '#ff9966')}>{"<Code />"}</text>
         </g>
         
         <!-- Floating particles -->
-        <g fill={frameHovered ? '#FFD700' : ($theme === 'light' ? '#00ff88' : '#ffaa44')}>
+        <g fill={frameHovered ? ($theme === 'light' ? '#9A7B1C' : '#FFD700') : ($theme === 'light' ? '#00ff88' : '#ffaa44')}>
           {#each [
             {cx: 150, cy: 300, dur: 8},
             {cx: 350, cy: 500, dur: 10},
@@ -390,7 +390,7 @@
             <b class={$theme === 'light' ? theme.classes.light.text : theme.classes.dark.text}>
               <span class="text-2xl md:text-3xl lg:text-4xl jura greetings-anim-1 inline-block">HI,</span>
               <span class="text-2xl md:text-3xl lg:text-4xl jura greetings-anim-2 inline-block">I'M</span>
-              <span class="text-xl md:text-2xl lg:text-3xl xl:text-4xl jura greetings-anim-3 inline-block {$theme === 'light' ? 'name-highlight-green' : 'name-highlight'}">EDDIE TALIAFERRO II</span>
+              <span class="text-xl md:text-2xl lg:text-3xl xl:text-4xl jura greetings-anim-3 inline-block {frameHovered ? ($theme === 'light' ? 'name-highlight-gold-light' : 'name-highlight-gold-dark') : ($theme === 'light' ? 'name-highlight-green' : 'name-highlight')}">EDDIE TALIAFERRO II</span>
             </b> 
           </span>
         </div>
@@ -808,7 +808,7 @@
     filter: drop-shadow(0 0 20px rgba(255, 69, 0, 0.4));
   }
   .greetings-anim-3.name-highlight {
-    opacity: 0;
+    opacity: 1;
     animation: greeting-slide-2 500ms cubic-bezier(0.075, 0.82, 0.165, 1) 3s forwards,
                shimmer 3s ease-in-out 4s infinite;
   }
@@ -824,9 +824,39 @@
     filter: drop-shadow(0 0 20px rgba(0, 196, 0, 0.4));
   }
   .greetings-anim-3.name-highlight-green {
-    opacity: 0;
+    opacity: 1;
     animation: greeting-slide-2 500ms cubic-bezier(0.075, 0.82, 0.165, 1) 3s forwards,
                shimmer 3s ease-in-out 4s infinite;
+  }
+
+  /* Gold name highlight for light mode (muted bronze) */
+  .name-highlight-gold-light {
+    background: linear-gradient(135deg, #9A7B1C 0%, #A8862A 50%, #7A5F08 100%);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: shimmer 1.5s ease-in-out infinite;
+    filter: drop-shadow(0 0 20px rgba(154, 123, 28, 0.5));
+  }
+  .greetings-anim-3.name-highlight-gold-light {
+    opacity: 1;
+    animation: shimmer 1.5s ease-in-out infinite;
+  }
+
+  /* Gold name highlight for dark mode (bright gold) */
+  .name-highlight-gold-dark {
+    background: linear-gradient(135deg, #FFD700 0%, #FFC125 50%, #DAA520 100%);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: shimmer 1.5s ease-in-out infinite;
+    filter: drop-shadow(0 0 25px rgba(255, 215, 0, 0.6));
+  }
+  .greetings-anim-3.name-highlight-gold-dark {
+    opacity: 1;
+    animation: shimmer 1.5s ease-in-out infinite;
   }
 
   @keyframes shimmer {
