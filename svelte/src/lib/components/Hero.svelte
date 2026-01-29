@@ -403,14 +403,18 @@
           </span>
         </div>
 
-        <h1 class="{$theme === 'light' ? theme.classes.light.text : theme.classes.dark.text} jura text-base md:text-lg lg:text-xl skills-title">SKILLS</h1>
+        <h1 class="{frameHovered ? ($theme === 'light' ? 'text-[#9A7B1C]' : 'text-[#FFD700]') : ($theme === 'light' ? theme.classes.light.text : theme.classes.dark.text)} jura text-base md:text-lg lg:text-xl skills-title transition-colors duration-300">SKILLS</h1>
         <div class="flex flex-wrap gap-2 md:gap-3 sm:my-2 items-start">
           {#each ["NextJS", "SvelteKit", "TypeScript", "PostgreSQL", "TailWindCSS", "Python", "Django", "Linux", "Git", "Figma", "Unreal Engine", "Vercel", "CI/CD", "AWS", "XR"] as skill, i}
             <button 
               class="skill-badge border rounded-2xl px-2 md:px-3 py-0.5 md:py-1 transition-all duration-300 ease-out skill-tag
                 {hoveredSkill === skill 
-                  ? ($theme === 'light' ? 'bg-[#228b22] border-[#228b22] shadow-md shadow-[#228b22]/30 scale-105' : 'bg-[#cc4400] border-[#cc4400] shadow-md shadow-[#cc4400]/30 scale-105')
-                  : ($theme === 'light' ? 'bg-[#228b2215] border-[#228b22] hover:bg-[#228b2230]' : 'bg-[#cc440015] border-[#cc4400] hover:bg-[#cc440030]')}"
+                  ? (frameHovered 
+                    ? ($theme === 'light' ? 'bg-[#9A7B1C] border-[#9A7B1C] shadow-md shadow-[#9A7B1C]/30 scale-105' : 'bg-[#DAA520] border-[#DAA520] shadow-md shadow-[#FFD700]/30 scale-105')
+                    : ($theme === 'light' ? 'bg-[#228b22] border-[#228b22] shadow-md shadow-[#228b22]/30 scale-105' : 'bg-[#cc4400] border-[#cc4400] shadow-md shadow-[#cc4400]/30 scale-105'))
+                  : (frameHovered
+                    ? ($theme === 'light' ? 'bg-[#9A7B1C15] border-[#9A7B1C] hover:bg-[#9A7B1C30]' : 'bg-[#FFD70015] border-[#FFD700] hover:bg-[#FFD70030]')
+                    : ($theme === 'light' ? 'bg-[#228b2215] border-[#228b22] hover:bg-[#228b2230]' : 'bg-[#cc440015] border-[#cc4400] hover:bg-[#cc440030]'))}"
               style="animation-delay: {5.5 + (i * 0.08)}s"
               on:mouseenter={() => hoveredSkill = skill}
               on:mouseleave={() => hoveredSkill = null}
@@ -418,7 +422,7 @@
               on:focus={() => hoveredSkill = skill}
               on:blur={() => hoveredSkill = null}
             >
-              <span class="text-xs md:text-sm font-medium whitespace-nowrap {hoveredSkill === skill ? 'text-white' : ($theme === 'light' ? theme.classes.light.text : theme.classes.dark.text)}">
+              <span class="text-xs md:text-sm font-medium whitespace-nowrap {hoveredSkill === skill ? 'text-white' : (frameHovered ? ($theme === 'light' ? 'text-[#9A7B1C]' : 'text-[#FFD700]') : ($theme === 'light' ? theme.classes.light.text : theme.classes.dark.text))}">
                 {skill}
               </span>
             </button>
@@ -428,8 +432,8 @@
         <!-- Skill description area -->
         <div class="skill-description-area h-12 md:h-10 mt-2 overflow-hidden">
           {#if hoveredSkill}
-            <div class="skill-description-content flex items-center gap-2 px-3 py-2 rounded-lg {$theme === 'light' ? 'bg-[#228b2210] border border-[#228b2240]' : 'bg-[#cc440010] border border-[#cc440040]'}">
-              <span class="text-sm font-semibold {$theme === 'light' ? 'text-[#228b22]' : 'text-[#cc4400]'}">{hoveredSkill}:</span>
+            <div class="skill-description-content flex items-center gap-2 px-3 py-2 rounded-lg transition-colors duration-300 {frameHovered ? ($theme === 'light' ? 'bg-[#9A7B1C10] border border-[#9A7B1C40]' : 'bg-[#FFD70010] border border-[#FFD70040]') : ($theme === 'light' ? 'bg-[#228b2210] border border-[#228b2240]' : 'bg-[#cc440010] border border-[#cc440040]')}">
+              <span class="text-sm font-semibold transition-colors duration-300 {frameHovered ? ($theme === 'light' ? 'text-[#9A7B1C]' : 'text-[#FFD700]') : ($theme === 'light' ? 'text-[#228b22]' : 'text-[#cc4400]')}">{hoveredSkill}:</span>
               <span class="text-xs md:text-sm {$theme === 'light' ? theme.classes.light.text : theme.classes.dark.text} opacity-80">
                 {skillDescriptions[hoveredSkill]}
               </span>
