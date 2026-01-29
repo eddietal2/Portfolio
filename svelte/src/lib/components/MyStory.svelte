@@ -114,6 +114,88 @@
         <!-- Detail grid overlay -->
         <rect width="100%" height="100%" fill="url(#storyGridSmall)"/>
         
+        <!-- Animated light-up grid lines - Horizontal -->
+        <g stroke={$theme === 'light' ? '#00ff00' : '#ff6600'} fill="none">
+          <!-- Row 1 -->
+          <line x1="0" y1="80" x2="1400" y2="80" stroke-width="1.5" opacity="0">
+            <animate attributeName="opacity" values="0;0.8;0" dur="4s" repeatCount="indefinite" begin="0s"/>
+          </line>
+          <!-- Row 3 -->
+          <line x1="0" y1="240" x2="1400" y2="240" stroke-width="1.5" opacity="0">
+            <animate attributeName="opacity" values="0;0.8;0" dur="5s" repeatCount="indefinite" begin="2s"/>
+          </line>
+          <!-- Row 5 -->
+          <line x1="0" y1="400" x2="1400" y2="400" stroke-width="1.5" opacity="0">
+            <animate attributeName="opacity" values="0;0.8;0" dur="4.5s" repeatCount="indefinite" begin="1s"/>
+          </line>
+          <!-- Row 7 -->
+          <line x1="0" y1="560" x2="1400" y2="560" stroke-width="1.5" opacity="0">
+            <animate attributeName="opacity" values="0;0.8;0" dur="5.5s" repeatCount="indefinite" begin="3s"/>
+          </line>
+          <!-- Row 9 -->
+          <line x1="0" y1="720" x2="1400" y2="720" stroke-width="1.5" opacity="0">
+            <animate attributeName="opacity" values="0;0.8;0" dur="4s" repeatCount="indefinite" begin="1.5s"/>
+          </line>
+        </g>
+        
+        <!-- Animated light-up grid lines - Vertical -->
+        <g stroke={$theme === 'light' ? '#00ff00' : '#ff6600'} fill="none">
+          <!-- Column 2 -->
+          <line x1="160" y1="0" x2="160" y2="900" stroke-width="1.5" opacity="0">
+            <animate attributeName="opacity" values="0;0.8;0" dur="5s" repeatCount="indefinite" begin="0.5s"/>
+          </line>
+          <!-- Column 5 -->
+          <line x1="400" y1="0" x2="400" y2="900" stroke-width="1.5" opacity="0">
+            <animate attributeName="opacity" values="0;0.8;0" dur="4.5s" repeatCount="indefinite" begin="2.5s"/>
+          </line>
+          <!-- Column 8 -->
+          <line x1="640" y1="0" x2="640" y2="900" stroke-width="1.5" opacity="0">
+            <animate attributeName="opacity" values="0;0.8;0" dur="6s" repeatCount="indefinite" begin="1.2s"/>
+          </line>
+          <!-- Column 11 -->
+          <line x1="880" y1="0" x2="880" y2="900" stroke-width="1.5" opacity="0">
+            <animate attributeName="opacity" values="0;0.8;0" dur="4s" repeatCount="indefinite" begin="3.5s"/>
+          </line>
+          <!-- Column 14 -->
+          <line x1="1120" y1="0" x2="1120" y2="900" stroke-width="1.5" opacity="0">
+            <animate attributeName="opacity" values="0;0.8;0" dur="5.5s" repeatCount="indefinite" begin="0.8s"/>
+          </line>
+        </g>
+        
+        <!-- Traveling light pulses along grid lines -->
+        <g fill={$theme === 'light' ? '#00ff88' : '#ff8c00'}>
+          <!-- Horizontal traveling light 1 -->
+          <circle r="4" opacity="0.7">
+            <animateMotion dur="6s" repeatCount="indefinite" path="M0,160 L1400,160"/>
+            <animate attributeName="opacity" values="0;0.8;0.8;0" dur="6s" repeatCount="indefinite"/>
+          </circle>
+          <!-- Horizontal traveling light 2 -->
+          <circle r="3" opacity="0.6">
+            <animateMotion dur="8s" repeatCount="indefinite" path="M1400,480 L0,480" begin="2s"/>
+            <animate attributeName="opacity" values="0;0.7;0.7;0" dur="8s" repeatCount="indefinite" begin="2s"/>
+          </circle>
+          <!-- Horizontal traveling light 3 -->
+          <circle r="3.5" opacity="0.6">
+            <animateMotion dur="7s" repeatCount="indefinite" path="M0,640 L1400,640" begin="4s"/>
+            <animate attributeName="opacity" values="0;0.75;0.75;0" dur="7s" repeatCount="indefinite" begin="4s"/>
+          </circle>
+          <!-- Vertical traveling light 1 -->
+          <circle r="3" opacity="0.6">
+            <animateMotion dur="7s" repeatCount="indefinite" path="M320,0 L320,900" begin="1s"/>
+            <animate attributeName="opacity" values="0;0.7;0.7;0" dur="7s" repeatCount="indefinite" begin="1s"/>
+          </circle>
+          <!-- Vertical traveling light 2 -->
+          <circle r="4" opacity="0.7">
+            <animateMotion dur="6s" repeatCount="indefinite" path="M960,900 L960,0" begin="3s"/>
+            <animate attributeName="opacity" values="0;0.8;0.8;0" dur="6s" repeatCount="indefinite" begin="3s"/>
+          </circle>
+          <!-- Vertical traveling light 3 -->
+          <circle r="3" opacity="0.6">
+            <animateMotion dur="8s" repeatCount="indefinite" path="M1280,0 L1280,900" begin="5s"/>
+            <animate attributeName="opacity" values="0;0.7;0.7;0" dur="8s" repeatCount="indefinite" begin="5s"/>
+          </circle>
+        </g>
+        
         <!-- Blueprint-style construction markers -->
         <g stroke={$theme === 'light' ? '#00c400' : '#ff4500'} fill="none" opacity="0.4">
           <!-- Corner brackets - Top Left -->
