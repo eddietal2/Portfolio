@@ -1,5 +1,6 @@
 <script lang="ts">
   import { theme } from '../stores/light-dark-mode';
+  import { goldenState } from '../stores/golden-state';
   import headerArtPicFire from '../../assets/illustrations/eddie-header.svg';
   import headerArtPicGreen from '../../assets/illustrations/eddie-header-green.svg';
   import headerArtPicGold from '../../assets/illustrations/eddie-header-gold.svg';
@@ -79,11 +80,13 @@
   // Handle frame hover - show golden state
   function handleFrameEnter() {
     frameHovered = true;
+    goldenState.set(true);
     loadHeaderSvg(get(theme), isRotating, true); // Show gold on hover
   }
 
   function handleFrameLeave() {
     frameHovered = false;
+    goldenState.set(false);
     loadHeaderSvg(get(theme), isRotating, false); // Return to normal/inverse
   }
 

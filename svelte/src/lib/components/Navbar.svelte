@@ -1,6 +1,7 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import { theme } from '../stores/light-dark-mode';
+  import { goldenState } from '../stores/golden-state';
 
   function toggleTheme() {
     theme.toggle();
@@ -53,13 +54,13 @@
         <svg class="h-10 md:h-12 w-14 md:w-16 inline-block mr-2 flex-shrink-0" viewBox="0 0 56 44" fill="none" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <linearGradient id="etCodeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color={$theme === 'light' ? '#00c400' : '#ff4500'}/>
-              <stop offset="100%" stop-color={$theme === 'light' ? '#00ff88' : '#ff8c00'}/>
+              <stop offset="0%" stop-color={$goldenState ? ($theme === 'light' ? '#9A7B1C' : '#FFD700') : ($theme === 'light' ? '#00c400' : '#ff4500')}/>
+              <stop offset="100%" stop-color={$goldenState ? ($theme === 'light' ? '#A8862A' : '#FFC125') : ($theme === 'light' ? '#00ff88' : '#ff8c00')}/>
             </linearGradient>
             <linearGradient id="etGlowGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stop-color={$theme === 'light' ? '#00c400' : '#ff4500'} stop-opacity="0"/>
-              <stop offset="50%" stop-color={$theme === 'light' ? '#00ff88' : '#ff8c00'} stop-opacity="0.8"/>
-              <stop offset="100%" stop-color={$theme === 'light' ? '#00c400' : '#ff4500'} stop-opacity="0"/>
+              <stop offset="0%" stop-color={$goldenState ? ($theme === 'light' ? '#9A7B1C' : '#FFD700') : ($theme === 'light' ? '#00c400' : '#ff4500')} stop-opacity="0"/>
+              <stop offset="50%" stop-color={$goldenState ? ($theme === 'light' ? '#A8862A' : '#FFC125') : ($theme === 'light' ? '#00ff88' : '#ff8c00')} stop-opacity="0.8"/>
+              <stop offset="100%" stop-color={$goldenState ? ($theme === 'light' ? '#9A7B1C' : '#FFD700') : ($theme === 'light' ? '#00c400' : '#ff4500')} stop-opacity="0"/>
             </linearGradient>
             <filter id="etGlow" x="-20%" y="-20%" width="140%" height="140%">
               <feGaussianBlur stdDeviation="1.5" result="blur"/>
@@ -93,62 +94,62 @@
             <animate attributeName="r" values="2;2.5;2" dur="2s" repeatCount="indefinite" begin="1s"/>
           </circle>
         </svg>
-        <b class="text-sm jura tracking-wide sm:hidden">EDDIE T.</b>
+        <b class="text-sm jura tracking-wide sm:hidden transition-colors duration-300 {$goldenState ? ($theme === 'light' ? 'text-[#9A7B1C]' : 'text-[#FFD700]') : ''}">EDDIE T.</b>
       </div>
 
       <!-- Center Navigation Links (Desktop only) -->
       <div class="hidden md:flex col-span-1 items-center justify-center space-x-3 lg:space-x-6">
         <a href="#section-1" class="nav-link text-xs lg:text-sm jura tracking-wider transition-all duration-300 whitespace-nowrap
           {activeSection === 's1' 
-            ? ($theme === 'light' ? 'text-[#00a000] font-bold' : 'text-[#ff6030] font-bold') 
-            : ($theme === 'light' ? 'text-gray-600 hover:text-[#00c400]' : 'text-gray-400 hover:text-[#ff4500]')}">HOME</a>
+            ? ($goldenState ? ($theme === 'light' ? 'text-[#9A7B1C] font-bold' : 'text-[#FFD700] font-bold') : ($theme === 'light' ? 'text-[#00a000] font-bold' : 'text-[#ff6030] font-bold')) 
+            : ($goldenState ? ($theme === 'light' ? 'text-[#7A5F08] hover:text-[#9A7B1C]' : 'text-[#DAA520] hover:text-[#FFD700]') : ($theme === 'light' ? 'text-gray-600 hover:text-[#00c400]' : 'text-gray-400 hover:text-[#ff4500]'))}">HOME</a>
         <a href="#section-2" class="nav-link text-xs lg:text-sm jura tracking-wider transition-all duration-300 whitespace-nowrap
           {activeSection === 's2' 
-            ? ($theme === 'light' ? 'text-[#00a000] font-bold' : 'text-[#ff6030] font-bold') 
-            : ($theme === 'light' ? 'text-gray-600 hover:text-[#00c400]' : 'text-gray-400 hover:text-[#ff4500]')}">STORY</a>
+            ? ($goldenState ? ($theme === 'light' ? 'text-[#9A7B1C] font-bold' : 'text-[#FFD700] font-bold') : ($theme === 'light' ? 'text-[#00a000] font-bold' : 'text-[#ff6030] font-bold')) 
+            : ($goldenState ? ($theme === 'light' ? 'text-[#7A5F08] hover:text-[#9A7B1C]' : 'text-[#DAA520] hover:text-[#FFD700]') : ($theme === 'light' ? 'text-gray-600 hover:text-[#00c400]' : 'text-gray-400 hover:text-[#ff4500]'))}">STORY</a>
         <a href="#section-3" class="nav-link text-xs lg:text-sm jura tracking-wider transition-all duration-300 whitespace-nowrap
           {activeSection === 's3' 
-            ? ($theme === 'light' ? 'text-[#00a000] font-bold' : 'text-[#ff6030] font-bold') 
-            : ($theme === 'light' ? 'text-gray-600 hover:text-[#00c400]' : 'text-gray-400 hover:text-[#ff4500]')}">PROJECTS</a>
+            ? ($goldenState ? ($theme === 'light' ? 'text-[#9A7B1C] font-bold' : 'text-[#FFD700] font-bold') : ($theme === 'light' ? 'text-[#00a000] font-bold' : 'text-[#ff6030] font-bold')) 
+            : ($goldenState ? ($theme === 'light' ? 'text-[#7A5F08] hover:text-[#9A7B1C]' : 'text-[#DAA520] hover:text-[#FFD700]') : ($theme === 'light' ? 'text-gray-600 hover:text-[#00c400]' : 'text-gray-400 hover:text-[#ff4500]'))}">PROJECTS</a>
         <a href="#section-4" class="nav-link text-xs lg:text-sm jura tracking-wider transition-all duration-300 whitespace-nowrap
           {activeSection === 's4' 
-            ? ($theme === 'light' ? 'text-[#00a000] font-bold' : 'text-[#ff6030] font-bold') 
-            : ($theme === 'light' ? 'text-gray-600 hover:text-[#00c400]' : 'text-gray-400 hover:text-[#ff4500]')}">CONTACT</a>
+            ? ($goldenState ? ($theme === 'light' ? 'text-[#9A7B1C] font-bold' : 'text-[#FFD700] font-bold') : ($theme === 'light' ? 'text-[#00a000] font-bold' : 'text-[#ff6030] font-bold')) 
+            : ($goldenState ? ($theme === 'light' ? 'text-[#7A5F08] hover:text-[#9A7B1C]' : 'text-[#DAA520] hover:text-[#FFD700]') : ($theme === 'light' ? 'text-gray-600 hover:text-[#00c400]' : 'text-gray-400 hover:text-[#ff4500]'))}">CONTACT</a>
       </div>
 
       <!-- Icons + Dark/Light Toggle -->
       <div class="col-span-1 text-right flex items-center justify-end space-x-1 lg:space-x-3">
         <!-- Github -->
-        <a class="nav-icon-link p-1 lg:p-1.5 rounded-full transition-all duration-300 {$theme === 'light' ? 'hover:bg-[#00c40020]' : 'hover:bg-[#ff450020]'}" 
+        <a class="nav-icon-link p-1 lg:p-1.5 rounded-full transition-all duration-300 {$goldenState ? ($theme === 'light' ? 'hover:bg-[#9A7B1C20] text-[#9A7B1C]' : 'hover:bg-[#FFD70020] text-[#FFD700]') : ($theme === 'light' ? 'hover:bg-[#00c40020]' : 'hover:bg-[#ff450020]')}" 
            href="https://github.com/eddietal2" target="_blank" aria-label="Github Link">
           <ion-icon class="text-xl lg:text-2xl xl:text-3xl" name="logo-github"></ion-icon>
         </a>
 
         <!-- LinkedIn -->
-        <a class="nav-icon-link p-1 lg:p-1.5 rounded-full transition-all duration-300 {$theme === 'light' ? 'hover:bg-[#00c40020]' : 'hover:bg-[#ff450020]'}" 
+        <a class="nav-icon-link p-1 lg:p-1.5 rounded-full transition-all duration-300 {$goldenState ? ($theme === 'light' ? 'hover:bg-[#9A7B1C20] text-[#9A7B1C]' : 'hover:bg-[#FFD70020] text-[#FFD700]') : ($theme === 'light' ? 'hover:bg-[#00c40020]' : 'hover:bg-[#ff450020]')}" 
            href="https://www.linkedin.com/in/eddie-taliaferro-ii/" target="_blank" aria-label="LinkedIn Link">
           <ion-icon class="text-xl lg:text-2xl xl:text-3xl" name="logo-linkedin"></ion-icon>
         </a>
 
         <!-- Contact -->
-        <a class="nav-icon-link p-1 lg:p-1.5 rounded-full transition-all duration-300 {$theme === 'light' ? 'hover:bg-[#00c40020]' : 'hover:bg-[#ff450020]'}" 
+        <a class="nav-icon-link p-1 lg:p-1.5 rounded-full transition-all duration-300 {$goldenState ? ($theme === 'light' ? 'hover:bg-[#9A7B1C20] text-[#9A7B1C]' : 'hover:bg-[#FFD70020] text-[#FFD700]') : ($theme === 'light' ? 'hover:bg-[#00c40020]' : 'hover:bg-[#ff450020]')}" 
            href="#section-4" aria-label="Contact Me Link">
           <ion-icon class="text-xl lg:text-2xl xl:text-3xl" name="mail-outline"></ion-icon>
         </a>
 
         <!-- Divider -->
-        <div class="h-5 lg:h-6 w-px {$theme === 'light' ? 'bg-gray-300' : 'bg-gray-600'} hidden md:block"></div>
+        <div class="h-5 lg:h-6 w-px {$goldenState ? ($theme === 'light' ? 'bg-[#9A7B1C40]' : 'bg-[#FFD70040]') : ($theme === 'light' ? 'bg-gray-300' : 'bg-gray-600')} hidden md:block"></div>
 
         <!-- Light/Dark Mode Toggle -->
         <button aria-label="Light/Dark Button"
           type="button"
-          class="p-1 lg:p-1.5 rounded-full transition-all duration-300 {$theme === 'light' ? 'hover:bg-[#00c40020]' : 'hover:bg-[#ff450020]'}
-            {showThemeTooltip ? 'animate-pulse ring-2 ring-offset-2 ' + ($theme === 'light' ? 'ring-[#00c400] ring-offset-white' : 'ring-[#ff4500] ring-offset-gray-900') : ''}"
+          class="p-1 lg:p-1.5 rounded-full transition-all duration-300 {$goldenState ? ($theme === 'light' ? 'hover:bg-[#9A7B1C20]' : 'hover:bg-[#FFD70020]') : ($theme === 'light' ? 'hover:bg-[#00c40020]' : 'hover:bg-[#ff450020]')}
+            {showThemeTooltip ? 'animate-pulse ring-2 ring-offset-2 ' + ($goldenState ? ($theme === 'light' ? 'ring-[#9A7B1C] ring-offset-white' : 'ring-[#FFD700] ring-offset-gray-900') : ($theme === 'light' ? 'ring-[#00c400] ring-offset-white' : 'ring-[#ff4500] ring-offset-gray-900')) : ''}"
           on:click={toggleTheme}>
           {#if $theme === 'light'}
-            <ion-icon class="text-xl lg:text-2xl xl:text-3xl text-[#00c400]" name="sunny-sharp"></ion-icon>
+            <ion-icon class="text-xl lg:text-2xl xl:text-3xl {$goldenState ? 'text-[#9A7B1C]' : 'text-[#00c400]'}" name="sunny-sharp"></ion-icon>
           {:else}
-            <ion-icon class="text-xl lg:text-2xl xl:text-3xl text-[#ff4500]" name="moon-sharp"></ion-icon>
+            <ion-icon class="text-xl lg:text-2xl xl:text-3xl {$goldenState ? 'text-[#FFD700]' : 'text-[#ff4500]'}" name="moon-sharp"></ion-icon>
           {/if}
         </button>
 
