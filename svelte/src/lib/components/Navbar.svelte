@@ -10,6 +10,7 @@
 
   let activeSection = 's1';
   let showThemeTooltip = false;
+  let scrollProgress = 0;
 
   onMount(() => {
     // Track active section for nav highlighting
@@ -26,6 +27,16 @@
     }, options);
     document.querySelectorAll('section').forEach(section => observer.observe(section));
 
+    // Track scroll progress for logo animation
+    const updateScrollProgress = () => {
+      const scrollTop = window.scrollY || document.documentElement.scrollTop;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      scrollProgress = docHeight > 0 ? Math.min(scrollTop / docHeight, 1) : 0;
+    };
+    
+    window.addEventListener('scroll', updateScrollProgress, { passive: true });
+    updateScrollProgress(); // Initial call
+
     // Show theme tooltip for first-time visitors
     const hasSeenTooltip = localStorage.getItem('hasSeenThemeTooltip');
     if (!hasSeenTooltip) {
@@ -39,6 +50,10 @@
         }, 5000);
       }, 1000);
     }
+
+    return () => {
+      window.removeEventListener('scroll', updateScrollProgress);
+    };
   });
 
 </script>
@@ -49,17 +64,29 @@
 
       <!-- Logo -->
       <div class="col-span-1 content-center flex items-center">
-        <!-- Custom E.T Logo - Clean modern monogram with style -->
+        <!-- Custom E.T Logo - Clean modern monogram with scroll color animation -->
         <svg class="h-10 md:h-12 w-14 md:w-16 inline-block mr-2 flex-shrink-0" viewBox="0 0 56 44" fill="none" xmlns="http://www.w3.org/2000/svg">
           <defs>
+            <!-- Base gradient (primary colors) -->
             <linearGradient id="etCodeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
               <stop offset="0%" stop-color={$theme === 'light' ? '#00c400' : '#ff4500'}/>
               <stop offset="100%" stop-color={$theme === 'light' ? '#00ff88' : '#ff8c00'}/>
+            </linearGradient>
+            <!-- Inverse gradient (scroll reveal colors) -->
+            <linearGradient id="etInverseGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color={$theme === 'light' ? '#ff4500' : '#00c400'}/>
+              <stop offset="100%" stop-color={$theme === 'light' ? '#ff8c00' : '#00ff88'}/>
             </linearGradient>
             <linearGradient id="etGlowGrad" x1="0%" y1="0%" x2="100%" y2="0%">
               <stop offset="0%" stop-color={$theme === 'light' ? '#00c400' : '#ff4500'} stop-opacity="0"/>
               <stop offset="50%" stop-color={$theme === 'light' ? '#00ff88' : '#ff8c00'} stop-opacity="0.8"/>
               <stop offset="100%" stop-color={$theme === 'light' ? '#00c400' : '#ff4500'} stop-opacity="0"/>
+            </linearGradient>
+            <!-- Inverse glow gradient for scroll -->
+            <linearGradient id="etInverseGlowGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color={$theme === 'light' ? '#ff4500' : '#00c400'} stop-opacity="0"/>
+              <stop offset="50%" stop-color={$theme === 'light' ? '#ff8c00' : '#00ff88'} stop-opacity="0.8"/>
+              <stop offset="100%" stop-color={$theme === 'light' ? '#ff4500' : '#00c400'} stop-opacity="0"/>
             </linearGradient>
             <filter id="etGlow" x="-20%" y="-20%" width="140%" height="140%">
               <feGaussianBlur stdDeviation="1.5" result="blur"/>
@@ -70,28 +97,57 @@
             </filter>
           </defs>
           
-          <!-- E letter - italicized with diagonal cut -->
-          <path d="M8,10 L10,6 L25,6 L24,9 L14,9 L13,18 L22,18 L21,21 L12,21 L11,32 L24,32 L23,35 L6,35 Z" 
-            fill="url(#etCodeGrad)" filter="url(#etGlow)"/>
+          <!-- BASE LAYER: Original colors -->
+          <g>
+            <!-- E letter - italicized with diagonal cut -->
+            <path d="M8,10 L10,6 L25,6 L24,9 L14,9 L13,18 L22,18 L21,21 L12,21 L11,32 L24,32 L23,35 L6,35 Z" 
+              fill="url(#etCodeGrad)" filter="url(#etGlow)"/>
+            
+            <!-- T letter - italicized with diagonal cut -->
+            <path d="M28,6 L29,6 L50,6 L49,9 L42,9 L38,35 L34,35 L38,9 L30,9 Z" 
+              fill="url(#etCodeGrad)" filter="url(#etGlow)"/>
+            
+            <!-- Diagonal slash accent cutting through -->
+            <line x1="4" y1="38" x2="52" y2="2" stroke="url(#etGlowGrad)" stroke-width="1" stroke-linecap="round">
+              <animate attributeName="stroke-dasharray" values="0,100;60,100;0,100" dur="3s" repeatCount="indefinite"/>
+            </line>
+            
+            <!-- Top accent dot -->
+            <circle cx="52" cy="4" r="2" fill="url(#etCodeGrad)" opacity="0.6">
+              <animate attributeName="r" values="2;2.5;2" dur="2s" repeatCount="indefinite"/>
+            </circle>
+            
+            <!-- Bottom accent dot -->
+            <circle cx="4" cy="40" r="2" fill="url(#etCodeGrad)" opacity="0.6">
+              <animate attributeName="r" values="2;2.5;2" dur="2s" repeatCount="indefinite" begin="1s"/>
+            </circle>
+          </g>
           
-          <!-- T letter - italicized with diagonal cut -->
-          <path d="M28,6 L29,6 L50,6 L49,9 L42,9 L38,35 L34,35 L38,9 L30,9 Z" 
-            fill="url(#etCodeGrad)" filter="url(#etGlow)"/>
-          
-          <!-- Diagonal slash accent cutting through -->
-          <line x1="4" y1="38" x2="52" y2="2" stroke="url(#etGlowGrad)" stroke-width="1" stroke-linecap="round">
-            <animate attributeName="stroke-dasharray" values="0,100;60,100;0,100" dur="3s" repeatCount="indefinite"/>
-          </line>
-          
-          <!-- Top accent dot -->
-          <circle cx="52" cy="4" r="2" fill="url(#etCodeGrad)" opacity="0.6">
-            <animate attributeName="r" values="2;2.5;2" dur="2s" repeatCount="indefinite"/>
-          </circle>
-          
-          <!-- Bottom accent dot -->
-          <circle cx="4" cy="40" r="2" fill="url(#etCodeGrad)" opacity="0.6">
-            <animate attributeName="r" values="2;2.5;2" dur="2s" repeatCount="indefinite" begin="1s"/>
-          </circle>
+          <!-- SCROLL OVERLAY: Inverse colors revealed from bottom to top -->
+          <g style="clip-path: inset({(1 - scrollProgress) * 100}% 0 0 0); transition: clip-path 0.15s ease-out;">
+            <!-- E letter - inverse color -->
+            <path d="M8,10 L10,6 L25,6 L24,9 L14,9 L13,18 L22,18 L21,21 L12,21 L11,32 L24,32 L23,35 L6,35 Z" 
+              fill="url(#etInverseGrad)" filter="url(#etGlow)"/>
+            
+            <!-- T letter - inverse color -->
+            <path d="M28,6 L29,6 L50,6 L49,9 L42,9 L38,35 L34,35 L38,9 L30,9 Z" 
+              fill="url(#etInverseGrad)" filter="url(#etGlow)"/>
+            
+            <!-- Diagonal slash accent - inverse -->
+            <line x1="4" y1="38" x2="52" y2="2" stroke="url(#etInverseGlowGrad)" stroke-width="1" stroke-linecap="round">
+              <animate attributeName="stroke-dasharray" values="0,100;60,100;0,100" dur="3s" repeatCount="indefinite"/>
+            </line>
+            
+            <!-- Top accent dot - inverse -->
+            <circle cx="52" cy="4" r="2" fill="url(#etInverseGrad)" opacity="0.6">
+              <animate attributeName="r" values="2;2.5;2" dur="2s" repeatCount="indefinite"/>
+            </circle>
+            
+            <!-- Bottom accent dot - inverse -->
+            <circle cx="4" cy="40" r="2" fill="url(#etInverseGrad)" opacity="0.6">
+              <animate attributeName="r" values="2;2.5;2" dur="2s" repeatCount="indefinite" begin="1s"/>
+            </circle>
+          </g>
         </svg>
         <b class="text-sm jura tracking-wide sm:hidden">EDDIE T.</b>
       </div>
