@@ -78,6 +78,84 @@
 <main>
   <div id="section-1" class={$theme === 'light' ? theme.classes.light.heroGradient : theme.classes.dark.heroGradient}>
     
+    <!-- Background Silhouette SVG -->
+    <div class="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
+      <svg class="absolute w-full h-full opacity-[0.12]" viewBox="0 0 1200 800" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+        <!-- Circuit board pattern - tech silhouette -->
+        <g stroke={$theme === 'light' ? '#00c400' : '#ff4500'} stroke-width="1.5" fill="none">
+          <!-- Main circuit lines -->
+          <path d="M0 200 H200 L250 150 H400 L450 200 H600">
+            <animate attributeName="stroke-dasharray" values="0 1000;1000 0" dur="8s" repeatCount="indefinite"/>
+          </path>
+          <path d="M600 200 H800 L850 250 H1000 L1050 200 H1200"/>
+          <path d="M100 400 V300 H300 V350 H500 V400"/>
+          <path d="M700 400 V350 H900 V300 H1100 V400"/>
+          
+          <!-- Vertical connectors -->
+          <path d="M200 150 V50"/>
+          <path d="M450 200 V100"/>
+          <path d="M850 250 V350"/>
+          <path d="M1050 200 V100"/>
+          
+          <!-- Bottom circuit lines -->
+          <path d="M0 600 H150 L200 550 H350 L400 600 H550"/>
+          <path d="M650 600 H800 L850 650 H1000 L1050 600 H1200"/>
+          <path d="M200 550 V450"/>
+          <path d="M400 600 V700"/>
+          <path d="M850 650 V750"/>
+          <path d="M1050 600 V500"/>
+        </g>
+        
+        <!-- Circuit nodes/dots -->
+        <g fill={$theme === 'light' ? '#00c400' : '#ff4500'}>
+          <circle cx="200" cy="200" r="6"><animate attributeName="opacity" values="0.3;0.8;0.3" dur="3s" repeatCount="indefinite"/></circle>
+          <circle cx="450" cy="200" r="6"><animate attributeName="opacity" values="0.3;0.8;0.3" dur="3.5s" repeatCount="indefinite"/></circle>
+          <circle cx="850" cy="250" r="6"><animate attributeName="opacity" values="0.3;0.8;0.3" dur="2.8s" repeatCount="indefinite"/></circle>
+          <circle cx="200" cy="50" r="4"/>
+          <circle cx="1050" cy="100" r="4"/>
+          <circle cx="200" cy="550" r="6"><animate attributeName="opacity" values="0.3;0.8;0.3" dur="3.2s" repeatCount="indefinite"/></circle>
+          <circle cx="400" cy="600" r="6"><animate attributeName="opacity" values="0.3;0.8;0.3" dur="2.9s" repeatCount="indefinite"/></circle>
+          <circle cx="850" cy="650" r="6"><animate attributeName="opacity" values="0.3;0.8;0.3" dur="3.3s" repeatCount="indefinite"/></circle>
+        </g>
+        
+        <!-- Code brackets silhouette -->
+        <g stroke={$theme === 'light' ? '#00a000' : '#cc3700'} stroke-width="3" fill="none" opacity="0.5">
+          <!-- Left bracket < -->
+          <path d="M50 350 L20 400 L50 450">
+            <animate attributeName="stroke-opacity" values="0.3;0.6;0.3" dur="4s" repeatCount="indefinite"/>
+          </path>
+          <!-- Right bracket > -->
+          <path d="M1150 350 L1180 400 L1150 450">
+            <animate attributeName="stroke-opacity" values="0.3;0.6;0.3" dur="4s" begin="2s" repeatCount="indefinite"/>
+          </path>
+          <!-- Slash / -->
+          <path d="M580 320 L620 480"/>
+        </g>
+        
+        <!-- Geometric shapes - abstract tech feel -->
+        <g stroke={$theme === 'light' ? '#00c400' : '#ff4500'} stroke-width="1" fill="none" opacity="0.3">
+          <!-- Hexagons -->
+          <polygon points="100,700 130,680 160,700 160,740 130,760 100,740">
+            <animate attributeName="opacity" values="0.2;0.5;0.2" dur="5s" repeatCount="indefinite"/>
+          </polygon>
+          <polygon points="1040,100 1070,80 1100,100 1100,140 1070,160 1040,140">
+            <animate attributeName="opacity" values="0.2;0.5;0.2" dur="5s" begin="2.5s" repeatCount="indefinite"/>
+          </polygon>
+          <!-- Triangles -->
+          <polygon points="950,700 980,650 1010,700"/>
+          <polygon points="300,80 330,30 360,80"/>
+        </g>
+        
+        <!-- Binary/data stream lines -->
+        <g fill={$theme === 'light' ? '#00c400' : '#ff4500'} opacity="0.15">
+          <text x="50" y="150" font-family="monospace" font-size="12">01001000 01100101 01101100</text>
+          <text x="900" y="720" font-family="monospace" font-size="12">01101100 01101111 00100001</text>
+          <text x="80" y="500" font-family="monospace" font-size="10">const dev = true;</text>
+          <text x="1000" y="400" font-family="monospace" font-size="10">{"<Code />"}</text>
+        </g>
+      </svg>
+    </div>
+    
     <!-- Floating lights overlay -->
     <div class={$theme === 'light' ? 'floating-lights-light' : 'floating-lights-dark'} aria-hidden="true"></div>
 
