@@ -159,7 +159,7 @@
     <!-- Floating lights overlay -->
     <div class={$theme === 'light' ? 'floating-lights-light' : 'floating-lights-dark'} aria-hidden="true"></div>
 
-    <div class="w-full max-w-7xl mx-auto px-4 md:px-8 lg:px-12 lg:mt-0 md:flex flex-row gap-8 lg:gap-16 xl:gap-20 relative z-10 pt-8 md:pt-0 md:items-center md:min-h-[calc(100vh-4rem)]">
+    <div class="w-full max-w-7xl mx-auto px-4 md:px-8 lg:px-12 lg:mt-0 md:flex flex-row gap-8 lg:gap-16 xl:gap-20 relative lg:bottom-32 z-10 pt-8 md:pt-0 md:items-center md:min-h-[calc(100vh-4rem)]">
 
       <!-- Picture -->
       <div class="w-full md:w-2/5 lg:w-1/3 mx-auto flex items-center justify-center mb-6 md:mb-0">
