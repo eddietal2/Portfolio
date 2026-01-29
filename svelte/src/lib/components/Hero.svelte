@@ -8,6 +8,8 @@
 
   let typedText = '';
   let hoveredSkill: string | null = null;
+  let frameHovered = false;
+  let scrollProgress = 0;
 
   // Skill descriptions for hover expansion
   const skillDescriptions: Record<string, string> = {
@@ -31,29 +33,94 @@
   const fullText = `As a versatile developer and designer, I specialize in turning innovative ideas into tangible software. 
   From web applications to immersive XR experiences, my expertise spans web development, responsive design, CSS & SVG animation, UI/UX design, and even video game development using Unreal Engine. With a focus on creating high-performing and effective software, I've successfully delivered MVPs and beyond on numerous projects.`;
 
-  // Function to load the appropriate SVG based on theme
-  function loadHeaderSvg(currentTheme: string) {
-    const svgUrl = currentTheme === 'light' ? headerArtPicGreen : headerArtPicFire;
+  // Function to load the appropriate SVG based on theme and state
+  // Shows inverse color when hovering OR when rotating (scrolling)
+  function loadHeaderSvg(currentTheme: string, showInverse: boolean = false) {
+    let svgUrl: string;
+    if (showInverse) {
+      // Swap colors: light mode shows fire, dark mode shows green
+      svgUrl = currentTheme === 'light' ? headerArtPicFire : headerArtPicGreen;
+    } else {
+      svgUrl = currentTheme === 'light' ? headerArtPicGreen : headerArtPicFire;
+    }
+    
     fetch(svgUrl)
       .then(res => res.text())
       .then(svgContent => {
         const svgContainer = document.getElementById('header-pic');
         if (svgContainer) {
           svgContainer.innerHTML = svgContent;
+          // Apply rotation based on scroll progress (desktop only)
+          const svg = svgContainer.querySelector('svg');
+          if (svg && window.innerWidth >= 1024) {
+            const rotation = scrollProgress * 360;
+            svg.style.transform = `rotate(${rotation}deg)`;
+            svg.style.transition = 'transform 0.3s ease-out';
+          }
         }
       });
   }
 
+  // Determine if we should show inverse color (hovering or rotating)
+  $: isRotating = scrollProgress > 0;
+  $: showInverseColor = frameHovered || isRotating;
+
   // Subscribe to theme changes to update the SVG
   theme.subscribe((currentTheme) => {
     if (typeof document !== 'undefined') {
-      loadHeaderSvg(currentTheme);
+      loadHeaderSvg(currentTheme, showInverseColor);
     }
   });
 
+  // Handle frame hover - swap to opposite color
+  function handleFrameEnter() {
+    frameHovered = true;
+    loadHeaderSvg(get(theme), true);
+  }
+
+  function handleFrameLeave() {
+    frameHovered = false;
+    loadHeaderSvg(get(theme), isRotating);
+  }
+
   onMount(() => {
     // Load initial SVG based on current theme
-    loadHeaderSvg(get(theme));
+    loadHeaderSvg(get(theme), false);
+
+    // Track scroll progress for frame rotation (desktop only)
+    const wrapper = document.getElementById('wrapper');
+    if (wrapper && window.innerWidth >= 1024) {
+      let wasRotating = false;
+      
+      const updateScrollProgress = () => {
+        const heroSection = document.getElementById('section-1');
+        if (!heroSection) return;
+        
+        const scrollTop = wrapper.scrollTop;
+        const heroHeight = heroSection.offsetHeight;
+        
+        // Calculate progress: 0 at top, 1 when hero is fully scrolled past
+        scrollProgress = Math.min(Math.max(scrollTop / heroHeight, 0), 1);
+        
+        // Update frame rotation
+        const svgContainer = document.getElementById('header-pic');
+        const svg = svgContainer?.querySelector('svg');
+        if (svg) {
+          const rotation = scrollProgress * 360;
+          svg.style.transform = `rotate(${rotation}deg)`;
+        }
+        
+        // Swap to inverse color when rotation starts or stops
+        const isCurrentlyRotating = scrollProgress > 0;
+        if (isCurrentlyRotating !== wasRotating) {
+          wasRotating = isCurrentlyRotating;
+          loadHeaderSvg(get(theme), isCurrentlyRotating || frameHovered);
+        }
+      };
+      
+      wrapper.addEventListener('scroll', updateScrollProgress, { passive: true });
+      updateScrollProgress();
+    }
 
     // Typewriter effect
     let i = 0;
@@ -296,7 +363,14 @@
 
       <!-- Picture -->
       <div class="w-full md:w-2/5 lg:w-1/3 mx-auto flex items-center justify-center mb-6 md:mb-0">
-        <div class="header-pic-container {$theme === 'light' ? 'glow-green' : 'glow-fire'}">
+        <div 
+          class="header-pic-container {showInverseColor
+            ? ($theme === 'light' ? 'glow-fire' : 'glow-green') 
+            : ($theme === 'light' ? 'glow-green' : 'glow-fire')}"
+          on:mouseenter={handleFrameEnter}
+          on:mouseleave={handleFrameLeave}
+          role="presentation"
+        >
           <div id="header-pic" class="header-frame"></div>
           <img src={profilePhoto} alt="Eddie" class="profile-photo" />
         </div>
@@ -473,6 +547,7 @@
     width: 200px;
     height: 200px;
     transition: transform 0.3s ease;
+    cursor: pointer;
   }
   
   /* Tablet size */
