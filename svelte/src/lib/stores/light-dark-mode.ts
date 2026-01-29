@@ -70,6 +70,18 @@ function createThemeStore() {
     document.documentElement.classList.remove("light", "dark");
     document.documentElement.classList.add(theme);
     localStorage.setItem("theme", theme);
+    
+    // Update favicon based on theme
+    updateFavicon(theme);
+  }
+
+  function updateFavicon(theme: Theme) {
+    const favicon = document.querySelector('link[rel="icon"]:not([media])') as HTMLLinkElement;
+    if (favicon) {
+      favicon.href = theme === 'light' 
+        ? '/src/assets/icons/favicon-light.svg' 
+        : '/src/assets/icons/favicon-dark.svg';
+    }
   }
 
   subscribe((theme) => {
