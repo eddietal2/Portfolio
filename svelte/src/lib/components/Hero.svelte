@@ -368,7 +368,7 @@
       <!-- Picture -->
       <div class="w-full md:w-2/5 lg:w-1/3 mx-auto flex items-center justify-center mb-6 md:mb-0">
         <div 
-          class="header-pic-container {frameHovered
+          class="header-pic-container {frameHovered ? 'super-saiyan' : ''} {frameHovered
             ? ($theme === 'light' ? 'glow-gold-light' : 'glow-gold-dark')
             : (showInverseColor
               ? ($theme === 'light' ? 'glow-fire' : 'glow-green') 
@@ -582,6 +582,123 @@
   
   .header-pic-container:hover {
     transform: scale(1.02);
+  }
+  
+  /* ===== SUPER SAIYAN EFFECT ===== */
+  .header-pic-container.super-saiyan {
+    animation: saiyan-power 0.8s ease-in-out infinite;
+  }
+  
+  /* Power-up breathing/pulsing scale */
+  @keyframes saiyan-power {
+    0%, 100% { 
+      transform: scale(1.02);
+    }
+    25% {
+      transform: scale(1.06);
+    }
+    50% { 
+      transform: scale(1.04);
+    }
+    75% {
+      transform: scale(1.08);
+    }
+  }
+  
+  /* Intense golden aura glow - pulsing */
+  .header-pic-container.super-saiyan::before {
+    content: '';
+    position: absolute;
+    inset: -20px;
+    border-radius: 50%;
+    background: radial-gradient(circle, 
+      rgba(255, 215, 0, 0.6) 0%, 
+      rgba(255, 193, 37, 0.4) 30%,
+      rgba(255, 165, 0, 0.2) 50%,
+      transparent 70%);
+    z-index: -1;
+    animation: aura-pulse 0.5s ease-in-out infinite alternate;
+    filter: blur(8px);
+  }
+  
+  /* Energy ring expanding outward */
+  .header-pic-container.super-saiyan::after {
+    background: radial-gradient(circle, 
+      transparent 30%,
+      rgba(255, 215, 0, 0.8) 45%,
+      rgba(255, 193, 37, 0.6) 50%,
+      rgba(255, 165, 0, 0.3) 60%,
+      transparent 70%) !important;
+    animation: energy-ring 1s ease-out infinite !important;
+    opacity: 1 !important;
+  }
+  
+  @keyframes aura-pulse {
+    0% {
+      transform: scale(1);
+      opacity: 0.7;
+      filter: blur(8px);
+    }
+    100% {
+      transform: scale(1.15);
+      opacity: 1;
+      filter: blur(12px);
+    }
+  }
+  
+  @keyframes energy-ring {
+    0% {
+      transform: scale(0.9);
+      opacity: 0.9;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      transform: scale(1.3);
+      opacity: 0;
+    }
+  }
+  
+  /* SVG frame intense glow when super saiyan */
+  .header-pic-container.super-saiyan .header-frame :global(svg) {
+    filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.8)) 
+            drop-shadow(0 0 16px rgba(255, 193, 37, 0.6))
+            drop-shadow(0 0 24px rgba(255, 165, 0, 0.4));
+    animation: svg-glow-pulse 0.4s ease-in-out infinite alternate;
+  }
+  
+  @keyframes svg-glow-pulse {
+    0% {
+      filter: drop-shadow(0 0 6px rgba(255, 215, 0, 0.7)) 
+              drop-shadow(0 0 12px rgba(255, 193, 37, 0.5))
+              drop-shadow(0 0 18px rgba(255, 165, 0, 0.3));
+    }
+    100% {
+      filter: drop-shadow(0 0 12px rgba(255, 215, 0, 1)) 
+              drop-shadow(0 0 24px rgba(255, 193, 37, 0.8))
+              drop-shadow(0 0 36px rgba(255, 165, 0, 0.5));
+    }
+  }
+  
+  /* Dark mode super saiyan - deeper gold tones */
+  :global(.dark) .header-pic-container.super-saiyan::before,
+  .header-pic-container.super-saiyan.glow-gold-dark::before {
+    background: radial-gradient(circle, 
+      rgba(218, 165, 32, 0.7) 0%, 
+      rgba(184, 134, 11, 0.5) 30%,
+      rgba(205, 133, 63, 0.3) 50%,
+      transparent 70%);
+  }
+  
+  :global(.dark) .header-pic-container.super-saiyan::after,
+  .header-pic-container.super-saiyan.glow-gold-dark::after {
+    background: radial-gradient(circle, 
+      transparent 30%,
+      rgba(218, 165, 32, 0.9) 45%,
+      rgba(184, 134, 11, 0.7) 50%,
+      rgba(205, 133, 63, 0.4) 60%,
+      transparent 70%) !important;
   }
   
   /* SVG frame positioned absolutely */
