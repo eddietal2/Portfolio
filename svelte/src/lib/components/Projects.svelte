@@ -39,7 +39,7 @@
       role: "Software Developer & Designer",
       type: "Personal",
       categories: ["Python"] as CategoryOption[],
-      badges: ["Stock Market", "2026"],
+      badges: ["Stock Market", "2026", "Python"],
       link: "https://www.harp-rose.org/",
       text: "iOS/Mobile Augmented Reality Game. Alpha Demo out now. Release date: Summer 2026.",
       video: "https://eddie-portfolio.s3.us-east-1.amazonaws.com/videos/trading_simulator_demo_video.mp4",
@@ -52,7 +52,7 @@
       role: "Web Developer & Designer",
       type: "Professional",
       categories: ["Web"] as CategoryOption[],
-      badges: ["AI Agent", "LlamaIndex", "2026"],
+      badges: ["AI Agent", "LlamaIndex", "Django", "NextJS", "2026"],
       link: "https://www.harp-rose.org/",
       text: "iOS/Mobile Augmented Reality Game. Alpha Demo out now. Release date: Summer 2026.",
       video: "https://finalbossxr.s3.us-east-1.amazonaws.com/videos/Game-trailer-Attempt-3.mp4",
@@ -200,10 +200,83 @@
     <div class="md:w-4/5 lg:w-4/5 xl:w-3/4 p-4 mx-auto">
       <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-8">
         <div>
-          <h1 class="text-4xl md:text-5xl font-bold jura {$theme === 'light' ? 'text-black' : 'text-white'} flex items-center gap-3">
-            <span class="text-4xl">💻</span>
-            PROJECTS
-            <span class="inline-block w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+          <h1 class="text-2xl md:text-3xl font-bold jura {$theme === 'light' ? 'text-black' : 'text-white'} flex items-center gap-3">
+            <svg class="w-14 h-14 md:w-16 md:h-16 relative top-2" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- Laptop Base/Keyboard -->
+              <rect x="6" y="40" width="52" height="5" rx="1.5" fill="url(#laptopGradient1)" />
+              <!-- Screen Frame -->
+              <rect x="8" y="8" width="48" height="32" rx="2" fill="url(#laptopGradient2)" />
+              <!-- Screen Inner -->
+              <rect x="11" y="11" width="42" height="26" rx="1" fill="#0a0a0f" />
+              <!-- Clip for matrix effect -->
+              <clipPath id="screenClip">
+                <rect x="11" y="11" width="42" height="26" rx="1" />
+              </clipPath>
+              <!-- Matrix Binary Columns -->
+              <g clip-path="url(#screenClip)">
+                <!-- Column 1 -->
+                <text x="14" y="14" fill="#00ff00" font-family="monospace" font-size="4" opacity="0.9">
+                  <tspan x="14" dy="0">1</tspan><tspan x="14" dy="4">0</tspan><tspan x="14" dy="4">1</tspan><tspan x="14" dy="4">1</tspan><tspan x="14" dy="4">0</tspan><tspan x="14" dy="4">1</tspan><tspan x="14" dy="4">0</tspan><tspan x="14" dy="4">0</tspan>
+                  <animate attributeName="y" values="14;-18;14" dur="2s" repeatCount="indefinite" />
+                  <animate attributeName="opacity" values="0.9;0.4;0.9" dur="2s" repeatCount="indefinite" />
+                </text>
+                <!-- Column 2 -->
+                <text x="20" y="8" fill="#00dd00" font-family="monospace" font-size="4" opacity="0.8">
+                  <tspan x="20" dy="0">0</tspan><tspan x="20" dy="4">1</tspan><tspan x="20" dy="4">0</tspan><tspan x="20" dy="4">0</tspan><tspan x="20" dy="4">1</tspan><tspan x="20" dy="4">1</tspan><tspan x="20" dy="4">0</tspan><tspan x="20" dy="4">1</tspan>
+                  <animate attributeName="y" values="8;-24;8" dur="2.5s" repeatCount="indefinite" />
+                  <animate attributeName="opacity" values="0.8;0.3;0.8" dur="2.5s" repeatCount="indefinite" />
+                </text>
+                <!-- Column 3 -->
+                <text x="26" y="18" fill="#00ff00" font-family="monospace" font-size="4" opacity="0.7">
+                  <tspan x="26" dy="0">1</tspan><tspan x="26" dy="4">1</tspan><tspan x="26" dy="4">0</tspan><tspan x="26" dy="4">1</tspan><tspan x="26" dy="4">0</tspan><tspan x="26" dy="4">0</tspan><tspan x="26" dy="4">1</tspan><tspan x="26" dy="4">0</tspan>
+                  <animate attributeName="y" values="18;-14;18" dur="1.8s" repeatCount="indefinite" />
+                  <animate attributeName="opacity" values="0.7;0.2;0.7" dur="1.8s" repeatCount="indefinite" />
+                </text>
+                <!-- Column 4 -->
+                <text x="32" y="6" fill="#00cc00" font-family="monospace" font-size="4" opacity="0.85">
+                  <tspan x="32" dy="0">0</tspan><tspan x="32" dy="4">0</tspan><tspan x="32" dy="4">1</tspan><tspan x="32" dy="4">0</tspan><tspan x="32" dy="4">1</tspan><tspan x="32" dy="4">1</tspan><tspan x="32" dy="4">1</tspan><tspan x="32" dy="4">0</tspan>
+                  <animate attributeName="y" values="6;-26;6" dur="3s" repeatCount="indefinite" />
+                  <animate attributeName="opacity" values="0.85;0.35;0.85" dur="3s" repeatCount="indefinite" />
+                </text>
+                <!-- Column 5 -->
+                <text x="38" y="12" fill="#00ff00" font-family="monospace" font-size="4" opacity="0.75">
+                  <tspan x="38" dy="0">1</tspan><tspan x="38" dy="4">0</tspan><tspan x="38" dy="4">0</tspan><tspan x="38" dy="4">1</tspan><tspan x="38" dy="4">1</tspan><tspan x="38" dy="4">0</tspan><tspan x="38" dy="4">1</tspan><tspan x="38" dy="4">1</tspan>
+                  <animate attributeName="y" values="12;-20;12" dur="2.2s" repeatCount="indefinite" />
+                  <animate attributeName="opacity" values="0.75;0.25;0.75" dur="2.2s" repeatCount="indefinite" />
+                </text>
+                <!-- Column 6 -->
+                <text x="44" y="16" fill="#00ee00" font-family="monospace" font-size="4" opacity="0.8">
+                  <tspan x="44" dy="0">0</tspan><tspan x="44" dy="4">1</tspan><tspan x="44" dy="4">1</tspan><tspan x="44" dy="4">0</tspan><tspan x="44" dy="4">0</tspan><tspan x="44" dy="4">1</tspan><tspan x="44" dy="4">0</tspan><tspan x="44" dy="4">1</tspan>
+                  <animate attributeName="y" values="16;-16;16" dur="2.7s" repeatCount="indefinite" />
+                  <animate attributeName="opacity" values="0.8;0.3;0.8" dur="2.7s" repeatCount="indefinite" />
+                </text>
+                <!-- Column 7 -->
+                <text x="50" y="10" fill="#00dd00" font-family="monospace" font-size="4" opacity="0.7">
+                  <tspan x="50" dy="0">1</tspan><tspan x="50" dy="4">1</tspan><tspan x="50" dy="4">0</tspan><tspan x="50" dy="4">0</tspan><tspan x="50" dy="4">1</tspan><tspan x="50" dy="4">0</tspan><tspan x="50" dy="4">1</tspan><tspan x="50" dy="4">1</tspan>
+                  <animate attributeName="y" values="10;-22;10" dur="1.9s" repeatCount="indefinite" />
+                  <animate attributeName="opacity" values="0.7;0.2;0.7" dur="1.9s" repeatCount="indefinite" />
+                </text>
+              </g>
+              <!-- Screen Glare -->
+              <path d="M11 11 L18 11 L11 20 Z" fill="white" opacity="0.08" />
+              <!-- Hinge -->
+              <rect x="24" y="40" width="16" height="2" rx="1" fill="#1a1a2a" />
+              <!-- Keyboard Base Shadow -->
+              <ellipse cx="32" cy="48" rx="24" ry="2" fill="black" opacity="0.15" />
+              <!-- Gradients -->
+              <defs>
+                <linearGradient id="laptopGradient1" x1="6" y1="40" x2="58" y2="45" gradientUnits="userSpaceOnUse">
+                  <stop stop-color="#3d3d4a" />
+                  <stop offset="0.5" stop-color="#5a5a6a" />
+                  <stop offset="1" stop-color="#3d3d4a" />
+                </linearGradient>
+                <linearGradient id="laptopGradient2" x1="8" y1="8" x2="56" y2="40" gradientUnits="userSpaceOnUse">
+                  <stop stop-color="#4a4a5a" />
+                  <stop offset="1" stop-color="#2d2d3a" />
+                </linearGradient>
+              </defs>
+            </svg>
+            MY PROJECTS
           </h1>
           <p class="mt-3 text-sm md:text-base max-w-2xl {$theme === 'light' ? 'text-gray-600' : 'text-gray-400'}">
             A collection of professional work and passion projects spanning VR/AR, Web, and Mobile development. This portfolio ranges back to 2024. If you want to see more, visit my Github,
