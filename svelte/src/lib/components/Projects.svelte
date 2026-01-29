@@ -33,19 +33,19 @@
       description: "VR Startup that aims to make therapy more accessible and innovative. I am the lead software developer for this MVP. This is being built with Unreal Engine 5, while I outsource things like 3D Model creation, audio, etc.",
       color: "#EF4444"
     }, 
-    // {
-    //   name: "Pivotal.AI",
-    //   image: "https://finalbossxr.s3.us-east-1.amazonaws.com/cosmic/red_queen_icon.png",
-    //   role: "Web Developer & Designer",
-    //   type: "Professional",
-    //   categories: ["Web"] as CategoryOption[],
-    //   badges: ["AI Agent", "LlamaIndex", "2026"],
-    //   link: "https://www.harp-rose.org/",
-    //   text: "iOS/Mobile Augmented Reality Game. Alpha Demo out now. Release date: Summer 2026.",
-    //   video: "https://finalbossxr.s3.us-east-1.amazonaws.com/videos/Game-trailer-Attempt-3.mp4",
-    //   description: "VR Startup that aims to make therapy more accessible and innovative. I am the lead software developer for this MVP. This is being built with Unreal Engine 5, while I outsource things like 3D Model creation, audio, etc.",
-    //   color: "#EF4444"
-    // }, 
+    {
+      name: "Pivotal.AI",
+      image: "https://eddie-portfolio.s3.us-east-1.amazonaws.com/logo/pivotal.ai.png",
+      role: "Product & Software Developer",
+      type: "Professional",
+      categories: ["Web", "Mobile"] as CategoryOption[],
+      badges: ["NextJS", "Django", "Hybrid", "iOS", "Android", "Capacitor", "2026"],
+      link: "https://pivotal-ai-web-app.vercel.app/",
+      text: "AI-Chat & Stock Market analysis web app.",
+      video: "",
+      description: "AI-Chat & Stock Market analysis web app. I am the lead software developer for this MVP. This is being built with NextJS and Django, and is designed to work on both web and mobile platforms using Capacitor.",
+      color: "#10A8C6"
+    }, 
     {
       name: "Trading Simulator",
       image: "https://eddie-portfolio.s3.us-east-1.amazonaws.com/logo/python-svgrepo-com.svg",
