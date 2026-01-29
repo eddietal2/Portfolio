@@ -1,6 +1,9 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import { theme } from '../stores/light-dark-mode';
+  import { get } from 'svelte/store';
+  import projectFrameGreen from '../../assets/illustrations/story-frame-green.svg';
+  import projectFrameFire from '../../assets/illustrations/story-frame-fire.svg';
 
   // Project categories for filtering
   type CategoryOption = 'Web' | 'Mobile' | 'Python' | 'XR';
@@ -158,14 +161,113 @@
   let isModalOpen = false;
   let hoveredIndex: number | null = null;
   let cardsVisible = false;
+  let laptopFrameHovered = false;
+  let projectsScrollProgress = 0;
 
   const categories: Category[] = ['All', 'Web', 'Mobile', 'Python', 'XR'];
+
+  // Function to load the appropriate frame SVG based on theme and state
+  function loadLaptopFrame(currentTheme: string, showInverse: boolean = false) {
+    let svgUrl: string;
+    if (showInverse) {
+      // Inverse: light mode shows fire, dark mode shows green
+      svgUrl = currentTheme === 'light' ? projectFrameFire : projectFrameGreen;
+    } else {
+      // Normal: light mode shows green, dark mode shows fire
+      svgUrl = currentTheme === 'light' ? projectFrameGreen : projectFrameFire;
+    }
+    
+    fetch(svgUrl)
+      .then(res => res.text())
+      .then(svgContent => {
+        const frameContainer = document.getElementById('laptop-frame');
+        if (frameContainer) {
+          frameContainer.innerHTML = svgContent;
+          // Apply rotation based on scroll progress (desktop only)
+          const svg = frameContainer.querySelector('svg');
+          if (svg && window.innerWidth >= 1024) {
+            const rotation = projectsScrollProgress * 360;
+            svg.style.transform = `rotate(${rotation}deg)`;
+            svg.style.transition = 'transform 0.3s ease-out';
+          }
+        }
+      });
+  }
+
+  // Determine if we should show inverse color
+  $: isLaptopRotating = projectsScrollProgress > 0 && projectsScrollProgress < 1;
+  $: showLaptopInverseColor = laptopFrameHovered || isLaptopRotating;
+
+  // Subscribe to theme changes
+  theme.subscribe((currentTheme) => {
+    if (typeof document !== 'undefined') {
+      loadLaptopFrame(currentTheme, showLaptopInverseColor);
+    }
+  });
+
+  // Reactive statement to reload frame when inverse color state changes
+  $: if (typeof document !== 'undefined' && showLaptopInverseColor !== undefined) {
+    loadLaptopFrame(get(theme), showLaptopInverseColor);
+  }
+
+  // Handle frame hover
+  function handleLaptopFrameEnter() {
+    laptopFrameHovered = true;
+    loadLaptopFrame(get(theme), true);
+  }
+
+  function handleLaptopFrameLeave() {
+    laptopFrameHovered = false;
+    loadLaptopFrame(get(theme), isLaptopRotating);
+  }
 
   $: filteredProjects = selectedCategory === 'All' 
     ? projects 
     : projects.filter(p => p.categories.includes(selectedCategory as CategoryOption));
 
   onMount(() => {
+    // Load initial laptop frame SVG
+    loadLaptopFrame(get(theme), false);
+
+    // Track scroll progress for laptop frame rotation (desktop only)
+    const wrapper = document.getElementById('wrapper');
+    const section3 = document.getElementById('section-3');
+    if (wrapper && section3 && window.innerWidth >= 1024) {
+      let wasLaptopRotating = false;
+      
+      const updateProjectsScrollProgress = () => {
+        const section3Rect = section3.getBoundingClientRect();
+        const wrapperRect = wrapper.getBoundingClientRect();
+        
+        // Calculate how far into section-3 we've scrolled
+        const sectionTop = section3Rect.top - wrapperRect.top;
+        const sectionHeight = section3.offsetHeight;
+        const viewportHeight = wrapperRect.height;
+        
+        // Start animation when section enters viewport, complete when it exits
+        const progress = Math.min(Math.max((-sectionTop + viewportHeight * 0.3) / (sectionHeight * 0.7), 0), 1);
+        projectsScrollProgress = progress;
+        
+        // Update frame rotation
+        const frameContainer = document.getElementById('laptop-frame');
+        const svg = frameContainer?.querySelector('svg');
+        if (svg) {
+          const rotation = projectsScrollProgress * 360;
+          svg.style.transform = `rotate(${rotation}deg)`;
+        }
+        
+        // Swap to inverse color when rotation starts or stops
+        const isCurrentlyRotating = projectsScrollProgress > 0 && projectsScrollProgress < 1;
+        if (isCurrentlyRotating !== wasLaptopRotating) {
+          wasLaptopRotating = isCurrentlyRotating;
+          loadLaptopFrame(get(theme), isCurrentlyRotating || laptopFrameHovered);
+        }
+      };
+      
+      wrapper.addEventListener('scroll', updateProjectsScrollProgress, { passive: true });
+      updateProjectsScrollProgress();
+    }
+
     // Trigger staggered animation
     setTimeout(() => {
       cardsVisible = true;
@@ -451,7 +553,17 @@
       <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-8">
         <div>
           <h1 class="text-2xl md:text-3xl font-bold jura {$theme === 'light' ? 'text-black' : 'text-white'} flex items-center gap-3">
-            <svg class="w-14 h-14 md:w-16 md:h-16 relative top-2" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Laptop SVG with animated frame -->
+            <div 
+              class="laptop-icon-container {showLaptopInverseColor
+                ? ($theme === 'light' ? 'glow-fire' : 'glow-green') 
+                : ($theme === 'light' ? 'glow-green' : 'glow-fire')}"
+              on:mouseenter={handleLaptopFrameEnter}
+              on:mouseleave={handleLaptopFrameLeave}
+              role="presentation"
+            >
+              <div id="laptop-frame" class="laptop-frame"></div>
+              <svg class="laptop-icon" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
               <!-- Laptop Base/Keyboard -->
               <rect x="6" y="40" width="52" height="5" rx="1.5" fill="url(#laptopGradient1)" />
               <!-- Screen Frame -->
@@ -526,6 +638,7 @@
                 </linearGradient>
               </defs>
             </svg>
+            </div>
             MY PROJECTS
           </h1>
           <p class="mt-3 text-sm md:text-base max-w-2xl {$theme === 'light' ? 'text-gray-600' : 'text-gray-400'}">
@@ -884,5 +997,96 @@
   @keyframes matrixGlitch {
     0%, 100% { opacity: 1; }
     50% { opacity: 0.7; }
+  }
+
+  /* Laptop icon container with animated frame */
+  .laptop-icon-container {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+
+  @media (min-width: 768px) {
+    .laptop-icon-container {
+      width: 90px;
+      height: 90px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .laptop-icon-container {
+      width: 100px;
+      height: 100px;
+    }
+  }
+
+  .laptop-icon-container:hover {
+    transform: scale(1.05);
+  }
+
+  /* SVG frame positioned absolutely */
+  .laptop-frame {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  .laptop-frame :global(svg) {
+    width: 100%;
+    height: 100%;
+  }
+
+  /* Laptop icon centered inside frame */
+  .laptop-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40px;
+    height: 40px;
+    z-index: 1;
+  }
+
+  @media (min-width: 768px) {
+    .laptop-icon {
+      width: 45px;
+      height: 45px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .laptop-icon {
+      width: 50px;
+      height: 50px;
+    }
+  }
+
+  /* Glow effects for laptop frame */
+  .laptop-icon-container::after {
+    content: '';
+    position: absolute;
+    inset: -8px;
+    z-index: 0;
+    opacity: 0;
+    animation: fadeInGlow 1s ease 0.5s forwards;
+  }
+
+  .laptop-icon-container.glow-fire::after {
+    background: radial-gradient(circle, rgba(255, 69, 0, 0.25) 0%, transparent 70%);
+  }
+
+  .laptop-icon-container.glow-green::after {
+    background: radial-gradient(circle, rgba(0, 196, 0, 0.25) 0%, transparent 70%);
+  }
+
+  @keyframes fadeInGlow {
+    to { opacity: 1; }
   }
 </style>
