@@ -159,39 +159,39 @@
     <!-- Floating lights overlay -->
     <div class={$theme === 'light' ? 'floating-lights-light' : 'floating-lights-dark'} aria-hidden="true"></div>
 
-    <div class="md:w-4/5 lg:w-3/5 mx-auto lg:mt-0 lg:flex flex-row gap-20 relative z-10">
+    <div class="w-full max-w-7xl mx-auto px-4 md:px-8 lg:px-12 lg:mt-0 md:flex flex-row gap-8 lg:gap-16 xl:gap-20 relative z-10 pt-8 md:pt-0 md:items-center md:min-h-[calc(100vh-4rem)]">
 
       <!-- Picture -->
-      <div class="w-11/12 lg:w-1/4 mx-auto flex items-center justify-center">
-        <div class="my-4 header-pic-container {$theme === 'light' ? 'glow-green' : 'glow-fire'}">
+      <div class="w-full md:w-2/5 lg:w-1/3 mx-auto flex items-center justify-center mb-6 md:mb-0">
+        <div class="header-pic-container {$theme === 'light' ? 'glow-green' : 'glow-fire'}">
           <div id="header-pic" class="header-frame"></div>
           <img src={profilePhoto} alt="Eddie" class="profile-photo" />
         </div>
       </div>
 
       <!-- Text -->
-      <div class="w-11/12 lg:w-3/4 mx-auto">
+      <div class="w-full md:w-3/5 lg:w-2/3">
         <div class="landing-text">
-          <span class="text-xl lg:text-4xl text-[#111] dark:text-white">
-            <span class="text-4xl wave-hand">👋🏾</span>
+          <span class="text-xl md:text-2xl lg:text-3xl xl:text-4xl text-[#111] dark:text-white">
+            <span class="text-2xl md:text-3xl lg:text-4xl wave-hand">👋🏾</span>
             <b class={$theme === 'light' ? theme.classes.light.text : theme.classes.dark.text}>
-              <span class="text-4xl jura greetings-anim-1 inline-block">HI,</span>
-              <span class="text-4xl jura greetings-anim-2 inline-block">I'M</span>
-              <span class="text-2xl lg:text-4xl jura greetings-anim-3 inline-block {$theme === 'light' ? 'name-highlight-green' : 'name-highlight'}">EDDIE TALIAFERRO II</span>
+              <span class="text-2xl md:text-3xl lg:text-4xl jura greetings-anim-1 inline-block">HI,</span>
+              <span class="text-2xl md:text-3xl lg:text-4xl jura greetings-anim-2 inline-block">I'M</span>
+              <span class="text-xl md:text-2xl lg:text-3xl xl:text-4xl jura greetings-anim-3 inline-block {$theme === 'light' ? 'name-highlight-green' : 'name-highlight'}">EDDIE TALIAFERRO II</span>
             </b> 
           </span>
         </div>
-        <div class="min-h-[180px] my-4 border-b border-gray-200/20 pb-4 typewriter-text {$theme === 'light' ? 'caret-green' : 'caret-fire'}">
-          <span class="text-xl xl:text-lg {$theme === 'light' ? theme.classes.light.text : theme.classes.dark.text}">
+        <div class="min-h-[120px] md:min-h-[140px] lg:min-h-[180px] my-4 border-b border-gray-200/20 pb-4 typewriter-text {$theme === 'light' ? 'caret-green' : 'caret-fire'}">
+          <span class="text-sm md:text-base lg:text-lg xl:text-xl {$theme === 'light' ? theme.classes.light.text : theme.classes.dark.text}">
             {typedText}
           </span>
         </div>
 
-        <h1 class={$theme === 'light' ? theme.classes.light.text + ' jura text-xl skills-title' : theme.classes.dark.text + ' jura text-xl skills-title'}>SKILLS</h1>
-        <div class="flex flex-wrap gap-2 sm:my-2">
+        <h1 class="{$theme === 'light' ? theme.classes.light.text : theme.classes.dark.text} jura text-base md:text-lg lg:text-xl skills-title">SKILLS</h1>
+        <div class="flex flex-wrap gap-1.5 md:gap-2 sm:my-2">
           {#each ["NextJS", "SvelteKit", "TypeScript", "PostgreSQL", "TailWindCSS", "Python", "Django", "Linux", "Git", "Figma", "Unreal Engine", "Vercel", "CI/CD", "AWS", "AR/MR/XR"] as skill, i}
             <span 
-              class="text-sm border px-3 py-1 rounded-full inline-block skill-tag {$theme === 'light' ? 'bg-[#00c40015] border-[#00c400]' : 'bg-[#ff450015] border-[#ff4500]'}"
+              class="text-xs md:text-sm border px-2 md:px-3 py-0.5 md:py-1 rounded-full inline-block skill-tag {$theme === 'light' ? 'bg-[#00c40015] border-[#00c400]' : 'bg-[#ff450015] border-[#ff4500]'}"
               style="animation-delay: {5.5 + (i * 0.08)}s"
             >
               <span class={$theme === 'light' ? theme.classes.light.text : theme.classes.dark.text}>
@@ -203,7 +203,7 @@
 
       </div>
 
-      <div class="h-24"></div>
+      <div class="h-16 md:h-0"></div>
     </div>
   </div>
 </main>
@@ -311,10 +311,35 @@
   /* Profile picture container */
   .header-pic-container {
     position: relative;
-    width: 280px;
-    height: 280px;
+    width: 200px;
+    height: 200px;
     transition: transform 0.3s ease;
   }
+  
+  /* Tablet size */
+  @media (min-width: 768px) {
+    .header-pic-container {
+      width: 220px;
+      height: 220px;
+    }
+  }
+  
+  /* Desktop size */
+  @media (min-width: 1024px) {
+    .header-pic-container {
+      width: 260px;
+      height: 260px;
+    }
+  }
+  
+  /* Large desktop */
+  @media (min-width: 1280px) {
+    .header-pic-container {
+      width: 280px;
+      height: 280px;
+    }
+  }
+  
   .header-pic-container:hover {
     transform: scale(1.02);
   }
@@ -346,20 +371,41 @@
     outline: none !important;
   }
   
-  /* Profile photo - circular and centered */
+  /* Profile photo - circular and centered - responsive sizes */
   .profile-photo {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 190px;
-    height: 190px;
+    width: 140px;
+    height: 140px;
     border-radius: 50%;
     object-fit: cover;
     z-index: 1;
     border: none !important;
     outline: none !important;
     box-shadow: none !important;
+  }
+  
+  @media (min-width: 768px) {
+    .profile-photo {
+      width: 155px;
+      height: 155px;
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .profile-photo {
+      width: 175px;
+      height: 175px;
+    }
+  }
+  
+  @media (min-width: 1280px) {
+    .profile-photo {
+      width: 190px;
+      height: 190px;
+    }
   }
   
   /* Ensure no borders on any img inside container */
