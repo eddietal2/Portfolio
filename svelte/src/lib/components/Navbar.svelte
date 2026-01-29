@@ -146,11 +146,11 @@
           class="p-1 lg:p-1.5 rounded-full transition-all duration-300 {$goldenState ? ($theme === 'light' ? 'hover:bg-[#9A7B1C20]' : 'hover:bg-[#FFD70020]') : ($theme === 'light' ? 'hover:bg-[#00c40020]' : 'hover:bg-[#ff450020]')}
             {showThemeTooltip ? 'animate-pulse ring-2 ring-offset-2 ' + ($goldenState ? ($theme === 'light' ? 'ring-[#9A7B1C] ring-offset-white' : 'ring-[#FFD700] ring-offset-gray-900') : ($theme === 'light' ? 'ring-[#00c400] ring-offset-white' : 'ring-[#ff4500] ring-offset-gray-900')) : ''}"
           on:click={toggleTheme}>
-          {#if $theme === 'light'}
-            <ion-icon class="text-xl lg:text-2xl xl:text-3xl transition-colors duration-300 {$goldenState ? 'text-[#9A7B1C]' : 'text-[#00c400]'}" name="sunny-sharp"></ion-icon>
-          {:else}
-            <ion-icon class="text-xl lg:text-2xl xl:text-3xl transition-colors duration-300 {$goldenState ? 'text-[#FFD700]' : 'text-[#ff4500]'}" name="moon-sharp"></ion-icon>
-          {/if}
+          <ion-icon 
+            class="text-xl lg:text-2xl xl:text-3xl transition-colors duration-300"
+            style="color: {$theme === 'light' ? ($goldenState ? '#9A7B1C' : '#00c400') : ($goldenState ? '#FFD700' : '#ff4500')}"
+            name={$theme === 'light' ? 'sunny-sharp' : 'moon-sharp'}
+          ></ion-icon>
         </button>
 
       </div>
