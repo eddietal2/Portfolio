@@ -1,40 +1,14 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import { theme } from '../stores/light-dark-mode';
-  import fireEmoji from '../../assets/icons/fire.png';
-  import { Popover } from 'flowbite';
 
   function toggleTheme() {
     theme.toggle();
   }
 
-  let popoverInstance: Popover;
   let activeSection = 's1';
 
   onMount(() => {
-    const popoverEl = document.getElementById('popover-default');
-    const popoverTrigger = document.getElementById('popover-trigger');
-  
-    if (!popoverEl || !popoverTrigger) return;
-  
-    // Initialize Flowbite Popover
-    popoverInstance = new Popover(popoverEl, popoverTrigger, {
-      placement: 'bottom',
-    });
-  
-    // Show popover once per day
-    const today = new Date().toLocaleDateString();
-    const storageKey = `popoverShownToday-${today}`;
-    const hasShownToday = localStorage.getItem(storageKey);
-  
-    if (!hasShownToday) {
-      popoverInstance.show();
-      setTimeout(() => {
-        popoverInstance.hide();
-      }, 3000); // hide after 3s
-      localStorage.setItem(storageKey, 'true');
-    }
-
     // Track active section for nav highlighting
     const options = {
       root: document.getElementById('wrapper'),
@@ -119,37 +93,16 @@
         <div class="h-6 w-px {$theme === 'light' ? 'bg-gray-300' : 'bg-gray-600'} hidden md:block"></div>
 
         <!-- Light/Dark Mode Toggle -->
-        <button id="popover-trigger" aria-label="Light/Dark Button"
+        <button aria-label="Light/Dark Button"
           type="button"
-          class="p-1.5 rounded-full transition-all duration-300 {$theme === 'light' ? 'hover:bg-yellow-100' : 'hover:bg-yellow-900/30'}"
+          class="p-1.5 rounded-full transition-all duration-300 {$theme === 'light' ? 'hover:bg-[#00c40020]' : 'hover:bg-[#ff450020]'}"
           on:click={toggleTheme}>
           {#if $theme === 'light'}
-            <ion-icon class="text-2xl md:text-3xl text-yellow-500" name="sunny-sharp"></ion-icon>
+            <ion-icon class="text-2xl md:text-3xl text-[#00c400]" name="sunny-sharp"></ion-icon>
           {:else}
-            <ion-icon class="text-2xl md:text-3xl text-yellow-400" name="moon-sharp"></ion-icon>
+            <ion-icon class="text-2xl md:text-3xl text-[#ff4500]" name="moon-sharp"></ion-icon>
           {/if}
         </button>
-
-        <!-- Popover -->
-        <div id="popover-default"
-          class="absolute z-10 invisible inline-block w-64 text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800">
-          <div class="px-3 py-2 bg-gray-100 border-b border-gray-200 rounded-t-lg dark:border-gray-600 dark:bg-gray-700">
-            <h3 class="font-semibold text-gray-900 dark:text-white">Dark / Light Mode</h3>
-          </div>
-          <div class="px-3 py-2">
-            <p class="py-1">You are currently in <b>{$theme.toUpperCase()}</b> mode.</p>
-            <label class="inline-flex items-center cursor-pointer">
-              <input type="checkbox" class="sr-only peer" checked={$theme === 'dark'} on:click={toggleTheme} />
-              <div
-                class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700
-                       peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white
-                       after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border
-                       after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600">
-              </div>
-              <span class="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300">Toggle me</span>
-            </label>
-          </div>
-        </div>
 
       </div>
     </div>
