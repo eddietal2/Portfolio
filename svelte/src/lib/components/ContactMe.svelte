@@ -7,10 +7,40 @@
       <div class="md:w-4/5 lg:w-3/5 mx-auto py-40 lg:py-0 mb-8">
         <!-- Header -->
         <div class="text-center content-center">
-          <span style="font-size: 5em;" class={$theme === 'light' ? theme.classes.light.text : theme.classes.dark.text}>
-            <!-- Mail Icon -->
-            📬
-          </span>
+          <!-- Mail Icon SVG -->
+          <svg class="w-20 h-20 md:w-24 md:h-24 mx-auto" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Envelope body -->
+            <rect x="4" y="14" width="56" height="40" rx="4" fill="{$theme === 'light' ? '#00c400' : '#ff4500'}">
+              <animate attributeName="fill-opacity" values="0.9;1;0.9" dur="3s" repeatCount="indefinite"/>
+            </rect>
+            <!-- Envelope flap (triangle) -->
+            <path d="M4 18l28 18 28-18" stroke="{$theme === 'light' ? '#00a000' : '#cc3700'}" stroke-width="3" fill="none" stroke-linejoin="round">
+              <animate attributeName="stroke-opacity" values="0.8;1;0.8" dur="2s" repeatCount="indefinite"/>
+            </path>
+            <!-- Inner fold lines -->
+            <path d="M4 54l20-16" stroke="{$theme === 'light' ? '#00a000' : '#cc3700'}" stroke-width="2" fill="none" opacity="0.5"/>
+            <path d="M60 54l-20-16" stroke="{$theme === 'light' ? '#00a000' : '#cc3700'}" stroke-width="2" fill="none" opacity="0.5"/>
+            <!-- Letter peeking out -->
+            <rect x="14" y="8" width="36" height="24" rx="2" fill="{$theme === 'light' ? '#f5f5f5' : '#e8e8e8'}">
+              <animate attributeName="y" values="8;6;8" dur="4s" repeatCount="indefinite"/>
+            </rect>
+            <!-- Letter lines -->
+            <g stroke="{$theme === 'light' ? '#00c400' : '#ff4500'}" stroke-width="2" stroke-linecap="round">
+              <line x1="20" y1="16" x2="44" y2="16" opacity="0.6">
+                <animate attributeName="opacity" values="0.4;0.8;0.4" dur="2s" repeatCount="indefinite"/>
+              </line>
+              <line x1="20" y1="22" x2="38" y2="22" opacity="0.5">
+                <animate attributeName="opacity" values="0.3;0.7;0.3" dur="2.5s" repeatCount="indefinite"/>
+              </line>
+            </g>
+            <!-- Sparkle/notification dot -->
+            <circle cx="54" cy="12" r="6" fill="{$theme === 'light' ? '#ff4500' : '#00c400'}">
+              <animate attributeName="r" values="5;7;5" dur="1.5s" repeatCount="indefinite"/>
+              <animate attributeName="opacity" values="0.8;1;0.8" dur="1.5s" repeatCount="indefinite"/>
+            </circle>
+            <!-- Highlight -->
+            <path d="M8 18a4 4 0 0 1 4-4h40" stroke="{$theme === 'light' ? '#00dd00' : '#ff6030'}" stroke-width="2" fill="none" opacity="0.3"/>
+          </svg>
           <h1 class="jura {$theme === 'light' ? theme.classes.light.text : theme.classes.dark.text}" style="margin: 1em; font-size: 2em; font-weight: 600;">CONTACT ME</h1>
         </div>
 
