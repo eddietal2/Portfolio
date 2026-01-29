@@ -32,28 +32,49 @@
 
       <!-- Logo -->
       <div class="col-span-1 content-center flex items-center">
-        <!-- Custom E.T Logo - Clean modern monogram -->
-        <svg class="h-10 md:h-12 w-12 md:w-14 inline-block mr-2 lg:ml-0" viewBox="0 0 48 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Custom E.T Logo - Clean modern monogram with style -->
+        <svg class="h-10 md:h-12 w-14 md:w-16 inline-block mr-2 lg:ml-0" viewBox="0 0 56 44" fill="none" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <linearGradient id="etCodeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
               <stop offset="0%" stop-color={$theme === 'light' ? '#00c400' : '#ff4500'}/>
               <stop offset="100%" stop-color={$theme === 'light' ? '#00ff88' : '#ff8c00'}/>
             </linearGradient>
+            <linearGradient id="etGlowGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color={$theme === 'light' ? '#00c400' : '#ff4500'} stop-opacity="0"/>
+              <stop offset="50%" stop-color={$theme === 'light' ? '#00ff88' : '#ff8c00'} stop-opacity="0.8"/>
+              <stop offset="100%" stop-color={$theme === 'light' ? '#00c400' : '#ff4500'} stop-opacity="0"/>
+            </linearGradient>
+            <filter id="etGlow" x="-20%" y="-20%" width="140%" height="140%">
+              <feGaussianBlur stdDeviation="1.5" result="blur"/>
+              <feMerge>
+                <feMergeNode in="blur"/>
+                <feMergeNode in="SourceGraphic"/>
+              </feMerge>
+            </filter>
           </defs>
           
-          <!-- E letter - clean modern style -->
-          <path d="M6,8 L6,32 L20,32 L20,29 L9.5,29 L9.5,21.5 L18,21.5 L18,18.5 L9.5,18.5 L9.5,11 L20,11 L20,8 Z" 
-            fill="url(#etCodeGrad)"/>
+          <!-- E letter - italicized with diagonal cut -->
+          <path d="M8,10 L10,6 L25,6 L24,9 L14,9 L13,18 L22,18 L21,21 L12,21 L11,32 L24,32 L23,35 L6,35 Z" 
+            fill="url(#etCodeGrad)" filter="url(#etGlow)"/>
           
-          <!-- T letter - clean modern style -->
-          <path d="M24,8 L24,11 L30,11 L30,32 L33.5,32 L33.5,11 L42,11 L42,8 Z" 
-            fill="url(#etCodeGrad)"/>
+          <!-- T letter - italicized with diagonal cut -->
+          <path d="M28,6 L29,6 L50,6 L49,9 L42,9 L38,35 L34,35 L38,9 L30,9 Z" 
+            fill="url(#etCodeGrad)" filter="url(#etGlow)"/>
           
-          <!-- Top accent line -->
-          <line x1="6" y1="4" x2="42" y2="4" stroke="url(#etCodeGrad)" stroke-width="1.5" stroke-linecap="round" opacity="0.35"/>
+          <!-- Diagonal slash accent cutting through -->
+          <line x1="4" y1="38" x2="52" y2="2" stroke="url(#etGlowGrad)" stroke-width="1" stroke-linecap="round">
+            <animate attributeName="stroke-dasharray" values="0,100;60,100;0,100" dur="3s" repeatCount="indefinite"/>
+          </line>
           
-          <!-- Bottom accent line -->
-          <line x1="6" y1="36" x2="42" y2="36" stroke="url(#etCodeGrad)" stroke-width="1.5" stroke-linecap="round" opacity="0.35"/>
+          <!-- Top accent dot -->
+          <circle cx="52" cy="4" r="2" fill="url(#etCodeGrad)" opacity="0.6">
+            <animate attributeName="r" values="2;2.5;2" dur="2s" repeatCount="indefinite"/>
+          </circle>
+          
+          <!-- Bottom accent dot -->
+          <circle cx="4" cy="40" r="2" fill="url(#etCodeGrad)" opacity="0.6">
+            <animate attributeName="r" values="2;2.5;2" dur="2s" repeatCount="indefinite" begin="1s"/>
+          </circle>
         </svg>
         <b class="text-sm jura tracking-wide sm:hidden">EDDIE T.</b>
       </div>
