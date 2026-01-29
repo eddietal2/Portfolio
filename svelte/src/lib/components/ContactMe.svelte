@@ -1,9 +1,72 @@
 <script lang="ts">
   import { theme } from '../stores/light-dark-mode';
+  import { onMount } from 'svelte';
+  import { get } from 'svelte/store';
+  import contactFrameGreen from '../../assets/illustrations/story-frame-green.svg';
+  import contactFrameFire from '../../assets/illustrations/story-frame-fire.svg';
 
   let isInputFocused = false;
   let keystrokeFlicker = false;
   let flickerTimeout: ReturnType<typeof setTimeout>;
+  
+  // Frame animation state
+  let mailFrameHovered = false;
+  let contactScrollProgress = 0;
+
+  // Function to load the appropriate frame SVG based on theme and state
+  function loadMailFrame(currentTheme: string, showInverse: boolean = false) {
+    let svgUrl: string;
+    if (showInverse) {
+      // Inverse: light mode shows fire, dark mode shows green
+      svgUrl = currentTheme === 'light' ? contactFrameFire : contactFrameGreen;
+    } else {
+      // Normal: light mode shows green, dark mode shows fire
+      svgUrl = currentTheme === 'light' ? contactFrameGreen : contactFrameFire;
+    }
+    
+    fetch(svgUrl)
+      .then(res => res.text())
+      .then(svgContent => {
+        const frameContainer = document.getElementById('mail-frame');
+        if (frameContainer) {
+          frameContainer.innerHTML = svgContent;
+          // Apply rotation based on scroll progress (desktop only)
+          const svg = frameContainer.querySelector('svg');
+          if (svg && window.innerWidth >= 1024) {
+            const rotation = contactScrollProgress * 360;
+            svg.style.transform = `rotate(${rotation}deg)`;
+            svg.style.transition = 'transform 0.3s ease-out';
+          }
+        }
+      });
+  }
+
+  // Determine if we should show inverse color
+  $: isMailRotating = contactScrollProgress > 0 && contactScrollProgress < 1;
+  $: showMailInverseColor = mailFrameHovered || isMailRotating;
+
+  // Subscribe to theme changes
+  theme.subscribe((currentTheme) => {
+    if (typeof document !== 'undefined') {
+      loadMailFrame(currentTheme, showMailInverseColor);
+    }
+  });
+
+  // Reactive statement to reload frame when inverse color state changes
+  $: if (typeof document !== 'undefined' && showMailInverseColor !== undefined) {
+    loadMailFrame(get(theme), showMailInverseColor);
+  }
+
+  // Handle frame hover
+  function handleMailFrameEnter() {
+    mailFrameHovered = true;
+    loadMailFrame(get(theme), true);
+  }
+
+  function handleMailFrameLeave() {
+    mailFrameHovered = false;
+    loadMailFrame(get(theme), isMailRotating);
+  }
 
   function handleFocus() {
     isInputFocused = true;
@@ -21,6 +84,50 @@
       keystrokeFlicker = false;
     }, 150);
   }
+
+  onMount(() => {
+    // Load initial mail frame SVG
+    loadMailFrame(get(theme), false);
+
+    // Track scroll progress for mail frame rotation (desktop only)
+    const wrapper = document.getElementById('wrapper');
+    const section4 = document.getElementById('section-4');
+    if (wrapper && section4 && window.innerWidth >= 1024) {
+      let wasMailRotating = false;
+      
+      const updateContactScrollProgress = () => {
+        const section4Rect = section4.getBoundingClientRect();
+        const wrapperRect = wrapper.getBoundingClientRect();
+        
+        // Calculate how far into section-4 we've scrolled
+        const sectionTop = section4Rect.top - wrapperRect.top;
+        const sectionHeight = section4.offsetHeight;
+        const viewportHeight = wrapperRect.height;
+        
+        // Start animation when section enters viewport, complete when it exits
+        const progress = Math.min(Math.max((-sectionTop + viewportHeight * 0.3) / (sectionHeight * 0.7), 0), 1);
+        contactScrollProgress = progress;
+        
+        // Update frame rotation
+        const frameContainer = document.getElementById('mail-frame');
+        const svg = frameContainer?.querySelector('svg');
+        if (svg) {
+          const rotation = contactScrollProgress * 360;
+          svg.style.transform = `rotate(${rotation}deg)`;
+        }
+        
+        // Swap to inverse color when rotation starts or stops
+        const isCurrentlyRotating = contactScrollProgress > 0 && contactScrollProgress < 1;
+        if (isCurrentlyRotating !== wasMailRotating) {
+          wasMailRotating = isCurrentlyRotating;
+          loadMailFrame(get(theme), isCurrentlyRotating || mailFrameHovered);
+        }
+      };
+      
+      wrapper.addEventListener('scroll', updateContactScrollProgress, { passive: true });
+      updateContactScrollProgress();
+    }
+  });
 </script>
 
 <svelte:window on:keydown={handleKeydown} />
@@ -281,40 +388,50 @@
         
         <!-- Header -->
         <div class="text-center content-center">
-          <!-- Mail Icon SVG -->
-          <svg class="w-20 h-20 md:w-24 md:h-24 mx-auto" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <!-- Envelope body -->
-            <rect x="4" y="14" width="56" height="40" rx="4" fill="{$theme === 'light' ? '#00c400' : '#ff4500'}">
-              <animate attributeName="fill-opacity" values="0.9;1;0.9" dur="3s" repeatCount="indefinite"/>
-            </rect>
-            <!-- Envelope flap (triangle) -->
-            <path d="M4 18l28 18 28-18" stroke="{$theme === 'light' ? '#00a000' : '#cc3700'}" stroke-width="3" fill="none" stroke-linejoin="round">
-              <animate attributeName="stroke-opacity" values="0.8;1;0.8" dur="2s" repeatCount="indefinite"/>
-            </path>
-            <!-- Inner fold lines -->
-            <path d="M4 54l20-16" stroke="{$theme === 'light' ? '#00a000' : '#cc3700'}" stroke-width="2" fill="none" opacity="0.5"/>
-            <path d="M60 54l-20-16" stroke="{$theme === 'light' ? '#00a000' : '#cc3700'}" stroke-width="2" fill="none" opacity="0.5"/>
-            <!-- Letter peeking out -->
-            <rect x="14" y="8" width="36" height="24" rx="2" fill="{$theme === 'light' ? '#f5f5f5' : '#e8e8e8'}">
-              <animate attributeName="y" values="8;6;8" dur="4s" repeatCount="indefinite"/>
-            </rect>
-            <!-- Letter lines -->
-            <g stroke="{$theme === 'light' ? '#00c400' : '#ff4500'}" stroke-width="2" stroke-linecap="round">
-              <line x1="20" y1="16" x2="44" y2="16" opacity="0.6">
-                <animate attributeName="opacity" values="0.4;0.8;0.4" dur="2s" repeatCount="indefinite"/>
-              </line>
-              <line x1="20" y1="22" x2="38" y2="22" opacity="0.5">
-                <animate attributeName="opacity" values="0.3;0.7;0.3" dur="2.5s" repeatCount="indefinite"/>
-              </line>
-            </g>
-            <!-- Sparkle/notification dot -->
-            <circle cx="54" cy="12" r="6" fill="{$theme === 'light' ? '#ff4500' : '#00c400'}">
-              <animate attributeName="r" values="5;7;5" dur="1.5s" repeatCount="indefinite"/>
-              <animate attributeName="opacity" values="0.8;1;0.8" dur="1.5s" repeatCount="indefinite"/>
-            </circle>
-            <!-- Highlight -->
-            <path d="M8 18a4 4 0 0 1 4-4h40" stroke="{$theme === 'light' ? '#00dd00' : '#ff6030'}" stroke-width="2" fill="none" opacity="0.3"/>
-          </svg>
+          <!-- Mail Icon with Animated Frame -->
+          <div 
+            class="mail-icon-container mx-auto {showMailInverseColor
+              ? ($theme === 'light' ? 'glow-fire' : 'glow-green') 
+              : ($theme === 'light' ? 'glow-green' : 'glow-fire')}"
+            on:mouseenter={handleMailFrameEnter}
+            on:mouseleave={handleMailFrameLeave}
+            role="presentation"
+          >
+            <div id="mail-frame" class="mail-frame"></div>
+            <svg class="mail-icon" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- Envelope body -->
+              <rect x="4" y="14" width="56" height="40" rx="4" fill="{$theme === 'light' ? '#00c400' : '#ff4500'}">
+                <animate attributeName="fill-opacity" values="0.9;1;0.9" dur="3s" repeatCount="indefinite"/>
+              </rect>
+              <!-- Envelope flap (triangle) -->
+              <path d="M4 18l28 18 28-18" stroke="{$theme === 'light' ? '#00a000' : '#cc3700'}" stroke-width="3" fill="none" stroke-linejoin="round">
+                <animate attributeName="stroke-opacity" values="0.8;1;0.8" dur="2s" repeatCount="indefinite"/>
+              </path>
+              <!-- Inner fold lines -->
+              <path d="M4 54l20-16" stroke="{$theme === 'light' ? '#00a000' : '#cc3700'}" stroke-width="2" fill="none" opacity="0.5"/>
+              <path d="M60 54l-20-16" stroke="{$theme === 'light' ? '#00a000' : '#cc3700'}" stroke-width="2" fill="none" opacity="0.5"/>
+              <!-- Letter peeking out -->
+              <rect x="14" y="8" width="36" height="24" rx="2" fill="{$theme === 'light' ? '#f5f5f5' : '#e8e8e8'}">
+                <animate attributeName="y" values="8;6;8" dur="4s" repeatCount="indefinite"/>
+              </rect>
+              <!-- Letter lines -->
+              <g stroke="{$theme === 'light' ? '#00c400' : '#ff4500'}" stroke-width="2" stroke-linecap="round">
+                <line x1="20" y1="16" x2="44" y2="16" opacity="0.6">
+                  <animate attributeName="opacity" values="0.4;0.8;0.4" dur="2s" repeatCount="indefinite"/>
+                </line>
+                <line x1="20" y1="22" x2="38" y2="22" opacity="0.5">
+                  <animate attributeName="opacity" values="0.3;0.7;0.3" dur="2.5s" repeatCount="indefinite"/>
+                </line>
+              </g>
+              <!-- Sparkle/notification dot -->
+              <circle cx="54" cy="12" r="6" fill="{$theme === 'light' ? '#ff4500' : '#00c400'}">
+                <animate attributeName="r" values="5;7;5" dur="1.5s" repeatCount="indefinite"/>
+                <animate attributeName="opacity" values="0.8;1;0.8" dur="1.5s" repeatCount="indefinite"/>
+              </circle>
+              <!-- Highlight -->
+              <path d="M8 18a4 4 0 0 1 4-4h40" stroke="{$theme === 'light' ? '#00dd00' : '#ff6030'}" stroke-width="2" fill="none" opacity="0.3"/>
+            </svg>
+          </div>
           <h1 class="jura {$theme === 'light' ? theme.classes.light.text : theme.classes.dark.text}" style="margin: 1em; font-size: 2em; font-weight: 600;">CONTACT ME</h1>
         </div>
 
@@ -406,5 +523,95 @@
       opacity: 0.45;
       filter: brightness(1.3) saturate(1.8);
     }
+  }
+
+  /* Mail icon container with animated frame */
+  .mail-icon-container {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+  }
+
+  @media (min-width: 768px) {
+    .mail-icon-container {
+      width: 120px;
+      height: 120px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .mail-icon-container {
+      width: 140px;
+      height: 140px;
+    }
+  }
+
+  .mail-icon-container:hover {
+    transform: scale(1.05);
+  }
+
+  /* SVG frame positioned absolutely */
+  .mail-frame {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  .mail-frame :global(svg) {
+    width: 100%;
+    height: 100%;
+  }
+
+  /* Mail icon centered inside frame */
+  .mail-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50px;
+    height: 50px;
+    z-index: 1;
+  }
+
+  @media (min-width: 768px) {
+    .mail-icon {
+      width: 60px;
+      height: 60px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .mail-icon {
+      width: 70px;
+      height: 70px;
+    }
+  }
+
+  /* Glow effects for mail frame */
+  .mail-icon-container::after {
+    content: '';
+    position: absolute;
+    inset: -8px;
+    z-index: 0;
+    opacity: 0;
+    animation: fadeInGlow 1s ease 0.5s forwards;
+  }
+
+  .mail-icon-container.glow-fire::after {
+    background: radial-gradient(circle, rgba(255, 69, 0, 0.25) 0%, transparent 70%);
+  }
+
+  .mail-icon-container.glow-green::after {
+    background: radial-gradient(circle, rgba(0, 196, 0, 0.25) 0%, transparent 70%);
+  }
+
+  @keyframes fadeInGlow {
+    to { opacity: 1; }
   }
 </style>
