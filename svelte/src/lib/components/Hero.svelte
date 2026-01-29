@@ -2,6 +2,7 @@
   import { theme } from '../stores/light-dark-mode';
   import headerArtPicFire from '../../assets/illustrations/eddie-header.svg';
   import headerArtPicGreen from '../../assets/illustrations/eddie-header-green.svg';
+  import headerArtPicGold from '../../assets/illustrations/eddie-header-gold.svg';
   import profilePhoto from '../../assets/photos/eddie-profile.png';
   import { onMount } from 'svelte';
   import { get } from 'svelte/store';
@@ -34,10 +35,13 @@
   From web applications to immersive XR experiences, my expertise spans web development, responsive design, CSS & SVG animation, UI/UX design, and even video game development using Unreal Engine. With a focus on creating high-performing and effective software, I've successfully delivered MVPs and beyond on numerous projects.`;
 
   // Function to load the appropriate SVG based on theme and state
-  // Shows inverse color when hovering OR when rotating (scrolling)
-  function loadHeaderSvg(currentTheme: string, showInverse: boolean = false) {
+  // Shows gold when hovering, inverse color when rotating (scrolling)
+  function loadHeaderSvg(currentTheme: string, showInverse: boolean = false, showGold: boolean = false) {
     let svgUrl: string;
-    if (showInverse) {
+    if (showGold) {
+      // Golden state on hover
+      svgUrl = headerArtPicGold;
+    } else if (showInverse) {
       // Swap colors: light mode shows fire, dark mode shows green
       svgUrl = currentTheme === 'light' ? headerArtPicFire : headerArtPicGreen;
     } else {
@@ -61,26 +65,26 @@
       });
   }
 
-  // Determine if we should show inverse color (hovering or rotating)
+  // Determine if we should show inverse color (rotating only, not hovering - hover shows gold)
   $: isRotating = scrollProgress > 0;
-  $: showInverseColor = frameHovered || isRotating;
+  $: showInverseColor = isRotating; // Only rotating triggers inverse, hover shows gold
 
   // Subscribe to theme changes to update the SVG
   theme.subscribe((currentTheme) => {
     if (typeof document !== 'undefined') {
-      loadHeaderSvg(currentTheme, showInverseColor);
+      loadHeaderSvg(currentTheme, showInverseColor, frameHovered);
     }
   });
 
-  // Handle frame hover - swap to opposite color
+  // Handle frame hover - show golden state
   function handleFrameEnter() {
     frameHovered = true;
-    loadHeaderSvg(get(theme), true);
+    loadHeaderSvg(get(theme), isRotating, true); // Show gold on hover
   }
 
   function handleFrameLeave() {
     frameHovered = false;
-    loadHeaderSvg(get(theme), isRotating);
+    loadHeaderSvg(get(theme), isRotating, false); // Return to normal/inverse
   }
 
   onMount(() => {
@@ -364,9 +368,11 @@
       <!-- Picture -->
       <div class="w-full md:w-2/5 lg:w-1/3 mx-auto flex items-center justify-center mb-6 md:mb-0">
         <div 
-          class="header-pic-container {showInverseColor
-            ? ($theme === 'light' ? 'glow-fire' : 'glow-green') 
-            : ($theme === 'light' ? 'glow-green' : 'glow-fire')}"
+          class="header-pic-container {frameHovered
+            ? ($theme === 'light' ? 'glow-gold-light' : 'glow-gold-dark')
+            : (showInverseColor
+              ? ($theme === 'light' ? 'glow-fire' : 'glow-green') 
+              : ($theme === 'light' ? 'glow-green' : 'glow-fire'))}"
           on:mouseenter={handleFrameEnter}
           on:mouseleave={handleFrameLeave}
           role="presentation"
@@ -662,6 +668,13 @@
   }
   .header-pic-container.glow-green::after {
     background: radial-gradient(circle, rgba(0, 196, 0, 0.2) 0%, transparent 70%);
+  }
+  /* Gold glow for hover state - brighter in light mode, deeper in dark mode */
+  .header-pic-container.glow-gold-light::after {
+    background: radial-gradient(circle, rgba(255, 215, 0, 0.35) 0%, rgba(255, 193, 37, 0.15) 40%, transparent 70%);
+  }
+  .header-pic-container.glow-gold-dark::after {
+    background: radial-gradient(circle, rgba(218, 165, 32, 0.4) 0%, rgba(184, 134, 11, 0.2) 40%, transparent 70%);
   }
   @keyframes fadeInGlow {
     to { opacity: 1; }
