@@ -109,15 +109,15 @@
             <!-- Book SVG Illustration -->
             <svg class="w-14 h-14 md:w-16 md:h-16" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
               <!-- Book spine -->
-              <rect x="8" y="8" width="8" height="48" rx="2" fill="{$theme === 'light' ? '#00a000' : '#cc3700'}">
+              <rect x="8" y="8" width="8" height="48" rx="2" fill="{$theme === 'light' ? '#1a7a1a' : '#b33000'}">
                 <animate attributeName="fill-opacity" values="0.8;1;0.8" dur="3s" repeatCount="indefinite"/>
               </rect>
               <!-- Book cover back -->
-              <path d="M16 8h36a4 4 0 0 1 4 4v40a4 4 0 0 1-4 4H16V8z" fill="{$theme === 'light' ? '#00c400' : '#ff4500'}"/>
+              <path d="M16 8h36a4 4 0 0 1 4 4v40a4 4 0 0 1-4 4H16V8z" fill="{$theme === 'light' ? '#228b22' : '#cc4400'}"/>
               <!-- Book pages (visible from side) -->
               <rect x="14" y="12" width="2" height="40" fill="{$theme === 'light' ? '#f5f5f5' : '#e8e8e8'}"/>
               <!-- Page lines -->
-              <g stroke="{$theme === 'light' ? '#00a000' : '#ff4500'}" stroke-width="1.5" stroke-linecap="round">
+              <g stroke="{$theme === 'light' ? '#1a7a1a' : '#cc4400'}" stroke-width="1.5" stroke-linecap="round">
                 <line x1="24" y1="20" x2="48" y2="20" opacity="0.6">
                   <animate attributeName="opacity" values="0.4;0.8;0.4" dur="2s" repeatCount="indefinite"/>
                 </line>
@@ -132,13 +132,13 @@
                 </line>
               </g>
               <!-- Bookmark ribbon -->
-              <path d="M42 8v18l-4-3-4 3V8" fill="{$theme === 'light' ? '#ff4500' : '#00c400'}">
+              <path d="M42 8v18l-4-3-4 3V8" fill="{$theme === 'light' ? '#cc4400' : '#228b22'}">
                 <animate attributeName="d" values="M42 8v18l-4-3-4 3V8;M42 8v20l-4-3-4 3V8;M42 8v18l-4-3-4 3V8" dur="4s" repeatCount="indefinite"/>
               </path>
               <!-- Book edge highlight -->
-              <path d="M56 12v40a4 4 0 0 1-4 4" stroke="{$theme === 'light' ? '#00dd00' : '#ff6030'}" stroke-width="2" fill="none" opacity="0.4"/>
+              <path d="M56 12v40a4 4 0 0 1-4 4" stroke="{$theme === 'light' ? '#2e8b2e' : '#dd5522'}" stroke-width="2" fill="none" opacity="0.4"/>
               <!-- Sparkle effect -->
-              <circle cx="50" cy="16" r="1.5" fill="{$theme === 'light' ? '#00dd00' : '#ff6030'}">
+              <circle cx="50" cy="16" r="1.5" fill="{$theme === 'light' ? '#2e8b2e' : '#dd5522'}">
                 <animate attributeName="opacity" values="0;1;0" dur="2s" repeatCount="indefinite"/>
                 <animate attributeName="r" values="1;2;1" dur="2s" repeatCount="indefinite"/>
               </circle>
