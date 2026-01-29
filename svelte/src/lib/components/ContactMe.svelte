@@ -3,8 +3,79 @@
 
 </script>
 <main>
-    <div id="section-4" class={$theme === 'light' ? theme.classes.light.heroGradient : theme.classes.dark.heroGradient}>
-      <div class="md:w-4/5 lg:w-3/5 mx-auto py-40 lg:py-0 mb-8">
+    <div id="section-4" class="{$theme === 'light' ? theme.classes.light.heroGradient : theme.classes.dark.heroGradient} relative">
+      
+      <!-- Background Silhouette - Communication/Connection lines focusing toward center form -->
+      <div class="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
+        <svg class="absolute w-full h-full opacity-[0.08]" viewBox="0 0 1200 800" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+          <g stroke={$theme === 'light' ? '#00c400' : '#ff4500'} stroke-width="1.5" fill="none">
+            <!-- Left side - lines converging toward center -->
+            <path d="M0 100 H150 L300 250 L450 250 H500">
+              <animate attributeName="stroke-dasharray" values="0 800;800 0" dur="6s" repeatCount="indefinite"/>
+            </path>
+            <path d="M0 300 H100 L250 400 H500">
+              <animate attributeName="stroke-dasharray" values="0 600;600 0" dur="5s" repeatCount="indefinite" begin="0.5s"/>
+            </path>
+            <path d="M0 500 H200 L350 400 H500">
+              <animate attributeName="stroke-dasharray" values="0 700;700 0" dur="5.5s" repeatCount="indefinite" begin="1s"/>
+            </path>
+            <path d="M0 700 H150 L300 550 L450 550 H500">
+              <animate attributeName="stroke-dasharray" values="0 800;800 0" dur="6s" repeatCount="indefinite" begin="1.5s"/>
+            </path>
+            
+            <!-- Right side - lines converging toward center -->
+            <path d="M1200 100 H1050 L900 250 L750 250 H700">
+              <animate attributeName="stroke-dasharray" values="0 800;800 0" dur="6s" repeatCount="indefinite" begin="0.3s"/>
+            </path>
+            <path d="M1200 300 H1100 L950 400 H700">
+              <animate attributeName="stroke-dasharray" values="0 600;600 0" dur="5s" repeatCount="indefinite" begin="0.8s"/>
+            </path>
+            <path d="M1200 500 H1000 L850 400 H700">
+              <animate attributeName="stroke-dasharray" values="0 700;700 0" dur="5.5s" repeatCount="indefinite" begin="1.3s"/>
+            </path>
+            <path d="M1200 700 H1050 L900 550 L750 550 H700">
+              <animate attributeName="stroke-dasharray" values="0 800;800 0" dur="6s" repeatCount="indefinite" begin="1.8s"/>
+            </path>
+            
+            <!-- Center form frame outline -->
+            <rect x="480" y="200" width="240" height="400" rx="8" stroke-width="2" opacity="0.5">
+              <animate attributeName="stroke-dasharray" values="0 1300;1300 0" dur="4s" fill="freeze"/>
+            </rect>
+            
+            <!-- Connection nodes on left -->
+            <circle cx="0" cy="100" r="4" fill={$theme === 'light' ? '#00c400' : '#ff4500'}/>
+            <circle cx="0" cy="300" r="4" fill={$theme === 'light' ? '#00c400' : '#ff4500'}/>
+            <circle cx="0" cy="500" r="4" fill={$theme === 'light' ? '#00c400' : '#ff4500'}/>
+            <circle cx="0" cy="700" r="4" fill={$theme === 'light' ? '#00c400' : '#ff4500'}/>
+            
+            <!-- Connection nodes on right -->
+            <circle cx="1200" cy="100" r="4" fill={$theme === 'light' ? '#00c400' : '#ff4500'}/>
+            <circle cx="1200" cy="300" r="4" fill={$theme === 'light' ? '#00c400' : '#ff4500'}/>
+            <circle cx="1200" cy="500" r="4" fill={$theme === 'light' ? '#00c400' : '#ff4500'}/>
+            <circle cx="1200" cy="700" r="4" fill={$theme === 'light' ? '#00c400' : '#ff4500'}/>
+            
+            <!-- Data flow dots traveling along paths -->
+            <circle r="3" fill={$theme === 'light' ? '#00ff88' : '#ff8c00'}>
+              <animateMotion dur="4s" repeatCount="indefinite" path="M0 300 H100 L250 400 H500"/>
+            </circle>
+            <circle r="3" fill={$theme === 'light' ? '#00ff88' : '#ff8c00'}>
+              <animateMotion dur="4s" repeatCount="indefinite" begin="2s" path="M1200 500 H1000 L850 400 H700"/>
+            </circle>
+            
+            <!-- Top and bottom decorative lines -->
+            <path d="M400 50 H800" stroke-width="1" opacity="0.3"/>
+            <path d="M400 750 H800" stroke-width="1" opacity="0.3"/>
+            
+            <!-- Corner accents -->
+            <path d="M420 80 L420 120 L460 120" stroke-width="2" opacity="0.4"/>
+            <path d="M780 80 L780 120 L740 120" stroke-width="2" opacity="0.4"/>
+            <path d="M420 720 L420 680 L460 680" stroke-width="2" opacity="0.4"/>
+            <path d="M780 720 L780 680 L740 680" stroke-width="2" opacity="0.4"/>
+          </g>
+        </svg>
+      </div>
+      
+      <div class="md:w-4/5 lg:w-3/5 mx-auto py-40 lg:py-0 mb-8 relative z-10">
         <!-- Header -->
         <div class="text-center content-center">
           <!-- Mail Icon SVG -->
