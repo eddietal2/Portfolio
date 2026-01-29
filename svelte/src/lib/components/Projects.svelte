@@ -544,10 +544,12 @@
             <button
               class="px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 transform hover:scale-105
                 {selectedCategory === category 
-                  ? 'bg-gradient-to-r from-orange-500 to-pink-500 text-white shadow-lg shadow-orange-500/25' 
+                  ? $theme === 'light'
+                    ? 'bg-gradient-to-r from-[#00c400] to-[#00e000] text-white shadow-lg shadow-[#00c400]/30' 
+                    : 'bg-gradient-to-r from-[#ff4500] to-[#ff6b35] text-white shadow-lg shadow-[#ff4500]/30'
                   : $theme === 'light' 
-                    ? 'bg-white/50 text-gray-700 hover:bg-white/80 border border-gray-200' 
-                    : 'bg-white/10 text-gray-300 hover:bg-white/20 border border-white/10'}"
+                    ? 'bg-white/50 text-gray-700 hover:bg-white/80 border border-gray-200 hover:border-[#00c400]/50' 
+                    : 'bg-white/10 text-gray-300 hover:bg-white/20 border border-white/10 hover:border-[#ff4500]/50'}"
               on:click={() => { selectedCategory = category; cardsVisible = false; setTimeout(() => cardsVisible = true, 50); }}
             >
               {category}
