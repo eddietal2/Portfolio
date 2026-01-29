@@ -23,7 +23,7 @@ const classes: Record<Theme, ThemeClasses> = {
     heroGradient:
       "lg:pb-12 md:pt-24 bg-gradient-to-br from-green-100 via-[#fff] to-blue-100 bg-[length:400%_400%] animate-gradientShift",
     projectsGradient:
-      "lg:pb-12 md:pt-24 bg-gradient-to-br from-green-100 via-[#fff] to-blue-100 bg-[length:400%_400%] animate-gradientShift",
+      "lg:pb-12 md:pt-24 bg-gradient-to-br from-teal-50 via-[#fafafa] to-cyan-50 bg-[length:400%_400%] animate-gradientShift",
     button:
       "bg-gradient-to-r from-[#00c400] via-[#00dd00] to-[#00ff88] text-white jura font-bold py-1 px-4 rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 ease-in-out",
     buttonTwo:

@@ -577,7 +577,7 @@
             <!-- Glow Effect on Hover -->
             <div 
               class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl"
-              style="background: radial-gradient(circle at 50% 50%, {project.color}20, transparent 70%)"
+              style="background: radial-gradient(circle at 50% 50%, {project.color}{$theme === 'light' ? '10' : '25'}, transparent {$theme === 'light' ? '60%' : '70%'})"
             ></div>
 
             <!-- Card Content -->
@@ -601,7 +601,7 @@
 
               <!-- Project Info -->
               <div class="flex-1">
-                <h3 class="text-lg font-bold jura mb-1 {$theme === 'light' ? 'text-gray-900' : 'text-white'} group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-orange-400 group-hover:to-pink-500 transition-all duration-300">
+                <h3 class="text-lg font-bold jura mb-1 {$theme === 'light' ? 'text-gray-900' : 'text-white'} group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r {$theme === 'light' ? 'group-hover:from-teal-500 group-hover:to-cyan-500' : 'group-hover:from-orange-400 group-hover:to-pink-500'} transition-all duration-300">
                   {project.name}
                 </h3>
                 <p class="text-xs font-medium mb-3" style="color: {project.color}">{project.role}</p>
