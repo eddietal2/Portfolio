@@ -25,7 +25,7 @@ const classes: Record<Theme, ThemeClasses> = {
     projectsGradient:
       "lg:pb-12 md:pt-24 bg-gradient-to-br from-green-100 via-[#fff] to-blue-100 bg-[length:400%_400%] animate-gradientShift",
     button:
-      "bg-gradient-to-r from-yellow-500 via-red-500 to-orange-500 text-white jura font-bold py-1 px-4 rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 ease-in-out",
+      "bg-gradient-to-r from-[#00c400] via-[#00dd00] to-[#00ff88] text-white jura font-bold py-1 px-4 rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 ease-in-out",
     buttonTwo:
       "bg-gradient-to-r from-green-500 via-green-500 to-[#00c400] text-white jura font-bold py-1 px-4 rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 ease-in-out",
     input:
@@ -41,7 +41,7 @@ const classes: Record<Theme, ThemeClasses> = {
     projectsGradient:
       "lg:pb-12 md:pt-24 bg-gradient-to-br from-[#001f1a] via-[#000] to-[#001a2e] bg-[length:400%_400%] animate-gradientShift",
     button:
-      "bg-gradient-to-r from-yellow-500 via-red-500 to-orange-500 text-white jura font-bold py-1 px-4 rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 ease-in-out",
+      "bg-gradient-to-r from-[#ff4500] via-[#ff6030] to-[#ff8c00] text-white jura font-bold py-1 px-4 rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 ease-in-out",
     buttonTwo:
       "bg-gradient-to-r from-green-500 via-green-500 to-[#00c400] text-white jura font-bold py-1 px-4 rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 ease-in-out",
     input:
