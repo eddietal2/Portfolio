@@ -86,7 +86,7 @@
             </b> 
           </span>
           <br>
-          <span class="sm:text-xl xl:text-2xl block my-4 border-b border-gray-200/20 pb-4 typewriter-text">
+          <span class="sm:text-xl xl:text-lg block my-4 border-b border-gray-200/20 pb-4 typewriter-text">
             <span class={$theme === 'light' ? theme.classes.light.text : theme.classes.dark.text}>
               {typedText}
             </span>
