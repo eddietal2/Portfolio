@@ -33,7 +33,7 @@
   };
 
   const fullText = `As a versatile developer and designer, I specialize in turning innovative ideas into tangible software. 
-  From web applications to immersive XR experiences, my expertise spans web development, responsive design, CSS & SVG animation, UI/UX design, and even video game development using Unreal Engine. With a focus on creating high-performing and effective software, I've successfully delivered MVPs and beyond on numerous projects.`;
+  From web applications to immersive XR experiences, my expertise spans web development, responsive design, CSS & SVG animation, UI/UX design, and even video game development using Unreal Engine. With a focus on creating high-performing and effective software, I've successfully delivered on numerous types of projects.`;
 
   // Function to load the appropriate SVG based on theme and state
   // Shows gold when hovering, inverse color when rotating (scrolling)

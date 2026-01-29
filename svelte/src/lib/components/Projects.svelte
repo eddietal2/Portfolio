@@ -641,11 +641,9 @@
             </div>
             MY PROJECTS
           </h1>
-          <p class="mt-3 text-sm md:text-base max-w-2xl {$theme === 'light' ? 'text-gray-600' : 'text-gray-400'}">
+          <p class="mt-3 text-md md:text-base max-w-2xl {$theme === 'light' ? 'text-gray-600' : 'text-gray-400'}">
             A collection of professional work and passion projects spanning VR/AR, Web, and Mobile development. This portfolio ranges back to 2024. If you want to see more, visit my Github,
-            which goes back to 2016, when I first started this journey. I have been a freelance, contract, or entrepreneur within the tech space since then. This even includes 5 years as a tech educator,
-            in which some projects on my github were apart of some curriculum I developed for teaching coding to students.
-            <br>
+            which goes back to 2016, when I first started this journey.
             <br>
             <a class="text-[#3686fd] hover:text-[#5a9dfd] underline underline-offset-2 transition-colors" href="https://github.com/eddietal2" target="_blank">View more on Github →</a>
           </p>

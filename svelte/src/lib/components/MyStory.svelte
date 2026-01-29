@@ -80,17 +80,20 @@
     {
       title: "The Beginning",
       icon: "🎮",
-      content: "My passion for video games, anime, and graphic design began at 11, igniting a creative spark. Online forums like Playstation Universe became my playground for crafting custom signatures."
+      years: "2003 - 2015",
+      content: "Born June 17th, 1992—at 33 years old, I can confidently say that most of my life has revolved around technology in some form.\n\nMy passion for video games, anime, comics, science, and graphic design began as a child, igniting a creative spark. Online forums like PlayStation Universe, IGN, and GameSpot became my playground for crafting custom forum signatures and my own personal digital art using Photoshop and GIMP.\n\nThrough this hobby, I unknowingly learned HTML and PHP from a young age—using graphic design and web development as creative outlets long before I realized they'd become my career."
     },
     {
       title: "The Journey",
       icon: "🚀",
-      content: "This passion led me to pursue web development, fueled by hackathon victories, bootcamps, teaching, and freelance projects since 2017."
+      years: "2017 - Present",
+      content: "This passion led me to pursue web development professionally, fueled by hackathon victories, bootcamps, teaching, and freelance projects since 2016.\n\nWhile I had some formal programming classes, I was largely self-taught through online resources, tutorials, and most importantly, hands-on experience. Joining Invest Detroit's Hackerfellow Business and Technology Fellowship in 2019 accelerated my growth and expanded my network significantly.\n\nRejoining Journi as a Full-Time Tech Educator was pivotal—it helped me solidify the fundamentals of web development through consistent teaching. Over the years, I've built a diverse portfolio spanning local startups, small businesses, remote freelance work on Upwork, and my own startup where I serve as technical founder.\n\nSimply put, I love building things and creating great experiences—online and offline."
     },
     {
       title: "Giving Back",
-      icon: "�",
-      content: "For four years, I taught Detroit's youth to code through Journi, a non-profit. This experience not only helped my students grow but also refined my own skills. It was an honor and an act of love for my city."
+      icon: "🎓",
+      years: "2018 - 2023",
+      content: "For five years, I taught Detroit's youth to code through nonprofits like Journi, Math 4 Success, and the Boys & Girls Clubs.\n\nWhat started as weekend mentoring evolved into a full-time role as a hybrid instructor and software developer. I designed multiple curriculums and led over 15 cohorts through web development, augmented reality, design, and entrepreneurship.\n\nAs someone who left college due to financial constraints, I understand the transformative power of accessible education. This work refined my skills while giving back to my city—an honor, a blessing, and an act of love."
     }
   ];
 
@@ -538,12 +541,17 @@
             <div class="flex items-start gap-4">
               <span class="text-4xl">{storyTabs[activeTab].icon}</span>
               <div>
-                <h3 class="text-xl font-bold mb-3 {$theme === 'light' ? 'text-gray-900' : 'text-white'}">
-                  {storyTabs[activeTab].title}
-                </h3>
-                <p class="text-base md:text-lg leading-relaxed {$theme === 'light' ? 'text-gray-600' : 'text-gray-300'}">
+                <div class="flex items-center gap-3 mb-2">
+                  <h3 class="text-xl font-bold {$theme === 'light' ? 'text-gray-900' : 'text-white'}">
+                    {storyTabs[activeTab].title}
+                  </h3>
+                  <span class="px-3 py-1 text-xs font-mono rounded-full {$theme === 'light' ? 'bg-[#00c400]/10 text-[#00c400] border border-[#00c400]/30' : 'bg-[#ff4500]/10 text-[#ff4500] border border-[#ff4500]/30'}">
+                    {storyTabs[activeTab].years}
+                  </span>
+                </div>
+                <div class="text-base md:text-lg leading-relaxed {$theme === 'light' ? 'text-gray-600' : 'text-gray-300'} whitespace-pre-line">
                   {storyTabs[activeTab].content}
-                </p>
+                </div>
               </div>
             </div>
 
@@ -559,30 +567,6 @@
                 ></button>
               {/each}
             </div>
-          </div>
-
-          <!-- Stats Row -->
-          <div class="grid grid-cols-3 gap-4 mt-8">
-            {#each [
-              { value: '7+', label: 'Years Coding' },
-              { value: '4', label: 'Years Teaching' },
-              { value: '50+', label: 'Projects' }
-            ] as stat, index}
-              <div 
-                class="stat-card text-center p-4 rounded-xl backdrop-blur-sm transition-all duration-300 hover:scale-105
-                  {$theme === 'light' 
-                    ? 'bg-white/50 border border-gray-200' 
-                    : 'bg-white/5 border border-white/10'}"
-                style="animation-delay: {index * 100}ms"
-              >
-                <div class="text-2xl md:text-3xl font-bold bg-gradient-to-r {$theme === 'light' ? 'from-[#00c400] to-emerald-400' : 'from-[#ff4500] to-orange-400'} bg-clip-text text-transparent">
-                  {stat.value}
-                </div>
-                <div class="text-xs md:text-sm mt-1 {$theme === 'light' ? 'text-gray-500' : 'text-gray-400'}">
-                  {stat.label}
-                </div>
-              </div>
-            {/each}
           </div>
         </div>
       </div>

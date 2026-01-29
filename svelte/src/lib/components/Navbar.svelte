@@ -120,19 +120,19 @@
       <!-- Icons + Dark/Light Toggle -->
       <div class="col-span-1 text-right flex items-center justify-end space-x-1 lg:space-x-3">
         <!-- Github -->
-        <a class="nav-icon-link p-1 lg:p-1.5 rounded-full transition-all duration-300 {$goldenState ? ($theme === 'light' ? 'hover:bg-[#9A7B1C20] text-[#9A7B1C]' : 'hover:bg-[#FFD70020] text-[#FFD700]') : ($theme === 'light' ? 'hover:bg-[#00c40020]' : 'hover:bg-[#ff450020]')}" 
+        <a class="nav-icon-link p-1 lg:p-1.5 rounded-full transition-all duration-300 {$goldenState ? ($theme === 'light' ? 'hover:bg-[#9A7B1C20] text-[#9A7B1C]' : 'hover:bg-[#FFD70020] text-[#FFD700]') : ($theme === 'light' ? 'hover:bg-[#00c40020] text-gray-700' : 'hover:bg-[#ff450020] text-gray-300')}" 
            href="https://github.com/eddietal2" target="_blank" aria-label="Github Link">
           <ion-icon class="text-xl lg:text-2xl xl:text-3xl" name="logo-github"></ion-icon>
         </a>
 
         <!-- LinkedIn -->
-        <a class="nav-icon-link p-1 lg:p-1.5 rounded-full transition-all duration-300 {$goldenState ? ($theme === 'light' ? 'hover:bg-[#9A7B1C20] text-[#9A7B1C]' : 'hover:bg-[#FFD70020] text-[#FFD700]') : ($theme === 'light' ? 'hover:bg-[#00c40020]' : 'hover:bg-[#ff450020]')}" 
+        <a class="nav-icon-link p-1 lg:p-1.5 rounded-full transition-all duration-300 {$goldenState ? ($theme === 'light' ? 'hover:bg-[#9A7B1C20] text-[#9A7B1C]' : 'hover:bg-[#FFD70020] text-[#FFD700]') : ($theme === 'light' ? 'hover:bg-[#00c40020] text-gray-700' : 'hover:bg-[#ff450020] text-gray-300')}" 
            href="https://www.linkedin.com/in/eddie-taliaferro-ii/" target="_blank" aria-label="LinkedIn Link">
           <ion-icon class="text-xl lg:text-2xl xl:text-3xl" name="logo-linkedin"></ion-icon>
         </a>
 
         <!-- Contact -->
-        <a class="nav-icon-link p-1 lg:p-1.5 rounded-full transition-all duration-300 {$goldenState ? ($theme === 'light' ? 'hover:bg-[#9A7B1C20] text-[#9A7B1C]' : 'hover:bg-[#FFD70020] text-[#FFD700]') : ($theme === 'light' ? 'hover:bg-[#00c40020]' : 'hover:bg-[#ff450020]')}" 
+        <a class="nav-icon-link p-1 lg:p-1.5 rounded-full transition-all duration-300 {$goldenState ? ($theme === 'light' ? 'hover:bg-[#9A7B1C20] text-[#9A7B1C]' : 'hover:bg-[#FFD70020] text-[#FFD700]') : ($theme === 'light' ? 'hover:bg-[#00c40020] text-gray-700' : 'hover:bg-[#ff450020] text-gray-300')}" 
            href="#section-4" aria-label="Contact Me Link">
           <ion-icon class="text-xl lg:text-2xl xl:text-3xl" name="mail-outline"></ion-icon>
         </a>
@@ -147,9 +147,9 @@
             {showThemeTooltip ? 'animate-pulse ring-2 ring-offset-2 ' + ($goldenState ? ($theme === 'light' ? 'ring-[#9A7B1C] ring-offset-white' : 'ring-[#FFD700] ring-offset-gray-900') : ($theme === 'light' ? 'ring-[#00c400] ring-offset-white' : 'ring-[#ff4500] ring-offset-gray-900')) : ''}"
           on:click={toggleTheme}>
           {#if $theme === 'light'}
-            <ion-icon class="text-xl lg:text-2xl xl:text-3xl {$goldenState ? 'text-[#9A7B1C]' : 'text-[#00c400]'}" name="sunny-sharp"></ion-icon>
+            <ion-icon class="text-xl lg:text-2xl xl:text-3xl transition-colors duration-300 {$goldenState ? 'text-[#9A7B1C]' : 'text-[#00c400]'}" name="sunny-sharp"></ion-icon>
           {:else}
-            <ion-icon class="text-xl lg:text-2xl xl:text-3xl {$goldenState ? 'text-[#FFD700]' : 'text-[#ff4500]'}" name="moon-sharp"></ion-icon>
+            <ion-icon class="text-xl lg:text-2xl xl:text-3xl transition-colors duration-300 {$goldenState ? 'text-[#FFD700]' : 'text-[#ff4500]'}" name="moon-sharp"></ion-icon>
           {/if}
         </button>
 
