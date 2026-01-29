@@ -7,6 +7,27 @@
   import { get } from 'svelte/store';
 
   let typedText = '';
+  let hoveredSkill: string | null = null;
+
+  // Skill descriptions for hover expansion
+  const skillDescriptions: Record<string, string> = {
+    "NextJS": "React framework for production-grade web apps with SSR, routing, and API routes.",
+    "SvelteKit": "Modern framework for building fast, elegant web applications with minimal boilerplate.",
+    "TypeScript": "Strongly typed JavaScript that catches errors early and improves code quality.",
+    "PostgreSQL": "Powerful open-source relational database for complex data management.",
+    "TailWindCSS": "Utility-first CSS framework for rapid, responsive UI development.",
+    "Python": "Versatile language for backend development, automation, and data science.",
+    "Django": "High-level Python framework for building secure, scalable web applications.",
+    "Linux": "Open-source OS powering servers, containers, and development environments.",
+    "Git": "Version control system for tracking changes and team collaboration.",
+    "Figma": "Collaborative design tool for creating UI/UX mockups and prototypes.",
+    "Unreal Engine": "AAA game engine for creating immersive games and XR experiences.",
+    "Vercel": "Cloud platform for deploying and scaling modern web applications.",
+    "CI/CD": "Automated pipelines for continuous integration and deployment workflows.",
+    "AWS": "Cloud services for hosting, storage, databases, and serverless computing.",
+    "XR": "Extended reality development for augmented, mixed, and virtual experiences."
+  };
+
   const fullText = `As a versatile developer and designer, I specialize in turning innovative ideas into tangible software. 
   From web applications to immersive XR experiences, my expertise spans web development, responsive design, CSS & SVG animation, UI/UX design, and even video game development using Unreal Engine. With a focus on creating high-performing and effective software, I've successfully delivered MVPs and beyond on numerous projects.`;
 
@@ -188,17 +209,43 @@
         </div>
 
         <h1 class="{$theme === 'light' ? theme.classes.light.text : theme.classes.dark.text} jura text-base md:text-lg lg:text-xl skills-title">SKILLS</h1>
-        <div class="flex flex-wrap gap-1.5 md:gap-2 sm:my-2">
-          {#each ["NextJS", "SvelteKit", "TypeScript", "PostgreSQL", "TailWindCSS", "Python", "Django", "Linux", "Git", "Figma", "Unreal Engine", "Vercel", "CI/CD", "AWS", "AR/MR/XR"] as skill, i}
-            <span 
-              class="text-xs md:text-sm border px-2 md:px-3 py-0.5 md:py-1 rounded-full inline-block skill-tag {$theme === 'light' ? 'bg-[#00c40015] border-[#00c400]' : 'bg-[#ff450015] border-[#ff4500]'}"
+        <div class="flex flex-wrap gap-2 md:gap-3 sm:my-2 items-start">
+          {#each ["NextJS", "SvelteKit", "TypeScript", "PostgreSQL", "TailWindCSS", "Python", "Django", "Linux", "Git", "Figma", "Unreal Engine", "Vercel", "CI/CD", "AWS", "XR"] as skill, i}
+            <button 
+              class="skill-badge border rounded-2xl px-2 md:px-3 py-0.5 md:py-1 transition-all duration-300 ease-out skill-tag
+                {hoveredSkill === skill 
+                  ? ($theme === 'light' ? 'bg-[#228b22] border-[#228b22] shadow-md shadow-[#228b22]/30 scale-105' : 'bg-[#cc4400] border-[#cc4400] shadow-md shadow-[#cc4400]/30 scale-105')
+                  : ($theme === 'light' ? 'bg-[#228b2215] border-[#228b22] hover:bg-[#228b2230]' : 'bg-[#cc440015] border-[#cc4400] hover:bg-[#cc440030]')}"
               style="animation-delay: {5.5 + (i * 0.08)}s"
+              on:mouseenter={() => hoveredSkill = skill}
+              on:mouseleave={() => hoveredSkill = null}
+              on:click={() => hoveredSkill = hoveredSkill === skill ? null : skill}
+              on:focus={() => hoveredSkill = skill}
+              on:blur={() => hoveredSkill = null}
             >
-              <span class={$theme === 'light' ? theme.classes.light.text : theme.classes.dark.text}>
+              <span class="text-xs md:text-sm font-medium whitespace-nowrap {hoveredSkill === skill ? 'text-white' : ($theme === 'light' ? theme.classes.light.text : theme.classes.dark.text)}">
                 {skill}
               </span>
-            </span>
+            </button>
           {/each}
+        </div>
+        
+        <!-- Skill description area -->
+        <div class="skill-description-area h-12 md:h-10 mt-2 overflow-hidden">
+          {#if hoveredSkill}
+            <div class="skill-description-content flex items-center gap-2 px-3 py-2 rounded-lg {$theme === 'light' ? 'bg-[#228b2210] border border-[#228b2240]' : 'bg-[#cc440010] border border-[#cc440040]'}">
+              <span class="text-sm font-semibold {$theme === 'light' ? 'text-[#228b22]' : 'text-[#cc4400]'}">{hoveredSkill}:</span>
+              <span class="text-xs md:text-sm {$theme === 'light' ? theme.classes.light.text : theme.classes.dark.text} opacity-80">
+                {skillDescriptions[hoveredSkill]}
+              </span>
+            </div>
+          {:else}
+            <div class="flex items-center h-full px-3 opacity-50">
+              <span class="text-xs {$theme === 'light' ? theme.classes.light.text : theme.classes.dark.text}">
+                <span class="hidden md:inline">Hover over</span><span class="md:hidden">Tap</span> a skill to learn more
+              </span>
+            </div>
+          {/if}
         </div>
 
       </div>
@@ -481,13 +528,42 @@
   .skill-tag {
     opacity: 0;
     animation: fadeSlideUp 0.4s ease forwards;
-    transition: all 0.2s ease;
     backdrop-filter: blur(4px);
   }
-  .skill-tag:hover {
-    background: rgba(255, 69, 0, 0.25);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(255, 69, 0, 0.35);
+
+  /* Skill badge interactive styles */
+  .skill-badge {
+    cursor: pointer;
+    transform-origin: center center;
+    will-change: transform, background-color, box-shadow;
+  }
+  
+  .skill-badge:hover {
+    z-index: 10;
+  }
+  
+  .skill-badge:active {
+    transform: scale(0.95);
+  }
+  
+  /* Skill description area */
+  .skill-description-area {
+    transition: all 0.3s ease;
+  }
+  
+  .skill-description-content {
+    animation: fadeSlideIn 0.3s ease-out forwards;
+  }
+  
+  @keyframes fadeSlideIn {
+    from {
+      opacity: 0;
+      transform: translateX(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
   }
 
   @keyframes fadeSlideUp {
