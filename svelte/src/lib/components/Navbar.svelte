@@ -32,20 +32,29 @@
 
       <!-- Logo -->
       <div class="col-span-1 content-center flex items-center">
-        <!-- Custom Fire SVG Logo -->
-        <svg class="h-6 md:h-8 w-6 md:w-8 inline-block mr-2 ml-2 lg:ml-0" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M16 2C16 2 12 8 12 14C12 16 13 18 14 19C13 17 13 15 14 13C14 13 16 17 16 20C16 17 18 13 18 13C19 15 19 17 18 19C19 18 20 16 20 14C20 8 16 2 16 2Z" 
-            fill={$theme === 'light' ? '#00c400' : '#ff4500'}>
-            <animate attributeName="d" dur="2s" repeatCount="indefinite"
-              values="M16 2C16 2 12 8 12 14C12 16 13 18 14 19C13 17 13 15 14 13C14 13 16 17 16 20C16 17 18 13 18 13C19 15 19 17 18 19C19 18 20 16 20 14C20 8 16 2 16 2Z;
-                      M16 3C16 3 11 9 11 15C11 17 12 19 13 20C12 18 12 16 13 14C13 14 16 18 16 21C16 18 19 14 19 14C20 16 20 18 19 20C20 19 21 17 21 15C21 9 16 3 16 3Z;
-                      M16 2C16 2 12 8 12 14C12 16 13 18 14 19C13 17 13 15 14 13C14 13 16 17 16 20C16 17 18 13 18 13C19 15 19 17 18 19C19 18 20 16 20 14C20 8 16 2 16 2Z"/>
-          </path>
-          <path d="M16 10C16 10 14 14 14 17C14 19 15 20 16 21C15 20 15 19 15.5 17.5C15.5 17.5 16 19 16 20.5C16 19 16.5 17.5 16.5 17.5C17 19 17 20 16 21C17 20 18 19 18 17C18 14 16 10 16 10Z" 
-            fill={$theme === 'light' ? '#00dd00' : '#ff6030'}>
-          </path>
+        <!-- Custom E.T Logo - Clean modern monogram -->
+        <svg class="h-10 md:h-12 w-12 md:w-14 inline-block mr-2 lg:ml-0" viewBox="0 0 48 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="etCodeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color={$theme === 'light' ? '#00c400' : '#ff4500'}/>
+              <stop offset="100%" stop-color={$theme === 'light' ? '#00ff88' : '#ff8c00'}/>
+            </linearGradient>
+          </defs>
+          
+          <!-- E letter - clean modern style -->
+          <path d="M6,8 L6,32 L20,32 L20,29 L9.5,29 L9.5,21.5 L18,21.5 L18,18.5 L9.5,18.5 L9.5,11 L20,11 L20,8 Z" 
+            fill="url(#etCodeGrad)"/>
+          
+          <!-- T letter - clean modern style -->
+          <path d="M24,8 L24,11 L30,11 L30,32 L33.5,32 L33.5,11 L42,11 L42,8 Z" 
+            fill="url(#etCodeGrad)"/>
+          
+          <!-- Top accent line -->
+          <line x1="6" y1="4" x2="42" y2="4" stroke="url(#etCodeGrad)" stroke-width="1.5" stroke-linecap="round" opacity="0.35"/>
+          
+          <!-- Bottom accent line -->
+          <line x1="6" y1="36" x2="42" y2="36" stroke="url(#etCodeGrad)" stroke-width="1.5" stroke-linecap="round" opacity="0.35"/>
         </svg>
-        <b class="text-sm md:text-base jura tracking-wide hidden sm:inline">EDDIE TALIAFERRO II</b>
         <b class="text-sm jura tracking-wide sm:hidden">EDDIE T.</b>
       </div>
 
