@@ -194,10 +194,260 @@
 <svelte:window on:keydown={handleKeydown} />
 
 <main>
-  <div id="section-3" class="pb-0 pt-10 min-h-screen {$theme === 'light' ? theme.classes.light.projectsGradient : theme.classes.dark.projectsGradient}">
+  <div id="section-3" class="pb-0 pt-10 min-h-screen relative {$theme === 'light' ? theme.classes.light.projectsGradient : theme.classes.dark.projectsGradient}">
+    
+    <!-- Matrix Binary Rain Background -->
+    <div class="absolute inset-0 overflow-hidden pointer-events-none hidden lg:block" aria-hidden="true">
+      <svg class="absolute w-full h-full opacity-[0.4]" viewBox="0 0 1400 900" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+        <defs>
+          <!-- Glow filter for bright characters -->
+          <filter id="matrixGlow" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="2" result="blur"/>
+            <feMerge>
+              <feMergeNode in="blur"/>
+              <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+          </filter>
+          <!-- Fade gradient for rain streams -->
+          <linearGradient id="rainFade" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color={$theme === 'light' ? '#00c400' : '#ff4500'} stop-opacity="0"/>
+            <stop offset="30%" stop-color={$theme === 'light' ? '#00c400' : '#ff4500'} stop-opacity="0.3"/>
+            <stop offset="70%" stop-color={$theme === 'light' ? '#00c400' : '#ff4500'} stop-opacity="0.8"/>
+            <stop offset="100%" stop-color={$theme === 'light' ? '#00ff00' : '#ff6600'} stop-opacity="1"/>
+          </linearGradient>
+        </defs>
+        
+        <!-- Binary rain columns - Column 1 -->
+        <g fill={$theme === 'light' ? '#00c400' : '#ff4500'} font-family="monospace" font-size="14">
+          <text x="50" y="0" opacity="0.6">
+            <animate attributeName="y" values="-100;1000" dur="8s" repeatCount="indefinite"/>
+            <tspan x="50" dy="20">1</tspan><tspan x="50" dy="20">0</tspan><tspan x="50" dy="20">1</tspan><tspan x="50" dy="20">1</tspan><tspan x="50" dy="20">0</tspan>
+            <tspan x="50" dy="20">0</tspan><tspan x="50" dy="20">1</tspan><tspan x="50" dy="20">0</tspan><tspan x="50" dy="20">1</tspan><tspan x="50" dy="20">1</tspan>
+          </text>
+        </g>
+        
+        <!-- Column 2 -->
+        <g fill={$theme === 'light' ? '#00c400' : '#ff4500'} font-family="monospace" font-size="14">
+          <text x="120" y="0" opacity="0.4">
+            <animate attributeName="y" values="-150;950" dur="10s" repeatCount="indefinite" begin="1s"/>
+            <tspan x="120" dy="20">0</tspan><tspan x="120" dy="20">1</tspan><tspan x="120" dy="20">1</tspan><tspan x="120" dy="20">0</tspan><tspan x="120" dy="20">1</tspan>
+            <tspan x="120" dy="20">1</tspan><tspan x="120" dy="20">0</tspan><tspan x="120" dy="20">0</tspan><tspan x="120" dy="20">1</tspan><tspan x="120" dy="20">0</tspan>
+          </text>
+        </g>
+        
+        <!-- Column 3 -->
+        <g fill={$theme === 'light' ? '#00c400' : '#ff4500'} font-family="monospace" font-size="14">
+          <text x="190" y="0" opacity="0.7">
+            <animate attributeName="y" values="-80;1020" dur="7s" repeatCount="indefinite" begin="2.5s"/>
+            <tspan x="190" dy="20">1</tspan><tspan x="190" dy="20">1</tspan><tspan x="190" dy="20">0</tspan><tspan x="190" dy="20">0</tspan><tspan x="190" dy="20">1</tspan>
+            <tspan x="190" dy="20">0</tspan><tspan x="190" dy="20">1</tspan><tspan x="190" dy="20">1</tspan><tspan x="190" dy="20">0</tspan><tspan x="190" dy="20">1</tspan>
+          </text>
+        </g>
+        
+        <!-- Column 4 -->
+        <g fill={$theme === 'light' ? '#00c400' : '#ff4500'} font-family="monospace" font-size="14">
+          <text x="260" y="0" opacity="0.3">
+            <animate attributeName="y" values="-200;900" dur="12s" repeatCount="indefinite" begin="0.5s"/>
+            <tspan x="260" dy="20">0</tspan><tspan x="260" dy="20">0</tspan><tspan x="260" dy="20">1</tspan><tspan x="260" dy="20">1</tspan><tspan x="260" dy="20">0</tspan>
+            <tspan x="260" dy="20">1</tspan><tspan x="260" dy="20">0</tspan><tspan x="260" dy="20">1</tspan><tspan x="260" dy="20">0</tspan><tspan x="260" dy="20">1</tspan>
+          </text>
+        </g>
+        
+        <!-- Column 5 -->
+        <g fill={$theme === 'light' ? '#00c400' : '#ff4500'} font-family="monospace" font-size="14">
+          <text x="330" y="0" opacity="0.5">
+            <animate attributeName="y" values="-120;980" dur="9s" repeatCount="indefinite" begin="3s"/>
+            <tspan x="330" dy="20">1</tspan><tspan x="330" dy="20">0</tspan><tspan x="330" dy="20">0</tspan><tspan x="330" dy="20">1</tspan><tspan x="330" dy="20">1</tspan>
+            <tspan x="330" dy="20">0</tspan><tspan x="330" dy="20">1</tspan><tspan x="330" dy="20">0</tspan><tspan x="330" dy="20">1</tspan><tspan x="330" dy="20">0</tspan>
+          </text>
+        </g>
+        
+        <!-- Column 6 -->
+        <g fill={$theme === 'light' ? '#00c400' : '#ff4500'} font-family="monospace" font-size="14">
+          <text x="400" y="0" opacity="0.6">
+            <animate attributeName="y" values="-60;1040" dur="6.5s" repeatCount="indefinite" begin="1.8s"/>
+            <tspan x="400" dy="20">0</tspan><tspan x="400" dy="20">1</tspan><tspan x="400" dy="20">1</tspan><tspan x="400" dy="20">0</tspan><tspan x="400" dy="20">0</tspan>
+            <tspan x="400" dy="20">1</tspan><tspan x="400" dy="20">1</tspan><tspan x="400" dy="20">0</tspan><tspan x="400" dy="20">1</tspan><tspan x="400" dy="20">1</tspan>
+          </text>
+        </g>
+        
+        <!-- Column 7 -->
+        <g fill={$theme === 'light' ? '#00c400' : '#ff4500'} font-family="monospace" font-size="14">
+          <text x="470" y="0" opacity="0.35">
+            <animate attributeName="y" values="-180;920" dur="11s" repeatCount="indefinite" begin="4s"/>
+            <tspan x="470" dy="20">1</tspan><tspan x="470" dy="20">1</tspan><tspan x="470" dy="20">1</tspan><tspan x="470" dy="20">0</tspan><tspan x="470" dy="20">1</tspan>
+            <tspan x="470" dy="20">0</tspan><tspan x="470" dy="20">0</tspan><tspan x="470" dy="20">1</tspan><tspan x="470" dy="20">0</tspan><tspan x="470" dy="20">1</tspan>
+          </text>
+        </g>
+        
+        <!-- Column 8 -->
+        <g fill={$theme === 'light' ? '#00c400' : '#ff4500'} font-family="monospace" font-size="14">
+          <text x="540" y="0" opacity="0.55">
+            <animate attributeName="y" values="-90;1010" dur="7.5s" repeatCount="indefinite" begin="2s"/>
+            <tspan x="540" dy="20">0</tspan><tspan x="540" dy="20">0</tspan><tspan x="540" dy="20">1</tspan><tspan x="540" dy="20">0</tspan><tspan x="540" dy="20">1</tspan>
+            <tspan x="540" dy="20">1</tspan><tspan x="540" dy="20">0</tspan><tspan x="540" dy="20">1</tspan><tspan x="540" dy="20">1</tspan><tspan x="540" dy="20">0</tspan>
+          </text>
+        </g>
+        
+        <!-- Column 9 - Right side -->
+        <g fill={$theme === 'light' ? '#00c400' : '#ff4500'} font-family="monospace" font-size="14">
+          <text x="900" y="0" opacity="0.45">
+            <animate attributeName="y" values="-140;960" dur="9.5s" repeatCount="indefinite" begin="0.8s"/>
+            <tspan x="900" dy="20">1</tspan><tspan x="900" dy="20">0</tspan><tspan x="900" dy="20">1</tspan><tspan x="900" dy="20">0</tspan><tspan x="900" dy="20">0</tspan>
+            <tspan x="900" dy="20">1</tspan><tspan x="900" dy="20">1</tspan><tspan x="900" dy="20">0</tspan><tspan x="900" dy="20">1</tspan><tspan x="900" dy="20">0</tspan>
+          </text>
+        </g>
+        
+        <!-- Column 10 -->
+        <g fill={$theme === 'light' ? '#00c400' : '#ff4500'} font-family="monospace" font-size="14">
+          <text x="970" y="0" opacity="0.65">
+            <animate attributeName="y" values="-70;1030" dur="6s" repeatCount="indefinite" begin="3.5s"/>
+            <tspan x="970" dy="20">0</tspan><tspan x="970" dy="20">1</tspan><tspan x="970" dy="20">0</tspan><tspan x="970" dy="20">1</tspan><tspan x="970" dy="20">1</tspan>
+            <tspan x="970" dy="20">0</tspan><tspan x="970" dy="20">0</tspan><tspan x="970" dy="20">1</tspan><tspan x="970" dy="20">0</tspan><tspan x="970" dy="20">1</tspan>
+          </text>
+        </g>
+        
+        <!-- Column 11 -->
+        <g fill={$theme === 'light' ? '#00c400' : '#ff4500'} font-family="monospace" font-size="14">
+          <text x="1040" y="0" opacity="0.4">
+            <animate attributeName="y" values="-160;940" dur="10.5s" repeatCount="indefinite" begin="1.2s"/>
+            <tspan x="1040" dy="20">1</tspan><tspan x="1040" dy="20">1</tspan><tspan x="1040" dy="20">0</tspan><tspan x="1040" dy="20">1</tspan><tspan x="1040" dy="20">0</tspan>
+            <tspan x="1040" dy="20">0</tspan><tspan x="1040" dy="20">1</tspan><tspan x="1040" dy="20">1</tspan><tspan x="1040" dy="20">0</tspan><tspan x="1040" dy="20">1</tspan>
+          </text>
+        </g>
+        
+        <!-- Column 12 -->
+        <g fill={$theme === 'light' ? '#00c400' : '#ff4500'} font-family="monospace" font-size="14">
+          <text x="1110" y="0" opacity="0.5">
+            <animate attributeName="y" values="-110;990" dur="8.5s" repeatCount="indefinite" begin="2.8s"/>
+            <tspan x="1110" dy="20">0</tspan><tspan x="1110" dy="20">0</tspan><tspan x="1110" dy="20">1</tspan><tspan x="1110" dy="20">0</tspan><tspan x="1110" dy="20">1</tspan>
+            <tspan x="1110" dy="20">1</tspan><tspan x="1110" dy="20">0</tspan><tspan x="1110" dy="20">0</tspan><tspan x="1110" dy="20">1</tspan><tspan x="1110" dy="20">1</tspan>
+          </text>
+        </g>
+        
+        <!-- Column 13 -->
+        <g fill={$theme === 'light' ? '#00c400' : '#ff4500'} font-family="monospace" font-size="14">
+          <text x="1180" y="0" opacity="0.55">
+            <animate attributeName="y" values="-50;1050" dur="5.5s" repeatCount="indefinite" begin="4.2s"/>
+            <tspan x="1180" dy="20">1</tspan><tspan x="1180" dy="20">0</tspan><tspan x="1180" dy="20">0</tspan><tspan x="1180" dy="20">1</tspan><tspan x="1180" dy="20">0</tspan>
+            <tspan x="1180" dy="20">1</tspan><tspan x="1180" dy="20">1</tspan><tspan x="1180" dy="20">0</tspan><tspan x="1180" dy="20">0</tspan><tspan x="1180" dy="20">1</tspan>
+          </text>
+        </g>
+        
+        <!-- Column 14 -->
+        <g fill={$theme === 'light' ? '#00c400' : '#ff4500'} font-family="monospace" font-size="14">
+          <text x="1250" y="0" opacity="0.35">
+            <animate attributeName="y" values="-190;910" dur="11.5s" repeatCount="indefinite" begin="0.3s"/>
+            <tspan x="1250" dy="20">0</tspan><tspan x="1250" dy="20">1</tspan><tspan x="1250" dy="20">1</tspan><tspan x="1250" dy="20">1</tspan><tspan x="1250" dy="20">0</tspan>
+            <tspan x="1250" dy="20">0</tspan><tspan x="1250" dy="20">0</tspan><tspan x="1250" dy="20">1</tspan><tspan x="1250" dy="20">1</tspan><tspan x="1250" dy="20">0</tspan>
+          </text>
+        </g>
+        
+        <!-- Column 15 -->
+        <g fill={$theme === 'light' ? '#00c400' : '#ff4500'} font-family="monospace" font-size="14">
+          <text x="1320" y="0" opacity="0.6">
+            <animate attributeName="y" values="-130;970" dur="8s" repeatCount="indefinite" begin="1.5s"/>
+            <tspan x="1320" dy="20">1</tspan><tspan x="1320" dy="20">0</tspan><tspan x="1320" dy="20">1</tspan><tspan x="1320" dy="20">0</tspan><tspan x="1320" dy="20">1</tspan>
+            <tspan x="1320" dy="20">0</tspan><tspan x="1320" dy="20">1</tspan><tspan x="1320" dy="20">1</tspan><tspan x="1320" dy="20">0</tspan><tspan x="1320" dy="20">0</tspan>
+          </text>
+        </g>
+        
+        <!-- Bright "head" characters with glow effect - scattered across -->
+        <g fill={$theme === 'light' ? '#00ff00' : '#ff8c00'} font-family="monospace" font-size="16" filter="url(#matrixGlow)">
+          <text x="50" y="0" opacity="1">
+            <animate attributeName="y" values="-20;1080" dur="8s" repeatCount="indefinite"/>
+            1
+          </text>
+          <text x="190" y="0" opacity="1">
+            <animate attributeName="y" values="-20;1080" dur="7s" repeatCount="indefinite" begin="2.5s"/>
+            0
+          </text>
+          <text x="330" y="0" opacity="1">
+            <animate attributeName="y" values="-20;1080" dur="9s" repeatCount="indefinite" begin="3s"/>
+            1
+          </text>
+          <text x="470" y="0" opacity="1">
+            <animate attributeName="y" values="-20;1080" dur="11s" repeatCount="indefinite" begin="4s"/>
+            0
+          </text>
+          <text x="970" y="0" opacity="1">
+            <animate attributeName="y" values="-20;1080" dur="6s" repeatCount="indefinite" begin="3.5s"/>
+            1
+          </text>
+          <text x="1110" y="0" opacity="1">
+            <animate attributeName="y" values="-20;1080" dur="8.5s" repeatCount="indefinite" begin="2.8s"/>
+            0
+          </text>
+          <text x="1250" y="0" opacity="1">
+            <animate attributeName="y" values="-20;1080" dur="11.5s" repeatCount="indefinite" begin="0.3s"/>
+            1
+          </text>
+        </g>
+        
+        <!-- Additional faster streams for depth -->
+        <g fill={$theme === 'light' ? '#00c400' : '#ff4500'} font-family="monospace" font-size="12" opacity="0.25">
+          <text x="85">
+            <animate attributeName="y" values="-50;950" dur="4s" repeatCount="indefinite"/>
+            <tspan x="85" dy="16">0</tspan><tspan x="85" dy="16">1</tspan><tspan x="85" dy="16">0</tspan><tspan x="85" dy="16">1</tspan><tspan x="85" dy="16">1</tspan>
+          </text>
+          <text x="225">
+            <animate attributeName="y" values="-80;920" dur="5s" repeatCount="indefinite" begin="1s"/>
+            <tspan x="225" dy="16">1</tspan><tspan x="225" dy="16">0</tspan><tspan x="225" dy="16">1</tspan><tspan x="225" dy="16">0</tspan><tspan x="225" dy="16">0</tspan>
+          </text>
+          <text x="365">
+            <animate attributeName="y" values="-30;970" dur="4.5s" repeatCount="indefinite" begin="2s"/>
+            <tspan x="365" dy="16">0</tspan><tspan x="365" dy="16">0</tspan><tspan x="365" dy="16">1</tspan><tspan x="365" dy="16">1</tspan><tspan x="365" dy="16">0</tspan>
+          </text>
+          <text x="505">
+            <animate attributeName="y" values="-60;940" dur="3.5s" repeatCount="indefinite" begin="0.5s"/>
+            <tspan x="505" dy="16">1</tspan><tspan x="505" dy="16">1</tspan><tspan x="505" dy="16">0</tspan><tspan x="505" dy="16">0</tspan><tspan x="505" dy="16">1</tspan>
+          </text>
+          <text x="935">
+            <animate attributeName="y" values="-70;930" dur="4.2s" repeatCount="indefinite" begin="1.5s"/>
+            <tspan x="935" dy="16">0</tspan><tspan x="935" dy="16">1</tspan><tspan x="935" dy="16">1</tspan><tspan x="935" dy="16">0</tspan><tspan x="935" dy="16">1</tspan>
+          </text>
+          <text x="1075">
+            <animate attributeName="y" values="-40;960" dur="3.8s" repeatCount="indefinite" begin="2.5s"/>
+            <tspan x="1075" dy="16">1</tspan><tspan x="1075" dy="16">0</tspan><tspan x="1075" dy="16">0</tspan><tspan x="1075" dy="16">1</tspan><tspan x="1075" dy="16">0</tspan>
+          </text>
+          <text x="1285">
+            <animate attributeName="y" values="-90;910" dur="5.5s" repeatCount="indefinite" begin="3s"/>
+            <tspan x="1285" dy="16">0</tspan><tspan x="1285" dy="16">1</tspan><tspan x="1285" dy="16">0</tspan><tspan x="1285" dy="16">1</tspan><tspan x="1285" dy="16">1</tspan>
+          </text>
+        </g>
+        
+        <!-- Background slower dim streams for depth -->
+        <g fill={$theme === 'light' ? '#00c400' : '#ff4500'} font-family="monospace" font-size="10" opacity="0.15">
+          <text x="155">
+            <animate attributeName="y" values="-100;1000" dur="15s" repeatCount="indefinite"/>
+            <tspan x="155" dy="14">1</tspan><tspan x="155" dy="14">0</tspan><tspan x="155" dy="14">1</tspan><tspan x="155" dy="14">1</tspan><tspan x="155" dy="14">0</tspan><tspan x="155" dy="14">0</tspan><tspan x="155" dy="14">1</tspan>
+          </text>
+          <text x="295">
+            <animate attributeName="y" values="-120;980" dur="14s" repeatCount="indefinite" begin="3s"/>
+            <tspan x="295" dy="14">0</tspan><tspan x="295" dy="14">1</tspan><tspan x="295" dy="14">0</tspan><tspan x="295" dy="14">0</tspan><tspan x="295" dy="14">1</tspan><tspan x="295" dy="14">1</tspan><tspan x="295" dy="14">0</tspan>
+          </text>
+          <text x="435">
+            <animate attributeName="y" values="-80;1020" dur="13s" repeatCount="indefinite" begin="1s"/>
+            <tspan x="435" dy="14">1</tspan><tspan x="435" dy="14">1</tspan><tspan x="435" dy="14">0</tspan><tspan x="435" dy="14">1</tspan><tspan x="435" dy="14">0</tspan><tspan x="435" dy="14">1</tspan><tspan x="435" dy="14">0</tspan>
+          </text>
+          <text x="1005">
+            <animate attributeName="y" values="-140;960" dur="16s" repeatCount="indefinite" begin="2s"/>
+            <tspan x="1005" dy="14">0</tspan><tspan x="1005" dy="14">0</tspan><tspan x="1005" dy="14">1</tspan><tspan x="1005" dy="14">0</tspan><tspan x="1005" dy="14">1</tspan><tspan x="1005" dy="14">0</tspan><tspan x="1005" dy="14">1</tspan>
+          </text>
+          <text x="1145">
+            <animate attributeName="y" values="-60;1040" dur="12s" repeatCount="indefinite" begin="4s"/>
+            <tspan x="1145" dy="14">1</tspan><tspan x="1145" dy="14">0</tspan><tspan x="1145" dy="14">1</tspan><tspan x="1145" dy="14">1</tspan><tspan x="1145" dy="14">0</tspan><tspan x="1145" dy="14">0</tspan><tspan x="1145" dy="14">1</tspan>
+          </text>
+          <text x="1355">
+            <animate attributeName="y" values="-110;990" dur="14.5s" repeatCount="indefinite" begin="5s"/>
+            <tspan x="1355" dy="14">0</tspan><tspan x="1355" dy="14">1</tspan><tspan x="1355" dy="14">1</tspan><tspan x="1355" dy="14">0</tspan><tspan x="1355" dy="14">1</tspan><tspan x="1355" dy="14">1</tspan><tspan x="1355" dy="14">0</tspan>
+          </text>
+        </g>
+      </svg>
+    </div>
     
     <!-- Header Section -->
-    <div class="md:w-4/5 lg:w-4/5 xl:w-3/4 p-4 mx-auto">
+    <div class="md:w-4/5 lg:w-4/5 xl:w-3/4 p-4 mx-auto relative z-10">
       <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-8">
         <div>
           <h1 class="text-2xl md:text-3xl font-bold jura {$theme === 'light' ? 'text-black' : 'text-white'} flex items-center gap-3">
