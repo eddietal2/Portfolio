@@ -8,6 +8,19 @@
   
   let projects = [
     {
+      name: "Pivy",
+      image: "https://eddie-portfolio.s3.us-east-1.amazonaws.com/logo/pivotal.ai.png",
+      role: "Product & Software Developer",
+      type: "Professional",
+      categories: ["Web", "Mobile"] as CategoryOption[],
+      badges: ["NextJS", "Django", "Hybrid", "iOS", "Android", "Capacitor", "2026"],
+      link: "https://pivotal-ai-web-app.vercel.app/login",
+      text: "AI-Chat & Stock Market analysis web app.",
+      video: "https://eddie-portfolio.s3.us-east-1.amazonaws.com/videos/Pivy_Demo_04.mp4",
+      description: "AI-Chat & Stock Market analysis web app. I am the lead software developer for this MVP. This is being built with NextJS and Django, and is designed to work on both web and mobile platforms using Capacitor.",
+      color: "#10A8C6"
+    }, 
+    {
       name: "FinalBossXR.com",
       image: "https://eddie-portfolio.s3.us-east-1.amazonaws.com/logo/F_Logo_White.png",
       role: "Web Developer & Designer",
@@ -19,6 +32,19 @@
       video: "https://eddie-portfolio.s3.us-east-1.amazonaws.com/videos/FBXR_Portfolio_Video.mp4",
       description: "This is a Video Game & Augmented Reality Studio that I co-founded in 2021. I also act as Web Developer and Game Designer for our team while we build our first IP, Cosmic Collisions. I remade this site with SvelteKit & TailwindCSS",
       color: "#F97316"
+    },
+    {
+      name: "Trading Simulator",
+      image: "https://eddie-portfolio.s3.us-east-1.amazonaws.com/logo/python-svgrepo-com.svg",
+      role: "Software Developer & Designer",
+      type: "Personal",
+      categories: ["Python"] as CategoryOption[],
+      badges: ["Stock Market", "2026"],
+      link: "https://www.harp-rose.org/",
+      text: "iOS/Mobile Augmented Reality Game. Alpha Demo out now. Release date: Summer 2026.",
+      video: "https://eddie-portfolio.s3.us-east-1.amazonaws.com/videos/trading_simulator_demo_video.mp4",
+      description: "VR Startup that aims to make therapy more accessible and innovative. I am the lead software developer for this MVP. This is being built with Unreal Engine 5, while I outsource things like 3D Model creation, audio, etc.",
+      color: "#00c400"
     },
     {
       name: "Red Queen AI",
@@ -33,32 +59,6 @@
       description: "VR Startup that aims to make therapy more accessible and innovative. I am the lead software developer for this MVP. This is being built with Unreal Engine 5, while I outsource things like 3D Model creation, audio, etc.",
       color: "#EF4444"
     }, 
-    {
-      name: "Pivotal.AI",
-      image: "https://eddie-portfolio.s3.us-east-1.amazonaws.com/logo/pivotal.ai.png",
-      role: "Product & Software Developer",
-      type: "Professional",
-      categories: ["Web", "Mobile"] as CategoryOption[],
-      badges: ["NextJS", "Django", "Hybrid", "iOS", "Android", "Capacitor", "2026"],
-      link: "https://pivotal-ai-web-app.vercel.app/",
-      text: "AI-Chat & Stock Market analysis web app.",
-      video: "",
-      description: "AI-Chat & Stock Market analysis web app. I am the lead software developer for this MVP. This is being built with NextJS and Django, and is designed to work on both web and mobile platforms using Capacitor.",
-      color: "#10A8C6"
-    }, 
-    {
-      name: "Trading Simulator",
-      image: "https://eddie-portfolio.s3.us-east-1.amazonaws.com/logo/python-svgrepo-com.svg",
-      role: "Software Developer & Designer",
-      type: "Personal",
-      categories: ["Python"] as CategoryOption[],
-      badges: ["Stock Market", "2026"],
-      link: "https://www.harp-rose.org/",
-      text: "iOS/Mobile Augmented Reality Game. Alpha Demo out now. Release date: Summer 2026.",
-      video: "https://eddie-portfolio.s3.us-east-1.amazonaws.com/videos/trading_simulator_demo_video.mp4",
-      description: "VR Startup that aims to make therapy more accessible and innovative. I am the lead software developer for this MVP. This is being built with Unreal Engine 5, while I outsource things like 3D Model creation, audio, etc.",
-      color: "#00c400"
-    },
     {
       name: "Cosmic Collisions",
       image: "https://finalbossxr.s3.us-east-1.amazonaws.com/cosmic/logos/CC_LogoAnimated.gif",
