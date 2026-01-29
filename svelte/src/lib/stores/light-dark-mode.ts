@@ -8,6 +8,7 @@ type ThemeClasses = {
   header: string;
   bg: string;
   heroGradient: string;
+  projectsGradient: string;
   button: string;
   buttonTwo: string;
   input: string;
@@ -20,7 +21,9 @@ const classes: Record<Theme, ThemeClasses> = {
     header: "text-3xl text-black font-bold transition duration-150",
     bg: "bg-[#fff] content-center transition duration-150",
     heroGradient:
-      "lg:pb-12 md:pt-24 bg-gradient-to-br from-red-100 via-[#fff] to-orange-100 bg-[length:400%_400%] animate-gradientShift",
+      "lg:pb-12 md:pt-24 bg-gradient-to-br from-green-100 via-[#fff] to-blue-100 bg-[length:400%_400%] animate-gradientShift",
+    projectsGradient:
+      "lg:pb-12 md:pt-24 bg-gradient-to-br from-green-100 via-[#fff] to-blue-100 bg-[length:400%_400%] animate-gradientShift",
     button:
       "bg-gradient-to-r from-yellow-500 via-red-500 to-orange-500 text-white jura font-bold py-1 px-4 rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 ease-in-out",
     buttonTwo:
@@ -35,6 +38,8 @@ const classes: Record<Theme, ThemeClasses> = {
     bg: "bg-[#222] content-center transition duration-150",
     heroGradient:
       "lg:pb-12 md:pt-24 bg-gradient-to-br from-[#211e00] via-[#000] to-[#1f0000] bg-[length:400%_400%] animate-gradientShift",
+    projectsGradient:
+      "lg:pb-12 md:pt-24 bg-gradient-to-br from-[#001f1a] via-[#000] to-[#001a2e] bg-[length:400%_400%] animate-gradientShift",
     button:
       "bg-gradient-to-r from-yellow-500 via-red-500 to-orange-500 text-white jura font-bold py-1 px-4 rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 ease-in-out",
     buttonTwo:

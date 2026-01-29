@@ -1,16 +1,19 @@
 <script lang="ts">
   import { theme } from '../stores/light-dark-mode';
-  import headerArtPic from '../../assets/illustrations/eddie-header.svg';
+  import headerArtPicFire from '../../assets/illustrations/eddie-header.svg';
+  import headerArtPicGreen from '../../assets/illustrations/eddie-header-green.svg';
   import profilePhoto from '../../assets/photos/eddie-profile.png';
   import { onMount } from 'svelte';
+  import { get } from 'svelte/store';
 
   let typedText = '';
   const fullText = `As a versatile developer and designer, I specialize in turning innovative ideas into tangible software. 
   From web applications to immersive XR experiences, my expertise spans web development, responsive design, CSS & SVG animation, UI/UX design, and even video game development using Unreal Engine. With a focus on creating high-performing and effective software, I've successfully delivered MVPs and beyond on numerous projects.`;
 
-  onMount(() => {
-    // Load SVG header art
-    fetch(headerArtPic)
+  // Function to load the appropriate SVG based on theme
+  function loadHeaderSvg(currentTheme: string) {
+    const svgUrl = currentTheme === 'light' ? headerArtPicGreen : headerArtPicFire;
+    fetch(svgUrl)
       .then(res => res.text())
       .then(svgContent => {
         const svgContainer = document.getElementById('header-pic');
@@ -18,6 +21,18 @@
           svgContainer.innerHTML = svgContent;
         }
       });
+  }
+
+  // Subscribe to theme changes to update the SVG
+  theme.subscribe((currentTheme) => {
+    if (typeof document !== 'undefined') {
+      loadHeaderSvg(currentTheme);
+    }
+  });
+
+  onMount(() => {
+    // Load initial SVG based on current theme
+    loadHeaderSvg(get(theme));
 
     // Typewriter effect
     let i = 0;
@@ -68,7 +83,7 @@
 
       <!-- Picture -->
       <div class="w-11/12 lg:w-1/4 mx-auto flex items-center justify-center">
-        <div class="my-4 header-pic-container">
+        <div class="my-4 header-pic-container {$theme === 'light' ? 'glow-green' : 'glow-fire'}">
           <div id="header-pic" class="header-frame"></div>
           <img src={profilePhoto} alt="Eddie" class="profile-photo" />
         </div>
@@ -82,11 +97,11 @@
             <b class={$theme === 'light' ? theme.classes.light.text : theme.classes.dark.text}>
               <span class="text-4xl jura greetings-anim-1 inline-block">HI,</span>
               <span class="text-4xl jura greetings-anim-2 inline-block">I'M</span>
-              <span class="text-5xl lg:text-6xl jura greetings-anim-3 inline-block name-highlight">EDDIE</span>
+              <span class="text-5xl lg:text-6xl jura greetings-anim-3 inline-block {$theme === 'light' ? 'name-highlight-green' : 'name-highlight'}">EDDIE</span>
             </b> 
           </span>
           <br>
-          <span class="sm:text-xl xl:text-lg block my-4 border-b border-gray-200/20 pb-4 typewriter-text">
+          <span class="sm:text-xl xl:text-lg block my-4 border-b border-gray-200/20 pb-4 typewriter-text {$theme === 'light' ? 'caret-green' : 'caret-fire'}">
             <span class={$theme === 'light' ? theme.classes.light.text : theme.classes.dark.text}>
               {typedText}
             </span>
@@ -97,7 +112,7 @@
         <div class="flex flex-wrap gap-2 sm:my-2">
           {#each ["NextJS", "SvelteKit", "TypeScript", "PostgreSQL", "TailWindCSS", "Python", "Django", "Linux", "Git", "Figma", "Unreal Engine", "Vercel", "CI/CD", "AWS", "AR/MR/XR"] as skill, i}
             <span 
-              class="text-sm bg-[#ff450015] border-[#ff4500] border px-3 py-1 rounded-full inline-block skill-tag"
+              class="text-sm border px-3 py-1 rounded-full inline-block skill-tag {$theme === 'light' ? 'bg-[#00c40015] border-[#00c400]' : 'bg-[#ff450015] border-[#ff4500]'}"
               style="animation-delay: {5.5 + (i * 0.08)}s"
             >
               <span class={$theme === 'light' ? theme.classes.light.text : theme.classes.dark.text}>
@@ -193,8 +208,13 @@
   .typewriter-text span::after {
     content: '|';
     animation: blink 1s infinite;
-    color: #ff4500;
     margin-left: 2px;
+  }
+  .typewriter-text.caret-fire span::after {
+    color: #ff4500;
+  }
+  .typewriter-text.caret-green span::after {
+    color: #00c400;
   }
   @keyframes blink {
     0%, 50% { opacity: 1; }
@@ -268,10 +288,15 @@
     content: '';
     position: absolute;
     inset: -10px;
-    background: radial-gradient(circle, rgba(255, 69, 0, 0.2) 0%, transparent 70%);
     z-index: 0;
     opacity: 0;
     animation: fadeInGlow 1s ease 1s forwards;
+  }
+  .header-pic-container.glow-fire::after {
+    background: radial-gradient(circle, rgba(255, 69, 0, 0.2) 0%, transparent 70%);
+  }
+  .header-pic-container.glow-green::after {
+    background: radial-gradient(circle, rgba(0, 196, 0, 0.2) 0%, transparent 70%);
   }
   @keyframes fadeInGlow {
     to { opacity: 1; }
@@ -292,6 +317,23 @@
     animation: greeting-slide-2 500ms cubic-bezier(0.075, 0.82, 0.165, 1) 3s forwards,
                shimmer 3s ease-in-out 4s infinite;
   }
+
+  /* Green name highlight for light mode */
+  .name-highlight-green {
+    background: linear-gradient(135deg, #00ff00 0%, #00c400 50%, #00dd00 100%);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: shimmer 3s ease-in-out 4s infinite;
+    filter: drop-shadow(0 0 20px rgba(0, 196, 0, 0.4));
+  }
+  .greetings-anim-3.name-highlight-green {
+    opacity: 0;
+    animation: greeting-slide-2 500ms cubic-bezier(0.075, 0.82, 0.165, 1) 3s forwards,
+               shimmer 3s ease-in-out 4s infinite;
+  }
+
   @keyframes shimmer {
     0%, 100% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }

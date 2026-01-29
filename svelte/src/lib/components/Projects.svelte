@@ -194,7 +194,7 @@
 <svelte:window on:keydown={handleKeydown} />
 
 <main>
-  <div id="section-3" class="pb-0 pt-10 min-h-screen {$theme === 'light' ? theme.classes.light.heroGradient : theme.classes.dark.heroGradient}">
+  <div id="section-3" class="pb-0 pt-10 min-h-screen {$theme === 'light' ? theme.classes.light.projectsGradient : theme.classes.dark.projectsGradient}">
     
     <!-- Header Section -->
     <div class="md:w-4/5 lg:w-4/5 xl:w-3/4 p-4 mx-auto">
