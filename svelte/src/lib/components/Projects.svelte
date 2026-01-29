@@ -197,8 +197,8 @@
   <div id="section-3" class="pb-0 pt-10 min-h-screen relative {$theme === 'light' ? theme.classes.light.projectsGradient : theme.classes.dark.projectsGradient}">
     
     <!-- Matrix Binary Rain Background -->
-    <div class="absolute inset-0 overflow-hidden pointer-events-none hidden lg:block" aria-hidden="true">
-      <svg class="absolute w-full h-full opacity-[0.4]" viewBox="0 0 1400 900" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+    <div class="absolute inset-0 overflow-hidden pointer-events-none hidden lg:block matrix-container {hoveredIndex !== null ? 'matrix-fast' : ''}" aria-hidden="true">
+      <svg class="absolute w-full h-full opacity-[0.4] transition-opacity duration-300" style="{hoveredIndex !== null ? 'opacity: 0.55;' : ''}" viewBox="0 0 1400 900" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
         <defs>
           <!-- Glow filter for bright characters -->
           <filter id="matrixGlow" x="-50%" y="-50%" width="200%" height="200%">
@@ -854,5 +854,35 @@
 
   .overflow-y-auto::-webkit-scrollbar-thumb:hover {
     background: rgba(255, 255, 255, 0.3);
+  }
+
+  /* Matrix speed control on hover */
+  .matrix-container {
+    --matrix-speed: 1;
+    transition: filter 0.3s ease;
+  }
+  
+  .matrix-container.matrix-fast {
+    --matrix-speed: 2.5;
+    filter: brightness(1.15) saturate(1.2);
+  }
+  
+  .matrix-container.matrix-fast :global(svg) {
+    animation: matrixPulse 0.5s ease-in-out infinite;
+  }
+  
+  @keyframes matrixPulse {
+    0%, 100% { filter: brightness(1); }
+    50% { filter: brightness(1.3); }
+  }
+  
+  /* Speed up SMIL animations doesn't work directly, so we add visual enhancement */
+  .matrix-container.matrix-fast :global(text) {
+    animation: matrixGlitch 0.1s ease-in-out infinite;
+  }
+  
+  @keyframes matrixGlitch {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
   }
 </style>
