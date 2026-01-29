@@ -95,6 +95,157 @@
       <div class="orb orb-3 {$theme === 'light' ? 'bg-teal-400/20' : 'bg-amber-500/10'}"></div>
     </div>
 
+    <!-- Storytime Blueprint Grid Background -->
+    <div class="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
+      <svg class="absolute w-full h-full opacity-[0.25]" viewBox="0 0 1400 900" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+        <defs>
+          <!-- Main grid pattern -->
+          <pattern id="storyGrid" x="0" y="0" width="80" height="80" patternUnits="userSpaceOnUse">
+            <path d="M80 0 L0 0 0 80" fill="none" stroke={$theme === 'light' ? '#00c400' : '#ff4500'} stroke-width="0.5" opacity="0.6"/>
+          </pattern>
+          <!-- Smaller detail grid -->
+          <pattern id="storyGridSmall" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+            <path d="M20 0 L0 0 0 20" fill="none" stroke={$theme === 'light' ? '#00c400' : '#ff4500'} stroke-width="0.3" opacity="0.3"/>
+          </pattern>
+        </defs>
+        
+        <!-- Main grid -->
+        <rect width="100%" height="100%" fill="url(#storyGrid)"/>
+        <!-- Detail grid overlay -->
+        <rect width="100%" height="100%" fill="url(#storyGridSmall)"/>
+        
+        <!-- Blueprint-style construction markers -->
+        <g stroke={$theme === 'light' ? '#00c400' : '#ff4500'} fill="none" opacity="0.4">
+          <!-- Corner brackets - Top Left -->
+          <path d="M40 60 L40 40 L60 40" stroke-width="2"/>
+          <path d="M50 50 L50 30 L70 30" stroke-width="1" opacity="0.5"/>
+          
+          <!-- Corner brackets - Top Right -->
+          <path d="M1360 60 L1360 40 L1340 40" stroke-width="2"/>
+          <path d="M1350 50 L1350 30 L1330 30" stroke-width="1" opacity="0.5"/>
+          
+          <!-- Corner brackets - Bottom Left -->
+          <path d="M40 840 L40 860 L60 860" stroke-width="2"/>
+          
+          <!-- Corner brackets - Bottom Right -->
+          <path d="M1360 840 L1360 860 L1340 860" stroke-width="2"/>
+        </g>
+        
+        <!-- Story chapter markers / construction waypoints -->
+        <g fill={$theme === 'light' ? '#00c400' : '#ff4500'}>
+          <!-- Chapter 1 marker -->
+          <circle cx="120" cy="200" r="6" opacity="0.5">
+            <animate attributeName="opacity" values="0.3;0.7;0.3" dur="3s" repeatCount="indefinite"/>
+          </circle>
+          <circle cx="120" cy="200" r="12" stroke={$theme === 'light' ? '#00c400' : '#ff4500'} stroke-width="1" fill="none" opacity="0.3"/>
+          
+          <!-- Chapter 2 marker -->
+          <circle cx="120" cy="450" r="6" opacity="0.5">
+            <animate attributeName="opacity" values="0.3;0.7;0.3" dur="3s" repeatCount="indefinite" begin="1s"/>
+          </circle>
+          <circle cx="120" cy="450" r="12" stroke={$theme === 'light' ? '#00c400' : '#ff4500'} stroke-width="1" fill="none" opacity="0.3"/>
+          
+          <!-- Chapter 3 marker -->
+          <circle cx="120" cy="700" r="6" opacity="0.5">
+            <animate attributeName="opacity" values="0.3;0.7;0.3" dur="3s" repeatCount="indefinite" begin="2s"/>
+          </circle>
+          <circle cx="120" cy="700" r="12" stroke={$theme === 'light' ? '#00c400' : '#ff4500'} stroke-width="1" fill="none" opacity="0.3"/>
+        </g>
+        
+        <!-- Connecting timeline path -->
+        <g stroke={$theme === 'light' ? '#00c400' : '#ff4500'} fill="none">
+          <path d="M120 212 L120 438" stroke-width="1" stroke-dasharray="4 4" opacity="0.4">
+            <animate attributeName="stroke-dashoffset" values="0;-16" dur="2s" repeatCount="indefinite"/>
+          </path>
+          <path d="M120 462 L120 688" stroke-width="1" stroke-dasharray="4 4" opacity="0.4">
+            <animate attributeName="stroke-dashoffset" values="0;-16" dur="2s" repeatCount="indefinite" begin="0.5s"/>
+          </path>
+        </g>
+        
+        <!-- Pencil/pen illustration - "writing the story" -->
+        <g transform="translate(1250, 150)" opacity="0.35">
+          <path d="M0 60 L8 0 L16 60 L8 50 Z" fill={$theme === 'light' ? '#00c400' : '#ff4500'}/>
+          <rect x="4" y="60" width="8" height="30" fill={$theme === 'light' ? '#228b22' : '#cc4400'}/>
+          <path d="M8 0 L6 10 L10 10 Z" fill={$theme === 'light' ? '#f5f5f5' : '#e8e8e8'}/>
+          <animateTransform attributeName="transform" type="translate" values="1250,150;1255,145;1250,150" dur="4s" repeatCount="indefinite"/>
+        </g>
+        
+        <!-- Open book silhouette -->
+        <g transform="translate(1200, 700)" stroke={$theme === 'light' ? '#00c400' : '#ff4500'} fill="none" opacity="0.3">
+          <path d="M0 40 Q40 20 80 40 L80 0 Q40 20 0 0 Z" stroke-width="1.5"/>
+          <path d="M40 20 L40 40" stroke-width="1"/>
+          <!-- Page lines left -->
+          <line x1="10" y1="15" x2="35" y2="10" stroke-width="0.5" opacity="0.5"/>
+          <line x1="10" y1="25" x2="35" y2="20" stroke-width="0.5" opacity="0.5"/>
+          <!-- Page lines right -->
+          <line x1="45" y1="10" x2="70" y2="15" stroke-width="0.5" opacity="0.5"/>
+          <line x1="45" y1="20" x2="70" y2="25" stroke-width="0.5" opacity="0.5"/>
+        </g>
+        
+        <!-- Scattered story elements - stars/sparkles like magic -->
+        <g fill={$theme === 'light' ? '#00c400' : '#ff4500'}>
+          <circle cx="200" cy="100" r="2" opacity="0.4">
+            <animate attributeName="opacity" values="0.2;0.6;0.2" dur="2.5s" repeatCount="indefinite"/>
+          </circle>
+          <circle cx="400" cy="80" r="1.5" opacity="0.3">
+            <animate attributeName="opacity" values="0.1;0.5;0.1" dur="3s" repeatCount="indefinite" begin="0.5s"/>
+          </circle>
+          <circle cx="600" cy="120" r="2" opacity="0.4">
+            <animate attributeName="opacity" values="0.2;0.6;0.2" dur="2.8s" repeatCount="indefinite" begin="1s"/>
+          </circle>
+          <circle cx="1000" cy="90" r="1.5" opacity="0.3">
+            <animate attributeName="opacity" values="0.1;0.5;0.1" dur="3.2s" repeatCount="indefinite" begin="1.5s"/>
+          </circle>
+          <circle cx="300" cy="800" r="2" opacity="0.4">
+            <animate attributeName="opacity" values="0.2;0.6;0.2" dur="2.6s" repeatCount="indefinite" begin="0.8s"/>
+          </circle>
+          <circle cx="800" cy="820" r="1.5" opacity="0.3">
+            <animate attributeName="opacity" values="0.1;0.5;0.1" dur="2.9s" repeatCount="indefinite" begin="1.2s"/>
+          </circle>
+        </g>
+        
+        <!-- Measurement marks - construction feel -->
+        <g stroke={$theme === 'light' ? '#00c400' : '#ff4500'} stroke-width="0.5" opacity="0.25">
+          <!-- Top ruler marks -->
+          <line x1="160" y1="30" x2="160" y2="50"/>
+          <line x1="240" y1="30" x2="240" y2="50"/>
+          <line x1="320" y1="30" x2="320" y2="50"/>
+          <line x1="400" y1="30" x2="400" y2="45"/>
+          <line x1="480" y1="30" x2="480" y2="50"/>
+          
+          <!-- Side ruler marks -->
+          <line x1="30" y1="160" x2="50" y2="160"/>
+          <line x1="30" y1="240" x2="50" y2="240"/>
+          <line x1="30" y1="320" x2="50" y2="320"/>
+          <line x1="30" y1="400" x2="45" y2="400"/>
+          <line x1="30" y1="480" x2="50" y2="480"/>
+        </g>
+        
+        <!-- Blueprint dimension lines -->
+        <g stroke={$theme === 'light' ? '#00c400' : '#ff4500'} stroke-width="0.75" opacity="0.2">
+          <line x1="200" y1="860" x2="500" y2="860"/>
+          <line x1="200" y1="855" x2="200" y2="865"/>
+          <line x1="500" y1="855" x2="500" y2="865"/>
+          
+          <line x1="1350" y1="200" x2="1350" y2="500"/>
+          <line x1="1345" y1="200" x2="1355" y2="200"/>
+          <line x1="1345" y1="500" x2="1355" y2="500"/>
+        </g>
+        
+        <!-- Scroll/paper curl in corner -->
+        <g transform="translate(1300, 50)" stroke={$theme === 'light' ? '#00c400' : '#ff4500'} fill="none" opacity="0.3">
+          <path d="M0 0 Q30 10 40 40 Q30 35 20 40 Q25 20 0 0" stroke-width="1.5"/>
+        </g>
+        
+        <!-- "Under construction" crane hook silhouette -->
+        <g transform="translate(80, 50)" stroke={$theme === 'light' ? '#00c400' : '#ff4500'} fill="none" opacity="0.2">
+          <line x1="0" y1="0" x2="0" y2="60" stroke-width="2"/>
+          <path d="M-10 60 Q0 80 10 60" stroke-width="2"/>
+          <animateTransform attributeName="transform" type="translate" values="80,50;80,55;80,50" dur="3s" repeatCount="indefinite"/>
+        </g>
+      </svg>
+    </div>
+
     <div class="relative z-10 flex flex-col lg:flex-row min-h-screen">
       
       <!-- Left Side: Content -->
