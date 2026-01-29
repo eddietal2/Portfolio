@@ -613,6 +613,37 @@
   .header-pic-container:hover {
     transform: scale(1.02);
   }
+
+  /* ===== IDLE PULSATING ANIMATION (Desktop only) ===== */
+  @media (min-width: 1024px) {
+    .header-pic-container:not(.super-saiyan) {
+      animation: idle-pulse 2.5s ease-in-out infinite;
+    }
+    
+    .header-pic-container:not(.super-saiyan) .header-frame :global(svg) {
+      animation: idle-glow 2.5s ease-in-out infinite;
+    }
+  }
+
+  @keyframes idle-pulse {
+    0%, 100% { 
+      transform: scale(1);
+    }
+    50% { 
+      transform: scale(1.03);
+    }
+  }
+
+  @keyframes idle-glow {
+    0%, 100% { 
+      filter: drop-shadow(0 0 2px currentColor);
+      opacity: 0.85;
+    }
+    50% { 
+      filter: drop-shadow(0 0 8px currentColor) drop-shadow(0 0 16px currentColor);
+      opacity: 1;
+    }
+  }
   
   /* ===== SUPER SAIYAN EFFECT ===== */
   .header-pic-container.super-saiyan {
