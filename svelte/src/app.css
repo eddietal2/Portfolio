@@ -17,7 +17,7 @@ html.light {
 }
 
 html.dark {
-  scrollbar-color: #fd7331 #000;
+  scrollbar-color: #ff4500 #000;
   scrollbar-width: thin;
 }
 
@@ -36,20 +36,21 @@ html.dark ::-webkit-scrollbar-track {
 }
 
 /* Style the scrollbar thumb */
-::-webkit-scrollbar-thumb {
-  background: #fff;
+html.light ::-webkit-scrollbar-thumb {
+  background: #00c400;
   border-radius: 6px;
 }
 
 html.dark ::-webkit-scrollbar-thumb {
-  background: #555;
+  background: #ff4500;
+  border-radius: 6px;
 }
 
 /* Add a hover effect */
-::-webkit-scrollbar-thumb:hover {
-  background: #888;
+html.light ::-webkit-scrollbar-thumb:hover {
+  background: #00a000;
 }
 
 html.dark ::-webkit-scrollbar-thumb:hover {
-  background: #777;
+  background: #ff6030;
 }

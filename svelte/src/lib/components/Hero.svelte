@@ -56,10 +56,12 @@
         threshold: [0.25],
       };
       function updateNavbar(activeSection) {
+        const currentTheme = get(theme);
+        const activeColor = currentTheme === 'light' ? '#00c400' : '#ff4500';
         const navBullets = document.querySelectorAll('.nav-bullet');
         navBullets.forEach((bullet: any) => {
           bullet.innerHTML = bullet.dataset.currentSection === activeSection
-            ? `<svg width="10" height="10" viewBox="0 0 10 10" fill="none"><rect width="10" height="10" fill="#f56f33"/></svg>`
+            ? `<svg width="10" height="10" viewBox="0 0 10 10" fill="none"><rect width="10" height="10" fill="${activeColor}"/></svg>`
             : `<svg width="10" height="10" viewBox="0 0 10 10" fill="#000"><circle cx="5" cy="5" r="5" fill="#ffffff50"/></svg>`;
         });
       }
