@@ -171,22 +171,21 @@
 
       <!-- Text -->
       <div class="w-11/12 lg:w-3/4 mx-auto">
-        <p class="landing-text">
+        <div class="landing-text">
           <span class="text-xl lg:text-4xl text-[#111] dark:text-white">
             <span class="text-4xl wave-hand">👋🏾</span>
             <b class={$theme === 'light' ? theme.classes.light.text : theme.classes.dark.text}>
               <span class="text-4xl jura greetings-anim-1 inline-block">HI,</span>
               <span class="text-4xl jura greetings-anim-2 inline-block">I'M</span>
-              <span class="text-5xl lg:text-6xl jura greetings-anim-3 inline-block {$theme === 'light' ? 'name-highlight-green' : 'name-highlight'}">EDDIE</span>
+              <span class="text-2xl lg:text-4xl jura greetings-anim-3 inline-block {$theme === 'light' ? 'name-highlight-green' : 'name-highlight'}">EDDIE TALIAFERRO II</span>
             </b> 
           </span>
-          <br>
-          <span class="sm:text-xl xl:text-lg block my-4 border-b border-gray-200/20 pb-4 typewriter-text {$theme === 'light' ? 'caret-green' : 'caret-fire'}">
-            <span class={$theme === 'light' ? theme.classes.light.text : theme.classes.dark.text}>
-              {typedText}
-            </span>
+        </div>
+        <div class="min-h-[180px] my-4 border-b border-gray-200/20 pb-4 typewriter-text {$theme === 'light' ? 'caret-green' : 'caret-fire'}">
+          <span class="text-xl xl:text-lg {$theme === 'light' ? theme.classes.light.text : theme.classes.dark.text}">
+            {typedText}
           </span>
-        </p>
+        </div>
 
         <h1 class={$theme === 'light' ? theme.classes.light.text + ' jura text-xl skills-title' : theme.classes.dark.text + ' jura text-xl skills-title'}>SKILLS</h1>
         <div class="flex flex-wrap gap-2 sm:my-2">
@@ -299,6 +298,12 @@
   @keyframes blink {
     0%, 50% { opacity: 1; }
     50.01%, 100% { opacity: 0; }
+  }
+
+  /* Smoother typewriter text */
+  .typewriter-text {
+    line-height: 1.6;
+    display: block;
   }
 
   /* ===== POLISHED ENHANCEMENTS ===== */
@@ -448,12 +453,6 @@
       opacity: 1;
       transform: translateY(0);
     }
-  }
-
-  /* Smoother typewriter text */
-  .typewriter-text {
-    min-height: 4.5em;
-    line-height: 1.6;
   }
 
   /* Landing text better spacing */
