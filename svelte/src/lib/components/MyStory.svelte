@@ -90,9 +90,9 @@
     
     <!-- Animated background gradient orbs -->
     <div class="absolute inset-0 overflow-hidden pointer-events-none">
-      <div class="orb orb-1 {$theme === 'light' ? 'bg-[#00c400]/20' : 'bg-[#00c400]/10'}"></div>
-      <div class="orb orb-2 {$theme === 'light' ? 'bg-emerald-400/20' : 'bg-emerald-500/10'}"></div>
-      <div class="orb orb-3 {$theme === 'light' ? 'bg-teal-400/20' : 'bg-teal-500/10'}"></div>
+      <div class="orb orb-1 {$theme === 'light' ? 'bg-[#00c400]/20' : 'bg-[#ff4500]/10'}"></div>
+      <div class="orb orb-2 {$theme === 'light' ? 'bg-emerald-400/20' : 'bg-orange-500/10'}"></div>
+      <div class="orb orb-3 {$theme === 'light' ? 'bg-teal-400/20' : 'bg-amber-500/10'}"></div>
     </div>
 
     <div class="relative z-10 flex flex-col lg:flex-row min-h-screen">
@@ -102,7 +102,7 @@
         
         <!-- Header with animated underline -->
         <div class="mb-8 {isVisible ? 'animate-slide-up' : 'opacity-0'}">
-          <span class="text-sm font-mono tracking-widest {$theme === 'light' ? 'text-[#00c400]' : 'text-[#00c400]'}">
+          <span class="text-sm font-mono tracking-widest {$theme === 'light' ? 'text-[#00c400]' : 'text-[#ff4500]'}">
             CHAPTER 01
           </span>
           <div class="flex items-center gap-4 mt-2">
@@ -147,7 +147,7 @@
               My Story
             </h1>
           </div>
-          <div class="h-1 w-24 bg-gradient-to-r from-[#00c400] via-emerald-400 to-teal-500 mt-4 rounded-full animated-gradient"></div>
+          <div class="h-1 w-24 bg-gradient-to-r {$theme === 'light' ? 'from-[#00c400] via-emerald-400 to-teal-500' : 'from-[#ff4500] via-orange-400 to-amber-500'} mt-4 rounded-full animated-gradient"></div>
         </div>
 
         <!-- Interactive Story Tabs -->
@@ -160,7 +160,9 @@
                 on:click={() => setActiveTab(index)}
                 class="tab-button px-4 py-2 rounded-full text-sm font-medium transition-all duration-300
                   {activeTab === index 
-                    ? 'bg-gradient-to-r from-[#00c400] to-emerald-500 text-white shadow-lg shadow-[#00c400]/25' 
+                    ? ($theme === 'light' 
+                        ? 'bg-gradient-to-r from-[#00c400] to-emerald-500 text-white shadow-lg shadow-[#00c400]/25'
+                        : 'bg-gradient-to-r from-[#ff4500] to-orange-500 text-white shadow-lg shadow-[#ff4500]/25')
                     : $theme === 'light' 
                       ? 'bg-white/80 text-gray-700 hover:bg-white border border-gray-200' 
                       : 'bg-white/5 text-gray-300 hover:bg-white/10 border border-white/10'
@@ -196,7 +198,7 @@
                 <button
                   on:click={() => setActiveTab(index)}
                   class="w-2 h-2 rounded-full transition-all duration-300 {activeTab === index 
-                    ? 'w-8 bg-gradient-to-r from-[#00c400] to-emerald-500' 
+                    ? ($theme === 'light' ? 'w-8 bg-gradient-to-r from-[#00c400] to-emerald-500' : 'w-8 bg-gradient-to-r from-[#ff4500] to-orange-500')
                     : $theme === 'light' ? 'bg-gray-300' : 'bg-gray-600'}"
                   aria-label="Go to tab {index + 1}"
                 ></button>
@@ -218,7 +220,7 @@
                     : 'bg-white/5 border border-white/10'}"
                 style="animation-delay: {index * 100}ms"
               >
-                <div class="text-2xl md:text-3xl font-bold bg-gradient-to-r from-[#00c400] to-emerald-400 bg-clip-text text-transparent">
+                <div class="text-2xl md:text-3xl font-bold bg-gradient-to-r {$theme === 'light' ? 'from-[#00c400] to-emerald-400' : 'from-[#ff4500] to-orange-400'} bg-clip-text text-transparent">
                   {stat.value}
                 </div>
                 <div class="text-xs md:text-sm mt-1 {$theme === 'light' ? 'text-gray-500' : 'text-gray-400'}">
@@ -256,7 +258,7 @@
             <div 
               class="w-2 h-2 rounded-full transition-all duration-500 
                 {current === index 
-                  ? 'bg-orange-500 w-6' 
+                  ? ($theme === 'light' ? 'bg-[#00c400] w-6' : 'bg-[#ff4500] w-6')
                   : 'bg-white/50'}"
             ></div>
           {/each}
