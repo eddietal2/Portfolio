@@ -101,78 +101,190 @@
     
     <!-- Background Silhouette SVG -->
     <div class="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
-      <svg class="absolute w-full h-full opacity-[0.12]" viewBox="0 0 1200 800" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
-        <!-- Circuit board pattern - tech silhouette -->
-        <g stroke={$theme === 'light' ? '#00c400' : '#ff4500'} stroke-width="1.5" fill="none">
-          <!-- Main circuit lines -->
-          <path d="M0 200 H200 L250 150 H400 L450 200 H600">
-            <animate attributeName="stroke-dasharray" values="0 1000;1000 0" dur="8s" repeatCount="indefinite"/>
+      <svg class="absolute w-full h-full opacity-[0.25]" viewBox="0 0 1200 800" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+        <!-- Gradient definitions -->
+        <defs>
+          <linearGradient id="circuitGrad1" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color={$theme === 'light' ? '#00c400' : '#ff4500'}>
+              <animate attributeName="stop-color" values={$theme === 'light' ? '#00c400;#00ff88;#00c400' : '#ff4500;#ff8800;#ff4500'} dur="4s" repeatCount="indefinite"/>
+            </stop>
+            <stop offset="50%" stop-color={$theme === 'light' ? '#00ff88' : '#ff8800'}>
+              <animate attributeName="stop-color" values={$theme === 'light' ? '#00ff88;#00c400;#00ff88' : '#ff8800;#ff4500;#ff8800'} dur="4s" repeatCount="indefinite"/>
+            </stop>
+            <stop offset="100%" stop-color={$theme === 'light' ? '#00aa66' : '#cc3300'}>
+              <animate attributeName="stop-color" values={$theme === 'light' ? '#00aa66;#00ffaa;#00aa66' : '#cc3300;#ff6644;#cc3300'} dur="4s" repeatCount="indefinite"/>
+            </stop>
+          </linearGradient>
+          <linearGradient id="circuitGrad2" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color={$theme === 'light' ? '#22cc88' : '#ff6622'}/>
+            <stop offset="100%" stop-color={$theme === 'light' ? '#00ff44' : '#ffaa00'}/>
+          </linearGradient>
+          <radialGradient id="nodeGlow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color={$theme === 'light' ? '#00ff88' : '#ffaa44'} stop-opacity="1"/>
+            <stop offset="100%" stop-color={$theme === 'light' ? '#00c400' : '#ff4500'} stop-opacity="0"/>
+          </radialGradient>
+          <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+            <feMerge>
+              <feMergeNode in="coloredBlur"/>
+              <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+          </filter>
+        </defs>
+        
+        <!-- Main circuit grid with gradient strokes -->
+        <g stroke="url(#circuitGrad1)" stroke-width="2" fill="none" filter="url(#glow)">
+          <!-- Top horizontal lines with data pulse -->
+          <path d="M0 200 H200 L250 150 H400 L450 200 H600" stroke-dasharray="800" stroke-dashoffset="800">
+            <animate attributeName="stroke-dashoffset" values="800;0" dur="3s" fill="freeze"/>
+            <animate attributeName="opacity" values="0.5;1;0.5" dur="2s" begin="3s" repeatCount="indefinite"/>
           </path>
-          <path d="M600 200 H800 L850 250 H1000 L1050 200 H1200"/>
-          <path d="M100 400 V300 H300 V350 H500 V400"/>
-          <path d="M700 400 V350 H900 V300 H1100 V400"/>
+          <path d="M600 200 H800 L850 250 H1000 L1050 200 H1200" stroke-dasharray="600" stroke-dashoffset="600">
+            <animate attributeName="stroke-dashoffset" values="600;0" dur="2.5s" begin="0.5s" fill="freeze"/>
+          </path>
           
-          <!-- Vertical connectors -->
-          <path d="M200 150 V50"/>
+          <!-- Middle crossing lines -->
+          <path d="M100 400 V300 H300 V350 H500 V400" stroke-dasharray="500" stroke-dashoffset="500">
+            <animate attributeName="stroke-dashoffset" values="500;0" dur="2s" begin="1s" fill="freeze"/>
+          </path>
+          <path d="M700 400 V350 H900 V300 H1100 V400" stroke-dasharray="500" stroke-dashoffset="500">
+            <animate attributeName="stroke-dashoffset" values="500;0" dur="2s" begin="1.5s" fill="freeze"/>
+          </path>
+        </g>
+        
+        <!-- Secondary circuit layer with different color -->
+        <g stroke={$theme === 'light' ? '#00ddaa' : '#ff7744'} stroke-width="1.5" fill="none" opacity="0.7">
+          <path d="M200 150 V50">
+            <animate attributeName="stroke" values={$theme === 'light' ? '#00ddaa;#44ffcc;#00ddaa' : '#ff7744;#ffcc44;#ff7744'} dur="3s" repeatCount="indefinite"/>
+          </path>
           <path d="M450 200 V100"/>
           <path d="M850 250 V350"/>
           <path d="M1050 200 V100"/>
-          
-          <!-- Bottom circuit lines -->
-          <path d="M0 600 H150 L200 550 H350 L400 600 H550"/>
-          <path d="M650 600 H800 L850 650 H1000 L1050 600 H1200"/>
+        </g>
+        
+        <!-- Bottom circuit with animated gradient -->
+        <g stroke="url(#circuitGrad2)" stroke-width="2" fill="none">
+          <path d="M0 600 H150 L200 550 H350 L400 600 H550" stroke-dasharray="550" stroke-dashoffset="550">
+            <animate attributeName="stroke-dashoffset" values="550;0" dur="2.5s" begin="2s" fill="freeze"/>
+          </path>
+          <path d="M650 600 H800 L850 650 H1000 L1050 600 H1200" stroke-dasharray="550" stroke-dashoffset="550">
+            <animate attributeName="stroke-dashoffset" values="550;0" dur="2.5s" begin="2.5s" fill="freeze"/>
+          </path>
           <path d="M200 550 V450"/>
           <path d="M400 600 V700"/>
           <path d="M850 650 V750"/>
           <path d="M1050 600 V500"/>
         </g>
         
-        <!-- Circuit nodes/dots -->
-        <g fill={$theme === 'light' ? '#00c400' : '#ff4500'}>
-          <circle cx="200" cy="200" r="6"><animate attributeName="opacity" values="0.3;0.8;0.3" dur="3s" repeatCount="indefinite"/></circle>
-          <circle cx="450" cy="200" r="6"><animate attributeName="opacity" values="0.3;0.8;0.3" dur="3.5s" repeatCount="indefinite"/></circle>
-          <circle cx="850" cy="250" r="6"><animate attributeName="opacity" values="0.3;0.8;0.3" dur="2.8s" repeatCount="indefinite"/></circle>
-          <circle cx="200" cy="50" r="4"/>
-          <circle cx="1050" cy="100" r="4"/>
-          <circle cx="200" cy="550" r="6"><animate attributeName="opacity" values="0.3;0.8;0.3" dur="3.2s" repeatCount="indefinite"/></circle>
-          <circle cx="400" cy="600" r="6"><animate attributeName="opacity" values="0.3;0.8;0.3" dur="2.9s" repeatCount="indefinite"/></circle>
-          <circle cx="850" cy="650" r="6"><animate attributeName="opacity" values="0.3;0.8;0.3" dur="3.3s" repeatCount="indefinite"/></circle>
+        <!-- Animated circuit nodes with glow -->
+        <g fill="url(#nodeGlow)" filter="url(#glow)">
+          <circle cx="200" cy="200" r="8">
+            <animate attributeName="r" values="6;10;6" dur="2s" repeatCount="indefinite"/>
+            <animate attributeName="opacity" values="0.6;1;0.6" dur="2s" repeatCount="indefinite"/>
+          </circle>
+          <circle cx="450" cy="200" r="8">
+            <animate attributeName="r" values="6;10;6" dur="2.3s" repeatCount="indefinite"/>
+            <animate attributeName="opacity" values="0.6;1;0.6" dur="2.3s" repeatCount="indefinite"/>
+          </circle>
+          <circle cx="850" cy="250" r="8">
+            <animate attributeName="r" values="6;10;6" dur="1.8s" repeatCount="indefinite"/>
+            <animate attributeName="opacity" values="0.6;1;0.6" dur="1.8s" repeatCount="indefinite"/>
+          </circle>
+          <circle cx="200" cy="550" r="8">
+            <animate attributeName="r" values="6;10;6" dur="2.1s" repeatCount="indefinite"/>
+          </circle>
+          <circle cx="400" cy="600" r="8">
+            <animate attributeName="r" values="6;10;6" dur="1.9s" repeatCount="indefinite"/>
+          </circle>
+          <circle cx="850" cy="650" r="8">
+            <animate attributeName="r" values="6;10;6" dur="2.2s" repeatCount="indefinite"/>
+          </circle>
         </g>
         
-        <!-- Code brackets silhouette -->
-        <g stroke={$theme === 'light' ? '#00a000' : '#cc3700'} stroke-width="3" fill="none" opacity="0.5">
-          <!-- Left bracket < -->
-          <path d="M50 350 L20 400 L50 450">
-            <animate attributeName="stroke-opacity" values="0.3;0.6;0.3" dur="4s" repeatCount="indefinite"/>
+        <!-- Data pulse traveling along paths -->
+        <g fill={$theme === 'light' ? '#00ff88' : '#ffaa44'}>
+          <circle r="4" opacity="0.9">
+            <animateMotion dur="4s" repeatCount="indefinite" path="M0,200 H200 L250,150 H400 L450,200 H600"/>
+          </circle>
+          <circle r="4" opacity="0.9">
+            <animateMotion dur="4s" repeatCount="indefinite" begin="2s" path="M600,200 H800 L850,250 H1000 L1050,200 H1200"/>
+          </circle>
+          <circle r="3" opacity="0.8">
+            <animateMotion dur="3s" repeatCount="indefinite" path="M0,600 H150 L200,550 H350 L400,600 H550"/>
+          </circle>
+        </g>
+        
+        <!-- Colorful code brackets -->
+        <g stroke-width="4" fill="none" filter="url(#glow)">
+          <path d="M50 350 L20 400 L50 450" stroke={$theme === 'light' ? '#00ff66' : '#ff6644'}>
+            <animate attributeName="stroke" values={$theme === 'light' ? '#00ff66;#00cc44;#00ff66' : '#ff6644;#ffaa44;#ff6644'} dur="3s" repeatCount="indefinite"/>
+            <animate attributeName="opacity" values="0.4;0.8;0.4" dur="3s" repeatCount="indefinite"/>
           </path>
-          <!-- Right bracket > -->
-          <path d="M1150 350 L1180 400 L1150 450">
-            <animate attributeName="stroke-opacity" values="0.3;0.6;0.3" dur="4s" begin="2s" repeatCount="indefinite"/>
+          <path d="M1150 350 L1180 400 L1150 450" stroke={$theme === 'light' ? '#44ffaa' : '#ffcc44'}>
+            <animate attributeName="stroke" values={$theme === 'light' ? '#44ffaa;#00ff88;#44ffaa' : '#ffcc44;#ff8844;#ffcc44'} dur="3s" begin="1.5s" repeatCount="indefinite"/>
+            <animate attributeName="opacity" values="0.4;0.8;0.4" dur="3s" begin="1.5s" repeatCount="indefinite"/>
           </path>
-          <!-- Slash / -->
-          <path d="M580 320 L620 480"/>
+          <path d="M580 320 L620 480" stroke={$theme === 'light' ? '#00dd88' : '#ff9944'} opacity="0.6"/>
         </g>
         
-        <!-- Geometric shapes - abstract tech feel -->
-        <g stroke={$theme === 'light' ? '#00c400' : '#ff4500'} stroke-width="1" fill="none" opacity="0.3">
-          <!-- Hexagons -->
-          <polygon points="100,700 130,680 160,700 160,740 130,760 100,740">
-            <animate attributeName="opacity" values="0.2;0.5;0.2" dur="5s" repeatCount="indefinite"/>
+        <!-- Animated hexagons with color cycling -->
+        <g stroke-width="2" fill="none">
+          <polygon points="100,700 130,680 160,700 160,740 130,760 100,740" stroke={$theme === 'light' ? '#00ff88' : '#ff8844'}>
+            <animate attributeName="stroke" values={$theme === 'light' ? '#00ff88;#00cc66;#44ffaa;#00ff88' : '#ff8844;#ffcc44;#ff6622;#ff8844'} dur="4s" repeatCount="indefinite"/>
+            <animate attributeName="opacity" values="0.3;0.7;0.3" dur="4s" repeatCount="indefinite"/>
           </polygon>
-          <polygon points="1040,100 1070,80 1100,100 1100,140 1070,160 1040,140">
-            <animate attributeName="opacity" values="0.2;0.5;0.2" dur="5s" begin="2.5s" repeatCount="indefinite"/>
+          <polygon points="1040,100 1070,80 1100,100 1100,140 1070,160 1040,140" stroke={$theme === 'light' ? '#44ffcc' : '#ffaa44'}>
+            <animate attributeName="stroke" values={$theme === 'light' ? '#44ffcc;#00ff88;#00ddaa;#44ffcc' : '#ffaa44;#ff6622;#ffcc66;#ffaa44'} dur="4s" begin="2s" repeatCount="indefinite"/>
+            <animate attributeName="opacity" values="0.3;0.7;0.3" dur="4s" begin="2s" repeatCount="indefinite"/>
           </polygon>
-          <!-- Triangles -->
-          <polygon points="950,700 980,650 1010,700"/>
-          <polygon points="300,80 330,30 360,80"/>
+          <!-- Additional spinning hexagon -->
+          <g transform="translate(600, 100)">
+            <polygon points="0,-30 26,-15 26,15 0,30 -26,15 -26,-15" stroke={$theme === 'light' ? '#00ffaa' : '#ff7744'} opacity="0.5">
+              <animateTransform attributeName="transform" type="rotate" values="0;360" dur="20s" repeatCount="indefinite"/>
+            </polygon>
+          </g>
         </g>
         
-        <!-- Binary/data stream lines -->
-        <g fill={$theme === 'light' ? '#00c400' : '#ff4500'} opacity="0.15">
-          <text x="50" y="150" font-family="monospace" font-size="12">01001000 01100101 01101100</text>
-          <text x="900" y="720" font-family="monospace" font-size="12">01101100 01101111 00100001</text>
-          <text x="80" y="500" font-family="monospace" font-size="10">const dev = true;</text>
-          <text x="1000" y="400" font-family="monospace" font-size="10">{"<Code />"}</text>
+        <!-- Colorful triangles -->
+        <g fill="none" stroke-width="2">
+          <polygon points="950,700 980,650 1010,700" stroke={$theme === 'light' ? '#00dd66' : '#ff9955'} opacity="0.5">
+            <animate attributeName="opacity" values="0.3;0.6;0.3" dur="3s" repeatCount="indefinite"/>
+          </polygon>
+          <polygon points="300,80 330,30 360,80" stroke={$theme === 'light' ? '#22ffaa' : '#ffbb44'} opacity="0.5">
+            <animate attributeName="opacity" values="0.3;0.6;0.3" dur="3s" begin="1.5s" repeatCount="indefinite"/>
+          </polygon>
+        </g>
+        
+        <!-- Colorful binary/data stream with gradient text -->
+        <g opacity="0.25" font-family="monospace" font-size="12">
+          <text x="50" y="150" fill={$theme === 'light' ? '#00ff88' : '#ffaa44'}>
+            01001000 01100101 01101100
+            <animate attributeName="opacity" values="0.2;0.4;0.2" dur="4s" repeatCount="indefinite"/>
+          </text>
+          <text x="900" y="720" fill={$theme === 'light' ? '#00dd66' : '#ff8844'}>
+            01101100 01101111 00100001
+            <animate attributeName="opacity" values="0.2;0.4;0.2" dur="4s" begin="2s" repeatCount="indefinite"/>
+          </text>
+          <text x="80" y="500" font-size="10" fill={$theme === 'light' ? '#44ffaa' : '#ffcc44'}>const dev = true;</text>
+          <text x="1000" y="400" font-size="10" fill={$theme === 'light' ? '#00ffcc' : '#ff9966'}>{"<Code />"}</text>
+        </g>
+        
+        <!-- Floating particles -->
+        <g fill={$theme === 'light' ? '#00ff88' : '#ffaa44'}>
+          {#each [
+            {cx: 150, cy: 300, dur: 8},
+            {cx: 350, cy: 500, dur: 10},
+            {cx: 550, cy: 250, dur: 7},
+            {cx: 750, cy: 450, dur: 9},
+            {cx: 950, cy: 350, dur: 11},
+            {cx: 250, cy: 650, dur: 8.5},
+            {cx: 850, cy: 150, dur: 9.5}
+          ] as particle}
+            <circle cx={particle.cx} cy={particle.cy} r="3" opacity="0.6">
+              <animate attributeName="cy" values="{particle.cy};{particle.cy - 100};{particle.cy}" dur="{particle.dur}s" repeatCount="indefinite"/>
+              <animate attributeName="opacity" values="0.3;0.7;0.3" dur="{particle.dur}s" repeatCount="indefinite"/>
+            </circle>
+          {/each}
         </g>
       </svg>
     </div>
