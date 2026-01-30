@@ -188,22 +188,7 @@
       updateStoryScrollProgress();
     }
 
-    // Photos
-    slides = Array.from(document.querySelectorAll("#section-2 .photo-slide"));
-    if (slides.length > 0) {
-      slides[current].style.opacity = "1";
-      slides[current].style.transform = "scale(1.05)";
-    }
-
-    setInterval(() => {
-      if (slides.length > 0) {
-        slides[current].style.opacity = "0";
-        slides[current].style.transform = "scale(1)";
-        current = (current + 1) % slides.length;
-        slides[current].style.opacity = "1";
-        slides[current].style.transform = "scale(1.05)";
-      }
-    }, 5000);
+    // Netflix-style carousel - no JS needed, CSS handles the infinite scroll
 
     // Scroll reveal animation
     const sectionElement = document.getElementById('section-2');
@@ -614,40 +599,43 @@
         </div>
       </div>
 
-      <!-- Right Side: Photo Gallery -->
-      <div class="w-full lg:w-1/2 relative min-h-[400px] lg:min-h-screen {isVisible ? 'animate-fade-in' : 'opacity-0'}">
+      <!-- Right Side: Photo Gallery - Netflix Style -->
+      <div class="w-full lg:w-1/2 relative min-h-[400px] lg:min-h-screen overflow-hidden {isVisible ? 'animate-fade-in' : 'opacity-0'}">
         
-        <!-- Gradient overlay - subtle edge blend on desktop, stronger on mobile -->
+        <!-- Gradient overlays for edge fade -->
         <div class="absolute inset-0 z-10 pointer-events-none 
-          lg:bg-gradient-to-r lg:from-gray-950/60 lg:via-transparent lg:to-transparent
+          lg:bg-gradient-to-r lg:from-gray-950/80 lg:via-transparent lg:to-gray-950/40
           bg-gradient-to-t {$theme === 'light' ? 'from-gray-50' : 'from-gray-950'} to-transparent
-          {$theme === 'light' ? 'lg:from-gray-50/60' : ''}"></div>
+          {$theme === 'light' ? 'lg:from-gray-50/80 lg:to-gray-50/40' : ''}"></div>
 
-        <!-- Photo slides -->
-        <div class="absolute inset-0">
-          {#each photos as photo, index}
-            <img 
-              src={photo} 
-              class="photo-slide absolute w-full h-full object-cover opacity-0 transition-all duration-1000 ease-in-out" 
-              alt="Eddie's journey photo {index + 1}"
-            />
-          {/each}
-        </div>
-
-        <!-- Floating photo indicators -->
-        <div class="absolute bottom-8 right-8 z-20 flex gap-2">
-          {#each photos as _, index}
-            <div 
-              class="w-2 h-2 rounded-full transition-all duration-500 
-                {current === index 
-                  ? ($theme === 'light' ? 'bg-[#00c400] w-6' : 'bg-[#ff4500] w-6')
-                  : 'bg-white/50'}"
-            ></div>
-          {/each}
+        <!-- Netflix-style horizontal scrolling carousel -->
+        <div class="netflix-carousel absolute inset-0 flex items-center">
+          <div class="netflix-track flex gap-4 px-4">
+            <!-- First set of photos -->
+            {#each photos as photo, index}
+              <div class="netflix-card flex-shrink-0 w-64 h-80 md:w-72 md:h-96 lg:w-80 lg:h-[28rem] rounded-xl overflow-hidden shadow-2xl">
+                <img 
+                  src={photo} 
+                  class="w-full h-full object-cover hover:scale-110 transition-transform duration-700" 
+                  alt="Eddie's journey photo {index + 1}"
+                />
+              </div>
+            {/each}
+            <!-- Duplicate set for seamless infinite scroll -->
+            {#each photos as photo, index}
+              <div class="netflix-card flex-shrink-0 w-64 h-80 md:w-72 md:h-96 lg:w-80 lg:h-[28rem] rounded-xl overflow-hidden shadow-2xl">
+                <img 
+                  src={photo} 
+                  class="w-full h-full object-cover hover:scale-110 transition-transform duration-700" 
+                  alt="Eddie's journey photo {index + 1}"
+                />
+              </div>
+            {/each}
+          </div>
         </div>
 
         <!-- Decorative frame - more subtle -->
-        <div class="absolute top-8 right-8 bottom-8 left-8 lg:left-16 border border-white/30 rounded-2xl z-10 pointer-events-none"></div>
+        <div class="absolute top-8 right-8 bottom-8 left-8 lg:left-16 border border-white/20 rounded-2xl z-10 pointer-events-none"></div>
       </div>
 
     </div>
@@ -664,6 +652,69 @@
       scroll-snap-type: none;
       scroll-snap-align: none;
     }
+  }
+
+  /* Netflix-style horizontal scrolling carousel */
+  .netflix-carousel {
+    overflow: hidden;
+  }
+
+  .netflix-track {
+    animation: netflix-scroll 120s linear infinite;
+  }
+
+  .netflix-track:hover {
+    animation-play-state: paused;
+  }
+
+  @keyframes netflix-scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  .netflix-card {
+    position: relative;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+  }
+
+  .netflix-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    z-index: 20;
+  }
+
+  /* Desktop: larger scale on hover for better viewing */
+  @media (min-width: 1024px) {
+    .netflix-card:hover {
+      transform: scale(1.35) translateY(-10%);
+      box-shadow: 0 35px 60px -15px rgba(0, 0, 0, 0.7);
+    }
+  }
+
+  /* Add subtle border glow on hover */
+  .netflix-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    border: 2px solid transparent;
+    transition: border-color 0.4s ease;
+    pointer-events: none;
+  }
+
+  :global(.dark) .netflix-card:hover::after {
+    border-color: rgba(255, 69, 0, 0.6);
+    box-shadow: inset 0 0 20px rgba(255, 69, 0, 0.2);
+  }
+
+  :global(.light) .netflix-card:hover::after,
+  .netflix-card:hover::after {
+    border-color: rgba(0, 196, 0, 0.6);
+    box-shadow: inset 0 0 20px rgba(0, 196, 0, 0.2);
   }
 
   /* Floating orbs */
