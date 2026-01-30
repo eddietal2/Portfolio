@@ -13,8 +13,51 @@
   import slidePhotoFive from '../../assets/photos/Photo_3.png'
   import slidePhotoSix from '../../assets/photos/insta_1.png'
   import slidePhotoSeven from '../../assets/photos/Photo_6.jpg'
+  import slidePhotoEight from '../../assets/photos/Photo_7.jpg'
+  import slidePhotoNine from '../../assets/photos/Photo_8.jpg'
+  import slidePhotoTen from '../../assets/photos/Photo_9.jpg'
+  import slidePhotoEleven from '../../assets/photos/Photo_10.jpg'
+  import slidePhotoTwelve from '../../assets/photos/Photo_11.jpg'
+  import slidePhoto13 from '../../assets/photos/Photo_12.jpg'
+  import slidePhoto14 from '../../assets/photos/Photo_13.jpg'
+  import slidePhoto15 from '../../assets/photos/Photo_14.jpg'
+  import slidePhoto16 from '../../assets/photos/Photo_15.jpg'
+  import slidePhoto17 from '../../assets/photos/Photo_16.jpg'
+  import slidePhoto18 from '../../assets/photos/Photo_17.jpg'
+  import slidePhoto19 from '../../assets/photos/Photo_18.jpg'
+  import slidePhoto20 from '../../assets/photos/Photo_19.jpg'
+  import slidePhoto21 from '../../assets/photos/Photo_20.jpg'
+  import slidePhoto22 from '../../assets/photos/Photo_21.jpg'
+  import slidePhoto23 from '../../assets/photos/Photo_22.jpg'
+  import slidePhoto24 from '../../assets/photos/Photo_23.jpg'
+  import slidePhoto25 from '../../assets/photos/Photo_24.jpg'
+  import slidePhoto26 from '../../assets/photos/Photo_25.jpg'
+  import slidePhoto27 from '../../assets/photos/Photo_26.jpg'
+  import slidePhoto28 from '../../assets/photos/Photo_27.jpg'
+  import slidePhoto29 from '../../assets/photos/Photo_28.jpg'
 
-  const photos = [slidePhotoOne, slidePhotoTwo, slidePhotoThree, slidePhotoFour, slidePhotoFive, slidePhotoSix, slidePhotoSeven];
+  // Fisher-Yates shuffle algorithm
+  function shuffleArray<T>(array: T[]): T[] {
+    const shuffled = [...array];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    return shuffled;
+  }
+
+  const allPhotos = [
+    slidePhotoOne, slidePhotoTwo, slidePhotoThree, slidePhotoFour, 
+    slidePhotoFive, slidePhotoSix, slidePhotoSeven, slidePhotoEight,
+    slidePhotoNine, slidePhotoTen, slidePhotoEleven, slidePhotoTwelve,
+    slidePhoto13, slidePhoto14, slidePhoto15, slidePhoto16, slidePhoto17,
+    slidePhoto18, slidePhoto19, slidePhoto20, slidePhoto21, slidePhoto22,
+    slidePhoto23, slidePhoto24, slidePhoto25, slidePhoto26, slidePhoto27,
+    slidePhoto28, slidePhoto29
+  ];
+  
+  // Randomize photos on load
+  const photos = shuffleArray(allPhotos);
   
   let slides: HTMLImageElement[] = [];
   let current = 0;
