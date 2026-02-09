@@ -644,6 +644,22 @@
       opacity: 1;
     }
   }
+
+  /* Lighter glow for light mode */
+  :global(.light) .header-pic-container:not(.super-saiyan) .header-frame :global(svg) {
+    animation: idle-glow-light 2.5s ease-in-out infinite;
+  }
+
+  @keyframes idle-glow-light {
+    0%, 100% { 
+      filter: drop-shadow(0 0 1px rgba(0, 196, 0, 0.3));
+      opacity: 0.9;
+    }
+    50% { 
+      filter: drop-shadow(0 0 4px rgba(0, 196, 0, 0.4)) drop-shadow(0 0 8px rgba(0, 196, 0, 0.2));
+      opacity: 1;
+    }
+  }
   
   /* ===== SUPER SAIYAN EFFECT ===== */
   .header-pic-container.super-saiyan {
@@ -845,7 +861,7 @@
     background: radial-gradient(circle, rgba(255, 69, 0, 0.2) 0%, transparent 70%);
   }
   .header-pic-container.glow-green::after {
-    background: radial-gradient(circle, rgba(0, 196, 0, 0.2) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(0, 196, 0, 0.12) 0%, transparent 70%);
   }
   /* Gold glow for hover state - brighter in light mode, deeper in dark mode */
   .header-pic-container.glow-gold-light::after {
@@ -876,13 +892,13 @@
 
   /* Green name highlight for light mode */
   .name-highlight-green {
-    background: linear-gradient(135deg, #00ff00 0%, #00c400 50%, #00dd00 100%);
+    background: linear-gradient(135deg, #00dd00 0%, #00c400 50%, #00bb00 100%);
     background-size: 200% 200%;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
     animation: shimmer 3s ease-in-out 4s infinite;
-    filter: drop-shadow(0 0 20px rgba(0, 196, 0, 0.4));
+    filter: drop-shadow(0 0 10px rgba(0, 196, 0, 0.15));
   }
   .greetings-anim-3.name-highlight-green {
     opacity: 1;
