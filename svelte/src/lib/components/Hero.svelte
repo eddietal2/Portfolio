@@ -757,6 +757,47 @@
               drop-shadow(0 0 36px rgba(255, 165, 0, 0.5));
     }
   }
+
+  /* Light mode super saiyan - softer muted gold tones */
+  :global(.light) .header-pic-container.super-saiyan::before,
+  .header-pic-container.super-saiyan.glow-gold-light::before {
+    background: radial-gradient(circle, 
+      rgba(154, 123, 28, 0.25) 0%, 
+      rgba(168, 134, 42, 0.15) 30%,
+      rgba(122, 95, 8, 0.08) 50%,
+      transparent 70%);
+    filter: blur(6px);
+  }
+  
+  :global(.light) .header-pic-container.super-saiyan::after,
+  .header-pic-container.super-saiyan.glow-gold-light::after {
+    background: radial-gradient(circle, 
+      transparent 30%,
+      rgba(154, 123, 28, 0.35) 45%,
+      rgba(168, 134, 42, 0.25) 50%,
+      rgba(122, 95, 8, 0.12) 60%,
+      transparent 70%) !important;
+  }
+
+  :global(.light) .header-pic-container.super-saiyan .header-frame :global(svg) {
+    filter: drop-shadow(0 0 4px rgba(154, 123, 28, 0.5)) 
+            drop-shadow(0 0 8px rgba(168, 134, 42, 0.3))
+            drop-shadow(0 0 12px rgba(122, 95, 8, 0.2));
+    animation: svg-glow-pulse-light 0.4s ease-in-out infinite alternate;
+  }
+
+  @keyframes svg-glow-pulse-light {
+    0% {
+      filter: drop-shadow(0 0 3px rgba(154, 123, 28, 0.4)) 
+              drop-shadow(0 0 6px rgba(168, 134, 42, 0.25))
+              drop-shadow(0 0 10px rgba(122, 95, 8, 0.15));
+    }
+    100% {
+      filter: drop-shadow(0 0 6px rgba(154, 123, 28, 0.6)) 
+              drop-shadow(0 0 12px rgba(168, 134, 42, 0.4))
+              drop-shadow(0 0 18px rgba(122, 95, 8, 0.25));
+    }
+  }
   
   /* Dark mode super saiyan - deeper gold tones */
   :global(.dark) .header-pic-container.super-saiyan::before,
@@ -863,9 +904,9 @@
   .header-pic-container.glow-green::after {
     background: radial-gradient(circle, rgba(0, 196, 0, 0.12) 0%, transparent 70%);
   }
-  /* Gold glow for hover state - brighter in light mode, deeper in dark mode */
+  /* Gold glow for hover state - softer in light mode, deeper in dark mode */
   .header-pic-container.glow-gold-light::after {
-    background: radial-gradient(circle, rgba(255, 215, 0, 0.35) 0%, rgba(255, 193, 37, 0.15) 40%, transparent 70%);
+    background: radial-gradient(circle, rgba(154, 123, 28, 0.18) 0%, rgba(168, 134, 42, 0.08) 40%, transparent 70%);
   }
   .header-pic-container.glow-gold-dark::after {
     background: radial-gradient(circle, rgba(218, 165, 32, 0.4) 0%, rgba(184, 134, 11, 0.2) 40%, transparent 70%);
@@ -914,7 +955,7 @@
     -webkit-text-fill-color: transparent;
     background-clip: text;
     animation: shimmer 1.5s ease-in-out infinite;
-    filter: drop-shadow(0 0 20px rgba(154, 123, 28, 0.5));
+    filter: drop-shadow(0 0 8px rgba(154, 123, 28, 0.2));
   }
   .greetings-anim-3.name-highlight-gold-light {
     opacity: 1;
