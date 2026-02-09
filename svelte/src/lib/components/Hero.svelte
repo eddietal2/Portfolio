@@ -9,9 +9,13 @@
   import { get } from 'svelte/store';
 
   let typedText = '';
+  let typedName = '';
+  let nameTypingComplete = false;
   let hoveredSkill: string | null = null;
   let frameHovered = false;
   let scrollProgress = 0;
+
+  const fullName = 'EDDIE TALIAFERRO II';
 
   // Skill descriptions for hover expansion
   const skillDescriptions: Record<string, string> = {
@@ -129,7 +133,21 @@
       updateScrollProgress();
     }
 
-    // Typewriter effect
+    // Name typewriter effect - starts after "I'M" animation (at 3s)
+    let nameIndex = 0;
+    setTimeout(() => {
+      const nameInterval = setInterval(() => {
+        if (nameIndex < fullName.length) {
+          typedName += fullName.charAt(nameIndex);
+          nameIndex++;
+        } else {
+          clearInterval(nameInterval);
+          nameTypingComplete = true;
+        }
+      }, 70); // 70ms per character
+    }, 3000); // Start at 3s (after I'M slides in)
+
+    // Main typewriter effect
     let i = 0;
     setTimeout(() => {
       const interval = setInterval(() => {
@@ -140,7 +158,7 @@
           clearInterval(interval);
         }
       }, 25);
-    }, 5250); // delay start by 3 seconds
+    }, 5250); // delay start by 5.25 seconds
 
 
     // Snap Scrolling & Navbar Bullets
@@ -393,7 +411,7 @@
             <b class={$theme === 'light' ? theme.classes.light.text : theme.classes.dark.text}>
               <span class="text-2xl md:text-3xl lg:text-4xl jura greetings-anim-1 inline-block">HI,</span>
               <span class="text-2xl md:text-3xl lg:text-4xl jura greetings-anim-2 inline-block">I'M</span>
-              <span class="text-xl md:text-2xl lg:text-3xl xl:text-4xl jura greetings-anim-3 inline-block {frameHovered ? ($theme === 'light' ? 'name-highlight-gold-light' : 'name-highlight-gold-dark') : ($theme === 'light' ? 'name-highlight-green' : 'name-highlight')}">EDDIE TALIAFERRO II</span>
+              <span class="text-xl md:text-2xl lg:text-3xl xl:text-4xl jura inline-block name-typewriter {nameTypingComplete ? '' : 'typing'} {frameHovered ? ($theme === 'light' ? 'name-highlight-gold-light' : 'name-highlight-gold-dark') : ($theme === 'light' ? 'name-highlight-green' : 'name-highlight')}">{typedName}</span>
             </b> 
           </span>
         </div>
@@ -547,6 +565,26 @@
   @keyframes gold-caret-pulse {
     0%, 100% { color: #FFD700; }
     50% { color: #ffffff; }
+  }
+
+  /* Name typewriter effect */
+  .name-typewriter {
+    min-width: 1ch; /* Ensure some width even when empty */
+  }
+  .name-typewriter.typing::after {
+    content: '|';
+    animation: blink 0.8s infinite;
+    margin-left: 1px;
+  }
+  :global(.light) .name-typewriter.typing::after {
+    color: #00c400;
+  }
+  :global(.dark) .name-typewriter.typing::after {
+    color: #ff4500;
+  }
+  .name-typewriter.name-highlight-gold-light.typing::after,
+  .name-typewriter.name-highlight-gold-dark.typing::after {
+    color: #FFD700;
   }
 
   /* Gold pulsating typewriter text */
