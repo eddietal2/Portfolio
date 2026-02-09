@@ -482,7 +482,6 @@
 <style>
   #section-4 {
     width: 100%;
-    height: 100vh;
     scroll-snap-align: start;
   }
   @media (max-width: 1000px) {
