@@ -11,6 +11,32 @@
   
   let projects = [
     {
+      name: "EAX",
+      image: "",
+      role: "Product Designer & Software Developer",
+      type: "Professional",
+      categories: ["Web"] as CategoryOption[],
+      badges: ["SvelteKit", "TailwindCSS", "Vercel" , "2026"],
+      link: "https://exchange-tz.vercel.app/",
+      text: "East African Exchange, a webapp focused on exchange rates of popular currencies in East Africa.",
+      video: "",
+      description: "East African Exchange, a webapp focused on exchange rates of popular currencies in East Africa.",
+      color: "#09ce96"
+    },
+    {
+      name: "Turbofunding",
+      image: "",
+      role: "Full Stack Developer",
+      type: "Professional",
+      categories: ["Web"] as CategoryOption[],
+      badges: ["NextJS", "Salesforce", "Vercel" , "TailwindCSS", "2026"],
+      link: "https://turbofunding.com/",
+      text: "Loan Financing Service for Small Bussinesses.",
+      video: "",
+      description: "Placeholder description - To be filled in later",
+      color: "#f48329"
+    },
+    {
       name: "Pivy",
       image: "https://eddie-portfolio.s3.us-east-1.amazonaws.com/logo/pivotal.ai.png",
       role: "Product & Software Developer",
@@ -18,7 +44,7 @@
       categories: ["Web", "Mobile"] as CategoryOption[],
       badges: ["NextJS", "Django", "Hybrid", "iOS", "Android", "Capacitor", "2026"],
       link: "https://pivotal-ai-web-app.vercel.app/login",
-      text: "AI-Chat & Stock Market analysis web app.",
+      text: "AI-Chat & Stock Market analysis web app. [Under Construction]",
       video: "https://eddie-portfolio.s3.us-east-1.amazonaws.com/videos/Pivy_Demo_04.mp4",
       description: "AI-Chat & Stock Market analysis web app. I am the lead software developer for this MVP. This is being built with NextJS and Django, and is designed to work on both web and mobile platforms using Capacitor.",
       color: "#10A8C6"
