@@ -12,43 +12,30 @@
   let projects = [
     {
       name: "EAX",
-      image: "",
+      image: "https://mhs7y1qvivsmm0ro.public.blob.vercel-storage.com/eax_logo.png",
       role: "Product Designer & Software Developer",
       type: "Professional",
       categories: ["Web"] as CategoryOption[],
       badges: ["SvelteKit", "TailwindCSS", "Vercel" , "2026"],
       link: "https://exchange-tz.vercel.app/",
       text: "East African Exchange, a webapp focused on exchange rates of popular currencies in East Africa.",
-      video: "",
+      video: "https://mhs7y1qvivsmm0ro.public.blob.vercel-storage.com/eax_demo_mobile.mp4",
       description: "East African Exchange, a webapp focused on exchange rates of popular currencies in East Africa.",
       color: "#09ce96"
     },
     {
       name: "Turbofunding",
-      image: "",
+      image: "https://mhs7y1qvivsmm0ro.public.blob.vercel-storage.com/turbofunding_logo.png",
       role: "Full Stack Developer",
       type: "Professional",
       categories: ["Web"] as CategoryOption[],
       badges: ["NextJS", "Salesforce", "Vercel" , "TailwindCSS", "2026"],
       link: "https://turbofunding.com/",
       text: "Loan Financing Service for Small Bussinesses.",
-      video: "",
+      video: "https://mhs7y1qvivsmm0ro.public.blob.vercel-storage.com/tf_video_demo.mp4",
       description: "Placeholder description - To be filled in later",
       color: "#f48329"
     },
-    {
-      name: "Pivy",
-      image: "https://eddie-portfolio.s3.us-east-1.amazonaws.com/logo/pivotal.ai.png",
-      role: "Product & Software Developer",
-      type: "Professional",
-      categories: ["Web", "Mobile"] as CategoryOption[],
-      badges: ["NextJS", "Django", "Hybrid", "iOS", "Android", "Capacitor", "2026"],
-      link: "https://pivotal-ai-web-app.vercel.app/login",
-      text: "AI-Chat & Stock Market analysis web app. [Under Construction]",
-      video: "https://eddie-portfolio.s3.us-east-1.amazonaws.com/videos/Pivy_Demo_04.mp4",
-      description: "AI-Chat & Stock Market analysis web app. I am the lead software developer for this MVP. This is being built with NextJS and Django, and is designed to work on both web and mobile platforms using Capacitor.",
-      color: "#10A8C6"
-    }, 
     {
       name: "FinalBossXR.com",
       image: "https://eddie-portfolio.s3.us-east-1.amazonaws.com/logo/F_Logo_White.png",
@@ -60,7 +47,7 @@
       text: "Official Website for FinalBossXR.com",
       video: "https://eddie-portfolio.s3.us-east-1.amazonaws.com/videos/FBXR_Portfolio_Video.mp4",
       description: "This is a Video Game & Augmented Reality Studio that I co-founded in 2021. I also act as Web Developer and Game Designer for our team while we build our first IP, Cosmic Collisions. I remade this site with SvelteKit & TailwindCSS",
-      color: "#F97316"
+      color: "#8B5CF6"
     },
     {
       name: "Trading Simulator",
@@ -89,6 +76,19 @@
       color: "#EF4444"
     }, 
     {
+      name: "Pivy",
+      image: "https://eddie-portfolio.s3.us-east-1.amazonaws.com/logo/pivotal.ai.png",
+      role: "Product & Software Developer",
+      type: "Professional",
+      categories: ["Web", "Mobile"] as CategoryOption[],
+      badges: ["NextJS", "Django", "Hybrid", "iOS", "Android", "Capacitor", "2026"],
+      link: "https://pivotal-ai-web-app.vercel.app/login",
+      text: "AI-Chat & Stock Market analysis web app. [Under Construction]",
+      video: "https://eddie-portfolio.s3.us-east-1.amazonaws.com/videos/Pivy_Demo_04.mp4",
+      description: "AI-Chat & Stock Market analysis web app. I am the lead software developer for this MVP. This is being built with NextJS and Django, and is designed to work on both web and mobile platforms using Capacitor.",
+      color: "#10A8C6"
+    }, 
+    {
       name: "Cosmic Collisions",
       image: "https://finalbossxr.s3.us-east-1.amazonaws.com/cosmic/logos/CC_LogoAnimated.gif",
       role: "Game Developer & Designer",
@@ -100,32 +100,6 @@
       video: "https://finalbossxr.s3.us-east-1.amazonaws.com/videos/Game-trailer-Attempt-3.mp4",
       description: "VR Startup that aims to make therapy more accessible and innovative. I am the lead software developer for this MVP. This is being built with Unreal Engine 5, while I outsource things like 3D Model creation, audio, etc.",
       color: "#8B5CF6"
-    },
-    {
-      name: "HARP",
-      image: "https://ik.imagekit.io/2ax1lblqa/Slice_1__1_-removebg-preview.png?updatedAt=1732343747682",
-      role: "Lead VR Developer",
-      type: "Professional",
-      categories: ["XR"] as CategoryOption[],
-      badges: ["Unreal Engine 5", "Meta Quest 2", "2025"],
-      link: "https://www.harp-rose.org/",
-      text: "VR Enhanced Therapy, powered by Unreal Engine.",
-      video: "https://eddie-portfolio.s3.us-east-1.amazonaws.com/videos/Harp_Demo_01.mp4",
-      description: "VR Startup that aims to make therapy more accessible and innovative. I am the lead software developer for this MVP. This is being built with Unreal Engine 5, while I outsource things like 3D Model creation, audio, etc.",
-      color: "#EC4899"
-    },
-    {
-      name: "J.O.B Lactation",
-      image: "https://eddie-portfolio.s3.us-east-1.amazonaws.com/logo/fire_icon.png",
-      role: "VR Developer",
-      type: "Professional",
-      categories: ["XR"] as CategoryOption[],
-      badges: ["Unreal Engine 5", "Meta Quest 2", "2025"],
-      link: "https://joblactation.com/",
-      text: "VR Healthcare Application",
-      video: "https://eddie-portfolio.s3.us-east-1.amazonaws.com/videos/jobl_demo.MP4",
-      description: "Healthcare VR application designed to support lactation consultants and new mothers. Built with Unreal Engine 5 for Meta Quest 2, featuring interactive educational experiences.",
-      color: "#14B8A6"
     },
     {
       name: "Crypto Tutors - Defi All Odds",
@@ -178,7 +152,33 @@
       video: "https://eddie-portfolio.s3.us-east-1.amazonaws.com/videos/mr_car_02.mov",
       description: "A mixed reality automotive experience built for educational purposes, allowing students to explore and interact with vehicle components in an immersive 3D environment.",
       color: "#A855F7"
-    }
+    },
+    {
+      name: "HARP",
+      image: "https://ik.imagekit.io/2ax1lblqa/Slice_1__1_-removebg-preview.png?updatedAt=1732343747682",
+      role: "Lead VR Developer",
+      type: "Professional",
+      categories: ["XR"] as CategoryOption[],
+      badges: ["Unreal Engine 5", "Meta Quest 2", "2025"],
+      link: "https://www.harp-rose.org/",
+      text: "VR Enhanced Therapy, powered by Unreal Engine.",
+      video: "https://eddie-portfolio.s3.us-east-1.amazonaws.com/videos/Harp_Demo_01.mp4",
+      description: "VR Startup that aims to make therapy more accessible and innovative. I am the lead software developer for this MVP. This is being built with Unreal Engine 5, while I outsource things like 3D Model creation, audio, etc.",
+      color: "#EC4899"
+    },
+    {
+      name: "J.O.B Lactation",
+      image: "https://eddie-portfolio.s3.us-east-1.amazonaws.com/logo/fire_icon.png",
+      role: "VR Developer",
+      type: "Professional",
+      categories: ["XR"] as CategoryOption[],
+      badges: ["Unreal Engine 5", "Meta Quest 2", "2025"],
+      link: "https://joblactation.com/",
+      text: "VR Healthcare Application",
+      video: "https://eddie-portfolio.s3.us-east-1.amazonaws.com/videos/jobl_demo.MP4",
+      description: "Healthcare VR application designed to support lactation consultants and new mothers. Built with Unreal Engine 5 for Meta Quest 2, featuring interactive educational experiences.",
+      color: "#14B8A6"
+    },
   ];
 
   // State
