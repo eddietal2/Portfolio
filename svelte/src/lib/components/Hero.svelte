@@ -6,7 +6,6 @@
   import headerArtPicGold from '../../assets/illustrations/eddie-header-gold.svg';
   import profilePhoto from '../../assets/photos/eddie-profile.png';
   import { onMount } from 'svelte';
-  import { get } from 'svelte/store';
 
   let typedText = '';
   let typedName = '';
@@ -39,65 +38,31 @@
   const fullText = `As a versatile developer and designer, I specialize in turning innovative ideas into tangible software. 
   From web applications to immersive XR experiences, my expertise spans web development, responsive design, CSS & SVG animation, UI/UX design, and even video game development using Unreal Engine. With a focus on creating high-performing and effective software, I've successfully delivered on numerous types of projects.`;
 
-  // Function to load the appropriate SVG based on theme and state
-  // Shows gold when hovering, inverse color when rotating (scrolling)
-  function loadHeaderSvg(currentTheme: string, showInverse: boolean = false, showGold: boolean = false) {
-    let svgUrl: string;
-    if (showGold) {
-      // Golden state on hover
-      svgUrl = headerArtPicGold;
-    } else if (showInverse) {
-      // Swap colors: light mode shows fire, dark mode shows green
-      svgUrl = currentTheme === 'light' ? headerArtPicFire : headerArtPicGreen;
-    } else {
-      svgUrl = currentTheme === 'light' ? headerArtPicGreen : headerArtPicFire;
-    }
-    
-    fetch(svgUrl)
-      .then(res => res.text())
-      .then(svgContent => {
-        const svgContainer = document.getElementById('header-pic');
-        if (svgContainer) {
-          svgContainer.innerHTML = svgContent;
-          // Apply rotation based on scroll progress (desktop only)
-          const svg = svgContainer.querySelector('svg');
-          if (svg && window.innerWidth >= 1024) {
-            const rotation = scrollProgress * 360;
-            svg.style.transform = `rotate(${rotation}deg)`;
-            svg.style.transition = 'transform 0.3s ease-out';
-          }
-        }
-      });
-  }
+  let headerRotation = 0;
+  let currentTheme: string;
+  let headerFrameSrc: string;
 
-  // Determine if we should show inverse color (rotating only, not hovering - hover shows gold)
+  $: currentTheme = $theme;
   $: isRotating = scrollProgress > 0;
-  $: showInverseColor = isRotating; // Only rotating triggers inverse, hover shows gold
-
-  // Subscribe to theme changes to update the SVG
-  theme.subscribe((currentTheme) => {
-    if (typeof document !== 'undefined') {
-      loadHeaderSvg(currentTheme, showInverseColor, frameHovered);
-    }
-  });
+  $: showInverseColor = isRotating;
+  $: headerFrameSrc = frameHovered
+    ? headerArtPicGold
+    : showInverseColor
+      ? (currentTheme === 'light' ? headerArtPicFire : headerArtPicGreen)
+      : (currentTheme === 'light' ? headerArtPicGreen : headerArtPicFire);
 
   // Handle frame hover - show golden state
   function handleFrameEnter() {
     frameHovered = true;
     goldenState.set(true);
-    loadHeaderSvg(get(theme), isRotating, true); // Show gold on hover
   }
 
   function handleFrameLeave() {
     frameHovered = false;
     goldenState.set(false);
-    loadHeaderSvg(get(theme), isRotating, false); // Return to normal/inverse
   }
 
   onMount(() => {
-    // Load initial SVG based on current theme
-    loadHeaderSvg(get(theme), false);
-
     // Track scroll progress for frame rotation (desktop only)
     const wrapper = document.getElementById('wrapper');
     if (wrapper && window.innerWidth >= 1024) {
@@ -114,21 +79,15 @@
         scrollProgress = Math.min(Math.max(scrollTop / heroHeight, 0), 1);
         
         // Update frame rotation
-        const svgContainer = document.getElementById('header-pic');
-        const svg = svgContainer?.querySelector('svg');
-        if (svg) {
-          const rotation = scrollProgress * 360;
-          svg.style.transform = `rotate(${rotation}deg)`;
-        }
+        headerRotation = scrollProgress * 360;
         
         // Swap to inverse color when rotation starts or stops
         const isCurrentlyRotating = scrollProgress > 0;
         if (isCurrentlyRotating !== wasRotating) {
           wasRotating = isCurrentlyRotating;
-          loadHeaderSvg(get(theme), isCurrentlyRotating || frameHovered);
         }
       };
-      
+
       wrapper.addEventListener('scroll', updateScrollProgress, { passive: true });
       updateScrollProgress();
     }
@@ -163,13 +122,13 @@
 
     // Snap Scrolling & Navbar Bullets
     setSnapScrolling();
+
     function setSnapScrolling() {
       const options = {
         root: document.getElementById('wrapper'),
         threshold: [0.25],
       };
-      function updateNavbar(activeSection) {
-        const currentTheme = get(theme);
+      function updateNavbar(activeSection: string) {
         const activeColor = currentTheme === 'light' ? '#00c400' : '#ff4500';
         const navBullets = document.querySelectorAll('.nav-bullet');
         navBullets.forEach((bullet: any) => {
@@ -398,7 +357,7 @@
           on:mouseleave={handleFrameLeave}
           role="presentation"
         >
-          <div id="header-pic" class="header-frame"></div>
+          <img id="header-pic" class="header-frame" src={headerFrameSrc} alt="" aria-hidden="true" style="transform: rotate({headerRotation}deg); transition: transform 0.3s ease-out;" loading="lazy" />
           <img src={profilePhoto} alt="Eddie" class="profile-photo" />
         </div>
       </div>

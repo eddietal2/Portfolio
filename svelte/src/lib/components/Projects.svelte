@@ -1,7 +1,6 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import { theme } from '../stores/light-dark-mode';
-  import { get } from 'svelte/store';
   import projectFrameGreen from '../../assets/illustrations/story-frame-green.svg';
   import projectFrameFire from '../../assets/illustrations/story-frame-fire.svg';
 
@@ -90,7 +89,7 @@
     }, 
     {
       name: "Cosmic Collisions",
-      image: "https://finalbossxr.s3.us-east-1.amazonaws.com/cosmic/logos/CC_LogoAnimated.gif",
+      image: "https://finalbossxr.s3.us-east-1.amazonaws.com/cosmic/logos/CC_LogoAnimated.webp",
       role: "Game Developer & Designer",
       type: "Professional",
       categories: ["Mobile", "XR"] as CategoryOption[],
@@ -189,62 +188,27 @@
   let cardsVisible = false;
   let laptopFrameHovered = false;
   let projectsScrollProgress = 0;
+  let laptopRotation = 0;
+  let currentTheme: string;
+  let laptopFrameSrc: string;
 
   const categories: Category[] = ['All', 'Web', 'Mobile', 'Python', 'XR'];
 
-  // Function to load the appropriate frame SVG based on theme and state
-  function loadLaptopFrame(currentTheme: string, showInverse: boolean = false) {
-    let svgUrl: string;
-    if (showInverse) {
-      // Inverse: light mode shows fire, dark mode shows green
-      svgUrl = currentTheme === 'light' ? projectFrameFire : projectFrameGreen;
-    } else {
-      // Normal: light mode shows green, dark mode shows fire
-      svgUrl = currentTheme === 'light' ? projectFrameGreen : projectFrameFire;
-    }
-    
-    fetch(svgUrl)
-      .then(res => res.text())
-      .then(svgContent => {
-        const frameContainer = document.getElementById('laptop-frame');
-        if (frameContainer) {
-          frameContainer.innerHTML = svgContent;
-          // Apply rotation based on scroll progress (desktop only)
-          const svg = frameContainer.querySelector('svg');
-          if (svg && window.innerWidth >= 1024) {
-            const rotation = projectsScrollProgress * 360;
-            svg.style.transform = `rotate(${rotation}deg)`;
-            svg.style.transition = 'transform 0.3s ease-out';
-          }
-        }
-      });
-  }
-
   // Determine if we should show inverse color
+  $: currentTheme = $theme;
   $: isLaptopRotating = projectsScrollProgress > 0 && projectsScrollProgress < 1;
   $: showLaptopInverseColor = laptopFrameHovered || isLaptopRotating;
-
-  // Subscribe to theme changes
-  theme.subscribe((currentTheme) => {
-    if (typeof document !== 'undefined') {
-      loadLaptopFrame(currentTheme, showLaptopInverseColor);
-    }
-  });
-
-  // Reactive statement to reload frame when inverse color state changes
-  $: if (typeof document !== 'undefined' && showLaptopInverseColor !== undefined) {
-    loadLaptopFrame(get(theme), showLaptopInverseColor);
-  }
+  $: laptopFrameSrc = showLaptopInverseColor
+    ? (currentTheme === 'light' ? projectFrameFire : projectFrameGreen)
+    : (currentTheme === 'light' ? projectFrameGreen : projectFrameFire);
 
   // Handle frame hover
   function handleLaptopFrameEnter() {
     laptopFrameHovered = true;
-    loadLaptopFrame(get(theme), true);
   }
 
   function handleLaptopFrameLeave() {
     laptopFrameHovered = false;
-    loadLaptopFrame(get(theme), isLaptopRotating);
   }
 
   $: filteredProjects = selectedCategory === 'All' 
@@ -252,9 +216,6 @@
     : projects.filter(p => p.categories.includes(selectedCategory as CategoryOption));
 
   onMount(() => {
-    // Load initial laptop frame SVG
-    loadLaptopFrame(get(theme), false);
-
     // Track scroll progress for laptop frame rotation (desktop only)
     const wrapper = document.getElementById('wrapper');
     const section3 = document.getElementById('section-3');
@@ -271,22 +232,15 @@
         const viewportHeight = wrapperRect.height;
         
         // Start animation when section enters viewport, complete when it exits
-        const progress = Math.min(Math.max((-sectionTop + viewportHeight * 0.3) / (sectionHeight * 0.7), 0), 1);
-        projectsScrollProgress = progress;
+        projectsScrollProgress = Math.min(Math.max((-sectionTop + viewportHeight * 0.3) / (sectionHeight * 0.7), 0), 1);
         
         // Update frame rotation
-        const frameContainer = document.getElementById('laptop-frame');
-        const svg = frameContainer?.querySelector('svg');
-        if (svg) {
-          const rotation = projectsScrollProgress * 360;
-          svg.style.transform = `rotate(${rotation}deg)`;
-        }
+        laptopRotation = projectsScrollProgress * 360;
         
         // Swap to inverse color when rotation starts or stops
         const isCurrentlyRotating = projectsScrollProgress > 0 && projectsScrollProgress < 1;
         if (isCurrentlyRotating !== wasLaptopRotating) {
           wasLaptopRotating = isCurrentlyRotating;
-          loadLaptopFrame(get(theme), isCurrentlyRotating || laptopFrameHovered);
         }
       };
       
@@ -588,7 +542,9 @@
               on:mouseleave={handleLaptopFrameLeave}
               role="presentation"
             >
-              <div id="laptop-frame" class="laptop-frame"></div>
+              <div id="laptop-frame" class="laptop-frame">
+                <img src={laptopFrameSrc} alt="" aria-hidden="true" class="w-full h-full" style="transform: rotate({laptopRotation}deg); transition: transform 0.3s ease-out;" loading="lazy" />
+              </div>
               <svg class="laptop-icon" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
               <!-- Laptop Base/Keyboard -->
               <rect x="6" y="40" width="52" height="5" rx="1.5" fill="url(#laptopGradient1)" />
@@ -722,7 +678,7 @@
               <!-- Top Row: Logo & Category -->
               <div class="flex items-start justify-between mb-4">
                 <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-white/10 to-white/5 p-2 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                  <img src={project.image} class="w-full h-full object-contain" alt={project.name} />
+                  <img src={project.image} class="w-full h-full object-contain" alt={project.name} loading="lazy" decoding="async" />
                 </div>
                 <div class="flex flex-wrap gap-1 justify-end max-w-[60%]">
                   {#each project.categories as cat}
@@ -840,7 +796,7 @@
                 class="w-16 h-16 rounded-2xl p-3 flex items-center justify-center"
                 style="background: {selectedProject.color}20"
               >
-                <img src={selectedProject.image} class="w-full h-full object-contain" alt={selectedProject.name} />
+                <img src={selectedProject.image} class="w-full h-full object-contain" alt={selectedProject.name} loading="lazy" decoding="async" />
               </div>
               <div>
                 <h2 id="modal-title" class="text-2xl font-bold jura {$theme === 'light' ? 'text-gray-900' : 'text-white'}">
@@ -1062,7 +1018,8 @@
     pointer-events: none;
   }
 
-  .laptop-frame :global(svg) {
+  .laptop-frame :global(svg),
+  .laptop-frame img {
     width: 100%;
     height: 100%;
   }

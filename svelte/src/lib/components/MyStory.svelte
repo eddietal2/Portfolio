@@ -1,7 +1,6 @@
 <script lang="ts">
   import { theme } from '../stores/light-dark-mode';
   import { onMount } from 'svelte';
-  import { get } from 'svelte/store';
   import storyFrameGreen from '../../assets/illustrations/story-frame-green.svg';
   import storyFrameFire from '../../assets/illustrations/story-frame-fire.svg';
 
@@ -65,58 +64,25 @@
   let activeTab = 0;
   let bookFrameHovered = false;
   let storyScrollProgress = 0;
-
-  // Function to load the appropriate frame SVG based on theme and state
-  function loadBookFrame(currentTheme: string, showInverse: boolean = false) {
-    let svgUrl: string;
-    if (showInverse) {
-      svgUrl = currentTheme === 'light' ? storyFrameFire : storyFrameGreen;
-    } else {
-      svgUrl = currentTheme === 'light' ? storyFrameGreen : storyFrameFire;
-    }
-    
-    fetch(svgUrl)
-      .then(res => res.text())
-      .then(svgContent => {
-        const frameContainer = document.getElementById('book-frame');
-        if (frameContainer) {
-          frameContainer.innerHTML = svgContent;
-          // Apply rotation based on scroll progress (desktop only)
-          const svg = frameContainer.querySelector('svg');
-          if (svg && window.innerWidth >= 1024) {
-            const rotation = storyScrollProgress * 360;
-            svg.style.transform = `rotate(${rotation}deg)`;
-            svg.style.transition = 'transform 0.3s ease-out';
-          }
-        }
-      });
-  }
+  let bookRotation = 0;
+  let currentTheme: string;
+  let bookFrameSrc: string;
 
   // Determine if we should show inverse color
+  $: currentTheme = $theme;
   $: isBookRotating = storyScrollProgress > 0 && storyScrollProgress < 1;
   $: showBookInverseColor = bookFrameHovered || isBookRotating;
-
-  // Subscribe to theme changes
-  theme.subscribe((currentTheme) => {
-    if (typeof document !== 'undefined') {
-      loadBookFrame(currentTheme, showBookInverseColor);
-    }
-  });
-
-  // Reactive statement to reload frame when inverse color state changes
-  $: if (typeof document !== 'undefined' && showBookInverseColor !== undefined) {
-    loadBookFrame(get(theme), showBookInverseColor);
-  }
+  $: bookFrameSrc = showBookInverseColor
+    ? (currentTheme === 'light' ? storyFrameFire : storyFrameGreen)
+    : (currentTheme === 'light' ? storyFrameGreen : storyFrameFire);
 
   // Handle frame hover
   function handleBookFrameEnter() {
     bookFrameHovered = true;
-    loadBookFrame(get(theme), true);
   }
 
   function handleBookFrameLeave() {
     bookFrameHovered = false;
-    loadBookFrame(get(theme), isBookRotating);
   }
 
   const storyTabs = [
@@ -145,45 +111,19 @@
   }
   
   onMount(() => {
-    // Load initial book frame SVG
-    loadBookFrame(get(theme), false);
-
     // Track scroll progress for book frame rotation (desktop only)
     const wrapper = document.getElementById('wrapper');
     const section2 = document.getElementById('section-2');
     if (wrapper && section2 && window.innerWidth >= 1024) {
-      let wasBookRotating = false;
-      
       const updateStoryScrollProgress = () => {
         const section2Rect = section2.getBoundingClientRect();
         const wrapperRect = wrapper.getBoundingClientRect();
-        
-        // Calculate how far into section-2 we've scrolled
-        // Progress goes from 0 (section just entering) to 1 (section fully scrolled past)
         const sectionTop = section2Rect.top - wrapperRect.top;
         const sectionHeight = section2.offsetHeight;
         const viewportHeight = wrapperRect.height;
-        
-        // Start animation when section enters viewport, complete when it exits
-        const progress = Math.min(Math.max((-sectionTop + viewportHeight * 0.3) / (sectionHeight * 0.7), 0), 1);
-        storyScrollProgress = progress;
-        
-        // Update frame rotation
-        const frameContainer = document.getElementById('book-frame');
-        const svg = frameContainer?.querySelector('svg');
-        if (svg) {
-          const rotation = storyScrollProgress * 360;
-          svg.style.transform = `rotate(${rotation}deg)`;
-        }
-        
-        // Swap to inverse color when rotation starts or stops
-        const isCurrentlyRotating = storyScrollProgress > 0 && storyScrollProgress < 1;
-        if (isCurrentlyRotating !== wasBookRotating) {
-          wasBookRotating = isCurrentlyRotating;
-          loadBookFrame(get(theme), isCurrentlyRotating || bookFrameHovered);
-        }
+        storyScrollProgress = Math.min(Math.max((-sectionTop + viewportHeight * 0.3) / (sectionHeight * 0.7), 0), 1);
+        bookRotation = storyScrollProgress * 360;
       };
-      
       wrapper.addEventListener('scroll', updateStoryScrollProgress, { passive: true });
       updateStoryScrollProgress();
     }
@@ -491,7 +431,9 @@
               on:mouseleave={handleBookFrameLeave}
               role="presentation"
             >
-              <div id="book-frame" class="book-frame"></div>
+              <div id="book-frame" class="book-frame">
+                <img src={bookFrameSrc} alt="" aria-hidden="true" class="w-full h-full" style="transform: rotate({bookRotation}deg); transition: transform 0.3s ease-out;" loading="lazy" />
+              </div>
               <svg class="book-icon" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <!-- Book spine -->
                 <rect x="8" y="8" width="8" height="48" rx="2" fill="{$theme === 'light' ? '#1a7a1a' : '#b33000'}">
@@ -618,6 +560,8 @@
                   src={photo} 
                   class="w-full h-full object-cover hover:scale-110 transition-transform duration-700" 
                   alt="Eddie's journey photo {index + 1}"
+                  loading="lazy"
+                  decoding="async"
                 />
               </div>
             {/each}
@@ -628,6 +572,8 @@
                   src={photo} 
                   class="w-full h-full object-cover hover:scale-110 transition-transform duration-700" 
                   alt="Eddie's journey photo {index + 1}"
+                  loading="lazy"
+                  decoding="async"
                 />
               </div>
             {/each}
@@ -893,7 +839,8 @@
     pointer-events: none;
   }
 
-  .book-frame :global(svg) {
+  .book-frame :global(svg),
+  .book-frame img {
     width: 100%;
     height: 100%;
   }

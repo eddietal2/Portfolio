@@ -1,7 +1,6 @@
 <script lang="ts">
   import { theme } from '../stores/light-dark-mode';
   import { onMount } from 'svelte';
-  import { get } from 'svelte/store';
   import contactFrameGreen from '../../assets/illustrations/story-frame-green.svg';
   import contactFrameFire from '../../assets/illustrations/story-frame-fire.svg';
 
@@ -12,60 +11,24 @@
   // Frame animation state
   let mailFrameHovered = false;
   let contactScrollProgress = 0;
-
-  // Function to load the appropriate frame SVG based on theme and state
-  function loadMailFrame(currentTheme: string, showInverse: boolean = false) {
-    let svgUrl: string;
-    if (showInverse) {
-      // Inverse: light mode shows fire, dark mode shows green
-      svgUrl = currentTheme === 'light' ? contactFrameFire : contactFrameGreen;
-    } else {
-      // Normal: light mode shows green, dark mode shows fire
-      svgUrl = currentTheme === 'light' ? contactFrameGreen : contactFrameFire;
-    }
-    
-    fetch(svgUrl)
-      .then(res => res.text())
-      .then(svgContent => {
-        const frameContainer = document.getElementById('mail-frame');
-        if (frameContainer) {
-          frameContainer.innerHTML = svgContent;
-          // Apply rotation based on scroll progress (desktop only)
-          const svg = frameContainer.querySelector('svg');
-          if (svg && window.innerWidth >= 1024) {
-            const rotation = contactScrollProgress * 360;
-            svg.style.transform = `rotate(${rotation}deg)`;
-            svg.style.transition = 'transform 0.3s ease-out';
-          }
-        }
-      });
-  }
+  let mailRotation = 0;
+  let currentTheme: string;
 
   // Determine if we should show inverse color
+  $: currentTheme = $theme;
   $: isMailRotating = contactScrollProgress > 0 && contactScrollProgress < 1;
   $: showMailInverseColor = mailFrameHovered || isMailRotating;
-
-  // Subscribe to theme changes
-  theme.subscribe((currentTheme) => {
-    if (typeof document !== 'undefined') {
-      loadMailFrame(currentTheme, showMailInverseColor);
-    }
-  });
-
-  // Reactive statement to reload frame when inverse color state changes
-  $: if (typeof document !== 'undefined' && showMailInverseColor !== undefined) {
-    loadMailFrame(get(theme), showMailInverseColor);
-  }
+  $: mailFrameSrc = showMailInverseColor
+    ? (currentTheme === 'light' ? contactFrameFire : contactFrameGreen)
+    : (currentTheme === 'light' ? contactFrameGreen : contactFrameFire);
 
   // Handle frame hover
   function handleMailFrameEnter() {
     mailFrameHovered = true;
-    loadMailFrame(get(theme), true);
   }
 
   function handleMailFrameLeave() {
     mailFrameHovered = false;
-    loadMailFrame(get(theme), isMailRotating);
   }
 
   function handleFocus() {
@@ -397,7 +360,9 @@
             on:mouseleave={handleMailFrameLeave}
             role="presentation"
           >
-            <div id="mail-frame" class="mail-frame"></div>
+            <div id="mail-frame" class="mail-frame">
+              <img src={mailFrameSrc} alt="" aria-hidden="true" class="w-full h-full" style="transform: rotate({mailRotation}deg); transition: transform 0.3s ease-out;" loading="lazy" />
+            </div>
             <svg class="mail-icon" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
               <!-- Envelope body -->
               <rect x="4" y="14" width="56" height="40" rx="4" fill="{$theme === 'light' ? '#00c400' : '#ff4500'}">
@@ -562,7 +527,8 @@
     pointer-events: none;
   }
 
-  .mail-frame :global(svg) {
+  .mail-frame :global(svg),
+  .mail-frame img {
     width: 100%;
     height: 100%;
   }
