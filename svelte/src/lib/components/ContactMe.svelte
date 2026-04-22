@@ -49,44 +49,23 @@
   }
 
   onMount(() => {
-    // Load initial mail frame SVG
-    loadMailFrame(get(theme), false);
-
     // Track scroll progress for mail frame rotation (desktop only)
     const wrapper = document.getElementById('wrapper');
     const section4 = document.getElementById('section-4');
     if (wrapper && section4 && window.innerWidth >= 1024) {
-      let wasMailRotating = false;
-      
       const updateContactScrollProgress = () => {
         const section4Rect = section4.getBoundingClientRect();
         const wrapperRect = wrapper.getBoundingClientRect();
-        
-        // Calculate how far into section-4 we've scrolled
+
         const sectionTop = section4Rect.top - wrapperRect.top;
         const sectionHeight = section4.offsetHeight;
         const viewportHeight = wrapperRect.height;
-        
-        // Start animation when section enters viewport, complete when it exits
+
         const progress = Math.min(Math.max((-sectionTop + viewportHeight * 0.3) / (sectionHeight * 0.7), 0), 1);
         contactScrollProgress = progress;
-        
-        // Update frame rotation
-        const frameContainer = document.getElementById('mail-frame');
-        const svg = frameContainer?.querySelector('svg');
-        if (svg) {
-          const rotation = contactScrollProgress * 360;
-          svg.style.transform = `rotate(${rotation}deg)`;
-        }
-        
-        // Swap to inverse color when rotation starts or stops
-        const isCurrentlyRotating = contactScrollProgress > 0 && contactScrollProgress < 1;
-        if (isCurrentlyRotating !== wasMailRotating) {
-          wasMailRotating = isCurrentlyRotating;
-          loadMailFrame(get(theme), isCurrentlyRotating || mailFrameHovered);
-        }
+        mailRotation = progress * 360;
       };
-      
+
       wrapper.addEventListener('scroll', updateContactScrollProgress, { passive: true });
       updateContactScrollProgress();
     }
