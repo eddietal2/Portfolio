@@ -143,7 +143,7 @@
         <!-- Light/Dark Mode Toggle -->
         <button aria-label="Light/Dark Button"
           type="button"
-          class="p-1 lg:p-1.5 rounded-full transition-all duration-300 {$goldenState ? ($theme === 'light' ? 'hover:bg-[#9A7B1C20]' : 'hover:bg-[#FFD70020]') : ($theme === 'light' ? 'hover:bg-[#00c40020]' : 'hover:bg-[#ff450020]')}
+          class="p-1 lg:p-1.5 aspect-square flex items-center justify-center rounded-full transition-all duration-300 {$goldenState ? ($theme === 'light' ? 'hover:bg-[#9A7B1C20]' : 'hover:bg-[#FFD70020]') : ($theme === 'light' ? 'hover:bg-[#00c40020]' : 'hover:bg-[#ff450020]')}
             {showThemeTooltip ? 'animate-pulse ring-2 ring-offset-2 ' + ($goldenState ? ($theme === 'light' ? 'ring-[#9A7B1C] ring-offset-white' : 'ring-[#FFD700] ring-offset-gray-900') : ($theme === 'light' ? 'ring-[#00c400] ring-offset-white' : 'ring-[#ff4500] ring-offset-gray-900')) : ''}"
           on:click={toggleTheme}>
           <ion-icon 
